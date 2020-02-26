@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>Python + Wxpy 实现微信防撤回 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="微信,防撤回,python,wxpy">
+    <meta name="description" content="前提昨天在群里，看到小伙伴发了一个  ”不可描述“ 的图片，我刚准备点开看，就发现TA撤回了，该死的撤回。看我怎么整治你。                                                                                              1.jpg               准备工作 开发工具 一个注册一年以上的微信号  工">
+<meta name="keywords" content="微信,防撤回,python,wxpy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python + Wxpy 实现微信防撤回">
+<meta property="og:url" content="https://toc.lieme.cn/2019/08/15/Python.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="前提昨天在群里，看到小伙伴发了一个  ”不可描述“ 的图片，我刚准备点开看，就发现TA撤回了，该死的撤回。看我怎么整治你。                                                                                              1.jpg               准备工作 开发工具 一个注册一年以上的微信号  工">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/FpvgDR_wQCx9O_eHGo224HWRyVIl">
+<meta property="og:updated_time" content="2019-08-15T00:33:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python + Wxpy 实现微信防撤回">
+<meta name="twitter:description" content="前提昨天在群里，看到小伙伴发了一个  ”不可描述“ 的图片，我刚准备点开看，就发现TA撤回了，该死的撤回。看我怎么整治你。                                                                                              1.jpg               准备工作 开发工具 一个注册一年以上的微信号  工">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/FpvgDR_wQCx9O_eHGo224HWRyVIl">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">Python + Wxpy 实现微信防撤回</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">Python + Wxpy 实现微信防撤回</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-08-15T00:24:00.000Z" itemprop="datePublished" class="page-time">
+  2019-08-15
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前提"><span class="post-toc-number">1.</span> <span class="post-toc-text">前提</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#准备工作"><span class="post-toc-number">2.</span> <span class="post-toc-text">准备工作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#工作原理"><span class="post-toc-number">3.</span> <span class="post-toc-text">工作原理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#注意事项"><span class="post-toc-number">4.</span> <span class="post-toc-text">注意事项</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#主要代码"><span class="post-toc-number">5.</span> <span class="post-toc-text">主要代码</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#效果展示"><span class="post-toc-number">6.</span> <span class="post-toc-text">效果展示</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#源码地址"><span class="post-toc-number">7.</span> <span class="post-toc-text">源码地址</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#公众号"><span class="post-toc-number">8.</span> <span class="post-toc-text">公众号</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Python"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Python + Wxpy 实现微信防撤回</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-08-15 08:24:00" datetime="2019-08-15T00:24:00.000Z"  itemprop="datePublished">2019-08-15</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        622
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        3 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>昨天在群里，看到小伙伴发了一个  ”不可描述“ 的图片，我刚准备点开看，就发现TA撤回了，该死的撤回。看我怎么整治你。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FrPMymQNGvVrROsnkb-jSl2h8UKJ" alt="1.jpg" title>
+                </div>
+                <div class="image-caption" style="display:none;">1.jpg</div>
+            </figure>
+
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ol>
+<li>开发工具</li>
+<li>一个注册一年以上的微信号</li>
+</ol>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><blockquote>
+<p>本项目的防撤回，实际上的原理是这个微信和你聊天的对象同处再一个群里，它会实时监控聊天记录，检测到消息状态为撤回，就会从撤回之前的保存的记录里，拿出这条数据，转发给出去，从而达到一个防撤回的效果。通俗的讲就是实时备份你的聊天记录，然后提取出来撤回的那条。</p>
+</blockquote>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>1、如果你想要防撤回效果，本微信号一定要和你当前的微信号再同一个群里。</p>
+<p>2、简单的说就是你的机器人微信 和 你的主微信有着同样的群聊，以达到防撤回的目的</p>
+<p>3、暂不支持单人撤回，只能对群防撤回。</p>
+<h2 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h2><blockquote>
+<p>获取你要检测的群对象，如果你想监听所有对象，则不需要</p>
+</blockquote>
+<pre><code>Test = bot.groups().search(u&apos;Test&apos;)</code></pre><blockquote>
+<p>将撤回的消息 转发到特定的群里，以供再其他微信查看，可以是单个好友或者文件传输助手</p>
+</blockquote>
+<pre><code>recallNotice = ensure_one(bot.groups().search(&apos;recallNotice&apos;))</code></pre><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 文本 TEXT = <span class="string">'Text'</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 位置 MAP = <span class="string">'Map'</span> 1</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 名片 CARD = <span class="string">'Card'</span> 2</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 分享 SHARING = <span class="string">'Sharing'</span> 3</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 图片 PICTURE = <span class="string">'Picture'</span>  4</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 语音 RECORDING = <span class="string">'Recording'</span> 5</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 文件 ATTACHMENT = <span class="string">'Attachment'</span> 6</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 视频 VIDEO = <span class="string">'Video'</span> 7</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注册事件，所有群的消息</p>
+</blockquote>
+<pre><code>@bot.register(Group)</code></pre><blockquote>
+<p>主要代码 </p>
+</blockquote>
+<pre><code>def handleReceiveMsg(msg):
+    &apos;&apos;&apos;
+    监听消息
+    :param msg:
+    :param chats:
+    :return:
+    &apos;&apos;&apos;
+    ra = msg.raw
+    mss = msg.bot.messages
+    le = len(mss)
+
+    if ra[&apos;Status&apos;] == 4:
+        # 获取消息ID
+        oldmsgid = re.search(re.compile(&apos;&lt;msgid&gt;(.*?)&lt;/msgid&gt;&apos;, re.S),ra[&apos;Content&apos;]).group(1)
+        for i in range(le-1,-1,-1):
+            if oldmsgid == str(mss[i].id):
+                name = msg.chat.name    // 获取群名
+                username = msg.member.nick_name // 获取撤回消息的人名
+                if name == None or name == &apos;&apos;:
+                    name = msg.chat.nick_name
+                    username = msg.member.nick_name
+
+                // 根据不同的消息类型进行撤回提示
+                if mss[i].type == &apos;Text&apos;:
+                    recallNotice.send(&apos;来自【&apos;+ name + &apos;】的【&apos; + username
+                    +&apos;】撤回了一条消息：&apos;+ mss[i].text)
+                    bot.file_helper.send(&apos;来自【&apos;+ name + &apos;】的【&apos; + username
+                    +&apos;】撤回了一条消息：&apos;+ mss[i].text)
+                    break</code></pre><h2 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h2><p><img src="http://blogimg.lieme.cn/FlC90KkMpIF99jT9JCY35TDhnGD6" alt="2.jpg"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FuaoHVf1juPOIvsFxNsxXygmgcFH" alt="3.png" title>
+                </div>
+                <div class="image-caption" style="display:none;">3.png</div>
+            </figure>
+
+
+<p><strong>完美通过测试，看你还怎么撤回。</strong></p>
+<h2 id="源码地址"><a href="#源码地址" class="headerlink" title="源码地址"></a>源码地址</h2><p>微信公众号 【小夭同学】回复 【防撤回】</p>
+<p><a href="https://github.com/jiaopianjun/wepython" target="_blank" rel="noopener">recall, 求 Star</a></p>
+<h2 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h2><p>小夭同学，欢迎关注</p>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-08-15T00:33:12.000Z" itemprop="dateUpdated">2019-08-15 08:33:12</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wxpy/">wxpy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信/">微信</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/防撤回/">防撤回</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/08/15/Python.html&title=《Python + Wxpy 实现微信防撤回》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FpvgDR_wQCx9O_eHGo224HWRyVIl" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/08/15/Python.html&title=《Python + Wxpy 实现微信防撤回》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/08/15/Python.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python + Wxpy 实现微信防撤回》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/08/15/Python.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/08/15/Python.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/08/15/近期问题一览.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">近期问题一览</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/08/07/常用的JS正则校验表达式.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">常用的JS正则校验表达式</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/08/15/Python.html&title=《Python + Wxpy 实现微信防撤回》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FpvgDR_wQCx9O_eHGo224HWRyVIl" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/08/15/Python.html&title=《Python + Wxpy 实现微信防撤回》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/08/15/Python.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python + Wxpy 实现微信防撤回》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/08/15/Python.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/08/15/Python.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMElEQVR42u3aSW7EMAwFUd//0g6QVYCG7fqkO4Co0irIIOn1ghGH48Dr/F3kp+ef9fk7V/ucH+v4xpIhQ8ayjPN23V/0/lpXH0HnrMtzZciQsQGDX+X+4PR4Tnq4swwZMmTcHsODb+fjkyFDhozadimGB18ZMmTIqCWxHHN/JElcv5iLy5AhY0FG2hj4z6+/2N+QIUPGIoyztEhamybDrfvIkCFjNIM/+zoTDmkqmya0MmTI2IHBgx0f8OLfryGLRTcZMmQsyCCFsLSgRoplabMhyLBlyJAxlJGW6TtF/1oT9CHoy5AhYzSj1sIksHSH2p6tTqwMGTIWYZBQy5+PvAHwbpNAhgwZ+zD4tWqBkier8QNUhgwZoxl801qJ7a1iHIHJkCFjB0ax84kfeWkhr9jglCFDxlBGWo4PhrTA846PaDyEXRkyZGzA6IfdNHTyS6OnoQwZMjZgkK15zsjboh0w+r8hQ4aMoQwyKkFS1tp3ao1VGTJk7MAgIS8dHUvDLg/HlwFXhgwZoxn86cYHLN4tyaE/liFDxmhGLQXtBNB0TzQnIkOGjKEMkjqmx3NkGpofbihDhoxxjFrayS9UC6b8qSpDhowdGJ30kpf401DbGrmQIUPGUEbnSZci06J/q2ooQ4aMcQye9aajEml7MmhbypAhQwZ+2KXtAZ7K8o9JhgwZMnhbsTauwZ+bLzwNZciQsSyDj1Z0mpopRoYMGTJqQbl/GNmBD6vJkCFjNOMHE4CTYR/0gbYAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

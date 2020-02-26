@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>JavaScript类型相关常用操作 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="javascript">
+    <meta name="description" content="一、 JS数组，字符串，json互相转换1.JS数组转字符串1234567891011121314151617使用数组自带的join方法可以把数组转化为字符串：  let arr = [1,2,&apos;uu&apos;];  let str = arr.join(&apos;,&apos;);  console.log(str);  // 1,2,uu如果素组元素包含对象，则调用对象的toString()方法将对象转化为字符串。">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript类型相关常用操作">
+<meta property="og:url" content="https://toc.lieme.cn/2019/02/15/JavaScript类型相关常用操作.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="一、 JS数组，字符串，json互相转换1.JS数组转字符串1234567891011121314151617使用数组自带的join方法可以把数组转化为字符串：  let arr = [1,2,&apos;uu&apos;];  let str = arr.join(&apos;,&apos;);  console.log(str);  // 1,2,uu如果素组元素包含对象，则调用对象的toString()方法将对象转化为字符串。">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-10-21T00:15:50.037Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript类型相关常用操作">
+<meta name="twitter:description" content="一、 JS数组，字符串，json互相转换1.JS数组转字符串1234567891011121314151617使用数组自带的join方法可以把数组转化为字符串：  let arr = [1,2,&apos;uu&apos;];  let str = arr.join(&apos;,&apos;);  console.log(str);  // 1,2,uu如果素组元素包含对象，则调用对象的toString()方法将对象转化为字符串。">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">JavaScript类型相关常用操作</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">JavaScript类型相关常用操作</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-02-15T02:01:00.000Z" itemprop="datePublished" class="page-time">
+  2019-02-15
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#一、-JS数组，字符串，json互相转换"><span class="post-toc-number">1.</span> <span class="post-toc-text">一、 JS数组，字符串，json互相转换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#1-JS数组转字符串"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.JS数组转字符串</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#2-字符串转数组"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2.字符串转数组</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#3-数组转json字符串，json字符串转数组"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3.数组转json字符串，json字符串转数组</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#二、-JS清空数组的方法"><span class="post-toc-number">2.</span> <span class="post-toc-text">二、 JS清空数组的方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#1-赋值空数组"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1.赋值空数组</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#2-修改length属性"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.修改length属性</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#3-使用splice方法"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">3.使用splice方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#三、JS时间和时间戳的转换"><span class="post-toc-number">3.</span> <span class="post-toc-text">三、JS时间和时间戳的转换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#1-JS时间转时间戳"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">1.JS时间转时间戳</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#2-JS时间戳转时间"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2.JS时间戳转时间</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-JavaScript类型相关常用操作"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">JavaScript类型相关常用操作</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-02-15 10:01:00" datetime="2019-02-15T02:01:00.000Z"  itemprop="datePublished">2019-02-15</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        1,027
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        5 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h5 id="一、-JS数组，字符串，json互相转换"><a href="#一、-JS数组，字符串，json互相转换" class="headerlink" title="一、 JS数组，字符串，json互相转换"></a>一、 JS数组，字符串，json互相转换</h5><h6 id="1-JS数组转字符串"><a href="#1-JS数组转字符串" class="headerlink" title="1.JS数组转字符串"></a>1.JS数组转字符串</h6><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">使用数组自带的<span class="keyword">join</span>方法可以把数组转化为字符串：</span><br><span class="line">  <span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="string">'uu'</span>];</span><br><span class="line">  <span class="keyword">let</span> str = arr.<span class="keyword">join</span>(<span class="string">','</span>);</span><br><span class="line">  console.log(str);  <span class="comment">// 1,2,uu</span></span><br><span class="line"></span><br><span class="line">如果素组元素包含对象，则调用对象的toString()方法将对象转化为字符串。</span><br><span class="line">  <span class="keyword">class</span> <span class="title">C</span> &#123;</span><br><span class="line">      <span class="comment">// 自定义类C，以及自定义toString()方法</span></span><br><span class="line">      toString() &#123; <span class="keyword">return</span> <span class="string">'class C'</span>; &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> cc = <span class="keyword">new</span> C(); <span class="comment">// C的实例</span></span><br><span class="line">  <span class="keyword">let</span> arr = [&#123;a: <span class="number">1</span>&#125;, cc, [<span class="number">3</span>,<span class="number">4</span>,[<span class="number">5</span>,<span class="number">5</span>]], <span class="number">5</span>];</span><br><span class="line">  <span class="keyword">let</span> str = arr.<span class="keyword">join</span>(<span class="string">'---'</span>);</span><br><span class="line">  console.log(str); <span class="comment">// [object Object]---class C---3,4,5,5---5</span></span><br><span class="line">  </span><br><span class="line">从上面的例子中还可以发现，数组中嵌套数组时，所有元素依次打印出来，那是因为数组Array的toString()方法内部实现就是<span class="keyword">join</span>.</span><br><span class="line">	[<span class="meta">1,1,[2,2,[3,3,3</span>]]] + <span class="string">""</span>; <span class="comment">// 1,1,2,2,3,3,3</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="2-字符串转数组"><a href="#2-字符串转数组" class="headerlink" title="2.字符串转数组"></a>2.字符串转数组</h6><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">使用字符串自带的<span class="built_in">split</span>方法可以把字符串分割为数组。</span><br><span class="line">  let <span class="built_in">str</span> = <span class="string">'1,2,uu'</span>;</span><br><span class="line">  let arr = <span class="built_in">str</span>.<span class="built_in">split</span>(<span class="string">','</span>);</span><br><span class="line">  console.<span class="built_in">log</span>(arr); <span class="comment">// ["1", "2", "uu"]</span></span><br><span class="line">  <span class="built_in">str</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="3-数组转json字符串，json字符串转数组"><a href="#3-数组转json字符串，json字符串转数组" class="headerlink" title="3.数组转json字符串，json字符串转数组"></a>3.数组转json字符串，json字符串转数组</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">使用<span class="built_in">JSON</span>.parse()方法可以解析json字符串转化为相应的json对象（包括数组），使用<span class="built_in">JSON</span>.stringify()方法可以把数组或对象转化为json字符串。</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="string">'uu'</span>];</span><br><span class="line"><span class="keyword">let</span> jsonStr = <span class="built_in">JSON</span>.stringify(arr);</span><br><span class="line"><span class="built_in">console</span>.log(jsonStr); <span class="comment">// 字符串：'[1,2,"uu"]'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> jsonObj = <span class="built_in">JSON</span>.parse(jsonStr);</span><br><span class="line"><span class="built_in">console</span>.log(jsonObj); <span class="comment">// 数组： [1,2,'uu']</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="二、-JS清空数组的方法"><a href="#二、-JS清空数组的方法" class="headerlink" title="二、 JS清空数组的方法"></a>二、 JS清空数组的方法</h5><h6 id="1-赋值空数组"><a href="#1-赋值空数组" class="headerlink" title="1.赋值空数组"></a>1.赋值空数组</h6><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">console.<span class="built_in">log</span>(arr); <span class="comment">// [1,2,3]</span></span><br><span class="line">arr = [];</span><br><span class="line">console.<span class="built_in">log</span>(arr); <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="2-修改length属性"><a href="#2-修改length属性" class="headerlink" title="2.修改length属性"></a>2.修改length属性</h6><figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">JS数组的<span class="built_in">length</span>熟悉可以直接修改。</span><br><span class="line"></span><br><span class="line">let arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">console.<span class="built_in">log</span>(arr); <span class="comment">// [1,2,3]</span></span><br><span class="line">arr.<span class="built_in">length</span> = <span class="number">0</span>;</span><br><span class="line">console.<span class="built_in">log</span>(arr); <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="3-使用splice方法"><a href="#3-使用splice方法" class="headerlink" title="3.使用splice方法"></a>3.使用splice方法</h6><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">JS中数组自带的splice()方法用于向数组中添加或者删除元素，功能非常强大。</span><br><span class="line"></span><br><span class="line">参数说明如下，返回值为包含被删除项目的新数组，如果有的话。</span><br><span class="line">arrayObject.splice(index,howmany,item1,.....,itemX)</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">参数名</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">index</td>
+<td align="left">必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。</td>
+</tr>
+<tr>
+<td align="left">howmany</td>
+<td align="left">必需。要删除的项目数量。如果设置为 0，则不会删除项目。</td>
+</tr>
+<tr>
+<td align="left">item1, …, itemX</td>
+<td align="left">可选。向数组添加的新项目。</td>
+</tr>
+</tbody></table>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">console.<span class="built_in">log</span>(arr);  <span class="comment">// [1,2,3]</span></span><br><span class="line"><span class="keyword">let</span> arr2 = arr.splice(<span class="number">0</span>, arr.length); <span class="comment">// 删除所有元素</span></span><br><span class="line">console.<span class="built_in">log</span>(arr);  <span class="comment">// []</span></span><br><span class="line">console.<span class="built_in">log</span>(arr2); <span class="comment">// [1,2,3]</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="三、JS时间和时间戳的转换"><a href="#三、JS时间和时间戳的转换" class="headerlink" title="三、JS时间和时间戳的转换"></a>三、JS时间和时间戳的转换</h5><h6 id="1-JS时间转时间戳"><a href="#1-JS时间转时间戳" class="headerlink" title="1.JS时间转时间戳"></a>1.JS时间转时间戳</h6><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">使用<span class="built_in">Date</span>对象的方法：</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> dateObj = <span class="keyword">new</span> <span class="built_in">Date</span>();  <span class="comment">// Date对象，当前时间</span></span><br><span class="line"><span class="comment">// parse()方法，毫秒级别的数值被转化为000</span></span><br><span class="line"><span class="built_in">Date</span>.<span class="built_in">parse</span>(dateObj);  <span class="comment">// 1549976497000</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Date对象的valueOf()方法</span></span><br><span class="line">dateObj.valueOf(); <span class="comment">// 1549976497495</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Date对象的getTime()方法</span></span><br><span class="line">dateObj.getTime(); <span class="comment">// 1549976497495</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 转化为Number类型，包括显式和隐式类型转换</span></span><br><span class="line"><span class="keyword">new</span> Number(dateObj); <span class="comment">// Number &#123;1549976497495&#125;</span></span><br><span class="line">dateObj - <span class="number">0</span>; <span class="comment">// 1549976497495</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="2-JS时间戳转时间"><a href="#2-JS时间戳转时间" class="headerlink" title="2.JS时间戳转时间"></a>2.JS时间戳转时间</h6><figure class="highlight pony"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Date</span>()对象的构造函数不仅可以接受表示时间戳数字类型的参数，还可以接受时间字符串，但是对格式有要求。</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> timeStr = <span class="string">'2019-02-02 12:12:12'</span>;</span><br><span class="line"><span class="keyword">let</span> dateObj = <span class="function"><span class="keyword">new</span> <span class="title">Date</span>(timeStr);</span></span><br><span class="line"><span class="function"><span class="title">dateObj</span>.<span class="title">getTime</span>(); <span class="comment">// 1549080732000</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">dateObj</span>.<span class="title">toDateString</span>(); <span class="comment">// Sat Feb 02 2019</span></span></span><br><span class="line"><span class="function"><span class="title">dateObj</span>.<span class="title">toString</span>();  <span class="comment">// Sat Feb 02 2019 12:12:12 GMT+0800 (中国标准时间)</span></span></span><br><span class="line"><span class="function"><span class="title">dateObj</span>.<span class="title">toLocaleString</span>(); <span class="comment">// 2019/2/2 下午12:12:12</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">myDate</span>.<span class="title">getYear</span>();      <span class="comment">//获取当前年份(2位)</span></span></span><br><span class="line"><span class="function"><span class="title">myDate</span>.<span class="title">getFullYear</span>();  <span class="comment">//获取完整的年份(4位,1970-????)</span></span></span><br><span class="line"><span class="function"><span class="title">myDate</span>.<span class="title">getMonth</span>();     <span class="comment">//获取当前月份(0-11,0代表1月)</span></span></span><br><span class="line"><span class="function"><span class="title">myDate</span>.<span class="title">getDate</span>();      <span class="comment">//获取当前日(1-31)</span></span></span><br><span class="line"><span class="function"><span class="title">myDate</span>.<span class="title">getDay</span>();       <span class="comment">//获取当前星期X(0-6,0代表星期天)</span></span></span><br><span class="line"><span class="function"><span class="title">myDate</span>.<span class="title">getTime</span>();      <span class="comment">//获取当前时间(从1970.1.1开始的毫秒数) </span></span></span><br><span class="line"><span class="function"><span class="title">myDate</span>.<span class="title">getHours</span>();     <span class="comment">//获取当前小时数(0-23)</span></span></span><br><span class="line"><span class="function"><span class="title">myDate</span>.<span class="title">getMinutes</span>();   <span class="comment">//获取当前分钟数(0-59)</span></span></span><br><span class="line"><span class="function"><span class="title">myDate</span>.<span class="title">getSeconds</span>();   <span class="comment">//获取当前秒数(0-59)</span></span></span><br><span class="line"><span class="function"><span class="title">myDate</span>.<span class="title">getMilliseconds</span>(); <span class="comment">//获取当前毫秒数(0-999)</span></span></span><br><span class="line"><span class="function"><span class="title">myDate</span>.<span class="title">toLocaleDateString</span>();    <span class="comment">//获取当前日期</span></span></span><br><span class="line"><span class="function"><span class="title">var</span> <span class="title">mytime</span>=<span class="title">myDate</span>.<span class="title">toLocaleTimeString</span>();    <span class="comment">//获取当前时间</span></span></span><br><span class="line"><span class="function"><span class="title">myDate</span>.<span class="title">toLocaleString</span>( );      <span class="comment">//获取日期与时间----如果涉及到时分秒，直接使用即可。</span></span></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-10-21T00:15:50.037Z" itemprop="dateUpdated">2019-10-21 08:15:50</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/02/15/JavaScript类型相关常用操作.html&title=《JavaScript类型相关常用操作》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/02/15/JavaScript类型相关常用操作.html&title=《JavaScript类型相关常用操作》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/02/15/JavaScript类型相关常用操作.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript类型相关常用操作》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/02/15/JavaScript类型相关常用操作.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/02/15/JavaScript类型相关常用操作.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/02/19/Javascript数组操作.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Javascript数组操作</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/02/05/CSS实现-Tab-hover-下划线跟随.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">CSS实现 Tab hover 下划线跟随</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/02/15/JavaScript类型相关常用操作.html&title=《JavaScript类型相关常用操作》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/02/15/JavaScript类型相关常用操作.html&title=《JavaScript类型相关常用操作》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/02/15/JavaScript类型相关常用操作.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript类型相关常用操作》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/02/15/JavaScript类型相关常用操作.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/02/15/JavaScript类型相关常用操作.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACs0lEQVR42u3ay44aQRAEQP7/p9cXH1bChsyq7jWWYk6Ix9AxSD1FVj0e8fH17fj+TP7Zvz1Ozvn8zsMHHh4e3mLpz0fynucvfr3oHJlcmtcrwcPDw7vHyzf0fAdut/UZ9Y0FDw8P7wN40XZcnqEtqfHw8PD+d14bOuTPf8SNAQ8PD28RRrQFdFJeb24zh7MWPDw8vJi3b2L9/OMr/T08PDy8dVc936yT8ndWcK9Wi4eHh3eBt29u5YVv22A71ULDw8PDO8vLN99Z0DALDk6NIODh4eHd4202/aT83QxUtU2yR/5b4eHh4Y14SUldNOnLsYN8ubNLg4eHh3eDN9u467RjNKBwZSAADw8P7yhvUwrPBqfay5SEI0XWgoeHhzfizb54M5KVN8Pa9by5uHh4eHjXeGc3+uEsQ1nQF2EuHh4e3iHefmA0jyHyZ9oI+E0xjYeHh3eU194k9vHBJvZtA2g8PDy8e7zN0tuyez+8NfzHgIeHh3eZl98eNu3/zUhB8SPh4eHhHeUlMcSw7bRu+bchxR/ej4eHh3eBt2/5txFte6uYxRN4eHh4t3mvX8hPN2tQnR1BwMPDw/tJ3mxBsyZWsty2rC/6e3h4eHgL3qnxqTZuSMrlTWmOh4eHd5t3KpjIW1z5t+cjVnVKjYeHh3eIlzfG8vDiVED8aA88PDy8y7zNCNSmcZUHFnUojIeHh3eNl5z0Rik8C3mL2BcPDw/vKO+rPPImfX6xkrC4/dTvV/Hw8PAu8Nptt40n9tHDfswLDw8P7wZvE0C0I1b5opPgI/pjgIeHh3eNNwtM200/DzXye1c9dIWHh4f3j3htUJtHvW2xHoW5eHh4eB/Ga7ONTbRRt83w8PDwrvHyplde4LajVEnc0Ea6eHh4eDd47R/+fBHJpp+3xGZRBR4eHt5R3i8puKZLRxJc1gAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

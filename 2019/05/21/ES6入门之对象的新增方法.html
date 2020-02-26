@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>ES6入门之对象的新增方法 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="ECMAScript6">
+    <meta name="description" content="1. Object.is() 用来解决在ES5中 两种相等运算符的缺点。用来比较两个值是否严格相等，行为和（===）基本一致。  在ES5中判断两个值是否相等，只能用（==）相等运算符和（===）严格相等运算符，但是这两货都有缺点，前者 两边的值都会转换数据类型，后者 NaN不等于自身还有 +0 == -0。 Object.is(&amp;apos;foo&amp;apos;, &amp;apos;foo&amp;apos;)">
+<meta name="keywords" content="ECMAScript6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6入门之对象的新增方法">
+<meta property="og:url" content="https://toc.lieme.cn/2019/05/21/ES6入门之对象的新增方法.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1. Object.is() 用来解决在ES5中 两种相等运算符的缺点。用来比较两个值是否严格相等，行为和（===）基本一致。  在ES5中判断两个值是否相等，只能用（==）相等运算符和（===）严格相等运算符，但是这两货都有缺点，前者 两边的值都会转换数据类型，后者 NaN不等于自身还有 +0 == -0。 Object.is(&amp;apos;foo&amp;apos;, &amp;apos;foo&amp;apos;)">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-10-21T00:07:11.666Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6入门之对象的新增方法">
+<meta name="twitter:description" content="1. Object.is() 用来解决在ES5中 两种相等运算符的缺点。用来比较两个值是否严格相等，行为和（===）基本一致。  在ES5中判断两个值是否相等，只能用（==）相等运算符和（===）严格相等运算符，但是这两货都有缺点，前者 两边的值都会转换数据类型，后者 NaN不等于自身还有 +0 == -0。 Object.is(&amp;apos;foo&amp;apos;, &amp;apos;foo&amp;apos;)">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">ES6入门之对象的新增方法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">ES6入门之对象的新增方法</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-05-21T13:16:00.000Z" itemprop="datePublished" class="page-time">
+  2019-05-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-Object-is"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. Object.is()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-Object-assign"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. Object.assign()</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#注意点："><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">注意点：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-浅拷贝"><span class="post-toc-number">2.0.1.1.</span> <span class="post-toc-text">1. 浅拷贝</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-同名属性的替换"><span class="post-toc-number">2.0.1.2.</span> <span class="post-toc-text">2. 同名属性的替换</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3-数组的处理"><span class="post-toc-number">2.0.1.3.</span> <span class="post-toc-text">3. 数组的处理</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#4-取值函数的处理"><span class="post-toc-number">2.0.1.4.</span> <span class="post-toc-text">4. 取值函数的处理</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#常见用途："><span class="post-toc-number">2.0.2.</span> <span class="post-toc-text">常见用途：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-Object-getOwnPropertyDescriptors"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. Object.getOwnPropertyDescriptors()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-proto属性，Object-setPrototypeOf-，Object-getPrototypeOf"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. proto属性，Object.setPrototypeOf()，Object.getPrototypeOf()</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-proto属性"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">4.1.  proto属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-2-Object-setPrototypeOf"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">4.2 Object.setPrototypeOf()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-Object-getPrototypeOf"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">4.3 Object.getPrototypeOf()</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-Object-keys-，Object-values-，Object-entries"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. Object.keys()，Object.values()，Object.entries()</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-1-Object-keys"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">5.1 Object.keys()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-2-Object-values"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">5.2 Object.values()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-3-Object-entries"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">5.3 Object.entries()</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#6-Object-fromEntries"><span class="post-toc-number"></span> <span class="post-toc-text">6. Object.fromEntries()</span></a>
+        </nav>
+    </aside>
+
+
+<article id="post-ES6入门之对象的新增方法"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">ES6入门之对象的新增方法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-05-21 21:16:00" datetime="2019-05-21T13:16:00.000Z"  itemprop="datePublished">2019-05-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        1,696
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        7 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h2 id="1-Object-is"><a href="#1-Object-is" class="headerlink" title="1. Object.is()"></a>1. Object.is()</h2><blockquote>
+<p>用来解决在ES5中 两种相等运算符的缺点。用来比较两个值是否严格相等，行为和（===）基本一致。</p>
+</blockquote>
+<p>在ES5中判断两个值是否相等，只能用（==）相等运算符和（===）严格相等运算符，但是这两货都有缺点，前者 两边的值都会转换数据类型，后者 NaN不等于自身还有 +0 == -0。</p>
+<pre><code>Object.is(&apos;foo&apos;, &apos;foo&apos;)  // true
+Object.is({}, {})  // false
+
+// 在 Object.is()
+
++0 === -0  // true
+NaN === NaN // false
+
+Object.is(+0, -0)   // false
+Object.is(NaN, NaN) // true </code></pre><h2 id="2-Object-assign"><a href="#2-Object-assign" class="headerlink" title="2. Object.assign()"></a>2. Object.assign()</h2><blockquote>
+<p>用于对象的合并，将源对象的所有可枚举属性，复制到目标对象，现在常用来进行浅拷贝。</p>
+</blockquote>
+<pre><code>const t = {a: 1}
+const s1 = {b: 2}
+const s2= {c: 3}
+
+Object.assign(t, s2, s2)
+// t  {a:1, b:2, c:3}
+
+// 在上面中第一个参数t是目标对象，s1 s2是源对象</code></pre><p>注意：如果目标对象和源对象有同名属性，或者多个同名，那么在后面的属性会将前面的覆盖。</p>
+<pre><code>const t = {a: 1, b: 2}
+const s1 = {b: 3, c: 4}
+const s2 = {c: 5}
+
+Object.assign(t, s1, s2)
+t // {a:1, b:3, c:5}</code></pre><blockquote>
+<p>如果Object.assign的参数只有一个，那么就返回该参数，另外如果该参数不是对象，那么Object.assign会将其转为对象在返回</p>
+</blockquote>
+<pre><code>const t = {a: 2}
+Object.assign(t)
+t // {a: 2}
+
+Object.assigin(2)
+// &quot;object&quot;</code></pre><blockquote>
+<p>另外由于null 和 undefined 无法转换位对象，那么如果他们作为第一个参数就会报错，如果不是在第一个参数则不会有这个问题</p>
+</blockquote>
+<pre><code>Object.assign(undefined)    // 报错
+Object.assign(null)     //报错
+
+这样就不会报错：如下
+
+const t = {a: 2}
+
+Object.assign(t, undefined)     // true
+Object.assign(t, null)      // true</code></pre><blockquote>
+<p>其他（数值，字符串，布尔值）数值不再第一个也不会报错，但是字符串会以数组的形式被拷入目标对象，两外两个则不会做任何操作。</p>
+</blockquote>
+<pre><code>const a = &apos;abc&apos;
+const b = true
+const c = 12
+
+const o = Object.assign({}, a, b, c)
+o // {&quot;0&quot;: &quot;a&quot;, &quot;1&quot;: &quot;b&quot;, &quot;2&quot;: &quot;c&quot;}
+
+// 因为布尔值number 的原始值都在对象的内部属性[[PrimitiveValue]]
+上面，这个属性不能别Object.assign拷贝</code></pre><p>Obeject.assign 拷贝的属性是有限制的，只能拷贝源对象的自身属性，也不能拷贝不可枚举的属性，另外 Symbol值的属性也能被拷贝</p>
+<h4 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h4><h5 id="1-浅拷贝"><a href="#1-浅拷贝" class="headerlink" title="1. 浅拷贝"></a>1. 浅拷贝</h5><blockquote>
+<p>Object.assign 实现的是浅拷贝，也就是说如果源对象的某个属性值是对象，那么目标对象拷贝得到的是这个对象的引用</p>
+</blockquote>
+<h5 id="2-同名属性的替换"><a href="#2-同名属性的替换" class="headerlink" title="2. 同名属性的替换"></a>2. 同名属性的替换</h5><blockquote>
+<p>如果遇到同名属性，那Object.assign的处理方法是替换还不是追加</p>
+</blockquote>
+<h5 id="3-数组的处理"><a href="#3-数组的处理" class="headerlink" title="3. 数组的处理"></a>3. 数组的处理</h5><blockquote>
+<p>在处理数组的时候，Object.assign是将其是为对象来处理，如果下标相同则是覆盖而不是追加</p>
+</blockquote>
+<pre><code>Object.assign([1, 2, 3], [4, 5])
+// [4, 5, 3]</code></pre><h5 id="4-取值函数的处理"><a href="#4-取值函数的处理" class="headerlink" title="4. 取值函数的处理"></a>4. 取值函数的处理</h5><blockquote>
+<p>Object.assign 只能进行值的复制，如果复制的值是一个函数，那么就等函数求值执行完在进行值的复制</p>
+</blockquote>
+<h4 id="常见用途："><a href="#常见用途：" class="headerlink" title="常见用途："></a>常见用途：</h4><pre><code>1. 为对象添加属性
+2. 为对象添加方法
+3. 克隆对象
+4. 合并多个对象
+5. 为属性指定默认值</code></pre><h2 id="3-Object-getOwnPropertyDescriptors"><a href="#3-Object-getOwnPropertyDescriptors" class="headerlink" title="3. Object.getOwnPropertyDescriptors()"></a>3. Object.getOwnPropertyDescriptors()</h2><blockquote>
+<p>用来返回指定对象所有自身属性（非继承属性）的描述对象</p>
+</blockquote>
+<pre><code>const o = {
+    left: 123,
+    top() {
+        return &apos;new&apos;
+    }
+}
+
+Object.getOwnPropertyDescriptors(o)
+
+// {
+    left:{
+        configurable: true
+        enumerable: true
+        value: 123
+        writable: true
+    },
+    top: {
+        configurable: true
+        enumerable: true
+        value: ƒ top()
+        writable: true
+    }
+}
+
+Object.getOwnPropertyDescriptors() 返回一个对象，所有原对象的属性名都是该
+对象的属性名，对应的属性值就是该属性的描述对象。</code></pre><h2 id="4-proto属性，Object-setPrototypeOf-，Object-getPrototypeOf"><a href="#4-proto属性，Object-setPrototypeOf-，Object-getPrototypeOf" class="headerlink" title="4. proto属性，Object.setPrototypeOf()，Object.getPrototypeOf()"></a>4. <strong>proto</strong>属性，Object.setPrototypeOf()，Object.getPrototypeOf()</h2><h3 id="4-1-proto属性"><a href="#4-1-proto属性" class="headerlink" title="4.1.  proto属性"></a>4.1.  <strong>proto</strong>属性</h3><blockquote>
+<p>用来读取或设置当前对象的prototype对象，另外这是一个内部属性。<strong>proto</strong>是调用的 Object.prototype.<strong>proto</strong> 方法</p>
+</blockquote>
+<pre><code>//es5 写法
+const o = {
+    method: function() {}
+}
+o.__proto__ = someOtherObj
+
+//es6 写法
+var o = Object.create(someOtherObj)
+o.method = function(){}</code></pre><h3 id="4-2-Object-setPrototypeOf"><a href="#4-2-Object-setPrototypeOf" class="headerlink" title="4.2 Object.setPrototypeOf()"></a>4.2 Object.setPrototypeOf()</h3><blockquote>
+<p>作用和 <strong>proto</strong>相同，用来设置一个对象的prototype对象，返回参数本身</p>
+</blockquote>
+<pre><code>// 格式
+Object.setPrototypeOf(object, prototype)
+
+// 用法
+const o = Object.setPrototypeOf({}, null)
+
+=== 以下写法
+
+function setPrototyoeOf(obj, proto) {
+    obj.__proto__ = proto
+    return obj
+}
+
+// 例子
+let proto = {}
+let o = {
+    x: 10
+}
+Object.setPrototypeOf(o, proto)
+
+proto.y = 20
+proto.z = 40
+
+o.x // 10
+o.y // 20
+o.z // 40
+
+// 上面 将proto设为 o 对象的原型，所以可以从o 中读取proto 的属性</code></pre><p><strong>注意：如果第一参数不是对象，将自动转换为对象，由于返回的还是第一个参数，所以这个操作不会产生任何效果，另外由于 undefined 和 null 无法转换为对象，所以第一个参数如果是这两个则会报错</strong></p>
+<pre><code>Object.setPrototypeOf(1, {}) === 1 // true
+Object.setPrototypeOf(&apos;foo&apos;, {}) === &apos;foo&apos; // true
+Object.setPrototypeOf(true, {}) === true // true
+
+Object.setPrototypeOf(undefined, {})
+// TypeError: Object.setPrototypeOf called on null or undefined
+
+Object.setPrototypeOf(null, {})
+// TypeError: Object.setPrototypeOf called on null or undefined</code></pre><h3 id="4-3-Object-getPrototypeOf"><a href="#4-3-Object-getPrototypeOf" class="headerlink" title="4.3 Object.getPrototypeOf()"></a>4.3 Object.getPrototypeOf()</h3><blockquote>
+<p>用于读取一个对象的原型对象和Object.setPrototypeOf 配套使用。所有的特性也和 上面一样，第一个参数如果不是对象将转换为对象，undefined和null 会报错</p>
+</blockquote>
+<h2 id="5-Object-keys-，Object-values-，Object-entries"><a href="#5-Object-keys-，Object-values-，Object-entries" class="headerlink" title="5. Object.keys()，Object.values()，Object.entries()"></a>5. Object.keys()，Object.values()，Object.entries()</h2><h3 id="5-1-Object-keys"><a href="#5-1-Object-keys" class="headerlink" title="5.1 Object.keys()"></a>5.1 Object.keys()</h3><blockquote>
+<p>用于返回一个数组，成员的参数是对象自身的所有可遍历属性的键名</p>
+</blockquote>
+<pre><code>let obj = {
+    x: 1,
+    y: &apos;b&apos;
+}
+
+Object.keys(obj)
+// [&quot;x&quot;, &quot;y&quot;]</code></pre><h3 id="5-2-Object-values"><a href="#5-2-Object-values" class="headerlink" title="5.2 Object.values()"></a>5.2 Object.values()</h3><blockquote>
+<p>返回值是一个数组，成员是对象自身的（不含继承的）所有可遍历属性的值。Objet.values只返回对象自身的可遍历属性。</p>
+</blockquote>
+<pre><code>let obj = {
+    x: 1,
+    y: &apos;b&apos;
+}
+
+Object.keys(obj)
+// [1, &quot;b&quot;]</code></pre><p>另外Object.values遍历的时候如果遇到属性名为数值的属性，那么将按照数值大小，从小到大遍历，如下：</p>
+<pre><code>const obj = { 100: &apos;a&apos;, 2: &apos;b&apos;, 7: &apos;c&apos; };
+Object.values(obj)
+// [&quot;b&quot;, &quot;c&quot;, &quot;a&quot;]</code></pre><p>注意：Object.values 会过滤属性名为 Symbol的属性</p>
+<pre><code>Object.values({ [Symbol()]: 123, foo: &apos;abc&apos; });
+// [&apos;abc&apos;]</code></pre><p>如果Object.values的参数是一个<strong>字符串</strong> 那么将返回字符串拆解的数组</p>
+<pre><code>Object.values(&apos;symbol&apos;)
+[&quot;s&quot;, &quot;y&quot;, &quot;m&quot;, &quot;b&quot;, &quot;o&quot;, &quot;l&quot;]</code></pre><p>注意： 如果Object.values 的参数为boolean值或者number，那么返回值是一个空数组，</p>
+<pre><code>Object.values(true)
+[]
+Object.values(2,null)
+[]</code></pre><h3 id="5-3-Object-entries"><a href="#5-3-Object-entries" class="headerlink" title="5.3 Object.entries()"></a>5.3 Object.entries()</h3><blockquote>
+<p>返回一个数组，成员是对象自身（不含继承的）所有可遍历属性的键值对数组，同样 Symbol 属性的值会被过滤。</p>
+</blockquote>
+<pre><code>const p = { f: &apos;b&apos;, az: 22 };
+Object.entries(p)
+// [ [&quot;f&quot;, &quot;b&quot;], [&quot;az&quot;, 22] ]
+
+
+Object.entries({ [Symbol()]: 456, o: &apos;c&apos; });
+// [ [ &apos;o&apos;, &apos;c&apos;] ]</code></pre><p>Object.entries 可以用来遍历对象的属性</p>
+<p>Object.entries 将对象转为真正的Map结构</p>
+<pre><code>const obj = { foo: &apos;bar&apos;, baz: 42 };
+const map = new Map(Object.entries(obj));
+map // Map { foo: &quot;bar&quot;, baz: 42 }</code></pre><h1 id="6-Object-fromEntries"><a href="#6-Object-fromEntries" class="headerlink" title="6. Object.fromEntries()"></a>6. Object.fromEntries()</h1><blockquote>
+<p>是Object.entries 的逆操作，将一个键值对数组转为对象。主要是将键值对的数据结构还原为对象，适用于将Map结构转为对象</p>
+</blockquote>
+<pre><code>Object.fromEntries([
+  [&apos;foo&apos;, &apos;bar&apos;],
+  [&apos;baz&apos;, 42]
+])
+// { foo: &quot;bar&quot;, baz: 42 }
+
+// 例二 将Map结构转为对象
+const map = new Map().set(&apos;foo&apos;, true).set(&apos;bar&apos;, false);
+Object.fromEntries(map)
+// { foo: true, bar: false }</code></pre>
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-10-21T00:07:11.666Z" itemprop="dateUpdated">2019-10-21 08:07:11</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/05/21/ES6入门之对象的新增方法.html&title=《ES6入门之对象的新增方法》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/05/21/ES6入门之对象的新增方法.html&title=《ES6入门之对象的新增方法》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/05/21/ES6入门之对象的新增方法.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之对象的新增方法》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/05/21/ES6入门之对象的新增方法.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/05/21/ES6入门之对象的新增方法.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/05/26/Node-js-EventEmitter-和-Buffer.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Node.js EventEmitter 和 Buffer</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/05/15/ES6入门之对象的扩展.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">ES6入门之对象的扩展</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/05/21/ES6入门之对象的新增方法.html&title=《ES6入门之对象的新增方法》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/05/21/ES6入门之对象的新增方法.html&title=《ES6入门之对象的新增方法》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/05/21/ES6入门之对象的新增方法.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之对象的新增方法》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/05/21/ES6入门之对象的新增方法.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/05/21/ES6入门之对象的新增方法.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsUlEQVR42u3aQW7DMAwEwP7/0ynQUy+1d0XJcIHxKUgTS6MCJkPy6yu+Pj9X8tfk9e93rq98D6MLDw8Pb2nr1wvki11/63rF6/v89c71ffDw8PDO8dY2mj/irwNGu4fk83h4eHhv4OUP+uQg2hXx8PDw/iMv/1YbJF4X9/Dw8PACXruJ69JAEjbyksdDtRY8PDy8mNc2wN7w+mB/Dw8PD2/QVZ8UZ9fWTXjFrvDw8PAO8JJyQBsk2gS9Pab6WPHw8PC28tZ+3idliMmgQHLQUfEXDw8P7wBvkgq3i01aaHmRt+jv4eHh4Q14ecI6aXS1Vda9w154eHh4e3l5Crt2cnnanSfKxUHg4eHhbeVNHrttwFhL4tv9/Nnfw8PDw9vEa8useUlib0OrLTrg4eHhnebtSnDX0t95Go2Hh4f3PC8fGkg2195hUnSIkng8PDy8A7z81mtF3vxQihR53gzDw8PDW+Kt3XQCXhsmSIodNwVcPDw8vEd4ScI9qX/kyXFb+MDDw8M7x2vb9nl4yBtaRb5f/gPw8PDwTvDyhPXEtvKDy0NRNBOBh4eHN+atNfKTx/QkLiUF5RskHh4e3iO8vACRlwba8DMJOTeBAQ8PD2/My4sISemhSHY3BZV6EAEPDw/vAG+tMNEm0Pln8rWuk288PDy8J3ntMFaemieM9nDrjhkeHh7eEm+SsCZjAe3m2ibczT3x8PDwjvHyra+NWJ0oXkRBCw8PD28r71Nea039+aDV4lgYHh4e3gHeKJ6UQwZ58aINWnUDDA8PD2/MmwxX5UXbvUWKoqSLh4eHd4w3GcCalBXmCfHNt/Dw8PBexmvHqiZbb4cS8PDw8N7Aa8FrA1X5wUXhAQ8PD+8YL1l+ssW1Kw9UNyk1Hh4e3lbeuQZYUvBtBwvyYIOHh4d3gPcNtd2xhl4bY5EAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

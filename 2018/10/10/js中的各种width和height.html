@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>js中的各种width，height | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="javascript">
+    <meta name="description" content="默认系列12345678910offsetWidth      //返回元素的宽度（包括元素宽度、内边距和边框，不包括外边距）offsetHeight     //返回元素的高度（包括元素高度、内边距和边框，不包括外边距）clientWidth      //返回元素的宽度（包括元素宽度、内边距，不包括边框和外边距）clientHeight     //返回元素的高度（包括元素高度、内边距，不包括">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js中的各种width，height">
+<meta property="og:url" content="https://toc.lieme.cn/2018/10/10/js中的各种width和height.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="默认系列12345678910offsetWidth      //返回元素的宽度（包括元素宽度、内边距和边框，不包括外边距）offsetHeight     //返回元素的高度（包括元素高度、内边距和边框，不包括外边距）clientWidth      //返回元素的宽度（包括元素宽度、内边距，不包括边框和外边距）clientHeight     //返回元素的高度（包括元素高度、内边距，不包括">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2020-01-17T07:13:53.341Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js中的各种width，height">
+<meta name="twitter:description" content="默认系列12345678910offsetWidth      //返回元素的宽度（包括元素宽度、内边距和边框，不包括外边距）offsetHeight     //返回元素的高度（包括元素高度、内边距和边框，不包括外边距）clientWidth      //返回元素的宽度（包括元素宽度、内边距，不包括边框和外边距）clientHeight     //返回元素的高度（包括元素高度、内边距，不包括">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">js中的各种width，height</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">js中的各种width，height</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2018-10-10T06:28:00.000Z" itemprop="datePublished" class="page-time">
+  2018-10-10
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#默认系列"><span class="post-toc-number">1.</span> <span class="post-toc-text">默认系列</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#垂直滚动"><span class="post-toc-number">2.</span> <span class="post-toc-text">垂直滚动</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#当鼠标事件发生时（不管是onclick，还是omousemove，onmouseover等）"><span class="post-toc-number">3.</span> <span class="post-toc-text">当鼠标事件发生时（不管是onclick，还是omousemove，onmouseover等）</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-js中的各种width和height"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">js中的各种width，height</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-10-10 14:28:00" datetime="2018-10-10T06:28:00.000Z"  itemprop="datePublished">2018-10-10</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        789
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        3 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h6 id="默认系列"><a href="#默认系列" class="headerlink" title="默认系列"></a>默认系列</h6><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">offsetWidth      <span class="comment">//返回元素的宽度（包括元素宽度、内边距和边框，不包括外边距）</span></span><br><span class="line">offsetHeight     <span class="comment">//返回元素的高度（包括元素高度、内边距和边框，不包括外边距）</span></span><br><span class="line">clientWidth      <span class="comment">//返回元素的宽度（包括元素宽度、内边距，不包括边框和外边距）</span></span><br><span class="line">clientHeight     <span class="comment">//返回元素的高度（包括元素高度、内边距，不包括边框和外边距）</span></span><br><span class="line">style<span class="selector-class">.width</span>      <span class="comment">//返回元素的宽度（包括元素宽度，不包括内边距、边框和外边距）</span></span><br><span class="line">style<span class="selector-class">.height</span>     <span class="comment">//返回元素的高度（包括元素高度，不包括内边距、边框和外边距）</span></span><br><span class="line">scrollWidth      </span><br><span class="line"><span class="comment">//返回元素的宽度（包括元素宽度、内边距和溢出尺寸，不包括边框和外边距），无溢出的情况，与clientWidth相同</span></span><br><span class="line">scrollHeigh      </span><br><span class="line"><span class="comment">//返回元素的高度（包括元素高度、内边距和溢出尺寸，不包括边框和外边距），无溢出的情况，与clientHeight相同</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="垂直滚动"><a href="#垂直滚动" class="headerlink" title="垂直滚动"></a>垂直滚动</h6><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">offsetTop</span><br><span class="line"><span class="comment">// 返回元素的上外缘距离最近采用定位父元素内壁的距离，如果父元素中没有采用定位的，则是获取上外边缘距离文档内壁的距离。所谓的定位就是position属性值为relative、absolute或者fixed。返回值是一个整数，单位是像素。此属性是只读的。</span></span><br><span class="line">offsetLeft</span><br><span class="line"><span class="comment">//此属性和offsetTop的原理是一样的，只不过方位不同，这里就不多介绍了。</span></span><br><span class="line">scrollLeft</span><br><span class="line"><span class="comment">//此属性可以获取或者设置对象的最左边到对象在当前窗口显示的范围内的左边的距离，也就是元素被滚动条向左拉动的距离。返回值是一个整数，单位是像素。此属性是可读写的。</span></span><br><span class="line">scrollTop</span><br><span class="line"><span class="comment">//此属性可以获取或者设置对象的最顶部到对象在当前窗口显示的范围内的顶边的距离，也就是元素滚动条被向下拉动的距离。返回值是一个整数，单位是像素。此属性是可读写的。</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="当鼠标事件发生时（不管是onclick，还是omousemove，onmouseover等）"><a href="#当鼠标事件发生时（不管是onclick，还是omousemove，onmouseover等）" class="headerlink" title="当鼠标事件发生时（不管是onclick，还是omousemove，onmouseover等）"></a>当鼠标事件发生时（不管是onclick，还是omousemove，onmouseover等）</h6><figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">clientX      鼠标相对于浏览器（这里说的是浏览器的有效区域）左上角<span class="keyword">x</span>轴的坐标；不随滚动条滚动而改变；</span><br><span class="line">clientY      鼠标相对于浏览器（这里说的是浏览器的有效区域）左上角y轴的坐标；不随滚动条滚动而改变；</span><br><span class="line">pageX        鼠标相对于浏览器（这里说的是浏览器的有效区域）左上角<span class="keyword">x</span>轴的坐标；随滚动条滚动而改变；</span><br><span class="line">pageY        鼠标相对于浏览器（这里说的是浏览器的有效区域）左上角y轴的坐标；随滚动条滚动而改变；</span><br><span class="line">screenX      鼠标相对于显示器屏幕左上角<span class="keyword">x</span>轴的坐标；</span><br><span class="line">screenY      鼠标相对于显示器屏幕左上角y轴的坐标；</span><br><span class="line">offsetX      鼠标相对于事件源左上角X轴的坐标</span><br><span class="line">offsetY      鼠标相对于事件源左上角Y轴的坐标</span><br></pre></td></tr></table></figure>
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-01-17T07:13:53.341Z" itemprop="dateUpdated">2020-01-17 15:13:53</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/10/10/js中的各种width和height.html&title=《js中的各种width，height》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/10/10/js中的各种width和height.html&title=《js中的各种width，height》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2018/10/10/js中的各种width和height.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《js中的各种width，height》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2018/10/10/js中的各种width和height.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2018/10/10/js中的各种width和height.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/10/23/前端跨域方法总结.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">前端跨域方法总结</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/09/27/获取和更改Url参数.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Url参数获取和更改</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/10/10/js中的各种width和height.html&title=《js中的各种width，height》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/10/10/js中的各种width和height.html&title=《js中的各种width，height》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2018/10/10/js中的各种width和height.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《js中的各种width，height》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2018/10/10/js中的各种width和height.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2018/10/10/js中的各种width和height.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrklEQVR42u3awZLqMAwEQP7/p9+r2iuLd0a2gUPnRJEQp3OwhKTHIz7+/Rzrz8/XJ2efr3m+//puBw48PDy80aO/OlrSmrd+9PUdkt/+8mx4eHh413g7wSDZvpOzeQgp7oOHh4f3UV6S7LYvK7n/LDjh4eHhfQOv/b+/fz0eHh7eN/Py0sC6xLD+fqfEcL3WgoeHhxfzTjXA3vn5A/09PDw8vHgjbhPltv3fptTFc+Lh4eFd4CUL5HvvOo2eJdmzFYvOGx4eHt4F3qkS7c4qWwMEeHh4eEd5bfm1bUQlCXEypjAsWODh4eFd4OV/+GeDUG3jameE62W4wsPDwzvKa0urOSZPo/OkuQ0eeHh4eO/hzQoBO2NSO5MAf5zFw8PDu8Brk9QW37a18rN5EQQPDw/vLO9UO+pGu2vnpeDh4eHd5rUhYb/w2oaEWSMNDw8P7wZv1qaapd1tX242TPDLlXh4eHhHeacWnp3dCQbRinh4eHjXeDly1gZL2lTRKEA77oCHh4d3gZdv36eGAHL8zkjBy+iHh4eHd4jXlhJyWH7NDiD/M4CHh4d3ijdLnWcJ7mwsoC314uHh4d3jJa33vMRwthTbjibUUQ4PDw9vxGtLAC1ytum3heA/Unw8PDy8t/Py4DH75lSSXfxjwMPDwzuz3z52ig6z355N3KOwhIeHh3eItzMI1W7lbWttJ3HHw8PDu81rN/fZRp+XEmYDWHh4eHi3eacWbl/EzjXFi8bDw8O7wJsFjxzZBpVTxY6ttBsPDw8vuH8eDJIiQl44mF3fjnPh4eHh3ePtFCl2XlbCnpWh8fDw8L6Tdzb9TVpibcMMDw8P77O8dVNqnVjvJNCz8i4eHh7ebV67EbeDWbMHLQLAbIAADw8Pb8SbNcDa0NIGmHbdLTYeHh5eyvsPghiSl4MJcr8AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

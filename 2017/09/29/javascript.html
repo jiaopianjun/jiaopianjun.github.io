@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>JavaScript 学习笔记整理 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="javascript,笔记,更新">
+    <meta name="description" content="1.字符集1.1 区分大小写 JavaScript 是区分大小写的 1.2 空格 换行符和格式控制符2.注释// 要注释的前面加这个3.直接量程序中直接使用的数据值4.标识符和保留字就是JavaScript中一些变量名等5.数据类型5.1 number 数字型 5.2 string 字符型 5.3 boolean 布尔型  true or false  以上为原始类型   无法在分类 5.4 un">
+<meta name="keywords" content="javascript,笔记,更新">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 学习笔记整理">
+<meta property="og:url" content="https://toc.lieme.cn/2017/09/29/javascript.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1.字符集1.1 区分大小写 JavaScript 是区分大小写的 1.2 空格 换行符和格式控制符2.注释// 要注释的前面加这个3.直接量程序中直接使用的数据值4.标识符和保留字就是JavaScript中一些变量名等5.数据类型5.1 number 数字型 5.2 string 字符型 5.3 boolean 布尔型  true or false  以上为原始类型   无法在分类 5.4 un">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2020-01-17T09:16:26.617Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript 学习笔记整理">
+<meta name="twitter:description" content="1.字符集1.1 区分大小写 JavaScript 是区分大小写的 1.2 空格 换行符和格式控制符2.注释// 要注释的前面加这个3.直接量程序中直接使用的数据值4.标识符和保留字就是JavaScript中一些变量名等5.数据类型5.1 number 数字型 5.2 string 字符型 5.3 boolean 布尔型  true or false  以上为原始类型   无法在分类 5.4 un">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">JavaScript 学习笔记整理</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">JavaScript 学习笔记整理</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-29T09:05:24.000Z" itemprop="datePublished" class="page-time">
+  2017-09-29
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#1-字符集"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.字符集</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-注释"><span class="post-toc-number"></span> <span class="post-toc-text">2.注释</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3-直接量"><span class="post-toc-number"></span> <span class="post-toc-text">3.直接量</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#4-标识符和保留字"><span class="post-toc-number"></span> <span class="post-toc-text">4.标识符和保留字</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#5-数据类型"><span class="post-toc-number"></span> <span class="post-toc-text">5.数据类型</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#6-typeof运算符"><span class="post-toc-number"></span> <span class="post-toc-text">6.typeof运算符</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#7-数值"><span class="post-toc-number"></span> <span class="post-toc-text">7.数值</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#8-字符串"><span class="post-toc-number"></span> <span class="post-toc-text">8.字符串</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#9-转义"><span class="post-toc-number"></span> <span class="post-toc-text">9.转义</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#10-null-和-undefined"><span class="post-toc-number"></span> <span class="post-toc-text">10.null 和 undefined</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#11-布尔值"><span class="post-toc-number"></span> <span class="post-toc-text">11.布尔值</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#12-变量声明"><span class="post-toc-number"></span> <span class="post-toc-text">12.变量声明</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#13-声明提前（变量提升）"><span class="post-toc-number"></span> <span class="post-toc-text">13.声明提前（变量提升）</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#14-语句"><span class="post-toc-number"></span> <span class="post-toc-text">14.语句</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#15-对象-JavaScript中的一种基本类型"><span class="post-toc-number"></span> <span class="post-toc-text">15.对象  JavaScript中的一种基本类型</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#16-构造函数"><span class="post-toc-number"></span> <span class="post-toc-text">16.构造函数</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#17-改变this的指向"><span class="post-toc-number"></span> <span class="post-toc-text">17.改变this的指向</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#18-原型"><span class="post-toc-number"></span> <span class="post-toc-text">18.原型</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#19-原型链"><span class="post-toc-number"></span> <span class="post-toc-text">19.原型链</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#20-继承"><span class="post-toc-number"></span> <span class="post-toc-text">20.继承</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#21-constructor"><span class="post-toc-number"></span> <span class="post-toc-text">21.constructor</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#22-object-prototype-isPrototypeOf"><span class="post-toc-number"></span> <span class="post-toc-text">22.object.prototype.isPrototypeOf()</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#23-数组"><span class="post-toc-number"></span> <span class="post-toc-text">23.数组</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#24-函数"><span class="post-toc-number"></span> <span class="post-toc-text">24.函数</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#25-表达式和运算符"><span class="post-toc-number"></span> <span class="post-toc-text">25.表达式和运算符</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#26-DOM-文档对象模型，表示和操作HTML和XML文档内容的基础"><span class="post-toc-number"></span> <span class="post-toc-text">26.DOM 文档对象模型，表示和操作HTML和XML文档内容的基础</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#27-DOM属性-和-css"><span class="post-toc-number"></span> <span class="post-toc-text">27.DOM属性 和 css</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#28-Event-事件"><span class="post-toc-number"></span> <span class="post-toc-text">28.Event 事件</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#29-window对象"><span class="post-toc-number"></span> <span class="post-toc-text">29. window对象</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#30-Ajax"><span class="post-toc-number"></span> <span class="post-toc-text">30.Ajax</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#31-正则表达式"><span class="post-toc-number"></span> <span class="post-toc-text">31.正则表达式</span></a>
+        </nav>
+    </aside>
+
+
+<article id="title-javascript"
+  class="post-article article-type-title fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">JavaScript 学习笔记整理</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-29 17:05:24" datetime="2017-09-29T09:05:24.000Z"  itemprop="datePublished">2017-09-29</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        7,617
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        29 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h6 id="1-字符集"><a href="#1-字符集" class="headerlink" title="1.字符集"></a>1.字符集</h6><pre><code>1.1 区分大小写 JavaScript 是区分大小写的
+1.2 空格 换行符和格式控制符</code></pre><h5 id="2-注释"><a href="#2-注释" class="headerlink" title="2.注释"></a>2.注释</h5><pre><code>// 要注释的前面加这个</code></pre><h5 id="3-直接量"><a href="#3-直接量" class="headerlink" title="3.直接量"></a>3.直接量</h5><pre><code>程序中直接使用的数据值</code></pre><h5 id="4-标识符和保留字"><a href="#4-标识符和保留字" class="headerlink" title="4.标识符和保留字"></a>4.标识符和保留字</h5><pre><code>就是JavaScript中一些变量名等</code></pre><h5 id="5-数据类型"><a href="#5-数据类型" class="headerlink" title="5.数据类型"></a>5.数据类型</h5><pre><code>5.1 number 数字型
+5.2 string 字符型
+5.3 boolean 布尔型  true or false  以上为原始类型   无法在分类
+5.4 undefined 未定义或者不存在
+5.5 null  空                       以上为特殊类型
+5.6 object 对象 可以是各种类型的集合</code></pre><h5 id="6-typeof运算符"><a href="#6-typeof运算符" class="headerlink" title="6.typeof运算符"></a>6.typeof运算符</h5><pre><code>6.1 原生使用 object.prototype.toString.call() 检查数据的类型
+6.2 直接使用 typeof test 来判断类型</code></pre><h5 id="7-数值"><a href="#7-数值" class="headerlink" title="7.数值"></a>7.数值</h5><pre><code>7.1 正0  和  负0  是等价的
+7.2 Infinity  javascript 在算术运算时发生溢出，下溢 或被零整除的时候不会报错  infinity大于一切数值除了 NAN  -infinity 小于一切数值  除了 NAN
+7.3 NaN 不等于任何值包括它本身
+7.4 JavaScript 不区分整数值和浮点数值，所有数字均采用浮点数值标识</code></pre><h5 id="8-字符串"><a href="#8-字符串" class="headerlink" title="8.字符串"></a>8.字符串</h5><pre><code>&apos;123132&apos;</code></pre><h5 id="9-转义"><a href="#9-转义" class="headerlink" title="9.转义"></a>9.转义</h5><pre><code>反斜杠（\）</code></pre><h5 id="10-null-和-undefined"><a href="#10-null-和-undefined" class="headerlink" title="10.null 和 undefined"></a>10.null 和 undefined</h5><pre><code>null默认是一个特殊的对象，undefined 则是未定义</code></pre><h5 id="11-布尔值"><a href="#11-布尔值" class="headerlink" title="11.布尔值"></a>11.布尔值</h5><pre><code>false 和 true</code></pre><h5 id="12-变量声明"><a href="#12-变量声明" class="headerlink" title="12.变量声明"></a>12.变量声明</h5><pre><code>var a;</code></pre><h5 id="13-声明提前（变量提升）"><a href="#13-声明提前（变量提升）" class="headerlink" title="13.声明提前（变量提升）"></a>13.声明提前（变量提升）</h5><pre><code>JavaScript 的工作方式先解析代码，获取所有被声明的对象，然后逐行运行，造成的后果就是所有变量的声明语句都会被提升到代码的头部，这就是声明提前
+注意：变量提升只对var 命令声明的变量有效，如果一个变量的声明不是var则无效
+变量作用域：全局作用域，局部作用域。
+注意：在函数体中局部变量的优先级高于同名的全局变量。也就是说在一个函数内部声明一个局部变量或者函数中带有的变量和全局变量同名，那么局部变量会覆盖全局变量。
+在函数中默认用var 声明的是局部变量，没有var 的则是全局变量声明。</code></pre><h5 id="14-语句"><a href="#14-语句" class="headerlink" title="14.语句"></a>14.语句</h5><pre><code>14.1 表达式语句
+14.2 声明语句  var a=1,b=2；
+14.3 条件语句 if switch
+14.4 循环语句 for  do while   while for in
+14.5 return语句</code></pre><h5 id="15-对象-JavaScript中的一种基本类型"><a href="#15-对象-JavaScript中的一种基本类型" class="headerlink" title="15.对象  JavaScript中的一种基本类型"></a>15.对象  JavaScript中的一种基本类型</h5><pre><code>15.1 键名  对象的所有键名都市字符串 又称为属性（prototype），它的键值可以是任何数据类型，如果一个属性的值为函数，通常把这个属性称之为方法。
+15.2 创建对象
+     对象直接量  var   a = {};
+     关键字new var a = new Object();
+     Object.creat()  var a = Object.creat();
+15.3 对象直接量
+    对象直接量 是由若干名/值对组成的映射表。键名和键值之间用冒号分隔。如果对象内部包含多个键值对，则每个键值对之间用逗号分隔。整个映射表用花括号括起来。
+    注意：对象直接量的最后一个属性可由可无，但是在ie中如果多了一个逗号，会报错，
+15.4 构造函数
+    通过new创建对象 new运算符创建并初始化一个对象，关键字new后跟随一个函数调用，那这个函数称作构造函数。
+    例子：var a = {}
+          var a = new Object();
+          var a = Object.creat(null) 这三个是等价的
+15.5 对象常见的用法 
+    创建（create） 设置（set）  查找（query） 删除（delete） 检测（test） 枚举（enumerate）
+
+15.6 读取属性
+     例子： var a = {name:&quot;1&quot;}; a.name = 1
+15.7 查找属性
+     例子： var a = {name:&quot;1&quot;}; Object.keys(a)
+15.7 删除属性
+     例子： var a = {name:&quot;1&quot;}; delete a.name
+     delete只能删除自身属性</code></pre><h5 id="16-构造函数"><a href="#16-构造函数" class="headerlink" title="16.构造函数"></a>16.构造函数</h5><pre><code>解释：就是用来生成对象的函数，一个构造函数可以生成多个对象，这些对象都有相同的结构
+特点：函数体内使用了 this 关键字 ，代表了所要生成的对象实例 生成对象时，必须用 new命令
+注意：构造函数名的第一个字母必须大写,每一个构造函数都有一个prototype属性
+例子：function Cx(){
+          this.name = &apos;cx&apos;
+      }
+      var log = new Cx();
+      log   // Cx{name:cx}
+
+      or
+
+      function Cx(name){
+         this.name = name;
+      }
+      var log = new Cx(&apos;cx&apos;);
+      log // Cx{name:cx}
+
+ this  总是返回一个对象，返回属性或者方法当前所在的对象
+     例子：this.prototype
+     var A = {
+        name:&quot;cx&quot;,
+        test:function(){
+           return this.name
+        }
+     };
+     var B = {
+        name:&quot;xc&quot;;
+     }
+     B.test = A.test;
+     B.test()  // cx
+     注意：如果一个函数在全局环境中运行，那么他的this 指向window也就是最顶层对象</code></pre><h5 id="17-改变this的指向"><a href="#17-改变this的指向" class="headerlink" title="17.改变this的指向"></a>17.改变this的指向</h5><pre><code>方法：call apply bind
+例子：call(obj1,arr1);  第一个参数为要指向的对象，也就是要指定的上下文   后面的为传入的参数  如果参数为空，null，undefined 则默认传入全局对象
+      apply(obj1,[arr1,arr2]);  同上，只是参数换成了数组
+      bind(0bj1)  将函数体内dethis绑定到某个对象上返回一个新的函数</code></pre><h5 id="18-原型"><a href="#18-原型" class="headerlink" title="18.原型"></a>18.原型</h5><pre><code>解释：JavaScript中每一个对象（除null）都会和另一个对象相关联，也就是继承另一个对象。那么另一个对象就称之原型，每个对象都从原型继承属性
+      所有通过对象直接量创建的对象都具有一个原型对象，我们都可以通过Object.prototype获得对原型对象的引用。
+      通过关键字new 或者构造函数创建的对象的原型就是构造函数的prototype属性。比如 通过new Object（）创建的对象继承自Object.prototype, 通过new Array()创建的对象的原型就是Array.prototype。
+      Object.parototype  不会继承任何属性，它没有原型
+      所有内置构造函数都具有一个继承自Object.prototype的原型</code></pre><h5 id="19-原型链"><a href="#19-原型链" class="headerlink" title="19.原型链"></a>19.原型链</h5><pre><code>解释：对象的属性和方法可能定义在本身，也可能定义在它的原型对象。由于原型对象本身也对象又是原型，所以形成了一条链式关系，就又可能 a 的原型对象是b b的原型对象是c
+原型链的作用：如果查找一个对象的属性，JavaScript是先查找这个对象本身，如果没有则查找它的原型对象，如果没有则查找原型对象的原型  如果一直没有直到最顶层的object.prototype还是没有则返回undefined</code></pre><h5 id="20-继承"><a href="#20-继承" class="headerlink" title="20.继承"></a>20.继承</h5><pre><code>JavaScript对象具有自身属性，也又一些属性是从原型对象继承而来，当查询一个不存在的对象的时候 不会报错而是返回undefined
+如果对象自身和它的原型都定义了一个同名的属性，那么优先读取自身的属性，这个叫做覆盖。</code></pre><h5 id="21-constructor"><a href="#21-constructor" class="headerlink" title="21.constructor"></a>21.constructor</h5><pre><code>prototype对象有一个constructor属性，默认指向prototype对象所在的构造函数。</code></pre><h5 id="22-object-prototype-isPrototypeOf"><a href="#22-object-prototype-isPrototypeOf" class="headerlink" title="22.object.prototype.isPrototypeOf()"></a>22.object.prototype.isPrototypeOf()</h5><pre><code>用来判断一个对象是否是另一个对象的原型</code></pre><h5 id="23-数组"><a href="#23-数组" class="headerlink" title="23.数组"></a>23.数组</h5><pre><code>数组是值的有序集合，每个值叫做一个元素，而且每个元素在数组中都有一个位置也就是下标从0开始也称之为索引，整个数组用[]表示
+创建数组  var a = [1,2,2] or var a = new Array(1,2,2);
+求数组的长度   a.length
+添加/删除   a.push()往数组最后一个添加    shift() 删除数组中的元素   具体数组的操作看前面笔记</code></pre><h5 id="24-函数"><a href="#24-函数" class="headerlink" title="24.函数"></a>24.函数</h5><pre><code>函数就是一段可以反复调用的代码块。
+函数使用关键字function来定义，还包括一个称为形参（parameter）的标识符列表，这些参数在函数体内像局部变量一样工作
+函数调用会为形参提供实参的值，函数使用它们实参的值来计算返回值，称为该函数调用表达式的值
+除了实参之外，每次调用还会拥有另一个值，   本次调用的上下文    也就是this关键字的值
+
+如果函数挂载在一个对象上，作为对象的一个属性，就称之为 对象的方法
+
+js中的函数可以嵌套在其他函数中定义，这样它们就可以访问它们当时所处作用域中的任何变量，这个就叫做闭包，闭包的作用   读取函数内部变量，让这些变量常驻内存
+
+函数的定义有三种方法
+    function命令：function name(){}
+    函数表达式：var a = function(){}
+    function构造函数   var a = new Function(){}   =  var a = function(){}
+
+注意：如果函数多次声明，那么后声明的会覆盖前面声明的。
+
+函数可以调用自身，这就是递归
+
+24.1 嵌套函数
+   在JS中函数内可以嵌套其他函数
+24.2 函数调用
+   构成函数主题的JavaScript代码在定义时并不会执行，只有调用该函数，它们才会执行。有4中方法调用JS函数
+      1.作为函数、 f()
+      2.作为方法   o.f = function(){}   o.f();
+      3.作为构造函数 var a = new Object();  var a = new Object;
+      4.通过它们的call() 和 apply() 方法间接调用
+24.3 传参
+    如果传入的参数名字相同，则取最后出现的那个的值
+    例子： function go(x,x){
+              console.log(x) 
+           }
+
+           go(1,2)  // 2
+
+ 24.4 函数作用域
+      指变量存在的范围，js中有两种作用域，一种全局作用域，变量在整个程序中一直存在，所以地方都可以读取。一种函数作用域，变量只有在函数内部存在，只有函数内部可以访问。
+      如果在函数内部定义一个变量和全局变量名相同，那么函数内部的变量将覆盖全局变量
+
+ 24.5 函数属性、方法和构造函数
+      name属性   function a(){}   a.name // a
+      length属性 function f(x,y){}  f.length //2    
+
+ 24.6 严格模式
+     &apos;use strict&apos;</code></pre><h5 id="25-表达式和运算符"><a href="#25-表达式和运算符" class="headerlink" title="25.表达式和运算符"></a>25.表达式和运算符</h5><pre><code>25.1 JS 原始表达式包含 常量 直接量 变量 或者关键字
+      直接量就是直接在程序中出现的常数值 如 1.2    &quot;hello&quot;
+      保留关键字  this true false this 等
+      变量   i  num
+
+25.2 对象和数组的初始化表达式
+     实际上是一个新创建的对象和数组，也可以称之为  对象直接量  和  数组直接量
+     例子   var a = {},   var b = [];
+
+25.3 函数定义表达式
+     函数定义表达式（函数直接量）定义一个Javascript 函数 。表达式的值就是这个新定义的函数。
+     例子：var f = function(){}
+
+25.4 属性访问表达式
+     var f = {name:&quot;1&quot;,age:&quot;22&quot;}    f.name // 1   or    var t = [1,2,12,3]   t[3] //3</code></pre><h5 id="26-DOM-文档对象模型，表示和操作HTML和XML文档内容的基础"><a href="#26-DOM-文档对象模型，表示和操作HTML和XML文档内容的基础" class="headerlink" title="26.DOM 文档对象模型，表示和操作HTML和XML文档内容的基础"></a>26.DOM 文档对象模型，表示和操作HTML和XML文档内容的基础</h5><pre><code>firstChild lastChild  返回该节点子节点的第一个和最后一个 如果没有返回null
+parentNode   当前节点的父节点 没有返回null
+childNodes  当前节点的子节点列表
+nextSibling previousSibling   当前节点的前一个  和 下一个。 具有相同父节点的两个节点称之为兄弟节点
+textContent  返回该节点的文本内容
+nodeType  返回当前节点类型
+nodeValue 返回text节点或者comment节点的内容 ，其他类型一律返回null
+nodeName 元素标签名，大写显示
+
+children 类型childNodes  返回一个NodeList对象，但是children列表只包含Element对象
+     注意 ： text 和commont 没有children 属性
+
+firstElementChild lastElementChild   类型firstChild  和  lastChild   但是只代表子Element
+
+nextElementChild  previousElementSibling    类似nextSibling 和 previousSibling 但是只代表兄弟 Element
+
+childElementCount  返回子元素的数量
+
+offsetParent   返回当前HTML元素最靠近 并且css 的position 不等于static的父元素
+
+innerHTML  返回 读取元素内部的html
+
+outerHTML 返回所有内容 包括读取元素的本身
+
+insertAdjacentHTML() 将任意HTML标记字符插入到指定的元素相邻的位置
+
+createElement  创建节点
+
+createTextNode（） 创建一个text节点，参数为所要生成的文本节点的内容
+
+createAttribute() 用来复制已存在的节点
+
+appendChild 和 insertBefore  用来插入节点
+
+removeChild 删除一个节点
+
+replaceChild 删除一个节点并用新的替换一个节点
+
+elementFromPoint() 判断元素在某点
+
+scrollTop  滚动方法
+
+scrollBy  用于将网页移动指定距离  可以向右 和向下滚动 像素
+
+scrolllntoView  保证元素在视口可见
+
+文档属性
+   clientWidth clientHeight    返回元素节点可见区域的宽度 和  高度
+   clientLeft  clientTop    返回元素节点左边框的宽度 和 网页元素顶部边框的宽度  内联元素 则为0 
+   scrollWidth  scrollHeight   返回网页元素的高度和总宽度。
+   scrollLeft  scrollTop    返回网页元素的水平滚动条向右侧滚动的像素数量   和  元素的垂直滚动条向下滚动的像素数量
+   offsetWidth offsetHeight   返回元素的水平宽度和垂直高度
+   offsetLeft  offsetTop   返回当前元素相对于左上角offsetParent节点的垂直偏移 和 返回水平位移
+
+document.cookie 操作浏览器的cookie
+
+domain 返回当前文档的域名
+
+lastModified  包含文档修改时间的字符串
+
+location 与window对象的location属性引用同一个location对象
+
+document.referrer  返回当前文档的访问来源  如果当前是从浏览器键入或者无法获取来源则返回空
+
+title  当前文档标题
+
+doctype  document对象一般有两个子节点，第一个子节点是document.doctype 它是一个对象包含当前文档类型信息。 html5 用 &lt;!DOCTYPE html&gt;
+
+documentElement  返回当前文档的根节点   它是文档的第二个节点  第一个是上面的
+
+defaultView   在浏览器中返回document 对象所在的window对象  否则返回null
+
+activeElement  返回当前文档中获得焦点的元素
+
+characterSet  返回渲染当前文档的字符集  如  utf-8
+
+readyState   返回当前文档的状态  
+     有三种 ：
+          loading   加载html部分还在解析 
+          interactive 加载外部资源
+          complete  加载完成
+
+compatMode  返回浏览器处理文档的模式
+    类型
+         BackCompat   向后兼容模式
+         CSS1Compat   严格模式
+
+document.write  docuemnt.writeIn
+
+window.getSelection() 方法返回一个 selection 对象   查询选取的文本
+
+contenteditable  设置div 可编辑
+
+execCommand   插入元素 或者改变样式</code></pre><h5 id="27-DOM属性-和-css"><a href="#27-DOM属性-和-css" class="headerlink" title="27.DOM属性 和 css"></a>27.DOM属性 和 css</h5><pre><code>27.1 属性
+    HTML 元素由一个标签和一组称为属性的名/值对 组成
+    HTML 属性作为 Element的属性
+
+    获取和设置非标准HTML属性 
+        getAttribute() //获取属性
+        setAttribute() //设置属性
+        hasAttribute() //检测属性是否存在
+        removeAttribute() //删除
+
+    数据集（dataset）
+        例子：&lt;div id=&quot;test&quot; data-tip=&quot;title&quot;&gt;&lt;/div&gt;
+              var a = document.getElementById(&apos;test&apos;);
+              a.dataset.tip // title
+
+    attr节点属性（attributes）
+        用法：document.body.attributes[0]   body元素的第一个属性
+        属性节点对象由name和value属性，对应该属性的属性名和属性值 等同于 nodeName属性和 nodeValue 属性
+            例子： &lt;div id=&quot;top&quot;&gt;&lt;/div&gt;
+                   var t = docuemnt.getElementById(&apos;top&apos;);
+                   t.attributes[0].name //id
+                   t.attributes[0].nodeName // id
+                   t.attributes[0].value // top
+                   t.attributes[0].nodeValue // top
+
+27.2 元素的内容
+    用法： &lt;div id=&quot;t&quot;&gt;a&lt;/div&gt;
+           var a = docuemnt.getElementById(&apos;t&apos;);
+           a.innerHTML //a
+           a.innerHTML = &apos;b&apos;   //b
+
+27.3 css
+    例子： &lt;div id=&quot;t&quot;&gt;a&lt;/div&gt;
+           var a = docuemnt.getElementById(&apos;t&apos;);
+           a.style.color = red
+           a.style.fontSize = &apos;14px&apos;   //  需要带单位
+
+           a.style.cssText= &quot;font-size:14px&quot;
+           a.style.setProperty(&apos;color&apos;,&apos;blue&apos;) //设置css属性
+           a.style.getPropertyValue(&apos;color&apos;)  //读取css属性
+           a.style.removeProperty(&apos;color&apos;)   //删除css属性
+
+           window.getComputedStyle(t,null) 获取引用的样式或者伪元素样式 第一个参数是要获取其计算样式的元素，第二个参数也是必需的，通常是null或空字符串
+              例子：&lt;style&gt;
+                      #tc{ height:30px;}
+                      #tc:before{content:&apos;t&apos;;color:green};
+                    &lt;/style&gt;
+                    &lt;div id=&quot;tc&quot; style=&quot;background:yellow&quot;&gt;&lt;/div&gt;
+
+                    var t = document.getElementById(&apos;tc&apos;);
+                    window.getComputedStyle(t,null).height  //30px
+                    window.getComputedStyle(t,&apos;:before&apos;).content  // t
+                    window.getComputedStyle(t,null).getPropertyValue(&apos;line-height&apos;);
+
+
+    脚本化css   通过改变或者添加HTML的class属性值，也是改变内联style属性的一个方法。
+         例子： t.className = &apos;attention&apos;;  //设置class属性
+                t.className += &apos;attention2&apos;;  //添加class属性
+                t.className = &apos;&apos;;  //删除全部class
+                t.className = t.className.replace(&apos;attention2&apos;,&apos;&apos;);  //删除名为attention2的class
+
+    在HTML5中，每个元素都定义了classList属性，该属性值是DOMTokenList对象：一个只读的类数组对象，它包含元素的单独类名，而且是实时的。它有四个方法：
+            element.classList.add()   //添加
+            element.classList.remove()  //删除
+            element.classList.contains()  //是否包含
+            element.classList.toggle()  //如果不存在类名就添加，否则删除
+
+    查询、插入和删除样式表
+        document.styleSheets[]数组的元素是CSSStyleSheet对象。CSSStyleSheet对象有一个CSSRules[]属性，指向一个类数组对象，它包含样式表的所有规则：
+        document.styleSheets[0].cssRules[0]
+
+27.4 css事件
+    transitionEnd  监听 transition 结束
+    animationstart 监听 动画开始 触发
+    animationend  动画结束触发
+    animationiteration   开始新一轮动画循环时触发  如果循环次数为1  则不触发
+        例子：  element.addEventListener(&quot;animationstart&quot;, listener, false);  
+                element.addEventListener(&quot;animationend&quot;, listener, false);  
+                element.addEventListener(&quot;animationiteration&quot;, listener, false);
+                 注意：要加上 webkit 等前缀
+
+             通过AnimationPlayState（animation-play-state）   控制动画的状态。
+             例子：element.style.webkitAnimationPlayState = &quot;paused&quot;; 
+                   element.style.webkitAnimationPlayState = &quot;running&quot;;</code></pre><h5 id="28-Event-事件"><a href="#28-Event-事件" class="headerlink" title="28.Event 事件"></a>28.Event 事件</h5><pre><code>28.1 相关术语
+     什么是事件   就是浏览器通知应用程序发生了什么事情
+
+     事件类型     用来说明发生什么类型事件的字符串   比如 mouseover
+     事件目标     发生的事件与之相关的对象，当江事件式，必须同时指明类型和目标
+     事件处理处理程序  处理或响应事件的函数
+     事件对象 与特定事件相关且包含该事件详细信息的对象
+     事件传播  浏览器决定哪个对象触发其事件处理程序的过程。    当文档元素上发生某个类型的事件时，它们会在文档树上  传播 或  冒泡
+     事件捕获   事件传播的另一种方式，在容器元素上注册的特定处理程序有机会在事件传播到真实目标之前捕获它。著作权归作者所有。
+
+ 28.2 Event事件
+     注册事件处理程序 有两种基本方式
+         1.给事件目标对象或文档元素设置属性
+         2.通过 addEventListener(type,listener[,useCapture])
+               type  事件名称（事件类型），字符串，大小写不敏感
+               listerner  监听函数。事件调用时，调用它
+               useCapture 布尔值，在监听函数是否在捕获阶段触发，默认false(监听函数只在冒泡阶段触发)
+               注意：使用监听函数的时候  事件去掉on
+
+     事件分为三种阶段
+         捕获阶段
+         目标阶段
+         冒泡阶段
+
+     事件委托（事件委托）使用后  后面在插入的新节点还是可以监听到的
+        基于事件在冒泡阶段会向上传播到父节点上，我们可以将子节点的监听放到父节点上，由父节点的监听函数统一处理多个子元素事件。这种方法叫做事件的代理
+
+     事件取消    
+        用属性注册的事件处理程序的返回值能用于取消事件的浏览器默认操作
+          function cancelHandler(event){
+            var event = event || window.event;
+            if(event.preventDefault) {event.preventDefault();}  //标准
+            if(event.returnValue) { event.returnValue = false;}  // IE
+            return false; //用于处理使用对象属性注册的处理程序
+          }
+
+      取消事件传播
+           e.stopPropagation    //ie   e.cancelBubble = true
+
+
+      文档事件
+          beforeunload   //当你要从当前浏览页面跳走的时候出现你是否要离开的弹框
+              window.addEventListener(&apos;beforeunload&apos;,function(e){
+                var message = &apos;你确认要离开吗！&apos;;
+                e.returnValue = message;
+                return message
+              });
+
+          unload   //当窗口要关闭或者document事件要卸载的时候触发，排在window body frameset对象上面   触发顺序排在beforeunload 和pagehide后面   只有在页面没有被浏览缓存的时候触发
+
+          load  //直到文档和所有图片都被加载完触发  缓存的页面不会触发
+          error //在页面加载失败的时候触发
+          pageshow  // 在页面加载时触发
+          pagehide  // 通过 前进后退按钮的时候触发
+
+          DOMContentLoaded事件：当文档加载解析完毕且所有延迟（deferred）脚本（图片未加载完毕）都执行完毕时会触发，此时图片和异步（async）脚本可能依旧在加载，但是文档已经为操作准备就绪了。也就是说，这个事件，发生在load事件之前。
+          document.addEventListener(&apos;DOMContentLoaded&apos;,handler,false);
+
+          readystatechange事件：document.readyState属性会随着文档加载过程而变，而每次状态改变，Document对象上的readystatechange事件都会触发。
+          document.onreadystatechange = function() {
+            if(document.readyState == &apos;complete&apos;){
+
+            }
+          }
+
+          scroll事件、resize事件
+              scroll事件在文档或文档元素滚动时触发，主要出现在用户拖动滚动条。
+              resize事件在改变浏览器窗口大小时触发，发生在window、body、frameset对象上面。
+
+
+          hashchange事件、popstate事件
+              hashchange事件在URL的hash部分（即#号后面的部分，包括#号）发生变化时触发。如果老式浏览器不支持该属性，可以通过定期检查location.hash属性，模拟该事件。
+
+              popstate事件在浏览器的history对象的当前记录发生显式切换时触发。注意，调用history.pushState()或history.replaceState()，并不会触发popstate事件。该事件只在用户在history记录之间显式切换时触发，比如鼠标点击“后退/前进”按钮，或者在脚本中调用
+
+          cut事件、copy事件、paste事件
+              这三个事件属于文本操作触发的事件。
+              cut事件：在将选中的内容从文档中移除，加入剪贴板后触发。   
+              copy事件：在选中的内容加入剪贴板后触发。   
+              paste事件：在剪贴板内容被粘贴到文档后触发。
+
+              这三个事件都有一个clipboardData只读属性。该属性存放剪贴的数据，是一个DataTransfer对象
+
+
+          焦点事件
+              焦点事件发生在Element节点和document对象上。
+                  focus事件：Element节点获得焦点后触发，该事件不会冒泡。   
+                  blur事件：Element节点失去焦点后触发，该事件不会冒泡。   
+                  focusin事件：Element节点将要获得焦点时触发，发生在focus事件之前。该事件会冒泡。Firefox不支持该事件。   
+                  focusout事件：Element节点将要失去焦点时触发，发生在blur事件之前。该事件会冒泡。Firefox不支持该事件。
+
+                  这四个事件的事件对象，带有target属性（返回事件的目标节点）和relatedTarget属性（返回一个Element节点）。对于focusin事件，relatedTarget属性表示失去焦点的节点；对于focusout事件，表示将要接受焦点的节点；对于focus和blur事件，该属性返回null。 
+
+                  由于focus和blur事件不会冒泡，只能在捕获阶段触发，所以addEventListener方法的第三个参数需要设为true。
+
+          鼠标事件
+              click
+              contextmenu
+              dbclick
+              mousedown  mouseup
+              mousemove
+              mouseover mouseenter
+              mouseout mouseleave
+
+              MouseEvent 对象的属性
+                 button buttons
+                 clientX clientY
+                 mousementX mouseentY
+                 screenX screenY
+                 pageX pageY
+                 relatedTarget
+
+              鼠标滚轮事件 
+                 mousewheel
+
+          键盘事件
+              keydown
+              keyup
+              keypress
+              textinput  输入文本触发
+              altKey属性：alt键  
+              ctrlKey属性：key键  
+              metaKey属性：Meta键（Mac键盘是一个四瓣的小花，Windows键盘是Windows键）  
+              shiftKey属性：Shift键
+
+          表单事件
+              input propertychange
+              change 
+              select
+              reset  //表单重置的时候触发
+              submit //提交的时候触发
+
+          触控事件
+              TouchEvent
+              Touch
+              TouchList
+              touchstart   //接触触摸屏开始触发
+              touchend     //不在触摸触发
+              changedTouches // 返回一个TouchList对象 包含所有不在触摸的触摸点
+              touchmove   //移动触摸 触发
+              touchcancel //触摸点取消触发
+              touchenter  //触摸点击触发
+              touchleave  //触摸离开触发
+
+          进度事件
+              进度事件用来描述一个事件进展的过程。比如XMLHttpRequest对象发出的HTTP请求的过程、&lt;img&gt;、&lt;audio&gt;、&lt;video&gt;、&lt;style&gt;、&lt;link&gt;加载外部资源的过程。下载和上传都会发生进度事件。    
+              进度事件有以下几种：
+                  abort事件：当进度事件被中止时触发。如果发生错误，导致进程中止，不会触发该事件。   
+                  error事件：由于错误导致资源无法加载时触发。   
+                  load事件：进度成功结束时触发。   
+                  loadstart事件：进度开始时触发。   
+                  loadend事件：进度停止时触发，发生顺序排在error事件\abort事件\load事件后面。   
+                  progress事件：当操作处于进度之中，由传输的数据块不断触发。   
+                  timeout事件：进度超过限时触发。
+
+          拖放事件
+              拖放（Drag-and-Drop，DnD）是在“拖放源（drag source）”和“拖放目标（drop target）”之间传输数据的用户界面。
+              &lt;div draggable=&quot;true&quot;&gt; 此区域可拖拉 &lt;/div&gt;</code></pre><h5 id="29-window对象"><a href="#29-window对象" class="headerlink" title="29. window对象"></a>29. window对象</h5><pre><code>29.1 计时器 
+   setTimeOut() 和  setlterval()
+29.2 浏览器定位和导航
+   location
+29.3 解析URL
+   // 当前网址为 http://user:passwd@www.example.com:4097/path/a.html?x=111#part1location.href // &quot;http://user:passwd@www.example.com:4097/path/a.html?x=111#part1&quot; 
+      location.protocol // &quot;http:&quot; 
+      location.host // &quot;www.example.com:4097&quot; 
+      location.hostname // &quot;www.example.com&quot; 
+      location.port // &quot;4097&quot; 
+      location.pathname // &quot;/path/a.html&quot; 
+      location.search // &quot;?x=111&quot; 
+      location.hash // &quot;#part1&quot; 
+      location.user // &quot;user&quot; 
+      location.password // &quot;passed&quot;
+29.4 Location对象的方法：
+      location.assign()：使窗口载入并显示指定的URL中的文档。
+      location.replace()：和assign()方法类似，但它在载入新文档之前会从浏览历史中把当前文档删除。这样“后退”按钮就不会把浏览器带回到原始文档。
+      location.reload()：重新载入当前文档，可传入一个布尔值为参数，默认false。如果为true，则优先从服务器重新加载；否则优先从本地缓存中重新加载。
+      当然，我们还有更直接跳转到新页面的方法：
+      location = &apos;http://baidu.com&apos;;  
+      //或者
+      location.href = &apos;http://baidu.com&apos;;
+29.5 浏览历史
+     History.back() // 移动到上一个访问的页面，等同于浏览器的后退键
+     History.forward() // 移动到下一个访问页面，等同于浏览器的前进键
+     Histroy.go()  //接受一个整数作为参数，移动到该整数指定的页面，比如go(1)相当于forward()，go(-1)相当于back(),go(0)相当于刷新页面
+     History.pushState() 会改变referrer的值，而在你调用方法后创建的 XMLHttpRequest 对象会在 HTTP 请求头中使用这个值。referrer的值则是创建 XMLHttpRequest 对象时所处的窗口的URL
+          state：一个与指定网址相关的状态对象，popstate事件触发时，该对象会传入回调函数。如果不需要这个对象，此处可以填null。 
+          title：新页面的标题，但是所有浏览器目前都忽略这个值，因此这里可以填null。 
+          url：新的网址，必须与当前页面处在同一个域。浏览器的地址栏将显示这个网址。
+
+     history.replaceState()：会修改当前历史记录条目而并非创建新的  
+
+     history.state   返回当前页面的state对象
+ 29.6 浏览器和屏幕信息
+     navigator.appName 浏览器的全程
+     navigator.userAgent  返回标识浏览器的厂商和版本信息
+     navigator.platform  返回用户操作系统的信息
+     navigator.onLine   当前浏览器是否连接到网络
+     navigator.geolocation 包含用户的地理位置
+     navigator.cookieEnable 浏览器是否能存储cookie</code></pre><h5 id="30-Ajax"><a href="#30-Ajax" class="headerlink" title="30.Ajax"></a>30.Ajax</h5><pre><code>30.1 HTTP  超文本传输协议
+     HTTP 请求由4个部分组成
+           1.HTTP请求方法或动作
+           2.正在请求的URL
+           3.一个可选的请求头集合，其中可能包括身份验证信息
+           4.一个可选的请求主题
+      服务器返回的HTTP响应包含三部分
+          一个数字和文字组合成的状态码，用来显示请求的成功和失败
+          一个响应头集合
+          响应主体
+
+      HTTP状态码
+          200, OK，访问正常  
+          301, Moved Permanently，永久移动  
+          302, Move temporarily，暂时移动  
+          304, Not Modified，未修改  
+          307, Temporary Redirect，暂时重定向  
+          401, Unauthorized，未授权  
+          403, Forbidden，禁止访问  
+          404, Not Found，未发现指定网址  
+          500, Internal Server Error，服务器发生错误
+
+      HTTP进度事件
+          除了使用readystatechange事件来探测HTTP请求的完成外，在XHR2中，还定义了多个有用的事件。
+          abort事件：当进度事件被中止时触发。如果发生错误，导致进程中止，不会触发该事件。  
+          error事件：由于错误导致资源无法加载时触发。
+          load事件：进度成功结束时触发。
+          loadstart事件：进度开始时触发。
+          loadend事件：进度停止时触发，发生顺序排在error事件\abort事件\load事件后面。
+          progress事件：当操作处于进度之中，由传输的数据块不断触发。
+          timeout事件：进度超过限时触发。
+
+      HTTP请求无法完成有3种情况：
+          请求超时，会触发timeout事件
+          请求终止，会触发abort事件
+          请求发生错误，会触发error事件
+
+      同源策略（严格）
+          协议相同
+          域名相同
+          端口相同
+      不严格的同源策略
+          使用Document对象的domain属性
+              来自home.example.com的文档里的脚本要合法的读取developer.example.com载入的文档的属性（默认情况下是不允许的，会受到同源策略的限制
+              document.domain = &apos;example.com&apos;;
+          跨域资源共享
+              Access-Control-Allow-Origin:*，//允许所有域名的脚本访问该资源。  
+              Access-Control-Allow-Origin:http://www.example.com  //允许特定的域名访问。
+          跨文档消息
+              允许一个文档的脚本跨域传递文本消息到另一个文档里的脚本
+      跨站脚本 XSS
+          安全术语，攻击者跨域向目标web站点注入HTML标签或者脚本
+          防止XSS攻击的方式时，在使用任何不可信的数据来动态的创建文档内容之前，从中移除HTML标签</code></pre><h5 id="31-正则表达式"><a href="#31-正则表达式" class="headerlink" title="31.正则表达式"></a>31.正则表达式</h5><pre><code>search()：按照给定的正则表达式进行搜索，返回一个整数，表示第一个与之匹配的字符串的起始位置，如果找不到匹配的子串，将返回-1。
+match()：返回一个数组，成员是所有匹配的子字符串。    
+replace()：按照给定的正则表达式进行替换，返回替换后的字符串。  
+split()：按照给定规则进行字符串分割，返回一个数组，包含分割后的各个成员。
+RegExp对象
+    RegExp()构造函数带有两个字符串参数，第二个参数是可选的，它指定正则表达式的修饰符（可传入修饰符g、i、m或者它们的组合）；第一个参数包含正则表达式的主体部分，也就是正则表达式直接量中两条斜线之间的文本</code></pre>
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-01-17T09:16:26.617Z" itemprop="dateUpdated">2020-01-17 17:16:26</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/更新/">更新</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2017/09/29/javascript.html&title=《JavaScript 学习笔记整理》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2017/09/29/javascript.html&title=《JavaScript 学习笔记整理》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2017/09/29/javascript.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript 学习笔记整理》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2017/09/29/javascript.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2017/09/29/javascript.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/09/29/Sass笔记.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Sass笔记</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/09/27/Vue学习笔记.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Vue学习笔记</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2017/09/29/javascript.html&title=《JavaScript 学习笔记整理》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2017/09/29/javascript.html&title=《JavaScript 学习笔记整理》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2017/09/29/javascript.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript 学习笔记整理》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2017/09/29/javascript.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2017/09/29/javascript.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJUlEQVR42u3aQWrEMAwF0Ln/pdNtoY3zJScDsV9WpfVk/FwQkqXPJ36O4fN7zXj92cq/n/o88WBgYLyWkW9x/AVna842naxJ9oaBgbEPo/rqMSA/gjw0X+wZAwMDoxUQxyG4ehwYGBgYOSNPCs+o401jYGBgzBSxCeCi1AwSx8drcQwMjBcy8lv37//8SH8DAwPjVYyj+CRBMw/W1bedfgsGBsbSjOrXVFfmCWVSVF+8AQMDY1HGTBitspNCNwnu//wGAwNjM0avlO1VmvnxXWAwMDC2YVQbjU9TCy1MDAyMbRi9sYkkOOYJX7KTqArHwMBYmnHvdqvhuze6gYGBsTYjTxCr5WU1Wew1Ccp5LgYGxgsZSSDLQ20vBPcwpzMjGBgYyzF6G83L1N4oRp62Tp03BgbGCxn5sEVvffVqrzBsgYGBsQEjD693XZ/1AvHU/wQDA2MJRvW+vcrIk87eoAYGBsZujHtHLnoXcDfwMDAwFmXcNWDRSyvzA40GLzAwMBZi5Bdk4/XJX/NytJqGYmBg7MBofrgIqwb6cjqIgYGxNKN3fd8rNXsbvTgODAyMRRlH8endcc0Ut1E7AQMDY2lGrxvYe3UvWOfXfBgYGGsznmsG9FK9PNBjYGDsxsgDXxVW3tBMKYuBgYERNA9m2gy9lRgYGBjVtmXSVOglixcrMTAwNmDMD3vlV2x3tUgxMDD2YeSl4ziBmx8g66WPGBgYSzN+APF+apgCZ2q3AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

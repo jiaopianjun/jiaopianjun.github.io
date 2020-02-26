@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>ES6入门之字符串的扩展 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="ECMAScript6">
+    <meta name="description" content="1. 字符的 Unicode 表示法 Javascript 中允许采用 \uxxxx的形式表示一个字符，其中xxxx表示字符的Unicode码点。如下  &amp;quot;\u0061&amp;quot; 这种 表示有区间 只能在 0000  ~  FFFF之间，如果超出则需要用双字节的的形式表示  &amp;quot;\u20BB7\uDFB1&amp;quot; 在ES6中，对字符串的写法做出了改变。改为将码点放入大括号中">
+<meta name="keywords" content="ECMAScript6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6入门之字符串的扩展">
+<meta property="og:url" content="https://toc.lieme.cn/2019/03/24/ES6入门之字符串的扩展.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1. 字符的 Unicode 表示法 Javascript 中允许采用 \uxxxx的形式表示一个字符，其中xxxx表示字符的Unicode码点。如下  &amp;quot;\u0061&amp;quot; 这种 表示有区间 只能在 0000  ~  FFFF之间，如果超出则需要用双字节的的形式表示  &amp;quot;\u20BB7\uDFB1&amp;quot; 在ES6中，对字符串的写法做出了改变。改为将码点放入大括号中">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-10-21T00:14:01.116Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6入门之字符串的扩展">
+<meta name="twitter:description" content="1. 字符的 Unicode 表示法 Javascript 中允许采用 \uxxxx的形式表示一个字符，其中xxxx表示字符的Unicode码点。如下  &amp;quot;\u0061&amp;quot; 这种 表示有区间 只能在 0000  ~  FFFF之间，如果超出则需要用双字节的的形式表示  &amp;quot;\u20BB7\uDFB1&amp;quot; 在ES6中，对字符串的写法做出了改变。改为将码点放入大括号中">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">ES6入门之字符串的扩展</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">ES6入门之字符串的扩展</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-24T13:35:00.000Z" itemprop="datePublished" class="page-time">
+  2019-03-24
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-字符的-Unicode-表示法"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 字符的 Unicode 表示法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-codePointAt"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. codePointAt()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-String-fromCodePoint"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. String.fromCodePoint()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-字符串的遍历器接口"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. 字符串的遍历器接口</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-normalize"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. normalize()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-includes-startsWith-endsWith"><span class="post-toc-number">6.</span> <span class="post-toc-text">6. includes(), startsWith(), endsWith()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-repeat"><span class="post-toc-number">7.</span> <span class="post-toc-text">7. repeat()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-padStart-，padEnd"><span class="post-toc-number">8.</span> <span class="post-toc-text">8. padStart()，padEnd()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-matchAll"><span class="post-toc-number">9.</span> <span class="post-toc-text">9. matchAll()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-模板字符串"><span class="post-toc-number">10.</span> <span class="post-toc-text">10. 模板字符串</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-模板编译"><span class="post-toc-number">11.</span> <span class="post-toc-text">11. 模板编译</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-标签模板"><span class="post-toc-number">12.</span> <span class="post-toc-text">12. 标签模板</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-ES6入门之字符串的扩展"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">ES6入门之字符串的扩展</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-24 21:35:00" datetime="2019-03-24T13:35:00.000Z"  itemprop="datePublished">2019-03-24</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        1,344
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        5 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h3 id="1-字符的-Unicode-表示法"><a href="#1-字符的-Unicode-表示法" class="headerlink" title="1. 字符的 Unicode 表示法"></a>1. 字符的 Unicode 表示法</h3><blockquote>
+<p>Javascript 中允许采用 \uxxxx的形式表示一个字符，其中xxxx表示字符的Unicode码点。如下</p>
+</blockquote>
+<pre><code>&quot;\u0061&quot;</code></pre><blockquote>
+<p>这种 表示有区间 只能在 0000  ~  FFFF之间，如果超出则需要用双字节的的形式表示</p>
+</blockquote>
+<pre><code>&quot;\u20BB7\uDFB1&quot;</code></pre><blockquote>
+<p>在ES6中，对字符串的写法做出了改变。改为将码点放入大括号中，就能正确读取该字符，如下：</p>
+</blockquote>
+<pre><code>&quot;\u{20BB7}&quot; // 吉</code></pre><h3 id="2-codePointAt"><a href="#2-codePointAt" class="headerlink" title="2. codePointAt()"></a>2. codePointAt()</h3><blockquote>
+<p>Javascript内部，字符以 UTF-16的格式存储，每个字符固定为2个字节。对于需要4个字节储存的字符，JavaScript会认为它们是两个字符。如下：</p>
+</blockquote>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var s = <span class="string">"吉"</span></span><br><span class="line"></span><br><span class="line">s.length <span class="comment">// 2</span></span><br><span class="line">s.charAt(<span class="number">0</span>) <span class="comment">// ''</span></span><br><span class="line">s.charAt(<span class="number">1</span>) <span class="comment">// ''</span></span><br><span class="line">s.charCodeAt(<span class="number">0</span>) <span class="comment">// 55362</span></span><br><span class="line">s.charCodeAt(<span class="number">1</span>) <span class="comment">// 57271</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中汉字吉 需要4个字节存储，但是JavaScript不能正确处理，字符串长度误判为2，而且charAt 方法无法读取字符，charCodeAt 只能返回前面两个字节和后面两个字节的值，ES6 提供了 codePointAt 方法能够正确处理4个字节存储的字符，返回一个字符的码点，如下：<br>    let s = ‘吉a’；</p>
+<pre><code>s.codePointAt(0) // 134071
+s.codePointAt(1) // 57271</code></pre><blockquote>
+<p>codePointAt() 方法是测试一个字符由两个字节还是四个字节组成的最简单的方法</p>
+</blockquote>
+<h3 id="3-String-fromCodePoint"><a href="#3-String-fromCodePoint" class="headerlink" title="3. String.fromCodePoint()"></a>3. String.fromCodePoint()</h3><blockquote>
+<p>ES5 提供了 String.fromCharCode 方法 用于从码点返回对应字符，但是不能识别32位的UTR-16字符，ES6提供了 Sring.fromCodePoint() 方法 可以识别大于32位的。如果有多个参数则将合并。如下：</p>
+</blockquote>
+<pre><code>String.fromCodePoint(0x20BB7)
+// &quot;𠮷&quot;
+String.fromCodePoint(0x78, 0x1f680, 0x79) === &apos;x\uD83D\uDE80y&apos;
+// true</code></pre><p><strong>注意：fromCodePoint 方法定义在 String 对象上，而codePointAt 方法定义在字符串实例对象上</strong></p>
+<h3 id="4-字符串的遍历器接口"><a href="#4-字符串的遍历器接口" class="headerlink" title="4. 字符串的遍历器接口"></a>4. 字符串的遍历器接口</h3><blockquote>
+<p>ES6为字符串添加了遍历器接口，字符串可以被for of 遍历</p>
+</blockquote>
+<h3 id="5-normalize"><a href="#5-normalize" class="headerlink" title="5. normalize()"></a>5. normalize()</h3><blockquote>
+<p>用来将字符的不同表示方法统一为同样的形式，</p>
+</blockquote>
+<h3 id="6-includes-startsWith-endsWith"><a href="#6-includes-startsWith-endsWith" class="headerlink" title="6. includes(), startsWith(), endsWith()"></a>6. includes(), startsWith(), endsWith()</h3><blockquote>
+<p>传统上，JavaScript 只有indexOf方法，可以用来确定一个字符串是否包含在另一个字符串中。ES6 又提供了三种新方法。</p>
+</blockquote>
+<pre><code>includes()：返回布尔值，表示是否找到了参数字符串。
+startsWith()：返回布尔值，表示参数字符串是否在原字符串的头部。
+endsWith()：返回布尔值，表示参数字符串是否在原字符串的尾部。</code></pre><h3 id="7-repeat"><a href="#7-repeat" class="headerlink" title="7. repeat()"></a>7. repeat()</h3><blockquote>
+<p>用来返回一个新字符串，表示将原字符串重复N次</p>
+</blockquote>
+<pre><code>&apos;x&apos;.repeat(2) // &apos;xx&apos;
+&apos;cx&apos;.repeat(3) // &apos;cxcxcx&apos;
+
+参数NaN等同于 0。
+&apos;na&apos;.repeat(NaN) // &quot;&quot;
+
+如果repeat的参数是字符串，则会先转换成数字。
+&apos;na&apos;.repeat(&apos;na&apos;) // &quot;&quot;
+&apos;na&apos;.repeat(&apos;3&apos;) // &quot;nanana&quot;</code></pre><h3 id="8-padStart-，padEnd"><a href="#8-padStart-，padEnd" class="headerlink" title="8. padStart()，padEnd()"></a>8. padStart()，padEnd()</h3><blockquote>
+<p>用于字符串的补全，接受两个参数，第一个字符串补全生效的最大长度，第二个是用来补全的字符串，如下：</p>
+</blockquote>
+<pre><code>&apos;x&apos;.padStart(5, &apos;ab&apos;) // &apos;ababx&apos;
+&apos;x&apos;.padStart(4, &apos;ab&apos;) // &apos;abax&apos;
+
+&apos;x&apos;.padEnd(5, &apos;ab&apos;) // &apos;xabab&apos;
+&apos;x&apos;.padEnd(4, &apos;ab&apos;) // &apos;xaba&apos;
+
+注意：
+如果原字符串的长度等于或大于最大长度，则补全不生效，返回原字符串
+
+如果补全字符串和原字符串，两者长度超过最大长度，则截取超出位数的补全字符串</code></pre><h3 id="9-matchAll"><a href="#9-matchAll" class="headerlink" title="9. matchAll()"></a>9. matchAll()</h3><blockquote>
+<p>matchAll方法返回一个正则表达式在当前字符串的所有匹配</p>
+</blockquote>
+<h3 id="10-模板字符串"><a href="#10-模板字符串" class="headerlink" title="10. 模板字符串"></a>10. 模板字符串</h3><blockquote>
+<p>用来简化之前模板的写法，写法如下：</p>
+</blockquote>
+<pre><code>$(&apos;#result&apos;).append(
+  &apos;There are &lt;b&gt;&apos; + basket.count + &apos;&lt;/b&gt; &apos; +
+  &apos;items in your basket, &apos; +
+  &apos;&lt;em&gt;&apos; + basket.onSale +
+  &apos;&lt;/em&gt; are on sale!&apos;
+);
+上面这种写法相当繁琐不方便，ES6 引入了模板字符串解决这个问题。
+
+$(&apos;#result&apos;).append(`
+  There are &lt;b&gt;${basket.count}&lt;/b&gt; items
+   in your basket, &lt;em&gt;${basket.onSale}&lt;/em&gt;
+  are on sale!
+`);
+
+
+
+大括号内部可以放入任意的 JavaScript 表达式，可以进行运算，以及引用对象属性。
+
+let x = 1;
+let y = 2;
+
+`${x} + ${y} = ${x + y}`
+// &quot;1 + 2 = 3&quot;
+
+`${x} + ${y * 2} = ${x + y * 2}`
+// &quot;1 + 4 = 5&quot;
+
+let obj = {x: 1, y: 2};
+`${obj.x + obj.y}`
+// &quot;3&quot;</code></pre><h3 id="11-模板编译"><a href="#11-模板编译" class="headerlink" title="11. 模板编译"></a>11. 模板编译</h3><blockquote>
+<p>使用&lt;%…%&gt;放置 JavaScript 代码，使用&lt;%= … %&gt;输出 JavaScript 表达式，如下：</p>
+</blockquote>
+<pre><code>let template = `
+&lt;ul&gt;
+  &lt;% for(let i=0; i &lt; data.supplies.length; i++) { %&gt;
+    &lt;li&gt;&lt;%= data.supplies[i] %&gt;&lt;/li&gt;
+  &lt;% } %&gt;
+&lt;/ul&gt;
+`;</code></pre><h3 id="12-标签模板"><a href="#12-标签模板" class="headerlink" title="12. 标签模板"></a>12. 标签模板</h3><blockquote>
+<p>模板字符串可以跟在一个函数名后面，该函数将被调用来处理这个模板字符串，这被称为 标签模板。 如下：</p>
+</blockquote>
+<pre><code>alert(123)
+alert`123`</code></pre><p>标签模板其实不是模板，而是函数的一种特殊形式。“标签”就是函数，跟在后面的模板字符串就变成了它的参数。但是如果模板字符串里面有变量，就会将模板字符串先处理成多个参数，再调用函数。如下：</p>
+<pre><code>let a = 5;
+let b = 10;
+
+tag`Hello ${ a + b } world ${ a * b }`;
+// 等同于
+tag([&apos;Hello &apos;, &apos; world &apos;, &apos;&apos;], 15, 50);</code></pre><ol start="13">
+<li><p>String.raw()</p>
+<blockquote>
+<p>ES6 为原生 String 对象，提供了一个raw方法。用来充当模板字符串的处理函数，返回一个斜杠都被转义的字符串，对应于替换变量后的模板字符串。如下：</p>
+</blockquote>
+<p>String.raw<code>Hi\n${2+3}!</code>;<br>// 返回 “Hi\n5!”</p>
+<p>String.raw<code>Hi\u000A!</code>;<br>// 返回 “Hi\u000A!”</p>
+</li>
+<li><p>模板字符串的限制</p>
+<blockquote>
+<p>模板字符串默认会将字符串转义，导致无法嵌入其他语言。为了解决这个问题，ES2018 放松了对标签模板里面的字符串转义的限制。如果遇到不合法的字符串转义，就返回undefined，而不是报错，并且从raw属性上面可以得到原始字符串。</p>
+</blockquote>
+</li>
+</ol>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-10-21T00:14:01.116Z" itemprop="dateUpdated">2019-10-21 08:14:01</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/03/24/ES6入门之字符串的扩展.html&title=《ES6入门之字符串的扩展》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/03/24/ES6入门之字符串的扩展.html&title=《ES6入门之字符串的扩展》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/03/24/ES6入门之字符串的扩展.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之字符串的扩展》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/03/24/ES6入门之字符串的扩展.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/03/24/ES6入门之字符串的扩展.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/03/30/ES6入门之正则的扩展.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">ES6入门之正则的扩展</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/20/Python基础教程之数据类型和变量.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Python基础教程之数据类型和变量</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/03/24/ES6入门之字符串的扩展.html&title=《ES6入门之字符串的扩展》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/03/24/ES6入门之字符串的扩展.html&title=《ES6入门之字符串的扩展》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/03/24/ES6入门之字符串的扩展.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之字符串的扩展》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/03/24/ES6入门之字符串的扩展.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/03/24/ES6入门之字符串的扩展.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACu0lEQVR42u3awW4bMQwE0Pz/T6dATwWSbGZIKU6Btycjtdd6a0Bih3x7i6/3v9e/rz9ez5/6+PfkU1+9Pnzh4eHhjZb+vOhTgOfH9Hzn5BF/sh48PDy8a7zNBv28ZSeM56MiPyTw8PDwfhtvs61vHigeHh7e/8t7/uIkYihK4VEwgYeHh/eTvCSMeA4pkghjEzFcz1rw8PDwuh24boC99vX1/h4eHh7eqKs+u5JSexZz1CvBw8PDu8BLRqCSXTfH5Pc59X48PDy8G7zZovNItx0OOBUZ4+Hh4d3g5WXurLW/L8HbovyTYhoPDw/vKC9f3GzTz++QP9b2kMDDw8O7zcs33za0bQ+S/AeIIhU8PDy8H+FdGW86FBzXIQUeHh7eUV4bzu6PgSJXjo+lL++Gh4eHd43XHgBJCb5Zbt4Mw8PDw3sVbz8osIliN1NS33wXHh4e3lFeXiIny9pEsfkhVLwHDw8P7wIvGb3alLNFg2rUSIt+DDw8PLwLvHaJeYSxeX9bxOPh4eH9PG9WECebfts2m40UfLMSPDw8vKO8zVe2DyUPNfKGWfQ/Bjw8PLyjvNlGPxui2gTEs9IfDw8P7wZvVkbPvn52h3acq/g18PDw8Ea8/Kaz4HVzXuUNsCKrxsPDw1vzzsYQyV/yVlYbQ3wT4+Lh4eEd4uVxQDsWkPDaJlkbIuPh4eHd4CUl8qnQth0jmJXj0egAHh4e3prXbtb5Np0XyjmyuPDw8PCO8t7LKylt83B2VlLnn8XDw8O7wdscHm1MMGuMtYdWMUCAh4eHt+CdPQzywYLZv9btOjw8PLxrvHZQNR8paM+ltiyOGmB4eHh4L+XNAoJ9bNGOI+Dh4eH9Bl6LTAa52u2+fUB4eHh493h5Iz8fpcoXugkyopIaDw8P7yivbYC1N23jibawPoDEw8PDS3l/ABcisYZfFnzCAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

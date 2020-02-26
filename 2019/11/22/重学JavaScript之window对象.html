@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>重学JavaScript之window对象 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="js之window对象">
+    <meta name="description" content="ECMAScript是JavaScript的核心，但如果要在web中使用JavaScript，那么BOM则是真正的核心，BOM提供了很多对象，用于访问浏览器的功能，这些功能与任何网页内容无关。 1. window对象 BOM的核心对象是window，它表示浏览器的一个实例。在浏览器中，window对象有双重角色，它既是通过JS访问浏览器窗口的一个接口，又是ES规定的Global对象。这意味着在网页">
+<meta name="keywords" content="js之window对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重学JavaScript之window对象">
+<meta property="og:url" content="https://toc.lieme.cn/2019/11/22/重学JavaScript之window对象.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="ECMAScript是JavaScript的核心，但如果要在web中使用JavaScript，那么BOM则是真正的核心，BOM提供了很多对象，用于访问浏览器的功能，这些功能与任何网页内容无关。 1. window对象 BOM的核心对象是window，它表示浏览器的一个实例。在浏览器中，window对象有双重角色，它既是通过JS访问浏览器窗口的一个接口，又是ES规定的Global对象。这意味着在网页">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/Fv-dALtGRIGNqYyZENKdIvGBu2p9">
+<meta property="og:updated_time" content="2019-11-22T01:52:05.727Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重学JavaScript之window对象">
+<meta name="twitter:description" content="ECMAScript是JavaScript的核心，但如果要在web中使用JavaScript，那么BOM则是真正的核心，BOM提供了很多对象，用于访问浏览器的功能，这些功能与任何网页内容无关。 1. window对象 BOM的核心对象是window，它表示浏览器的一个实例。在浏览器中，window对象有双重角色，它既是通过JS访问浏览器窗口的一个接口，又是ES规定的Global对象。这意味着在网页">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/Fv-dALtGRIGNqYyZENKdIvGBu2p9">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">重学JavaScript之window对象</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">重学JavaScript之window对象</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-22T01:46:03.000Z" itemprop="datePublished" class="page-time">
+  2019-11-22
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/重学JavaScript/">重学JavaScript</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-window对象"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. window对象</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-1-全局作用域"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.1 全局作用域</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-窗口关系及框架"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">1.2 窗口关系及框架</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-3-窗口位置"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">1.3 窗口位置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-4-窗口的大小"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">1.4 窗口的大小</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-5-导航和打开窗口"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">1.5 导航和打开窗口</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-6-间歇调用和超时调用"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">1.6 间歇调用和超时调用</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-location对象"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. location对象</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-查询字符串参数"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2.1 查询字符串参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-位置操作"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.2 位置操作</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-history-对象"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. history 对象</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-go"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">3.1 go()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-back"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">3.2 back()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-forward"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3.3 forward()</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4、小结"><span class="post-toc-number">4.</span> <span class="post-toc-text">4、小结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-重学JavaScript之window对象"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">重学JavaScript之window对象</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-11-22 09:46:03" datetime="2019-11-22T01:46:03.000Z"  itemprop="datePublished">2019-11-22</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/重学JavaScript/">重学JavaScript</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        1,781
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        6 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <p>ECMAScript是JavaScript的核心，但如果要在web中使用JavaScript，那么BOM则是真正的核心，BOM提供了很多对象，用于访问浏览器的功能，这些功能与任何网页内容无关。</p>
+<h2 id="1-window对象"><a href="#1-window对象" class="headerlink" title="1. window对象"></a>1. window对象</h2><blockquote>
+<p>BOM的核心对象是window，它表示浏览器的一个实例。在浏览器中，window对象有双重角色，它既是通过JS访问浏览器窗口的一个接口，又是ES规定的Global对象。这意味着在网页中定义的任何一个对象、变量和函数，都以window作为其Global对象，因此有权访问 parseInt（）等方法，  </p>
+</blockquote>
+<h3 id="1-1-全局作用域"><a href="#1-1-全局作用域" class="headerlink" title="1.1 全局作用域"></a>1.1 全局作用域</h3><blockquote>
+<p>由于 window对象同时扮演着ES中的Global对象的角色，因此所有在全局作用域中声明的变量，函数都会变成window对象的属性和方法。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age = <span class="number">29</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayAge</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.age)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.age) <span class="comment">// 29</span></span><br><span class="line">sayAge()    <span class="comment">// 29</span></span><br><span class="line"><span class="built_in">window</span>.sayAge() <span class="comment">// 29</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>敲重点</strong>：window Mobile 平台的 IE浏览器不允许通过 window.property = value 之类的形式，直接在 window 对象上创建新的属性或方法，可是，在全局作用域中声明的所有变量和函数，照样会变成 window对象的成员。</p>
+<h3 id="1-2-窗口关系及框架"><a href="#1-2-窗口关系及框架" class="headerlink" title="1.2 窗口关系及框架"></a>1.2 窗口关系及框架</h3><blockquote>
+<p>如果页面中包含框架，则每个框架都拥有自己的window对象，并且保存在 frames 集合中。在 frames集合中，可以通过数值索引或者框架名称来访问相应的window对象，每个window对象都有一个name属性，其中包含框架的名称。 </p>
+</blockquote>
+<p><strong>敲重点</strong>：在使用框架的情况下，浏览器中会存在多个Global对象。在每个框架中定义的全局变量会自动成为框架中 window 对象的属性，由于每个window对象都包含原生类型的构造函数，因此每个框架都有一套自己的构造函数，这些构造函数一一对应，但并不相等。 </p>
+<h3 id="1-3-窗口位置"><a href="#1-3-窗口位置" class="headerlink" title="1.3 窗口位置"></a>1.3 窗口位置</h3><blockquote>
+<p>用来确定和修改 window 对象位置的属性和方法很多。IE、Chrome都提供了 screenLeft 和 screenTop属性，分别用于表示窗口相对于屏幕左边和上边的位置。</p>
+</blockquote>
+<p><strong>敲重点</strong>：获取位置的方法在每个浏览器中获取的值也并不一样，需要针对特定的浏览器做特定的判断。</p>
+<h3 id="1-4-窗口的大小"><a href="#1-4-窗口的大小" class="headerlink" title="1.4 窗口的大小"></a>1.4 窗口的大小</h3><blockquote>
+<p>每个不同的浏览器都提供了 innerWidth、innerHeight、outerWidth和outerHeight。但是在不同的浏览器中，它们获取的值边界也是不一样的。</p>
+</blockquote>
+<h3 id="1-5-导航和打开窗口"><a href="#1-5-导航和打开窗口" class="headerlink" title="1.5 导航和打开窗口"></a>1.5 导航和打开窗口</h3><blockquote>
+<p>我们可以通过 window.open() 打开一个特定的URL，也可以打开一个新的浏览器窗口。这个方法可以接受四个参数：<strong>需要加载的URL、窗口目标、特性字符串和一个表示新页面是否取代浏览器历史记录中当前加载页面的布尔值</strong>。通常只需要一个URL参数即可。</p>
+</blockquote>
+<h3 id="1-6-间歇调用和超时调用"><a href="#1-6-间歇调用和超时调用" class="headerlink" title="1.6 间歇调用和超时调用"></a>1.6 间歇调用和超时调用</h3><blockquote>
+<p>因为 JS是单线程语言，但它允许通过设置超时值和间歇时间值来调度代码在特定的时刻执行。前者是在指定的时间后执行代码，而后者则是每个指定的时间执行一次代码。方法如下</p>
+</blockquote>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">setTimeout</span><span class="params">(<span class="string">'方法名'</span>,<span class="string">'延迟执行时间'</span>)</span></span></span><br></pre></td></tr></table></figure>
+
+<p><strong>敲重点：</strong> 调用setTimeout之后，该方法会返回一个数值ID，表示超时调用。这个ID就是这个延迟执行的唯一标识符，可以通过它来取消超时调用。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">clearTimeout</span><span class="params">(timeoutId)</span></span></span><br></pre></td></tr></table></figure>
+
+<p><strong>超时调用的代码都是在全局作用域中执行的，因此函数中this的值通常会指向window对象。</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">setInterval</span><span class="params">(<span class="string">'方法名'</span>,<span class="string">'间个时间'</span>)</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">clearInterval</span><span class="params">(intervalId)</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-location对象"><a href="#2-location对象" class="headerlink" title="2. location对象"></a>2. location对象</h2><blockquote>
+<p>location 是最有用的BOM对象之一，它提供了与当前窗口中加载的文档有关的信息，还提供了一些导航功能。常用的就是用来打开新页面等。<br>参数如下：</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>hash</td>
+<td>返回URL中的hash #在后面，如果URL中没有则返回空字符串</td>
+</tr>
+<tr>
+<td>host</td>
+<td>返回服务器端口号</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td>返回不带端口号的服务器名称</td>
+</tr>
+<tr>
+<td>herf</td>
+<td>返回当前页面的URL</td>
+</tr>
+<tr>
+<td>pathname</td>
+<td>返回URL中的目录或文件</td>
+</tr>
+<tr>
+<td>port</td>
+<td>返回URL中指定的端口号</td>
+</tr>
+<tr>
+<td>protocol</td>
+<td>返回页面使用的协议</td>
+</tr>
+<tr>
+<td>search</td>
+<td>返回URL的查询字符串</td>
+</tr>
+</tbody></table>
+<h3 id="2-1-查询字符串参数"><a href="#2-1-查询字符串参数" class="headerlink" title="2.1 查询字符串参数"></a>2.1 查询字符串参数</h3><blockquote>
+<p>通过 location.search 可以查询URL中包含的参数，根据 &amp; 符号来分割查询字符串，并返回name-value格式的字符串数组。</p>
+</blockquote>
+<h3 id="2-2-位置操作"><a href="#2-2-位置操作" class="headerlink" title="2.2 位置操作"></a>2.2 位置操作</h3><blockquote>
+<p>使用 location 对象可以通过很多方式来改变浏览器的位置。使用 assign() 方法并为其传递一个URL ,这样就可以立即打开新的URL并在浏览器的历史记录中生成一条记录</p>
+</blockquote>
+<h2 id="3-history-对象"><a href="#3-history-对象" class="headerlink" title="3. history 对象"></a>3. history 对象</h2><blockquote>
+<p>保存着用户上网的历史记录，从窗口被打开的那一刻算起。因为history是window对象的属性，因此每个浏览器窗口、每个标签乃至每个框架，都有自己的history对象与特定的window对象关联。</p>
+</blockquote>
+<h3 id="3-1-go"><a href="#3-1-go" class="headerlink" title="3.1 go()"></a>3.1 go()</h3><blockquote>
+<p>可以在用户的历史记录中任意跳转。可以向前或向后。接受一个参数，表示向后或向前跳转的页面数的一个整数值。负数表示向后跳转，正数表示向前跳转。</p>
+</blockquote>
+<h3 id="3-2-back"><a href="#3-2-back" class="headerlink" title="3.2 back()"></a>3.2 back()</h3><blockquote>
+<p>可以模仿浏览器的后退操作</p>
+</blockquote>
+<h3 id="3-3-forward"><a href="#3-3-forward" class="headerlink" title="3.3 forward()"></a>3.3 forward()</h3><blockquote>
+<p>模仿浏览器的前进按钮 </p>
+</blockquote>
+<h2 id="4、小结"><a href="#4、小结" class="headerlink" title="4、小结"></a>4、小结</h2><blockquote>
+<p>浏览器对象模型（BOM）以window对象为依托，表示浏览器窗口以及页面可见区域。同时，window对象还是ES中的Global对象，因而所有全局变量和函数都是它的属性，且所有原生的构造函数及其他函数也都存在于它的命名空间下。</p>
+</blockquote>
+<p>在使用框架时，每个框架都有自己的window对象以及所有原生构造函数及其他函数的副本。每个框架都保存在frames集合中，可以通过位置或名称来访问。</p>
+<ol>
+<li>有一些窗口指针，可以用来引用其他框架，包括父框架</li>
+<li>top对象始终指向最外围的框架，也就是整个浏览器窗口</li>
+<li>parent 对象表示包含当前框架的框架，而self对象则回指window</li>
+<li>使用location对象可以通过编程方式来访问浏览器的导航系统。设置相应的属性， 可以琢段或整体性地修改浏览器的URL</li>
+<li>调用 replace() 方法可以导航到一个新URL，同时该URL会替换浏览器历史记录中当前显示的页面</li>
+<li>navigator 对象提供了与浏览器有关的信息。具体取决于用户的浏览器。</li>
+<li>BOM还有两个对象：<strong>screen 和 history</strong>。screen 对象保存着与客户端显示器相关的信息。history对象访问浏览器的历史记录。可以在历史记录中向后或向前导航到任意页面。</li>
+</ol>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-11-22T01:52:05.727Z" itemprop="dateUpdated">2019-11-22 09:52:05</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js之window对象/">js之window对象</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/11/22/重学JavaScript之window对象.html&title=《重学JavaScript之window对象》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/Fv-dALtGRIGNqYyZENKdIvGBu2p9" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/11/22/重学JavaScript之window对象.html&title=《重学JavaScript之window对象》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/11/22/重学JavaScript之window对象.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学JavaScript之window对象》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/11/22/重学JavaScript之window对象.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/11/22/重学JavaScript之window对象.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/11/22/Vuepress-发布流程.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Vuepress 发布流程</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/11/13/前端Vue中常用rules校验规则.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">前端Vue中常用rules校验规则</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/11/22/重学JavaScript之window对象.html&title=《重学JavaScript之window对象》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/Fv-dALtGRIGNqYyZENKdIvGBu2p9" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/11/22/重学JavaScript之window对象.html&title=《重学JavaScript之window对象》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/11/22/重学JavaScript之window对象.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学JavaScript之window对象》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/11/22/重学JavaScript之window对象.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/11/22/重学JavaScript之window对象.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsklEQVR42u3awW4bMQwE0Pz/T7dATgFSOzOk5LjA21OQ2tK+LbBkhvr4iK8/n9fXn79ez3//fYV2zUcrHLvw8PDwRrf+6MpvLnkoZ3d8vgIeHh7ebV57c6dW+OHmvn0m3xEPDw/vHXhnkZsd8fDw8P4XXvKtNlxISgIeHh7ee/KSaCCPJPLvJg8xiYwPZC14eHh4MW82APvdn6/P9/Dw8PBGU/XNNdt9Uwz+8S08PDy8C7znLe/mGFb7CJIWvB2G4eHh4d3gbV70ecQw+9fNwYW67uHh4eHFvNmYfxYQtEcNZocVohqIh4eHt+blhWFzXCAfgB34X8LDw8O7xpu1rRtGflAgjz8efhcPDw/vAm8TLrQFI4+M21Y7uh88PDy8Q7z8FX+qIU4KzCy6XfX4eHh4eKMwYrP0qWb6VEF6+HcDHh4e3lFe3uwmL/pi+zJuqIdweHh4eEd5baOcj8fydWaYaGU8PDy8C7xTGXD7m1n5yR9rXf3w8PDwSl672eyTG3AbCuPh4eHd4+1jhaTtzh9Eu2/xFwMeHh7eBd7miEDSiJ8qOUUIgoeHh3eN17az+Zi/jTna5jtqqfHw8PAu8PYv7na0nzTfeYP+8J7x8PDwrvHaprk9pHU2qD1wXAAPDw9vwUtufX+1rfksFnm4Lx4eHt4F3qyBbsOL9lDXLLYYnmvAw8PDK3l5/Lo5evX8hZ4/jryJx8PDw3slLz8cUA+lDjGKyAMPDw/vKG8WK7SfTF7fs7KBh4eH93peGysMc464+c6D3YSNh4eHd4/XvuL3Bw7aktDui4eHh/caXpthtMi25LRhxA+FAQ8PD+9XeXncMBuhbYoBHh4e3rvx8vigjYZnw7OonODh4eFd482GXrNBVxs6tI8GDw8P7zZvdrApH1blK8zWmUUYeHh4eCPeX+Lm5Cm1FzT1AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>ES6入门之正则的扩展 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="ECMAScript6">
+    <meta name="description" content="1. 正则的扩展  参数为字符串， 那么第二个参数表示正则表达式的修饰符，如下：   var regex = new RegExp(&amp;apos;xyz&amp;apos;, &amp;apos;i&amp;apos;)   // 等价于 var regex = /xyz/i  参数为一个正则表达式，这时返回一个原有正则表达式的拷贝。如下：   var regex = new RegExp(/xyz/i) // 等价于 v">
+<meta name="keywords" content="ECMAScript6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6入门之正则的扩展">
+<meta property="og:url" content="https://toc.lieme.cn/2019/03/30/ES6入门之正则的扩展.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1. 正则的扩展  参数为字符串， 那么第二个参数表示正则表达式的修饰符，如下：   var regex = new RegExp(&amp;apos;xyz&amp;apos;, &amp;apos;i&amp;apos;)   // 等价于 var regex = /xyz/i  参数为一个正则表达式，这时返回一个原有正则表达式的拷贝。如下：   var regex = new RegExp(/xyz/i) // 等价于 v">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2020-02-03T08:42:14.650Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6入门之正则的扩展">
+<meta name="twitter:description" content="1. 正则的扩展  参数为字符串， 那么第二个参数表示正则表达式的修饰符，如下：   var regex = new RegExp(&amp;apos;xyz&amp;apos;, &amp;apos;i&amp;apos;)   // 等价于 var regex = /xyz/i  参数为一个正则表达式，这时返回一个原有正则表达式的拷贝。如下：   var regex = new RegExp(/xyz/i) // 等价于 v">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">ES6入门之正则的扩展</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">ES6入门之正则的扩展</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-30T13:35:00.000Z" itemprop="datePublished" class="page-time">
+  2019-03-30
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-正则的扩展"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 正则的扩展</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-字符串的正则方法"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 字符串的正则方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-u-修饰符"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. u 修饰符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-RegExp-prototype-unicode-属性"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. RegExp.prototype.unicode 属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-y-修饰符"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. y 修饰符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-RegExp-prototype-sticky-属性"><span class="post-toc-number">6.</span> <span class="post-toc-text">6. RegExp.prototype.sticky 属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-RegExp-prototype-flags-属性"><span class="post-toc-number">7.</span> <span class="post-toc-text">7. RegExp.prototype.flags 属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-s-修饰符：dotAll-模式"><span class="post-toc-number">8.</span> <span class="post-toc-text">8. s 修饰符：dotAll 模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-Unicode-属性类"><span class="post-toc-number">9.</span> <span class="post-toc-text">9. Unicode 属性类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-具名组匹配"><span class="post-toc-number">10.</span> <span class="post-toc-text">10. 具名组匹配</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-String-prototype-matchAll"><span class="post-toc-number">11.</span> <span class="post-toc-text">11. String.prototype.matchAll</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-ES6入门之正则的扩展"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">ES6入门之正则的扩展</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-30 21:35:00" datetime="2019-03-30T13:35:00.000Z"  itemprop="datePublished">2019-03-30</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        1,097
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        5 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h3 id="1-正则的扩展"><a href="#1-正则的扩展" class="headerlink" title="1. 正则的扩展"></a>1. 正则的扩展</h3><blockquote>
+<ol>
+<li>参数为字符串， 那么第二个参数表示正则表达式的修饰符，如下：</li>
+</ol>
+</blockquote>
+<pre><code>var regex = new RegExp(&apos;xyz&apos;, &apos;i&apos;)  
+// 等价于
+var regex = /xyz/i</code></pre><blockquote>
+<ol start="2">
+<li>参数为一个正则表达式，这时返回一个原有正则表达式的拷贝。如下：</li>
+</ol>
+</blockquote>
+<pre><code>var regex = new RegExp(/xyz/i)
+// 等价于
+var regex = /xyz/i</code></pre><blockquote>
+<ol start="3">
+<li>Es6中改变了这种行文。如果RegExp构造函数第一个参数是正则对象，那第二个参数可以指定修饰符，并且返回的正则表达式会忽略原有正则表达式的修饰符，只使用新指定的修饰符。 如下：</li>
+</ol>
+</blockquote>
+<pre><code>new RegExp(/abc/ig, &apos;i&apos;).flags
+// 原有的ig 被 i 覆盖</code></pre><hr>
+<h3 id="2-字符串的正则方法"><a href="#2-字符串的正则方法" class="headerlink" title="2. 字符串的正则方法"></a>2. 字符串的正则方法</h3><blockquote>
+<p>字符串对象共有4个方法，可以使用正则表达式： match()、 replace()、search() 和 split()。在Es6中  全部调用RegExp的实例方法，全部定义在RegExp对象上。如下：</p>
+</blockquote>
+<pre><code>String.prototype.match 调用 RegExp.prototype[Symbol.match]
+String.prototype.replace 调用 RegExp.prototype[Symbol.replace]
+String.prototype.search 调用 RegExp.prototype[Symbol.search]
+String.prototype.split 调用 RegExp.prototype[Symbol.split</code></pre><hr>
+<h3 id="3-u-修饰符"><a href="#3-u-修饰符" class="headerlink" title="3. u 修饰符"></a>3. u 修饰符</h3><blockquote>
+<p>ES6 对正则表达式添加了 u 修饰符，用来正确处理大于\uFFFF的Unicode字符。如下：</p>
+</blockquote>
+<pre><code>/^\uD83D/u.test(&apos;\uD83D\uDC2A&apos;) // false
+/^\uD83D/.test(&apos;\uD83D\uDC2A&apos;) // true
+// 如上代码因为在ES5中 不支持四个字节的 UTF-16编码，会将为识别为两个字符 导致 第二行为true
+但是加了 u 修饰符后，ES6将为识别为一个字符，所以第一行为flase</code></pre><hr>
+<h3 id="4-RegExp-prototype-unicode-属性"><a href="#4-RegExp-prototype-unicode-属性" class="headerlink" title="4. RegExp.prototype.unicode 属性"></a>4. RegExp.prototype.unicode 属性</h3><blockquote>
+<p>正则实例对象新增 unicode 属性，用来判断表示是否设置了u修饰符，如下：</p>
+</blockquote>
+<pre><code>const r1 = /hello/;
+const r2 = /hello/u;
+
+r1.unicode // false
+r2.unicode // true</code></pre><hr>
+<h3 id="5-y-修饰符"><a href="#5-y-修饰符" class="headerlink" title="5. y 修饰符"></a>5. y 修饰符</h3><blockquote>
+<p>和 g 修饰符相似，全局匹配，但是下次匹配都是从上次匹配成功的下一个位置开始。而g 只要剩余位置中存在匹配即可，y 必须从剩余的第一个位置开始。如下：</p>
+</blockquote>
+<pre><code>var s = &apos;aaa_aa_a&apos;;
+var r1 = /a+/g;
+var r2 = /a+/y;
+
+r1.exec(s) // [&quot;aaa&quot;]
+r2.exec(s) // [&quot;aaa&quot;]
+
+r1.exec(s) // [&quot;aa&quot;]
+r2.exec(s) // null
+
+// 第一次执行后 为 _aa_a g 只要剩余位置存在即可匹配，返回 aa
+// y 则是从上一次结果后的第一个位置开始，因为是_ 所以返回null</code></pre><hr>
+<h3 id="6-RegExp-prototype-sticky-属性"><a href="#6-RegExp-prototype-sticky-属性" class="headerlink" title="6. RegExp.prototype.sticky 属性"></a>6. RegExp.prototype.sticky 属性</h3><blockquote>
+<p>与y修饰符相匹配，ES6 的正则实例对象多了sticky属性，表示是否设置了y修饰符 如下：</p>
+</blockquote>
+<pre><code>var r = /hello\d/y;
+r.sticky // true</code></pre><hr>
+<h3 id="7-RegExp-prototype-flags-属性"><a href="#7-RegExp-prototype-flags-属性" class="headerlink" title="7. RegExp.prototype.flags 属性"></a>7. RegExp.prototype.flags 属性</h3><blockquote>
+<p>ES6 为正则表达式新增了flags属性，会返回正则表达式的修饰符。</p>
+</blockquote>
+<pre><code>// ES5 的 source 属性
+// 返回正则表达式的正文
+/abc/ig.source
+// &quot;abc&quot;
+
+// ES6 的 flags 属性
+// 返回正则表达式的修饰符
+/abc/ig.flags
+// &apos;gi&apos;</code></pre><hr>
+<h3 id="8-s-修饰符：dotAll-模式"><a href="#8-s-修饰符：dotAll-模式" class="headerlink" title="8. s 修饰符：dotAll 模式"></a>8. s 修饰符：dotAll 模式</h3><blockquote>
+<p>匹配的是任意单个字符,用来匹配任意单个字符，如下：</p>
+</blockquote>
+<pre><code>/foo.bar/s.test(&apos;foo\nbar&apos;) // true</code></pre><hr>
+<h3 id="9-Unicode-属性类"><a href="#9-Unicode-属性类" class="headerlink" title="9. Unicode 属性类"></a>9. Unicode 属性类</h3><blockquote>
+<p>ES2018 引入了一种新的类的写法\p{…}和\P{…}，允许正则表达式匹配符合 Unicode 某种属性的所有字符。</p>
+</blockquote>
+<pre><code>const regexGreekSymbol = /\p{Script=Greek}/u;
+regexGreekSymbol.test(&apos;π&apos;) // true</code></pre><hr>
+<h3 id="10-具名组匹配"><a href="#10-具名组匹配" class="headerlink" title="10. 具名组匹配"></a>10. 具名组匹配</h3><blockquote>
+<p>正常多个匹配 可能用圆括号包起，如下：</p>
+</blockquote>
+<pre><code>const RE_DATE = /(\d{4})-(\d{2})-(\d{2})/;
+
+const matchObj = RE_DATE.exec(&apos;1999-12-31&apos;);
+const year = matchObj[1]; // 1999
+const month = matchObj[2]; // 12
+const day = matchObj[3]; // 31</code></pre><p>但是以上的写法不容易看懂，理解较为困难，而且只能用数字序号，另外如果数组顺序变了，还需要修改引用的序号。所以就有了具名组匹配。允许为每一个组匹配指定一个名字，既便于阅读代码，又便于引用。即使组的顺序变了，叶不用去更改匹配后的处理代码。如下：</p>
+<pre><code>const RE_DATE = /(?&lt;year&gt;\d{4})-(?&lt;month&gt;\d{2})-(?&lt;day&gt;\d{2})/;
+
+const matchObj = RE_DATE.exec(&apos;1999-12-31&apos;);
+const year = matchObj.groups.year; // 1999
+const month = matchObj.groups.month; // 12
+const day = matchObj.groups.day; // 31
+
+// 格式： “具名组匹配”在圆括号内部，模式的头部添加“问号 + 尖括号 + 组名”（?&lt;year&gt;）</code></pre><hr>
+<h3 id="11-String-prototype-matchAll"><a href="#11-String-prototype-matchAll" class="headerlink" title="11. String.prototype.matchAll"></a>11. String.prototype.matchAll</h3><blockquote>
+<p>如果一个正则表达式在一个字符串中有多个匹配，现在使用的是 g 修饰符 或者 y 修饰符 循环 取出。现在有了新的提案。就是用 String.prototype.matchAll 一次性取出，但是它返回的不是一个数组，而是一个遍历器。然后可以用 for … of 取出。</p>
+</blockquote>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-02-03T08:42:14.650Z" itemprop="dateUpdated">2020-02-03 16:42:14</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/03/30/ES6入门之正则的扩展.html&title=《ES6入门之正则的扩展》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/03/30/ES6入门之正则的扩展.html&title=《ES6入门之正则的扩展》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/03/30/ES6入门之正则的扩展.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之正则的扩展》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/03/30/ES6入门之正则的扩展.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/03/30/ES6入门之正则的扩展.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/04/05/Python基础教程之字符串和编码.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Python基础教程之字符串和编码</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/24/ES6入门之字符串的扩展.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">ES6入门之字符串的扩展</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/03/30/ES6入门之正则的扩展.html&title=《ES6入门之正则的扩展》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/03/30/ES6入门之正则的扩展.html&title=《ES6入门之正则的扩展》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/03/30/ES6入门之正则的扩展.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之正则的扩展》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/03/30/ES6入门之正则的扩展.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/03/30/ES6入门之正则的扩展.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtUlEQVR42u3aQW7DMAwEwP7/0+21F7u7pBW4wOQUGKmjUQGLWfLrK359/3rln/kevWbfvnrh4eHhLZZ+9WVXV+7vc/Vd+ZX799EG4eHh4R3j3S/lHjNbSn4AJJt7eR0PDw/vBbz7hSabMls0Hh4e3v/l5THBPaYtzfHw8PDexkvCiFlYkJfLs816LGvBw8PD63pMURfpPe+P9Pfw8PDw1l31/JBIgtdny/dotXh4eHgHePkDN6G2o1ezO9fDYXh4eHiHebOH/qxxtRk1KBppeHh4eI/y8lvMRqPaBeUbNwwj8PDw8B7lteNWbfg7i4mTIYPLK3h4eHiHefuH8mybNiNWwwYYHh4e3kNDA0mBOyusZ4tOxrbqyTI8PDy8h3htEyuPHp6izsIOPDw8vHO8pMjOm/r5AZMME7T3wcPDw/skLylw82I6KcrbZlt+2ODh4eF9ntc+iGfs2fEwa4zh4eHhPcubhQX5cmejXXn5/sfxg4eHh3eY14LzRbcF8WzwK/qtgIeHh7fgbR7ZeWSQHBt5Ky4PL/Dw8PBO8PLFtc2n+nQqh66KUQY8PDy8Y7z2gZsPE2wGBWbbEcW4eHh4eCNe3rJqg4Ci5I0/U98TDw8P7zAvDyY2Zfdsy/JI94+sBQ8PD2/NSxr2UXu+DBTa8YXZJuLh4eGd4+XB67PIWUA8/F/h4eHhfZA3e7jn8UQ7H9UGynh4eHjneHlrP1/KvuCeHUJ4eHh453ibcas2StgcRbPDAw8PD+8EbxMotC2uNq5t/7ZogOHh4eGteclhMHvsJuMCebw7O07w8PDwzvHaQjk/HlbF7ixfwcPDw3sxLwle85gjv3MxRoCHh4f3Al7yyRkmHxoogmY8PDy8Y7w8CGij2zZK2IwUrLIWPDw8vJjX/uCfha3JlbY0fwCGh4eH1/F+AL/RSt+MLp59AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

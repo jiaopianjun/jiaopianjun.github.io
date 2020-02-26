@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>常用的JS正则校验表达式 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="正则">
+    <meta name="description" content="微信图片_20190807191454.jpg                1. 身份证校验12const reg =/(^[1-9]\d&amp;#123;5&amp;#125;(18|19|([23]\d))\d&amp;#123;">
+<meta name="keywords" content="正则">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用的JS正则校验表达式">
+<meta property="og:url" content="https://toc.lieme.cn/2019/08/07/常用的JS正则校验表达式.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="微信图片_20190807191454.jpg                1. 身份证校验12const reg =/(^[1-9]\d&amp;#123;5&amp;#125;(18|19|([23]\d))\d&amp;#123;">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/Fi98z8JMVJAJYaeRO0712ljZ3mvP">
+<meta property="og:updated_time" content="2019-08-15T00:34:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用的JS正则校验表达式">
+<meta name="twitter:description" content="微信图片_20190807191454.jpg                1. 身份证校验12const reg =/(^[1-9]\d&amp;#123;5&amp;#125;(18|19|([23]\d))\d&amp;#123;">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/Fi98z8JMVJAJYaeRO0712ljZ3mvP">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">常用的JS正则校验表达式</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">常用的JS正则校验表达式</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-08-07T12:03:00.000Z" itemprop="datePublished" class="page-time">
+  2019-08-07
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-身份证校验"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 身份证校验</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-根据身份证获取出生年月日"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 根据身份证获取出生年月日</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-手机规则校验"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 手机规则校验</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-用户名正则"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. 用户名正则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-密码强度正则"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. 密码强度正则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-整数正则"><span class="post-toc-number">6.</span> <span class="post-toc-text">6. 整数正则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-数字正则"><span class="post-toc-number">7.</span> <span class="post-toc-text">7. 数字正则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-Email正则"><span class="post-toc-number">8.</span> <span class="post-toc-text">8. Email正则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-URL正则"><span class="post-toc-number">9.</span> <span class="post-toc-text">9. URL正则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-IPv4地址正则"><span class="post-toc-number">10.</span> <span class="post-toc-text">10. IPv4地址正则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-日期正则"><span class="post-toc-number">11.</span> <span class="post-toc-text">11. 日期正则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-QQ号码正则"><span class="post-toc-number">12.</span> <span class="post-toc-text">12. QQ号码正则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#13-微信号正则"><span class="post-toc-number">13.</span> <span class="post-toc-text">13. 微信号正则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#14-车牌号正则"><span class="post-toc-number">14.</span> <span class="post-toc-text">14. 车牌号正则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#15-包含中文正则"><span class="post-toc-number">15.</span> <span class="post-toc-text">15. 包含中文正则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#16-匹配中文字符"><span class="post-toc-number">16.</span> <span class="post-toc-text">16. 匹配中文字符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#17-匹配双字节字符"><span class="post-toc-number">17.</span> <span class="post-toc-text">17. 匹配双字节字符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#19-只能为数字"><span class="post-toc-number">18.</span> <span class="post-toc-text">19. 只能为数字</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#20-只能输入n个数字"><span class="post-toc-number">19.</span> <span class="post-toc-text">20. 只能输入n个数字</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#21-至少输入n个数字"><span class="post-toc-number">20.</span> <span class="post-toc-text">21. 至少输入n个数字</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#22-只能输入-m-到-n-个数字"><span class="post-toc-number">21.</span> <span class="post-toc-text">22. 只能输入 m 到 n 个数字</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#23-只能由字母组成"><span class="post-toc-number">22.</span> <span class="post-toc-text">23. 只能由字母组成</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#23-只能由大写-或-小字母组成"><span class="post-toc-number">23.</span> <span class="post-toc-text">23. 只能由大写 或 小字母组成</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#24-只能由英文和数字组成"><span class="post-toc-number">24.</span> <span class="post-toc-text">24. 只能由英文和数字组成</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#25-只能英文、数字、下划线组成"><span class="post-toc-number">25.</span> <span class="post-toc-text">25. 只能英文、数字、下划线组成</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#26-带两位小数点的正数或负数"><span class="post-toc-number">26.</span> <span class="post-toc-text">26. 带两位小数点的正数或负数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#27-待补充"><span class="post-toc-number">27.</span> <span class="post-toc-text">27. 待补充</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-常用的JS正则校验表达式"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">常用的JS正则校验表达式</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-08-07 20:03:00" datetime="2019-08-07T12:03:00.000Z"  itemprop="datePublished">2019-08-07</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        1,130
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        6 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FgXfaXgxNyQnVHjVXVvwKTFo22ag" alt="微信图片_20190807191454.jpg" title>
+                </div>
+                <div class="image-caption" style="display:none;">微信图片_20190807191454.jpg</div>
+            </figure>
+
+
+<h3 id="1-身份证校验"><a href="#1-身份证校验" class="headerlink" title="1. 身份证校验"></a>1. 身份证校验</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const reg =/(^[<span class="string">1-9</span>]\d&#123;5&#125;(18|19|([<span class="string">23</span>]\d))\d&#123;2&#125;((0[<span class="string">1-9</span>])|(10|11|12))(([<span class="string">0-2</span>][<span class="symbol">1-9</span>])|10|20|30|31)\d&#123;3&#125;[<span class="string">0-9Xx</span>]$)|(^[<span class="string">1-9</span>]\d&#123;5&#125;\d&#123;2&#125;((0[<span class="string">1-9</span>])|(10|11|12))(([<span class="string">0-2</span>][<span class="symbol">1-9</span>])|10|20|30|31)\d&#123;3&#125;$)/;</span><br><span class="line">console.log(reg.test(320874199709084732))</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-根据身份证获取出生年月日"><a href="#2-根据身份证获取出生年月日" class="headerlink" title="2. 根据身份证获取出生年月日"></a>2. 根据身份证获取出生年月日</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">function</span> getBirthdayFromIdCard(idCard) &#123;  </span><br><span class="line">  var <span class="keyword">birthday </span>= <span class="string">""</span><span class="comment">;  </span></span><br><span class="line">  <span class="meta">if</span>(idCard != null &amp;&amp; idCard != <span class="string">""</span>)&#123;  </span><br><span class="line">    <span class="meta">if</span>(idCard.length == <span class="number">15</span>)&#123;  </span><br><span class="line">      <span class="keyword">birthday </span>= <span class="string">"19"</span>+idCard.<span class="keyword">substr(6,6); </span> </span><br><span class="line">    &#125; <span class="meta">else</span> <span class="meta">if</span>(idCard.length == <span class="number">18</span>)&#123;  </span><br><span class="line">      <span class="keyword">birthday </span>= idCard.<span class="keyword">substr(6,8); </span> </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">birthday </span>= <span class="keyword">birthday.replace(/(.&#123;4&#125;)(.&#123;2&#125;)/,"$1-$2-"); </span> </span><br><span class="line">  &#125;  </span><br><span class="line">  return <span class="keyword">birthday; </span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-手机规则校验"><a href="#3-手机规则校验" class="headerlink" title="3. 手机规则校验"></a>3. 手机规则校验</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">reg</span> = /^1[3456789]\<span class="keyword">d</span>&#123;9&#125;$/;</span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>(13879763331))</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-用户名正则"><a href="#4-用户名正则" class="headerlink" title="4. 用户名正则"></a>4. 用户名正则</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用户名正则，4到16位（字母，数字，下划线，减号）</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">reg</span> = /^[a-zA-Z0-9_-]&#123;4,16&#125;$/;</span><br><span class="line"><span class="comment">//输出 true</span></span><br><span class="line">console.<span class="built_in">log</span>(ref.<span class="keyword">test</span>(<span class="string">"小夭同学"</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-密码强度正则"><a href="#5-密码强度正则" class="headerlink" title="5. 密码强度正则"></a>5. 密码强度正则</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//密码强度正则，最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">reg</span> = /^.*(?=.&#123;6,&#125;)(?=.*\<span class="keyword">d</span>)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&amp;*? ]).*$/;</span><br><span class="line"><span class="comment">//输出 true</span></span><br><span class="line">console.<span class="built_in">log</span>(<span class="string">"=="</span>+<span class="keyword">reg</span>.<span class="keyword">test</span>(<span class="string">"infopush#"</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-整数正则"><a href="#6-整数正则" class="headerlink" title="6. 整数正则"></a>6. 整数正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//正整数正则</span></span><br><span class="line"><span class="keyword">const</span> posReg = <span class="regexp">/^\d+$/</span>;</span><br><span class="line"><span class="comment">//负整数正则</span></span><br><span class="line"><span class="keyword">const</span> negReg = <span class="regexp">/^-\d+$/</span>;</span><br><span class="line"><span class="comment">//整数正则</span></span><br><span class="line"><span class="keyword">const</span> numReg = <span class="regexp">/^-?\d+$/</span>;</span><br><span class="line"><span class="comment">//输出 true</span></span><br><span class="line"><span class="built_in">console</span>.log(posReg.test(<span class="string">"42"</span>));</span><br><span class="line"><span class="comment">//输出 true</span></span><br><span class="line"><span class="built_in">console</span>.log(negReg.test(<span class="string">"-42"</span>));</span><br><span class="line"><span class="comment">//输出 true</span></span><br><span class="line"><span class="built_in">console</span>.log(numReg.test(<span class="string">"-42"</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-数字正则"><a href="#7-数字正则" class="headerlink" title="7. 数字正则"></a>7. 数字正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//正数正则</span></span><br><span class="line"><span class="keyword">const</span> posReg = <span class="regexp">/^\d*\.?\d+$/</span>;</span><br><span class="line"><span class="comment">//负数正则</span></span><br><span class="line"><span class="keyword">const</span> negReg = <span class="regexp">/^-\d*\.?\d+$/</span>;</span><br><span class="line"><span class="comment">//数字正则</span></span><br><span class="line"><span class="keyword">const</span> numReg = <span class="regexp">/^-?\d*\.?\d+$/</span>;</span><br><span class="line"><span class="built_in">console</span>.log(posReg.test(<span class="string">"42.2"</span>));</span><br><span class="line"><span class="built_in">console</span>.log(negReg.test(<span class="string">"-42.2"</span>));</span><br><span class="line"><span class="built_in">console</span>.log(numReg.test(<span class="string">"-42.2"</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-Email正则"><a href="#8-Email正则" class="headerlink" title="8. Email正则"></a>8. Email正则</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Email正则</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">reg</span> = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]&#123;2,4&#125;)$/;</span><br><span class="line"><span class="comment">//输出 true</span></span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>(<span class="string">" 222299154507@qq.com"</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-URL正则"><a href="#9-URL正则" class="headerlink" title="9. URL正则"></a>9. URL正则</h3><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//URL正则</span><br><span class="line">const reg= /^((https?|ftp|file):<span class="symbol">\/</span><span class="symbol">\/</span>)?([<span class="symbol">\d</span>a-z<span class="symbol">\.</span>-]+)<span class="symbol">\.</span>([a-z<span class="symbol">\.</span>]&#123;2,6&#125;)([<span class="symbol">\/</span><span class="symbol">\w</span> <span class="symbol">\.</span>-]*)*<span class="symbol">\/</span>?$/;</span><br><span class="line">//输出 true</span><br><span class="line">console.log(reg.test("http://lieme.cn"));</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-IPv4地址正则"><a href="#10-IPv4地址正则" class="headerlink" title="10. IPv4地址正则"></a>10. IPv4地址正则</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//ipv4地址正则</span><br><span class="line">const reg = /^(?:(?:25[<span class="string">0-5</span>]|2[<span class="string">0-4</span>][<span class="symbol">0-9</span>]|[<span class="string">01</span>]?[<span class="string">0-9</span>][<span class="symbol">0-9</span>]?)\.)&#123;3&#125;(?:25[<span class="string">0-5</span>]|2[<span class="string">0-4</span>][<span class="symbol">0-9</span>]|[<span class="string">01</span>]?[<span class="string">0-9</span>][<span class="symbol">0-9</span>]?)$/;</span><br><span class="line">//输出 true</span><br><span class="line">console.log(reg.test("115.28.47.26"));</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-日期正则"><a href="#11-日期正则" class="headerlink" title="11. 日期正则"></a>11. 日期正则</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//日期正则，简单判定,未做月份及日期的判定</span><br><span class="line">const reg = /^\d&#123;4&#125;(\-)\d&#123;1,2&#125;\1\d&#123;1,2&#125;$/;</span><br><span class="line">//输出 true</span><br><span class="line">console.log(reg.test("2017-05-11"));</span><br><span class="line">//输出 true</span><br><span class="line">console.log(reg.test("2017-15-11"));</span><br><span class="line">//日期正则，复杂判定</span><br><span class="line">const reg = /^(?:(?!0000)[<span class="string">0-9</span>]&#123;4&#125;-(?:(?:0[<span class="string">1-9</span>]|1[<span class="string">0-2</span>])-(?:0[<span class="string">1-9</span>]|1[<span class="string">0-9</span>]|2[<span class="string">0-8</span>])|(?:0[<span class="string">13-9</span>]|1[<span class="string">0-2</span>])-(?:29|30)|(?:0[<span class="string">13578</span>]|1[<span class="string">02</span>])-31)|(?:[<span class="string">0-9</span>]&#123;2&#125;(?:0[<span class="string">48</span>]|[<span class="string">2468</span>][<span class="symbol">048</span>]|[<span class="string">13579</span>][<span class="symbol">26</span>])|(?:0[<span class="string">48</span>]|[<span class="string">2468</span>][<span class="symbol">048</span>]|[<span class="string">13579</span>][<span class="symbol">26</span>])00)-02-29)$/;</span><br><span class="line">//输出 true</span><br><span class="line">console.log(reg.test("2017-02-11"));</span><br><span class="line">//输出 false</span><br><span class="line">console.log(reg.test("2017-15-11"));</span><br><span class="line">//输出 false</span><br><span class="line">console.log(reg.test("2017-02-29"));</span><br></pre></td></tr></table></figure>
+
+<h3 id="12-QQ号码正则"><a href="#12-QQ号码正则" class="headerlink" title="12. QQ号码正则"></a>12. QQ号码正则</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//QQ号正则，5至11位</span><br><span class="line">const reg = /^[<span class="string">1-9</span>][<span class="symbol">0-9</span>]&#123;4,10&#125;$/;</span><br><span class="line">//输出 true</span><br><span class="line">console.log(reg.test("11111"));</span><br></pre></td></tr></table></figure>
+
+<h3 id="13-微信号正则"><a href="#13-微信号正则" class="headerlink" title="13. 微信号正则"></a>13. 微信号正则</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//微信号正则，6至20位，以字母开头，字母，数字，减号，下划线</span><br><span class="line">const reg = /^[<span class="string">a-zA-Z</span>](<span class="link">[-_a-zA-Z0-9]&#123;5,19&#125;</span>)+$/;</span><br><span class="line">//输出 true</span><br><span class="line">console.log(reg.test("infopush"));</span><br></pre></td></tr></table></figure>
+
+<h3 id="14-车牌号正则"><a href="#14-车牌号正则" class="headerlink" title="14. 车牌号正则"></a>14. 车牌号正则</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//车牌号正则</span></span><br><span class="line">const reg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]&#123;<span class="number">1</span>&#125;[A-Z]&#123;<span class="number">1</span>&#125;[A-Z0<span class="number">-9</span>]&#123;<span class="number">4</span>&#125;[A-Z0<span class="number">-9</span>挂学警港澳]&#123;<span class="number">1</span>&#125;$/;</span><br><span class="line"><span class="comment">//输出 true</span></span><br><span class="line">console.log(reg.test(<span class="string">"苏B39006"</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="15-包含中文正则"><a href="#15-包含中文正则" class="headerlink" title="15. 包含中文正则"></a>15. 包含中文正则</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//包含中文正则</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">reg</span> = /[\u4E00-\u9FA5]/;</span><br><span class="line"><span class="comment">//输出 true</span></span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>(<span class="string">"小夭同学"</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="16-匹配中文字符"><a href="#16-匹配中文字符" class="headerlink" title="16. 匹配中文字符"></a>16. 匹配中文字符</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">reg</span> = /[\u4e00-\u9fa5]/gm</span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>('小夭同学')</span><br></pre></td></tr></table></figure>
+
+<h3 id="17-匹配双字节字符"><a href="#17-匹配双字节字符" class="headerlink" title="17. 匹配双字节字符"></a>17. 匹配双字节字符</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">reg</span> = /[^\x00-\xff]/igm</span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>('1212')</span><br></pre></td></tr></table></figure>
+
+<ol start="18">
+<li>匹配首位空白</li>
+</ol>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">reg</span> = /(^\s*)|(\s*$)/</span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>(' <span class="keyword">d</span> ')</span><br></pre></td></tr></table></figure>
+
+<h3 id="19-只能为数字"><a href="#19-只能为数字" class="headerlink" title="19. 只能为数字"></a>19. 只能为数字</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">reg</span> = /^\<span class="keyword">d</span>+$/</span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>(112))</span><br></pre></td></tr></table></figure>
+
+<h3 id="20-只能输入n个数字"><a href="#20-只能输入n个数字" class="headerlink" title="20. 只能输入n个数字"></a>20. 只能输入n个数字</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">reg</span> = /^\<span class="keyword">d</span>&#123;<span class="keyword">n</span>&#125;$/</span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>(11111))</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-至少输入n个数字"><a href="#21-至少输入n个数字" class="headerlink" title="21. 至少输入n个数字"></a>21. 至少输入n个数字</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">reg</span> = /^\<span class="keyword">d</span>&#123;<span class="keyword">n</span>,&#125;$/</span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>(2222))</span><br></pre></td></tr></table></figure>
+
+<h3 id="22-只能输入-m-到-n-个数字"><a href="#22-只能输入-m-到-n-个数字" class="headerlink" title="22. 只能输入 m 到 n 个数字"></a>22. 只能输入 m 到 n 个数字</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">reg</span> = /^\<span class="keyword">d</span>&#123;<span class="keyword">m</span>,<span class="keyword">n</span>&#125;$/</span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>(1212))</span><br></pre></td></tr></table></figure>
+
+<h3 id="23-只能由字母组成"><a href="#23-只能由字母组成" class="headerlink" title="23. 只能由字母组成"></a>23. 只能由字母组成</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">reg</span> = /^[a-z]+$/<span class="built_in">i</span></span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.rest('ddd'))</span><br></pre></td></tr></table></figure>
+
+<h3 id="23-只能由大写-或-小字母组成"><a href="#23-只能由大写-或-小字母组成" class="headerlink" title="23. 只能由大写 或 小字母组成"></a>23. 只能由大写 或 小字母组成</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">reg</span> = /^[A-Z]+$/</span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>(SSS))</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">reg</span> = /^[a-z]+$/</span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>(sss))</span><br></pre></td></tr></table></figure>
+
+<h3 id="24-只能由英文和数字组成"><a href="#24-只能由英文和数字组成" class="headerlink" title="24. 只能由英文和数字组成"></a>24. 只能由英文和数字组成</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">reg</span> = /^[a-z0-9]+$/<span class="built_in">i</span></span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>(333ffF))</span><br></pre></td></tr></table></figure>
+
+<h3 id="25-只能英文、数字、下划线组成"><a href="#25-只能英文、数字、下划线组成" class="headerlink" title="25. 只能英文、数字、下划线组成"></a>25. 只能英文、数字、下划线组成</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">reg</span> = /^\w+$/</span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>(dd33_))</span><br></pre></td></tr></table></figure>
+
+<h3 id="26-带两位小数点的正数或负数"><a href="#26-带两位小数点的正数或负数" class="headerlink" title="26. 带两位小数点的正数或负数"></a>26. 带两位小数点的正数或负数</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">reg</span> =^(\-)?\<span class="keyword">d</span>+(\.\<span class="keyword">d</span>&#123;1,2&#125;)?$</span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">reg</span>.<span class="keyword">test</span>(11.11))</span><br></pre></td></tr></table></figure>
+
+<h3 id="27-待补充"><a href="#27-待补充" class="headerlink" title="27. 待补充"></a>27. 待补充</h3>
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-08-15T00:34:18.000Z" itemprop="dateUpdated">2019-08-15 08:34:18</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则/">正则</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/08/07/常用的JS正则校验表达式.html&title=《常用的JS正则校验表达式》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/Fi98z8JMVJAJYaeRO0712ljZ3mvP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/08/07/常用的JS正则校验表达式.html&title=《常用的JS正则校验表达式》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/08/07/常用的JS正则校验表达式.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《常用的JS正则校验表达式》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/08/07/常用的JS正则校验表达式.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/08/07/常用的JS正则校验表达式.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/08/15/Python.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Python + Wxpy 实现微信防撤回</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/08/05/ES6入门之Set-和-Map.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">ES6入门之Set 和 Map</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/08/07/常用的JS正则校验表达式.html&title=《常用的JS正则校验表达式》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/Fi98z8JMVJAJYaeRO0712ljZ3mvP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/08/07/常用的JS正则校验表达式.html&title=《常用的JS正则校验表达式》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/08/07/常用的JS正则校验表达式.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《常用的JS正则校验表达式》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/08/07/常用的JS正则校验表达式.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/08/07/常用的JS正则校验表达式.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvElEQVR42u3aQW7CQAwF0N7/0q3ULSR822Ng8bJCNAl5VBqbP/75iY/f/+Px9f1fH89Mzk+uOnzg4eHhtR796rg/5+o+VUxyVfI8T74CPDw8vDVesnxffUxyfr7cV8vJi2vx8PDwPspLGu68UU5a5EmzjoeHh/c9vPtmuteIf1FhwMPDw4t5SRhxHz3k59y/3wsyDmQteHh4eDFvsgH2qddv2t/Dw8PDK+6q9xbxSQPdKwOXn4uHh4e3wMs3t/Ya5d4dkqfCw8PD2+Alt8tDh7PhbHVw4ck98fDw8BZ4+ShAskxPIt285PTafTw8PLwNXnUhnjxKfs8km40CXzw8PLxDvN5Wfd68VtvfSWQc1Tc8PDy8Q7x8Ic638HtNeX5tBMbDw8Nb4FWDhlMh77x4NKfG8PDw8Ma8yY//XjyRl5MkCH4BxsPDw1vmVRm9ja7eQEAhjcbDw8N7I68HPhscnH0fDw8Pb4M3j2Xzbao8qK2WhBf/DDw8PLyjvOrynReS/KuZjCkU6h4eHh7eIV7+iNXgdRI05MMK0ZAWHh4e3lHeZFurl5RuDGxFLTUeHh7eMm8+DlXdGBvNi119NXh4eHhrvPwHf3WPfhJA5MNbha0vPDw8vEO8JEI9FRacatOjfw8eHh7eAq8ayPbOzxv3pJBUB7Dw8PDwzvJ60ep8y6qKqTbieHh4eO/k9Ta38q2vcqAQhx1RYcDDw8Mb85IAtxpGbJSZXgnBw8PD2+D1lvJJ5pGHFNX2HQ8PD+89vN4w06TB7ZGq5aRMxcPDwyvyesUgX77zO/cKQ3PfDA8PD2/MyxfoJGDNhw+qkW45mMDDw8P7KG9SAPLIOB9HiEYW8PDw8L6Glyzc1figWjyi9/Hw8PDWeL3IIC8D1SKRf3EvGnE8PDy8Bd4kC5204NUHvb/22OgAHh4e3t19/gD0egMnG0u+AgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

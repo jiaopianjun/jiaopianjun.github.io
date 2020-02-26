@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>前端常用Git命令 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Git">
+    <meta name="description" content="本文主要讲述前端开发中主要使用的Git相关方法，一部分整理于网上，一部分整理于自己平常使用的。只提供了基础的命令，如果想要更详细解答的小伙伴可以Google命令查询，如有错误，欢迎指出。  常见信息1234master: 默认开发分支origin：默认远程版本库Head: 默认开发分支Head^:Head 的父提交  创建新仓库123git initgit init [project-name]">
+<meta name="keywords" content="Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端常用Git命令">
+<meta property="og:url" content="https://toc.lieme.cn/2019/11/03/前端常用git命令.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="本文主要讲述前端开发中主要使用的Git相关方法，一部分整理于网上，一部分整理于自己平常使用的。只提供了基础的命令，如果想要更详细解答的小伙伴可以Google命令查询，如有错误，欢迎指出。  常见信息1234master: 默认开发分支origin：默认远程版本库Head: 默认开发分支Head^:Head 的父提交  创建新仓库123git initgit init [project-name]">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/FowoxZ9ei179-sCshGuLItpG6Csj">
+<meta property="og:updated_time" content="2019-11-04T05:32:57.677Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端常用Git命令">
+<meta name="twitter:description" content="本文主要讲述前端开发中主要使用的Git相关方法，一部分整理于网上，一部分整理于自己平常使用的。只提供了基础的命令，如果想要更详细解答的小伙伴可以Google命令查询，如有错误，欢迎指出。  常见信息1234master: 默认开发分支origin：默认远程版本库Head: 默认开发分支Head^:Head 的父提交  创建新仓库123git initgit init [project-name]">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/FowoxZ9ei179-sCshGuLItpG6Csj">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">前端常用Git命令</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">前端常用Git命令</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-03T02:00:51.000Z" itemprop="datePublished" class="page-time">
+  2019-11-03
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#常见信息"><span class="post-toc-number">1.</span> <span class="post-toc-text">常见信息</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#创建新仓库"><span class="post-toc-number">2.</span> <span class="post-toc-text">创建新仓库</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#配置"><span class="post-toc-number">3.</span> <span class="post-toc-text">配置</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#添加删除文件"><span class="post-toc-number">4.</span> <span class="post-toc-text">添加删除文件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#代码提交"><span class="post-toc-number">5.</span> <span class="post-toc-text">代码提交</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#分支相关"><span class="post-toc-number">6.</span> <span class="post-toc-text">分支相关</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#标签操作"><span class="post-toc-number">7.</span> <span class="post-toc-text">标签操作</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#查看信息"><span class="post-toc-number">8.</span> <span class="post-toc-text">查看信息</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#远程同步"><span class="post-toc-number">9.</span> <span class="post-toc-text">远程同步</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#其他"><span class="post-toc-number">10.</span> <span class="post-toc-text">其他</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-前端常用git命令"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">前端常用Git命令</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-11-03 10:00:51" datetime="2019-11-03T02:00:51.000Z"  itemprop="datePublished">2019-11-03</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        1,892
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        8 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>本文主要讲述前端开发中主要使用的Git相关方法，一部分整理于网上，一部分整理于自己平常使用的。只提供了基础的命令，如果想要更详细解答的小伙伴可以Google命令查询，如有错误，欢迎指出。</p>
+</blockquote>
+<h4 id="常见信息"><a href="#常见信息" class="headerlink" title="常见信息"></a>常见信息</h4><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">master: 默认开发分支</span></span><br><span class="line">origin：默认远程版本库</span><br><span class="line"><span class="section">Head: 默认开发分支</span></span><br><span class="line"><span class="section">Head^:Head 的父提交</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="创建新仓库"><a href="#创建新仓库" class="headerlink" title="创建新仓库"></a>创建新仓库</h4><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git init [project-name]   <span class="comment"># 新建一个目录，并将其初始化为git仓库</span></span><br><span class="line">git <span class="keyword">clone</span> <span class="title">[url</span>]           <span class="comment"># 拷贝一个git仓库到本地</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Git 的配置文件是 .gitconfig，可以放在用户的主目录（全局配置）下或项目目录下（项目配置） 。</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示当前的 git 配置</span></span><br><span class="line">git<span class="built_in"> config </span>--list  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 编辑 Git 配置</span></span><br><span class="line">git<span class="built_in"> config </span>-e [--global] </span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置用来提交代码的用户信息</span></span><br><span class="line">git<span class="built_in"> config </span>[--global] user.name <span class="string">"[name]"</span> </span><br><span class="line">git<span class="built_in"> config </span>[--global] user.email <span class="string">"[email address]"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="添加删除文件"><a href="#添加删除文件" class="headerlink" title="添加删除文件"></a>添加删除文件</h4><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将指定文件添加到暂存区</span></span><br><span class="line">git <span class="keyword">add</span><span class="bash"> [file1] [file2] ... </span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 将指定目录添加到暂存区，包括子目录</span></span></span><br><span class="line"><span class="bash">git add [dir]               </span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 将当前目录中的所有文件添加到暂存区</span></span></span><br><span class="line"><span class="bash">git add .                   </span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 对同一个文件多次更改，建议分开提交</span></span></span><br><span class="line"><span class="bash">git add -p                  </span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 将指定文件从工作区删除，并将本次删除添加到暂存区</span></span></span><br><span class="line"><span class="bash">git rm [file1] [file2] ...  </span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 停止追踪指定的文件，不会删除文件</span></span></span><br><span class="line"><span class="bash">git rm --cached [file]      </span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 对指定文件进行重命名，并添加到暂存区中</span></span></span><br><span class="line"><span class="bash">git mv [file-original] [file-renamed]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="代码提交"><a href="#代码提交" class="headerlink" title="代码提交"></a>代码提交</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 将暂存区中的文件提交到代码仓库</span></span><br><span class="line">git commit -m [message]  </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 将指定的文件从暂存区中提交到仓库</span></span><br><span class="line">git commit [file1] [file2] ... -m [message] </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 将工作区的更改直接提交到仓库</span></span><br><span class="line">git commit -a </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 提交前展示所有的变动</span></span><br><span class="line">git commit -v </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用新提交代替上次提交，如果代码没有任何变动，将会用于重写上次提交的提交信息</span></span><br><span class="line">git commit --amend -m [message] </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重做上次的提交，并将指定的文件包含其中</span></span><br><span class="line">git commit --amend [file1] [file2] ...</span><br></pre></td></tr></table></figure>
+
+<h4 id="分支相关"><a href="#分支相关" class="headerlink" title="分支相关"></a>分支相关</h4><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 列出本地分支</span></span><br><span class="line">git branch  </span><br><span class="line"></span><br><span class="line"><span class="meta"># 列出所有远程分支</span></span><br><span class="line">git branch -r </span><br><span class="line"></span><br><span class="line"><span class="meta"># 列出本地和远程的所有分支</span></span><br><span class="line">git branch -a </span><br><span class="line"></span><br><span class="line"><span class="meta"># 新建分支，并留在当前分支</span></span><br><span class="line">git branch [branch-name] </span><br><span class="line"></span><br><span class="line"><span class="meta"># 新建分支，并切换到新建分支</span></span><br><span class="line">git checkout -b [branch-name] </span><br><span class="line"></span><br><span class="line"><span class="meta"># 指向某次提交新建分支</span></span><br><span class="line">git branch [branch] [commit] </span><br><span class="line"></span><br><span class="line"><span class="meta"># 创建一个新分支，并与指定的远程分支建立跟踪关系</span></span><br><span class="line">git branch --track [branch] [remote-branch] </span><br><span class="line"></span><br><span class="line"><span class="meta"># 切换到指定分支，并更新工作区</span></span><br><span class="line">git checkout [branch-name] </span><br><span class="line"></span><br><span class="line"><span class="meta"># 切换到上一个分支</span></span><br><span class="line">git checkout - </span><br><span class="line"></span><br><span class="line"><span class="meta"># 将本地分支与指定的远程分支建立跟踪关心</span></span><br><span class="line">git branch --<span class="keyword">set</span>-upstream [branch] [remote-branch]</span><br><span class="line"></span><br><span class="line"><span class="meta"># 合并指定分支与当前分支</span></span><br><span class="line">git merge [branch] </span><br><span class="line"></span><br><span class="line"><span class="meta"># 将指定的提交合并到本地分支</span></span><br><span class="line">git cheery-pick [commit] </span><br><span class="line"></span><br><span class="line"><span class="meta"># 删除本地指定分支</span></span><br><span class="line">git branch -d [branch-name] </span><br><span class="line"></span><br><span class="line"><span class="meta"># 删除远程分支</span></span><br><span class="line">git push origin --delete [branch-name]</span><br><span class="line">git push -dr [remote/branch]</span><br></pre></td></tr></table></figure>
+
+<h4 id="标签操作"><a href="#标签操作" class="headerlink" title="标签操作"></a>标签操作</h4><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出所有标签</span></span><br><span class="line">git <span class="keyword">tag</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在当前 tag 上创建一个新标签</span></span><br><span class="line">git <span class="keyword">tag</span> <span class="title">[tag</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在指定 tag 上创建一个新标签</span></span><br><span class="line">git <span class="keyword">tag</span> <span class="title">[tag</span>] [commit]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除本地标签</span></span><br><span class="line">git <span class="keyword">tag</span> <span class="title">-d</span> [<span class="keyword">tag</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除远程标签</span></span><br><span class="line">git push origin :refs/tags/[tagName]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看标签信息</span></span><br><span class="line">git show [<span class="keyword">tag</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提交指定标签</span></span><br><span class="line">git push [remote] --tags</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个新分支，指向特定的标签</span></span><br><span class="line">git checkout -b [branch] [<span class="keyword">tag</span>]</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看信息"><a href="#查看信息" class="headerlink" title="查看信息"></a>查看信息</h4><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示有变动的文件</span></span><br><span class="line">git status</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示当前分支的提交历史</span></span><br><span class="line">git <span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示提交历史和每次提交的文件</span></span><br><span class="line">git <span class="built_in">log</span> <span class="comment">--stat</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定关键字搜索提交历史</span></span><br><span class="line">git <span class="built_in">log</span> -S [keyword]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示自某次提交以来的所有更改，一次提交显示一行</span></span><br><span class="line">git <span class="built_in">log</span> [tag] HEAD <span class="comment">--pretty=format:$s</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示自某次提交以来的所有更改，其提交描述必须符合搜索条件</span></span><br><span class="line">git <span class="built_in">log</span> [tag] HEAD <span class="comment">--grep feature</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示指定文件的提交历史</span></span><br><span class="line">git <span class="built_in">log</span> <span class="comment">--flollow [file]</span></span><br><span class="line">git whatchanged [<span class="built_in">file</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示与指定文件相关的每个差异</span></span><br><span class="line">git <span class="built_in">log</span> -p [<span class="built_in">file</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示最近 5 次提交</span></span><br><span class="line">git <span class="built_in">log</span> <span class="number">-5</span> <span class="comment">--pretty --oneline</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示所有的提交用户，已提交数目多少排名</span></span><br><span class="line">git shortlog -sn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示指定文件何时被何人修改过</span></span><br><span class="line">git blame [<span class="built_in">file</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示暂存区和工作区文件差别</span></span><br><span class="line">git diff</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示暂存区和上一次提交的差别</span></span><br><span class="line">git diff <span class="comment">--cached [file]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示工作区和当前分支的最近一次提交的差别</span></span><br><span class="line">git diff HEAD</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示指定两次提交的差别</span></span><br><span class="line">git diff [<span class="keyword">first</span>-branch]...[<span class="keyword">second</span>-branch]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示今天提交了多少代码</span></span><br><span class="line">git diff <span class="comment">--shortstat "@&#123;0 day ago&#125;"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示特定提交的提交信息和更改的内容</span></span><br><span class="line">git show [commit]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 某次提交改动了哪些文件</span></span><br><span class="line">git show <span class="comment">--name-only [commit]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示某个提交的特定文件的内容</span></span><br><span class="line">git show [commit]:[filename]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示当前分支的最新提交</span></span><br><span class="line">git reflog</span><br></pre></td></tr></table></figure>
+
+<h4 id="远程同步"><a href="#远程同步" class="headerlink" title="远程同步"></a>远程同步</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 从远程分支下载所有变动</span></span><br><span class="line">git fetch [remote]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 显示所有远程仓库</span></span><br><span class="line">git remote -v</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 显示某个远程参考信息</span></span><br><span class="line">git remote show [remote]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 新建一个远程仓库，并命名</span></span><br><span class="line">git remote add [shortname] [url]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 检索远程村粗库的更改，并与本地分支合并</span></span><br><span class="line">git pull [remote] [branch]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 将本地分支提交到远程仓库</span></span><br><span class="line">git push [remote] [branch]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 将当前分支强制提交到远程仓库，即使有冲突存在</span></span><br><span class="line">git push [remote] --force</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 将所有分支提交到远程仓库</span></span><br><span class="line">git push [remote] --all</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">### 撤销操作</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 将暂存区中的指定文件还原到工作区，保留文件变动</span></span><br><span class="line">git checkout [file]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 将指定文件从某个提交还原到暂存区和工作区</span></span><br><span class="line">git checkout [commit] [file]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 将暂存区中的所有文件还原到工作区</span></span><br><span class="line">git checkout .</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重置暂存区中的指定文件，与先前的提交保持一致，但保持工作空间的变动不变</span></span><br><span class="line">git reset [file]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重置暂存区和工作区中的指定文件，并与最近一次提交保持一致，工作空间文件变动不会保留</span></span><br><span class="line">git reset --hard</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重置暂存区，指向指定的某次提交，工作区的内容不会被覆盖</span></span><br><span class="line">git reset [commit]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重置暂存区和工作区中的指定文件，并与指定的某次提交保持一致，工作区的内容会被覆盖</span></span><br><span class="line">git reset --hard [commit]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 将 HEAD 重置为指定的某次提交，保持暂存区和工作区的内容不变</span></span><br><span class="line">git reset --keep [commit]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 新建新提交以撤销指定的提交</span></span><br><span class="line">git revert [commit]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 暂存为提交的变动，并在稍后移动它们</span></span><br><span class="line">git stash</span><br><span class="line">git stash pop</span><br><span class="line">git stash apply</span><br></pre></td></tr></table></figure>
+
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成用于发布的存档</span></span><br><span class="line"><span class="attribute">git</span> archive</span><br></pre></td></tr></table></figure>
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-11-04T05:32:57.677Z" itemprop="dateUpdated">2019-11-04 13:32:57</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/11/03/前端常用git命令.html&title=《前端常用Git命令》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FowoxZ9ei179-sCshGuLItpG6Csj" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/11/03/前端常用git命令.html&title=《前端常用Git命令》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/11/03/前端常用git命令.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端常用Git命令》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/11/03/前端常用git命令.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/11/03/前端常用git命令.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/11/13/前端Vue中常用rules校验规则.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">前端Vue中常用rules校验规则</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/10/25/重学JavaScript之匿名函数.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">重学JavaScript之匿名函数</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/11/03/前端常用git命令.html&title=《前端常用Git命令》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FowoxZ9ei179-sCshGuLItpG6Csj" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/11/03/前端常用git命令.html&title=《前端常用Git命令》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/11/03/前端常用git命令.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端常用Git命令》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/11/03/前端常用git命令.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/11/03/前端常用git命令.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIUlEQVR42u3awZKDQAhF0fz/TzvbWUwn94GZKuG6SiVGOS4Qmn698HH9Ok7fnM4//ff0+XTNGw4ZMmQ8lnG9PU7n8BvXMDw2GTJk7GGcbv/+HJ6a02zJY5MhQ4YMXsDx0ElZKUOGDBl9BuG9B5PzZciQISNtYvsNbVpKfqUXlyFDxgMZ/Gb///kr8w0ZMmQ8inGFRzrUJO1ummT/iEqGDBmjGbWF+zSgznJbEI8MGTKGMjqpsLb0VmuDP6R7GTJkjGaky221IrITetDoypAhYzSDLK7xdMlLwPS+cREpQ4aMQYy07bwrRdaa2OM1ZciQMZTBw6otq6WAYgqWIUPGaAZvYtPb8EfAr49KQxkyZKxh1DZPkOY2HWqSxyRDhoxtjE55V2uGb7u+DBkyhjLIglc6GOCB8jLxA1KGDBkLGOnCWdqgdhIxAsuQIWM0gy948bFBrentbNGQIUOGjPdJMx1z8rKyNiqQIUPGVEaa+NJRZe3X9AUgQ4aMDQz+Z14I1kIsjitkyJCxgJFuj+BFW1r2kUU39N6QIUPGAkYnsfJw+0lfhgwZsxlXeJDmlg87yUNBrwEZMmSMZnQGmfwGnMSvXBxzypAh47EMnmTTxrXz3/h5y5AhYwHjrlBqD6I2wkTzDRkyZKxkkBBrW7taNawMGTJkNPrj/pYvtNVVhgwZCxh8GIAuGi63pdvOZMiQsY1Rq7t4WuSk2vcyZMgYzfgB4OOdOxuLQxsAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

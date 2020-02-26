@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>简单！三步实现微信消息同步！！ | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="微信机器人,微信同步">
+    <meta name="description" content="场景：公司群，朋友群，消息太多，但是只想知道领导发的消息，就可以利用wxpy和微信实现消息群同步。让重要消息不在错漏。  效果如下：   测试 结果        GithubGithub 准备工作1、能登录网页版微信的账号 2、相关环境 1、安装相关模块 pip install 模块名  12345678910#coding=utf8from wxpy import *import sched">
+<meta name="keywords" content="微信机器人,微信同步">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单！三步实现微信消息同步！！">
+<meta property="og:url" content="https://toc.lieme.cn/2019/12/10/简单！三步实现微信消息同步！！.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="场景：公司群，朋友群，消息太多，但是只想知道领导发的消息，就可以利用wxpy和微信实现消息群同步。让重要消息不在错漏。  效果如下：   测试 结果        GithubGithub 准备工作1、能登录网页版微信的账号 2、相关环境 1、安装相关模块 pip install 模块名  12345678910#coding=utf8from wxpy import *import sched">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/Fk71w7v70UOcyOt8NIdYEx4UkPgt">
+<meta property="og:updated_time" content="2019-12-10T07:32:39.149Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简单！三步实现微信消息同步！！">
+<meta name="twitter:description" content="场景：公司群，朋友群，消息太多，但是只想知道领导发的消息，就可以利用wxpy和微信实现消息群同步。让重要消息不在错漏。  效果如下：   测试 结果        GithubGithub 准备工作1、能登录网页版微信的账号 2、相关环境 1、安装相关模块 pip install 模块名  12345678910#coding=utf8from wxpy import *import sched">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/Fk71w7v70UOcyOt8NIdYEx4UkPgt">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">简单！三步实现微信消息同步！！</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">简单！三步实现微信消息同步！！</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-12-10T06:37:00.000Z" itemprop="datePublished" class="page-time">
+  2019-12-10
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/微信/">微信</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#效果如下："><span class="post-toc-number">1.</span> <span class="post-toc-text">效果如下：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Github"><span class="post-toc-number">2.</span> <span class="post-toc-text">Github</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#准备工作"><span class="post-toc-number">3.</span> <span class="post-toc-text">准备工作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、安装相关模块"><span class="post-toc-number">4.</span> <span class="post-toc-text">1、安装相关模块</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、定义相关方法"><span class="post-toc-number">5.</span> <span class="post-toc-text">2、定义相关方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、获取需要同步的群及人"><span class="post-toc-number">6.</span> <span class="post-toc-text">3、获取需要同步的群及人</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4、运行程序"><span class="post-toc-number">7.</span> <span class="post-toc-text">4、运行程序</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-简单！三步实现微信消息同步！！"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">简单！三步实现微信消息同步！！</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-12-10 14:37:00" datetime="2019-12-10T06:37:00.000Z"  itemprop="datePublished">2019-12-10</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/微信/">微信</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        223
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        1 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>场景：公司群，朋友群，消息太多，但是只想知道领导发的消息，就可以利用wxpy和微信实现消息群同步。让重要消息不在错漏。</p>
+</blockquote>
+<h2 id="效果如下："><a href="#效果如下：" class="headerlink" title="效果如下："></a>效果如下：</h2><table>
+<thead>
+<tr>
+<th>测试</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="https://user-gold-cdn.xitu.io/2019/12/10/16eeeb70755747ac?w=472&h=841&f=gif&s=6770644" alt="IMB_zUHSMR.GIF"></td>
+<td><img src="https://user-gold-cdn.xitu.io/2019/12/10/16eeeb70772e3347?w=864&h=1536&f=gif&s=4343001" alt="tongbu.gif"></td>
+</tr>
+</tbody></table>
+<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p><a href="https://github.com/jiaopianjun/wepython.git" target="_blank" rel="noopener">Github</a></p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>1、能登录网页版微信的账号</p>
+<p>2、相关环境</p>
+<h2 id="1、安装相关模块"><a href="#1、安装相关模块" class="headerlink" title="1、安装相关模块"></a>1、安装相关模块</h2><blockquote>
+<p>pip install 模块名</p>
+</blockquote>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#coding=utf8</span></span><br><span class="line"><span class="title">from</span> wxpy <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> schedule</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> http</span><br><span class="line"><span class="keyword">import</span> json </span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> ctypes</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、定义相关方法"><a href="#2、定义相关方法" class="headerlink" title="2、定义相关方法"></a>2、定义相关方法</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bot = Bot(cache_path=True,console_qr = 2)</span><br><span class="line">myself = bot.self</span><br><span class="line">bot.enable_puid('wxpy_puid.pkl')</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、获取需要同步的群及人"><a href="#3、获取需要同步的群及人" class="headerlink" title="3、获取需要同步的群及人"></a>3、获取需要同步的群及人</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sync</span> = ensure_one(bot.groups().<span class="built_in">search</span>(<span class="string">'同步'</span>))</span><br><span class="line">lie = ensure_one(<span class="keyword">sync</span>.<span class="built_in">search</span>(<span class="string">'Lie'</span>))</span><br><span class="line">Goodog = ensure_one(<span class="keyword">sync</span>.<span class="built_in">search</span>(<span class="string">'Goodog'</span>))</span><br><span class="line"></span><br><span class="line"># 群消息同步</span><br><span class="line">@bot.register(<span class="keyword">sync</span>)</span><br><span class="line">def <span class="keyword">sync</span>(msg):</span><br><span class="line">    <span class="keyword">if</span> msg.member == Goodo<span class="variable">g:</span></span><br><span class="line">        msg.forward(lie, prefix=<span class="string">'群消息同步：'</span>+<span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、运行程序"><a href="#4、运行程序" class="headerlink" title="4、运行程序"></a>4、运行程序</h2><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    schedule.run_pending()</span><br><span class="line">    <span class="built_in">time</span>.<span class="built_in">sleep</span>(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-10T07:32:39.149Z" itemprop="dateUpdated">2019-12-10 15:32:39</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信同步/">微信同步</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信机器人/">微信机器人</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/12/10/简单！三步实现微信消息同步！！.html&title=《简单！三步实现微信消息同步！！》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/Fk71w7v70UOcyOt8NIdYEx4UkPgt" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/12/10/简单！三步实现微信消息同步！！.html&title=《简单！三步实现微信消息同步！！》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/12/10/简单！三步实现微信消息同步！！.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《简单！三步实现微信消息同步！！》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/12/10/简单！三步实现微信消息同步！！.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/12/10/简单！三步实现微信消息同步！！.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/12/16/前端两三问.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">前端两三问</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/11/29/前端常用的CSS代码块.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">前端CSS常用代码集合</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/12/10/简单！三步实现微信消息同步！！.html&title=《简单！三步实现微信消息同步！！》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/Fk71w7v70UOcyOt8NIdYEx4UkPgt" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/12/10/简单！三步实现微信消息同步！！.html&title=《简单！三步实现微信消息同步！！》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/12/10/简单！三步实现微信消息同步！！.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《简单！三步实现微信消息同步！！》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/12/10/简单！三步实现微信消息同步！！.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/12/10/简单！三步实现微信消息同步！！.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuUlEQVR42u3ay07DQAwFUP7/p4vECggN1/a46uJkhaI85gxSZnrtj4/4eHwd1zPfz1+vyZ98/5zrNYcPPDw8vMELrkdyTfLi+2fmE5qPGQ8PD2+bd/+C+893dTqqb8kXITw8PLx34yVb3uSu6nKSjAEPDw/v/Xn3H/rq1FQDETw8PLx34CVhRDUvzacm33AvZi14eHh4/cS1ubV95d+L9T08PDy8QVV98qFPBpRf/2gdeHh4eBu8SZFp0kyQBMHVLXLhFwMeHh7eIV5epsrPJFOWT0c1qsDDw8Pb4M1L+5Mo4WzDwdNfDHh4eHhHefl2eRI9JMPKz4wCXzw8PLxDvBxQbbrKN+jzuwqrFh4eHt6ANx/iqcasXidA9IsBDw8Pb4HXe0S10yn5bvc25U+343h4eHgLvN7nuLoFn4cO1RC5gMTDw8Nr8ZIFoFe8r8YKK40IeHh4eEd5vVC1GkzcLyRnQ+Qfb8TDw8Nb490feXPAJBRInlxuzMLDw8Nb4PXC03zByEtoyRPysAMPDw9vj3d2i9wrXCVb6moJDQ8PD2+P11sGekNslvaLI3z6fDw8PLyjvF4QUGXk0XAvtjicc+Dh4eHFn9pJUaq6YFSLbXlk/EdKjYeHh3eI17xh0IZ1NrCInoaHh4e3wLvf+J4tdFVh1e04Hh4e3javGg1sDLe38JR7yvDw8PBeyOvFEDkjz13L22g8PDy8Bd7GsJLlJI93qwW86C48PDy8Ae9RPJKFYRJYVFsW/vln4OHh4S3weo1ZeYgwL63lzQRlEh4eHt6Al7dA5YtEdeucx7XVVgM8PDy8PV4vw6i2GsyjjdGahoeHh/dyXsKoTtNkUqIx4OHh4b0Br7cwVBeV6nufXo+Hh4e3xpuEEdXz1dAhn4iVrAUPDw9vXFtPhniq8N9777HAAg8PD+/38QnW7VS5AQir/QAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

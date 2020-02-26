@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>重学js之JavaScript 面向对象的程序设计（创建对象） | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="面向对象,工厂模式">
+    <meta name="description" content="1. 什么是面向对象 面向对象的语言有一个标志，那就是它们都有类的概念，而通过类可以创建任意多个具有相同属性和方法的对象。但是，再前面提到过。ES中没有类的概念，因此它的对象也与基于类的语言中的对象有所不同。  对象的定义：‘无序属性的集合，其属性可以包含基本值、对象或者函数。’ 严格来讲，这就相当于说对象是一组没有特定顺序的值。对象的每个属性或方法都有一个名字，而每个名字都映射到一个值。所以我们">
+<meta name="keywords" content="面向对象,工厂模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重学js之JavaScript 面向对象的程序设计（创建对象）">
+<meta property="og:url" content="https://toc.lieme.cn/2019/09/12/重学JavaScript之面向对象的程序设计（创建对象）.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1. 什么是面向对象 面向对象的语言有一个标志，那就是它们都有类的概念，而通过类可以创建任意多个具有相同属性和方法的对象。但是，再前面提到过。ES中没有类的概念，因此它的对象也与基于类的语言中的对象有所不同。  对象的定义：‘无序属性的集合，其属性可以包含基本值、对象或者函数。’ 严格来讲，这就相当于说对象是一组没有特定顺序的值。对象的每个属性或方法都有一个名字，而每个名字都映射到一个值。所以我们">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/FsbNv9pi-n5RjjLT5h6WIP4Y-dYC">
+<meta property="og:updated_time" content="2019-09-29T10:23:44.032Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重学js之JavaScript 面向对象的程序设计（创建对象）">
+<meta name="twitter:description" content="1. 什么是面向对象 面向对象的语言有一个标志，那就是它们都有类的概念，而通过类可以创建任意多个具有相同属性和方法的对象。但是，再前面提到过。ES中没有类的概念，因此它的对象也与基于类的语言中的对象有所不同。  对象的定义：‘无序属性的集合，其属性可以包含基本值、对象或者函数。’ 严格来讲，这就相当于说对象是一组没有特定顺序的值。对象的每个属性或方法都有一个名字，而每个名字都映射到一个值。所以我们">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/FsbNv9pi-n5RjjLT5h6WIP4Y-dYC">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">重学js之JavaScript 面向对象的程序设计（创建对象）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">重学js之JavaScript 面向对象的程序设计（创建对象）</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-09-12T06:26:17.000Z" itemprop="datePublished" class="page-time">
+  2019-09-12
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/重学JavaScript/">重学JavaScript</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-什么是面向对象"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 什么是面向对象</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-创建对象"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 创建对象</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-工厂模式"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 工厂模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-构造函数模式"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. 构造函数模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-将构造函数当作函数"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">4.1 将构造函数当作函数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-2-构造函数的问题"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">4.2 构造函数的问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-原型模式"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. 原型模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-1-理解原型对象"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">5.1 理解原型对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-2-原型与in操作符"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">5.2 原型与in操作符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-3-更简单的原型语法"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">5.3 更简单的原型语法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-4-原型的动态性"><span class="post-toc-number">5.4.</span> <span class="post-toc-text">5.4 原型的动态性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-5-原生对象的原型"><span class="post-toc-number">5.5.</span> <span class="post-toc-text">5.5 原生对象的原型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-6-原型对象的问题"><span class="post-toc-number">5.6.</span> <span class="post-toc-text">5.6 原型对象的问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-组合使用构造函数模式和原型模式"><span class="post-toc-number">6.</span> <span class="post-toc-text">6. 组合使用构造函数模式和原型模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-动态原型模式"><span class="post-toc-number">7.</span> <span class="post-toc-text">7. 动态原型模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-寄生构造函数模式"><span class="post-toc-number">8.</span> <span class="post-toc-text">8. 寄生构造函数模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9-稳妥构造函数模式"><span class="post-toc-number">9.</span> <span class="post-toc-text">9. 稳妥构造函数模式</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-重学JavaScript之面向对象的程序设计（创建对象）"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">重学js之JavaScript 面向对象的程序设计（创建对象）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-09-12 14:26:17" datetime="2019-09-12T06:26:17.000Z"  itemprop="datePublished">2019-09-12</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/重学JavaScript/">重学JavaScript</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        3,603
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        13 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h2 id="1-什么是面向对象"><a href="#1-什么是面向对象" class="headerlink" title="1. 什么是面向对象"></a>1. 什么是面向对象</h2><blockquote>
+<p>面向对象的语言有一个标志，那就是它们都有类的概念，而通过类可以创建任意多个具有相同属性和方法的对象。但是，再前面提到过。ES中没有类的概念，因此它的对象也与基于类的语言中的对象有所不同。</p>
+</blockquote>
+<p>对象的定义：‘无序属性的集合，其属性可以包含基本值、对象或者函数。’ 严格来讲，这就相当于说对象是一组没有特定顺序的值。对象的每个属性或方法都有一个名字，而每个名字都映射到一个值。所以我们可以把 ES 的对象想象成散列表：无非就是一组名值对，其中值可以是数据或函数。</p>
+<p>每个对象都是基于一个引用类型创建的，这个引用类型可以是上一章讨论的原生类型，也可以是自定义类型。</p>
+<h2 id="2-创建对象"><a href="#2-创建对象" class="headerlink" title="2. 创建对象"></a>2. 创建对象</h2><blockquote>
+<p>最简单的方式就是创建一个Object的实例，然后再为它添加属性和方法。</p>
+</blockquote>
+<pre><code>let p = new Object()
+p.name = &apos;js&apos;
+p.age = 20
+p.job = &apos;jizhe&apos;
+
+p.sayName = function() {
+    alert(this.name)
+}
+
+p.sayName()  // js</code></pre><h2 id="3-工厂模式"><a href="#3-工厂模式" class="headerlink" title="3. 工厂模式"></a>3. 工厂模式</h2><blockquote>
+<p>工厂模式：抽象了创建具体对象的过程。考虑到ES中无法创建类，于是就用一种特定的函数来封装以特定接口创建对象的细节。</p>
+</blockquote>
+<pre><code>function p(name, age, job) {
+    let o = new Object()
+    o.name = name
+    o.age = age
+    o.job = job
+    o.sayName = function() {
+        alert(this.name)
+    }
+    return o
+}
+
+let p1 = p(&apos;tc&apos;, 30, &apos;老宋&apos;)
+let p2 = p(&apos;bd&apos;, 22, &apos;百度&apos;)
+
+p1.sayName  // tc
+p2.sayName  // bd </code></pre><p>函数 p() 能够根据接受的参数来构建一个包含所有必要信息的 Person 对象。可以无数次的调用这个函数，而每次它都会返回一个包含三个属性一个方法的对象。工厂模式虽然解决了创建多个相似对象的问题，但却没有解决对象识别的问题（即怎么样找到一个对象的类型）</p>
+<h2 id="4-构造函数模式"><a href="#4-构造函数模式" class="headerlink" title="4. 构造函数模式"></a>4. 构造函数模式</h2><blockquote>
+<p>在前面几章介绍过，ES的构造函数可以用来创建特定类型的对象。像Object 和 Array这样原生构造函数，在运行时会自动出现在执行环境中。此外，也可以创建自定义的构造函数，从而定义自定义对象类型的属性和方法。如下：</p>
+</blockquote>
+<pre><code>function p(name, age, job) {
+    this.name = name
+    this.age = age
+    this.job = job
+    this.sayName = function (){
+        alert(this.name)
+    }
+}
+
+let p1 = new P(&apos;tc&apos;, 33, &apos;haha&apos;)
+let p2 = new P(&apos;gg&apos;, 32, &apos;小夭同学&apos;)
+
+p1.sayName() // haha
+p2.sayName() // 小夭同学</code></pre><p>在上面的例子中，p()函数取代了上一小段的函数。除了内容代码相同，还有以下区别：</p>
+<ul>
+<li>没有显式的创建对象</li>
+<li>直接将属性和方法赋给了this对象</li>
+<li>没有 retrun 语句</li>
+<li>另外函数 p 是大写。构造函数始终都以第一个字母大写开头。非构造函数时小写开头。</li>
+</ul>
+<p>另外如果要创建P实例，必须使用 new 操作符，以这种方式调用构造函数实际上会经历以下4个步骤：</p>
+<ul>
+<li>创建一个新对象</li>
+<li>将构造函数的作用域赋给新对象（因此 this 指向了这个新对象）</li>
+<li>执行构造函数中的代码（为这个对象添加属性）</li>
+<li>返回新对象 </li>
+</ul>
+<p><strong>对象的 constructor 属性，最初是用来标识对象类型的。但是，提到检测对象类型，还是 instanceof 操作符更可靠。</strong></p>
+<pre><code>instanceof 判断某个对象是否属于另外一个对象的实例</code></pre><p><strong>优点</strong>： 相比于工厂模式，构造函数模式可以将它的实例标识为一种特定的类型。</p>
+<p><strong>注意</strong>： 如果以这种方式定义的构造函数是定义在 <strong>Global对象中的</strong>，因此除非另有说明，instaceof 操作符  和  construcotr 属性始终会假设是在全局作用域中查询构造函数。</p>
+<h3 id="4-1-将构造函数当作函数"><a href="#4-1-将构造函数当作函数" class="headerlink" title="4.1 将构造函数当作函数"></a>4.1 将构造函数当作函数</h3><blockquote>
+<p>构造函数与其他函数的唯一区别，就是在于调用它们的方式不同。不过，构造函数也是函数，不存在定义构造函数的特殊语法。任何函数，只要通过new操作符来调用，那它就可以作为构造函数；而任何函数，如果不通过new 操作符来调用，那它和普通函数也没有射门两样。</p>
+</blockquote>
+<pre><code>// 构造函数调用
+let p = new Person(&apos;tc&apos;, 22, &apos;哈哈哈&apos;)
+p.sayName   // tc
+
+// 普通函数调用
+P(&apos;gc&apos;, 23, &apos;oo&apos;)  // 添加到 window
+windwo.sayName  // gc
+
+// 在另外一个对象的作用域中调用
+let o = new Object()
+P.call(o, &apos;new&apos;, 33, &apos;suzhou&apos;)
+o.sayName   // new</code></pre><h3 id="4-2-构造函数的问题"><a href="#4-2-构造函数的问题" class="headerlink" title="4.2 构造函数的问题"></a>4.2 构造函数的问题</h3><blockquote>
+<p>构造函数虽然好用，但也有缺点。使用构造函数的主要问题就是每个方法都要在每个实例上重新创建一遍。</p>
+</blockquote>
+<h2 id="5-原型模式"><a href="#5-原型模式" class="headerlink" title="5. 原型模式"></a>5. 原型模式</h2><blockquote>
+<p>我们每次创建一个函数的时候都有 一个 prototype 属性，这个属性是一个指针，指向一个对象。而这个对象的用途是包含可以由特定类型的所有实例共享的属性和方法 。如果按照字面意思，那么 prototype  就是通过调用构造函数而创建的那个对象实例的原型对象。使用原型对象的好处是可以让所有对象实例共享它所包含的属性和方法。换句话说，不必再构造函数中定义对象实例的信息，而是可以将这些信息直接添加到原型对象中。</p>
+</blockquote>
+<h3 id="5-1-理解原型对象"><a href="#5-1-理解原型对象" class="headerlink" title="5.1 理解原型对象"></a>5.1 理解原型对象</h3><blockquote>
+<p>无论什么时候，只要创建了一个新韩淑，就会根据一组特定的规则为该函数创建一个 prototype 属性， 这个属性指向函数的原型对象。在默认情况下，所有原型对象都会自动获得一个 constructor 构造函数属性，这个属性包含了一个指向  prototype 属性所在函数的指针。通过这个构造函数，我们还可以继续为原型对象添加其他属性和方法。</p>
+</blockquote>
+<p>创建了自定义的构造函数之后，其原型对象默认只会 取得  constructor 属性； 至于其他方法，则都是从 Object 继承而来的。当调用构造函数创建一个新实例后，该实例的内部将包含一个指针（内部属性），指向构造函数的原型对象。在很多实现中，这个内部属性的名字是 <strong><strong>proto</strong></strong> ,而且通过脚本可以访问到；而在其他实现中，这个属性对脚本则是完全不可见的。<strong>不过，要明确的真正重要的一点，就是这个连接存在于实例于构造函数的原型对象之间，而不是存在于实例于构造函数之间</strong></p>
+<blockquote>
+<p>另外，每当代码读取某个对象的某个属性时，都会执行一次搜索，目标是具有给定名字的属性。搜索首先从对象实例本身开始。如果在实例中找到了具有给定名字的属性，则返回该属性的值；如果没有找到，则继续搜索指针指向的原型对象，在原型队形中查找具有给定名字的属性。如果在原型对象中找到了这个属性，则返回该属性的值。也就是说我们调用p.sayName()的时候，会先后执行两次搜索，首先，解析器会问：实例 p 有 sayName 属性吗，如果没有，则再问p的原型有sayName属性嘛，如果有 则读取保存在原型对象中的函数。</p>
+</blockquote>
+<blockquote>
+<p>虽然可以通过对象实例访问保存在原型中的值，但却不能通过对象实例重写原型中的值。如果我们在实例中添加了一个属性，而该属性与实例原型中的一个属性同名，那么我们就在实例中创建该属性，该属性会屏蔽原型中的那个属性。</p>
+</blockquote>
+<h3 id="5-2-原型与in操作符"><a href="#5-2-原型与in操作符" class="headerlink" title="5.2 原型与in操作符"></a>5.2 原型与in操作符</h3><blockquote>
+<p>有两种方式使用 in 操作符：单独使用和在 for-in循环中使用。在单独使用时，in操作符会在通过对象能够访问给定属性时返回 true，无论该属性存在于实例中还是原型中。 另外由于in操作符只要通过对象能够访问到属性就返回 true ，hasOwnProperty()只在属性存在于实例中时才返回true，因此只要 in 操作符返回 true 而 hasOwnProperty()返回 false，就可以确定属性时原型中的属性。</p>
+</blockquote>
+<p><strong>注意：</strong>在使用 for-in 循环时，返回的是能够通过对象访问的、可枚举的属性，其中既包括存在于实例中的属性，也包括存在于原型中的属性。屏蔽了原型中不可枚举属性的实例属性也会在 for-in循环中返回。</p>
+<h3 id="5-3-更简单的原型语法"><a href="#5-3-更简单的原型语法" class="headerlink" title="5.3 更简单的原型语法"></a>5.3 更简单的原型语法</h3><blockquote>
+<p>为了减少不必要的输入，以及从视觉上更好的封装原型的功能，常见的作法是用包含一个说有属性和方法的对象字面量来重写整个原型对象。</p>
+</blockquote>
+<pre><code>function P(){
+
+}
+
+P.prototype = {
+    name: &apos;tc&apos;,
+    age: 22,
+    job: &apos;web&apos;,
+    sayName: function(){
+        console.log(this.name)
+    }
+}</code></pre><h3 id="5-4-原型的动态性"><a href="#5-4-原型的动态性" class="headerlink" title="5.4 原型的动态性"></a>5.4 原型的动态性</h3><blockquote>
+<p>由于在原型中查找值的过程是一次搜索，因此我们对原型对象所做的任何修改都能够立即从实例上反映出来。尽管可以随时为原型添加属性和方法，并且修改能够立即在所有对象实例中反映出来，但如果是重写整个原型对象，那么情况就不同了。另外，调用构造函数时会为实例添加一个指向最初原型<strong>proto</strong>指针，而把原型修改为另一个对象就等于切断了构造函数和最初原型之间的联系。实例中的指针仅指向原型，而不是指向构造函数。</p>
+</blockquote>
+<h3 id="5-5-原生对象的原型"><a href="#5-5-原生对象的原型" class="headerlink" title="5.5 原生对象的原型"></a>5.5 原生对象的原型</h3><blockquote>
+<p>原型模式的重要性不仅体现在创建自定义类型方面，就连所有原生的引用类型，都是采用这种模式创建的。所有原生引用类型（Object、Array、String）都在其构造函数的原型上定义了方法。 </p>
+</blockquote>
+<pre><code>typeof Array.prototype.sort     // function
+typeof String.prototype.substring   // function</code></pre><p>通过原生对象的原型，不仅可以取得所有默认方法的引用，也可以定义新的方法。可以像修改自定义对象的原型一样修改原生对象的原型，因此可以随时添加方法。</p>
+<p><strong>重要</strong>：尽管可以这样做，但是并不推荐在产品化的程序中修改原生对象的原型。如果因某个实现中缺少某个方法，就在原生对象的原型中添加这个方法，那么当在另一个支持该方法的实现中运行代码时，就可能的导致命名冲突，而且，这样做也可能会意外地重写原生方法</p>
+<h3 id="5-6-原型对象的问题"><a href="#5-6-原型对象的问题" class="headerlink" title="5.6 原型对象的问题"></a>5.6 原型对象的问题</h3><blockquote>
+<p>原型模式也有缺点，第一、它省略了为构造函数传递初始化参数这一环节，结果所有实例在默认情况下都将取得相同的属性值。虽然这个在某一程度上带来了不方便，但其最大的问题还是由其共享的本性所导致的。</p>
+</blockquote>
+<p>在原型中，所有的属性时被很多实例共享的，这种共享对于函数非常合适。对于那些包含基本值的属性也行，但是对于引用类型值的属性来说，就有问题了。</p>
+<h2 id="6-组合使用构造函数模式和原型模式"><a href="#6-组合使用构造函数模式和原型模式" class="headerlink" title="6. 组合使用构造函数模式和原型模式"></a>6. 组合使用构造函数模式和原型模式</h2><blockquote>
+<p>创建自定义类型的最常见方式，就是组合使用构造函数模式和原型模式。构造函数模式用于定义实例属性，而原型模式用于定义方法和共享的属性。结果每个实例都会有自己的一份实例属性的副本，但同时又共享着对方法的引用，最大限度地节省了内存。</p>
+</blockquote>
+<h2 id="7-动态原型模式"><a href="#7-动态原型模式" class="headerlink" title="7. 动态原型模式"></a>7. 动态原型模式</h2><blockquote>
+<p>把所有信息都封装了在构造函数中，而通过构造函数中初始化原型，又保持了同时使用构造函数和原型的有点。也就是说可以通过检查某一个应该存在的方法是否有效，来决定是否初始化原型。</p>
+</blockquote>
+<pre><code>function P(name, age, job) {
+    this.name = name
+    this.age = age
+    this.job = job
+
+    if(typeof this.sayName != &apos;function&apos;) {
+        P.prototype.sayName = fucntion() {
+            console.log(this.name)
+        }
+    }
+}
+
+let p = new P(&apos;tc&apos;, 23, &apos;web&apos;)
+p.sayName() //  tc</code></pre><p>上面的代码 只有在 sayName() 方法不存在的情况下才会将它添加到原型中。这段代码只有在初次调用函数时才会执行。过后，原型已经初始化完成，不需要再修改。这样对原型所做的修改，能够立即在所有实例中得到反映。另外if语句检查的可以是初始化之后应该存在的任何属性或方法。</p>
+<p>*<em>注意： *</em> 使用动态原型模式时，不能使用对象字面量重写原型，如果在已经创建了实例的情况下重写原型，那么就会切断现有实例与新原型之间的联系。</p>
+<h2 id="8-寄生构造函数模式"><a href="#8-寄生构造函数模式" class="headerlink" title="8. 寄生构造函数模式"></a>8. 寄生构造函数模式</h2><blockquote>
+<p>创建一个函数，该函数的作用仅仅时封装创建对象的代码，然后再返回新创建的对象。</p>
+</blockquote>
+<p>注意： 寄生构造函数模式返回的对象与构造函数或者与构造函数的原型属性之间没有关系，也就是说，构造函数返回的对象与在构造函数外部创建的对象没有什么不同。为此，不能依赖 instanceof 操作符来确定对象类型。</p>
+<h2 id="9-稳妥构造函数模式"><a href="#9-稳妥构造函数模式" class="headerlink" title="9. 稳妥构造函数模式"></a>9. 稳妥构造函数模式</h2><blockquote>
+<p>与寄生构造函数模式类似，使用稳妥构造函数模式创建的对象与构造函数之间也没有什么关系，因此 instanceof 操作符对这种对象也没有意义。 </p>
+</blockquote>
+<p><img src="https://user-gold-cdn.xitu.io/2019/6/18/16b69606d7c1155c?w=258&h=258&f=jpeg&s=26659" alt></p>
+<p align="center" style="font-size:30px;color:#1c8a95"> 欢迎关注 公众号【小夭同学】 </p>
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-09-29T10:23:44.032Z" itemprop="dateUpdated">2019-09-29 18:23:44</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工厂模式/">工厂模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面向对象/">面向对象</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/09/12/重学JavaScript之面向对象的程序设计（创建对象）.html&title=《重学js之JavaScript 面向对象的程序设计（创建对象）》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FsbNv9pi-n5RjjLT5h6WIP4Y-dYC" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/09/12/重学JavaScript之面向对象的程序设计（创建对象）.html&title=《重学js之JavaScript 面向对象的程序设计（创建对象）》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/09/12/重学JavaScript之面向对象的程序设计（创建对象）.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学js之JavaScript 面向对象的程序设计（创建对象）》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/09/12/重学JavaScript之面向对象的程序设计（创建对象）.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/09/12/重学JavaScript之面向对象的程序设计（创建对象）.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/09/15/前端两三问-20190915.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">前端两三问(20190915)</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/09/06/ES6入门之Proxy.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">ES6入门之Proxy</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/09/12/重学JavaScript之面向对象的程序设计（创建对象）.html&title=《重学js之JavaScript 面向对象的程序设计（创建对象）》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FsbNv9pi-n5RjjLT5h6WIP4Y-dYC" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/09/12/重学JavaScript之面向对象的程序设计（创建对象）.html&title=《重学js之JavaScript 面向对象的程序设计（创建对象）》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/09/12/重学JavaScript之面向对象的程序设计（创建对象）.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学js之JavaScript 面向对象的程序设计（创建对象）》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/09/12/重学JavaScript之面向对象的程序设计（创建对象）.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/09/12/重学JavaScript之面向对象的程序设计（创建对象）.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADLElEQVR42u3aS3LbQAwFQN//0s7WVQmp9wAlMcfNlUumxGloAeHz8RFfn1+ur6/8fs/V/fd33n/C/edc/fcNFzY2NvZD2J+31/0h8gPl79q8kliwsbGxT2Xnaeb+lYT3rqe0XwM2NjY2dlIktOkwCUdSR2BjY2Njt6klL0XuwftGFTY2NjZ2nnLyZNY2nnLef+ilYWNjY397dj4V/f5//5X5NjY2NvY3Zn+WV1sAJA39fNybJ9EXCmxsbOyD2O04Nse3vM2dw/NjY2NjH8SejVHb9k3eimqHuMnJhyUKNjY29qPYyTg2b9zv78yLmXx5CBsbG/tUdrs00y7u5LFvE2ESuMvzY2NjYx/B3izH5O379p4Zadg8wsbGxj6UPSs/8hTYrlFuBsDY2NjYZ7Nn6ap98Ozo7XigbTlhY2Njn8fO127yA7UrkrNTDdeGsLGxsQ9it+XH7Fd9C559GcOUjI2NjX0ce7MK08LaptXfuAcbGxv7uexkRaZt6OTj2Db0++HxH1Z2sLGxsY9g552WNi3l6SoP9P2nRSHAxsbGPpS9X45py4k2cPmo4MV7sbGxsX8Me5OuZgVGnurygA6XdbCxsbEfwp61fjYj2CTx5Os7eSPpMkzY2NjYD2fnBUbeDNqvAc1SaZ4asbGxsU9lt0miTVF1Rl2kuhcjDWxsbOxD2e9KP5tiJg9HG9zLTSVsbGzs49htyZGnkzwhvXfp57J/ho2NjX0EO/8Rnzxgv3YzK4ry+19889jY2NgPZxft9aDMyJGz4XFe6hSLO9jY2NhHsJMH74cBbXLK8bNRNDY2NvbT2Xlbp00b/yaUq+8WGxsb+yB2EoJ2GJAnp9lgeLW4iY2NjX0oe9YYaocK+TBgNn6Okis2Njb2EexZutoMBjaly/1T8texsbGxT2LvG0+z1n8SuDwptgHCxsbGPo89S1qr1vwioLPC5rICw8bGxj6IPVuFSZZs8hZVu6zThhUbGxsbe1YwvLcJldwfBQsbGxv7x7Pb8eqsxb8phOqVHWxsbOyHszfNnXwYkB83T5x5+YSNjY19KrtNRe2B9is1+dPz4QE2Njb2EexfOSRdydB1FBEAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

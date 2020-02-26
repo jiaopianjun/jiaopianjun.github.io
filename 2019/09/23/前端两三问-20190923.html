@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>前端两三问(20190923) | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="前端问题,前端日常问题">
+    <meta name="description" content="1、js如何获取数组的keyfunction getObjectKeys(object){     var keys = [];     for (var property in object)     return property; }  console.log(getObjectKeys(3332:[]))     // 33322、如何过滤数组中的空数据Array.prototype.no">
+<meta name="keywords" content="前端问题,前端日常问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端两三问(20190923)">
+<meta property="og:url" content="https://toc.lieme.cn/2019/09/23/前端两三问-20190923.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1、js如何获取数组的keyfunction getObjectKeys(object){     var keys = [];     for (var property in object)     return property; }  console.log(getObjectKeys(3332:[]))     // 33322、如何过滤数组中的空数据Array.prototype.no">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/Fkq-SFSXo6cxKwKtqkqLR4Y_4DNy">
+<meta property="og:updated_time" content="2019-09-23T08:32:08.849Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端两三问(20190923)">
+<meta name="twitter:description" content="1、js如何获取数组的keyfunction getObjectKeys(object){     var keys = [];     for (var property in object)     return property; }  console.log(getObjectKeys(3332:[]))     // 33322、如何过滤数组中的空数据Array.prototype.no">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/Fkq-SFSXo6cxKwKtqkqLR4Y_4DNy">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">前端两三问(20190923)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">前端两三问(20190923)</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-09-23T08:18:34.000Z" itemprop="datePublished" class="page-time">
+  2019-09-23
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端两三问/">前端两三问</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、js如何获取数组的key"><span class="post-toc-number">1.</span> <span class="post-toc-text">1、js如何获取数组的key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、如何过滤数组中的空数据"><span class="post-toc-number">2.</span> <span class="post-toc-text">2、如何过滤数组中的空数据</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、iview-checkboxGroup-动态删除某个值后，页面checkBox-选中状态错乱。"><span class="post-toc-number">3.</span> <span class="post-toc-text">3、iview checkboxGroup 动态删除某个值后，页面checkBox 选中状态错乱。</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#需求-："><span class="post-toc-number">3.1.</span> <span class="post-toc-text">需求 ：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#操作方法一："><span class="post-toc-number">3.1.0.1.</span> <span class="post-toc-text">操作方法一：</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#操作方法二："><span class="post-toc-number">3.1.0.2.</span> <span class="post-toc-text">操作方法二：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解决方法一："><span class="post-toc-number">3.2.</span> <span class="post-toc-text">解决方法一：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解决办法二："><span class="post-toc-number">3.3.</span> <span class="post-toc-text">解决办法二：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#延伸："><span class="post-toc-number">3.4.</span> <span class="post-toc-text">延伸：</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-前端两三问-20190923"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">前端两三问(20190923)</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-09-23 16:18:34" datetime="2019-09-23T08:18:34.000Z"  itemprop="datePublished">2019-09-23</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端两三问/">前端两三问</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        462
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        2 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h3 id="1、js如何获取数组的key"><a href="#1、js如何获取数组的key" class="headerlink" title="1、js如何获取数组的key"></a>1、js如何获取数组的key</h3><pre><code>function getObjectKeys(object){
+    var keys = [];
+    for (var property in object)
+    return property;
+}
+
+console.log(getObjectKeys(3332:[]))     // 3332</code></pre><h3 id="2、如何过滤数组中的空数据"><a href="#2、如何过滤数组中的空数据" class="headerlink" title="2、如何过滤数组中的空数据"></a>2、如何过滤数组中的空数据</h3><pre><code>Array.prototype.notempty = function() {
+  var arr = [];
+  this.map(function(val, index) {
+    if (val !== &quot;&quot; &amp;&amp; val != undefined) {
+      arr.push(val);
+    }
+  });
+  return arr;
+}
+this.selectHouse = this.selectHouse.notempty()</code></pre><h3 id="3、iview-checkboxGroup-动态删除某个值后，页面checkBox-选中状态错乱。"><a href="#3、iview-checkboxGroup-动态删除某个值后，页面checkBox-选中状态错乱。" class="headerlink" title="3、iview checkboxGroup 动态删除某个值后，页面checkBox 选中状态错乱。"></a>3、iview checkboxGroup 动态删除某个值后，页面checkBox 选中状态错乱。</h3><blockquote>
+<p>具体情况如下：</p>
+</blockquote>
+<h4 id="需求-："><a href="#需求-：" class="headerlink" title="需求 ："></a>需求 ：</h4><p>checkboxGroup v-for生成三个checkbox，默认勾选。当我点击某个checkbox默认取消勾选并且删除该checkbox。</p>
+<h6 id="操作方法一："><a href="#操作方法一：" class="headerlink" title="操作方法一："></a>操作方法一：</h6><p>从最后一个开始删，也就是删除默认绑定的model数组中的最后一个值，这时候剩余checkbox的选中状态是正常的。</p>
+<h6 id="操作方法二："><a href="#操作方法二：" class="headerlink" title="操作方法二："></a>操作方法二：</h6><p>但是如果从中间开始删，比如删除第二，那么第二个checkbox会被删除，但是第三个checkbox的选中状态样式没有了，model数据还是在的。 </p>
+<h4 id="解决方法一："><a href="#解决方法一：" class="headerlink" title="解决方法一："></a>解决方法一：</h4><p>我们在删除 model数据后，更新数据的时候用this.$nextTick进行数据更新</p>
+<h4 id="解决办法二："><a href="#解决办法二：" class="headerlink" title="解决办法二："></a>解决办法二：</h4><p>v-for 的时候key的取值不取 index 而取实际的value值</p>
+<h4 id="延伸："><a href="#延伸：" class="headerlink" title="延伸："></a>延伸：</h4><blockquote>
+<p>v-for在更新已渲染的元素列表的时候，采用 <strong>就地复用</strong> 策略，如果列表的数据发生变化，那么它会根据key值取判断值是否修改，如果修改则重新渲染这一项，否则则复用之前的数据。但是如果我们用 index 下标来作为 key，那么在上面的例子中，我们删除了第二个数据，数据由三条变成了两条，列表重新渲染，而原本第三个checkbox的key是2，由于model 数据长度由3变成了2。第三个checkbox的key由 2 变成了1 导致重新赋值渲染。所以就导致实际值存在，但选中状态缺消失了的问题。</p>
+</blockquote>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-09-23T08:32:08.849Z" itemprop="dateUpdated">2019-09-23 16:32:08</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端日常问题/">前端日常问题</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端问题/">前端问题</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/09/23/前端两三问-20190923.html&title=《前端两三问(20190923)》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/Fkq-SFSXo6cxKwKtqkqLR4Y_4DNy" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/09/23/前端两三问-20190923.html&title=《前端两三问(20190923)》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/09/23/前端两三问-20190923.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端两三问(20190923)》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/09/23/前端两三问-20190923.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/09/23/前端两三问-20190923.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/09/29/重学JavaScript之面向对象的程序设计（继承）.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">重学JavaScript之面向对象的程序设计（继承）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/09/17/前端两三问-20190917.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">前端两三问(20190917)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/09/23/前端两三问-20190923.html&title=《前端两三问(20190923)》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/Fkq-SFSXo6cxKwKtqkqLR4Y_4DNy" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/09/23/前端两三问-20190923.html&title=《前端两三问(20190923)》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/09/23/前端两三问-20190923.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端两三问(20190923)》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/09/23/前端两三问-20190923.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/09/23/前端两三问-20190923.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLUlEQVR42u3aS24jMQwFwNz/0s52gKTt98R2MJZKq4bRH5UWtETy6ysejx/j5+/P7796KnnbbQMDA+NjGY+nI5nWv/dcvf/qnqtv5XPDwMA4h9F+vl2C5P1rz2JgYGAkgbIIi8GEMDAwMOaMyZE1P/piYGBg3LW9y0NkHl7ffhbHwMD4QEaedf/767fUNzAwMD6K8ShHmyxLQmpbDPjlWxgYGFsz8gC31jCRlBOiA2ryBgwMjK0Zk8aLlp1cJ20cGBgY5zDy4+IkybXWVJEvBAYGxjmMtjwwafZaK4VefgsDA2Nrxl0B8a7t46hcioGBsSkj35DlibP8lzb19qJbBAMDY1PG2gPt1m3SSNE2mWFgYOzKWJtKnoBbS/3nmTQMDIwzGWsbvnZR2v+EF4EbAwNjU0Z7vMzDX94C24ZsDAyM0xh5MaBNt7VBMwnEUaINAwPjMEaCXEv6tw1hRWYOAwNjU8a9aa+2VWLUCoaBgXEMoz2s5mF6rbSw1kyGgYFxAiMvFbTpubq1K74zKmFiYGBsxFhrAlsrHiTLlG9SMTAwzmHMU135JNqjbzQ3DAyMTRmPciTp/kmQXSypYmBgbM2YBNO1l7ZH07Y4ioGBsSsjD7LJhCYptnyLWaw0BgbGRowisTUpNI6ne/kUBgYGRnyYnLR2jfawGBgYGHFDxmSb2DaZveV/AwMD4z9m5MWA/GPPMS34xRwwMDC2Zkz2XW1gbRdr3qKBgYHx4YxvIMGTYQkliWMAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>重学Javascript之引用类型 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="ECMAScript6">
+    <meta name="description" content="QQ图片20190827232014.jpg                 注意： 本文章为 《重学js之JavaScript高级程序设计》系列第五章【JavaScript引用类型】。   关于《重学js之Jav">
+<meta name="keywords" content="ECMAScript6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重学Javascript之引用类型">
+<meta property="og:url" content="https://toc.lieme.cn/2019/08/28/重学Javascript之引用类型.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="QQ图片20190827232014.jpg                 注意： 本文章为 《重学js之JavaScript高级程序设计》系列第五章【JavaScript引用类型】。   关于《重学js之Jav">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/Fm2oY7l_tLgNo86OBIp4oVScSKRM">
+<meta property="og:updated_time" content="2019-08-28T13:52:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重学Javascript之引用类型">
+<meta name="twitter:description" content="QQ图片20190827232014.jpg                 注意： 本文章为 《重学js之JavaScript高级程序设计》系列第五章【JavaScript引用类型】。   关于《重学js之Jav">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/Fm2oY7l_tLgNo86OBIp4oVScSKRM">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">重学Javascript之引用类型</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">重学Javascript之引用类型</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-08-28T13:46:00.000Z" itemprop="datePublished" class="page-time">
+  2019-08-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、object类型"><span class="post-toc-number">1.</span> <span class="post-toc-text">1、object类型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、Array类型"><span class="post-toc-number">2.</span> <span class="post-toc-text">2、Array类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-转换方法"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2.1 转换方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-栈方法"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.2 栈方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-3-队列方法"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">2.3 队列方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-4-重排序方法"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">2.4 重排序方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-5-操作方法"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">2.5 操作方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-Date-类型"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. Date 类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-继承的方法"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">3.1 继承的方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-日期的格式方式"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">3.2 日期的格式方式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-RegExp类型"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. RegExp类型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-Function类型"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. Function类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-1-没有重载"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">5.1 没有重载</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-2-函数表达式和函数声明"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">5.2 函数表达式和函数声明</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-3-作为值的函数"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">5.3 作为值的函数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-4-函数内部属性"><span class="post-toc-number">5.4.</span> <span class="post-toc-text">5.4 函数内部属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-4-函数属性和方法"><span class="post-toc-number">5.5.</span> <span class="post-toc-text">5.4 函数属性和方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-基本包装类型"><span class="post-toc-number">6.</span> <span class="post-toc-text">6. 基本包装类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-1-Boolean-类型"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">6.1 Boolean 类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-2-Number-类型"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">6.2 Number 类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-3-String-类型"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">6.3 String 类型</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-内置对象"><span class="post-toc-number">7.</span> <span class="post-toc-text">7. 内置对象</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-1-Global对象"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">7.1 Global对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-2-Math对象"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">7.2 Math对象</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-总结"><span class="post-toc-number">8.</span> <span class="post-toc-text">8. 总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-重学Javascript之引用类型"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">重学Javascript之引用类型</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-08-28 21:46:00" datetime="2019-08-28T13:46:00.000Z"  itemprop="datePublished">2019-08-28</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        3,994
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        15 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FmLI95FyHZVuSPN16RAverxYLfj1" alt="QQ图片20190827232014.jpg" title>
+                </div>
+                <div class="image-caption" style="display:none;">QQ图片20190827232014.jpg</div>
+            </figure>
+
+
+<blockquote>
+<p>注意： 本文章为 《重学js之JavaScript高级程序设计》系列第五章【JavaScript引用类型】。</p>
+</blockquote>
+<blockquote>
+<p>关于《重学js之JavaScript高级程序设计》是重新回顾js基础的学习。</p>
+</blockquote>
+<blockquote>
+<p>引用类型的值（对象）是引用类型的一个实例。在ES中，引用类型是一种数据结构，用于将数据和功能组织在一起，也被称之为类。但这并不妥当，引用类型有时候也被称为对象定义，因为它们描述的是一类对象所具有的属性和方法。</p>
+</blockquote>
+<p>对象是某个特定引用类型的实例。新对象是使用 new 操作符跟一个 构造函数来创建的。构造函数本身就是一个函数，只不过该函数是出于创建新对象的目的而定义的，如下：</p>
+<pre><code>var person = new Object();</code></pre><p>上面这行代码创建了 Object 引用类型的一个新实例，然后把该实例保存在变量person中。使用的构造函数是 Object ，它只为新对象定义了默认的属性和方法。</p>
+<h2 id="1、object类型"><a href="#1、object类型" class="headerlink" title="1、object类型"></a>1、object类型</h2><blockquote>
+<p>创建object实例的方式有两种。第一种使用new操作符后跟object函数，第二种使用对象字面量表示法，对象字面量是对象定义的一种简写形式。 </p>
+</blockquote>
+<pre><code>// 第一种方法
+
+var person = new Object()
+person.name = &apos;nice&apos;
+person.age = 20
+
+// 第二种方法
+
+var p = {
+    name : &apos;nice&apos;,
+    age: 29
+}</code></pre><blockquote>
+<p>我们可以通过两种方式来访问对象的属性</p>
+</blockquote>
+<pre><code>p.name = nice
+p[&apos;name&apos;] = nice</code></pre><h2 id="2、Array类型"><a href="#2、Array类型" class="headerlink" title="2、Array类型"></a>2、Array类型</h2><blockquote>
+<p>在ES 中数组的每一项可以保存任何类型的数据，也就是说，可以用数组的第一个位置来保存字符串，第二个位置来保存数值，第三个位置保存对象。另外数组的大小是可以动态调整的，可以随着数据的添加自动增长以容纳新的数据。</p>
+</blockquote>
+<p><strong>创建数组的两种方式</strong></p>
+<ol>
+<li>使用Array构造函数</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> c = new Array()     <span class="comment">// 初始值是  undefined</span></span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = new Array(<span class="number">20</span>)   <span class="comment">// 创建一个包含20个元素的数组</span></span><br><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = new Array(<span class="string">'a'</span>, <span class="string">'b'</span>)     <span class="comment">// 包含 a b 两个元素的数组</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>使用数组字面量表示法</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> <span class="selector-tag">a</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]  <span class="comment">// 包含3个数字的数组</span></span><br><span class="line"><span class="selector-tag">var</span> n = []      <span class="comment">// 一个空数组</span></span><br><span class="line"><span class="selector-tag">var</span> v = [<span class="string">'a'</span>, <span class="string">'c'</span>]  <span class="comment">// 两个字符串的数组</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>读取数组的值</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span>[<span class="number">0</span>]    <span class="comment">// 1  方括号中的值就是数组的索引。返回数组对应的值</span></span><br><span class="line"><span class="selector-tag">a</span>[<span class="number">4</span>]    <span class="comment">// 如果值超过了数组的长度，则会增加到该索引值加1的长度  </span></span><br><span class="line">n[<span class="number">2</span>]    <span class="comment">// [undefined, undefined]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>： 数组的length不是制度的，可以通过设置这个属性来往数组中增加删除项。数组的最后一项的索引 永远是  length -1,因此下一项的位置就是length。另外数组最多可以包含 4294967295个项，</p>
+<h3 id="2-1-转换方法"><a href="#2-1-转换方法" class="headerlink" title="2.1 转换方法"></a>2.1 转换方法</h3><blockquote>
+<p>在之前的描述中，所有的对象都具有 toLocaleString()、toString()  和 value() 方法，其中调用数组的 toString()和 valueOf() 方法会返回相同的值，即由数组中每个值的字符串形式拼接而成以逗号分隔的字符串。如下：</p>
+</blockquote>
+<pre><code>var a = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];
+a.toString()    // a,b,c
+a.valueOf()     // a,b,c</code></pre><p>数组继承的 toLocaleString()、toString()、valueOf 方法 在默认情况下都会以逗号分隔的字符串形式返回数组项。如果使用 ‘join’ 方法，则可以使用指定的分隔符来构建这个字符串。它只接受一个参数，用作分隔符的字符串，返回包含所有数组项的字符串。如下</p>
+<pre><code>var c = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]
+c.join(&apos;,&apos;)     // a,b,c
+c.join(&apos;/&apos;)     // a/b/c</code></pre><p><strong>注意：</strong> 数组中的某一项的值是null 或者 undefined，那么该值在join()、toLocaleString()、toString()、valueOf()方法返回的字符串中以空表示</p>
+<h3 id="2-2-栈方法"><a href="#2-2-栈方法" class="headerlink" title="2.2 栈方法"></a>2.2 栈方法</h3><blockquote>
+<p>在 ES 中 为数组也提供了一个让数组的行为类似于其他数据结构的方法，就是说数组可以表现的像栈一样呢，可以限制插入和删除的数据结构。 栈的特性就是 后进先出 ，最新添加的项最早被删除。栈中项的插入 和 移除只发生在栈的顶部。ES 为数组提供了 pop()  和  push() 方法</p>
+</blockquote>
+<pre><code>push() 是插入项，每次添加在数组的末尾，可以插入任意参数
+
+let a = [1,2]
+a.push(3)   // [1,2,3]
+
+pop() 删除数组的最后一项
+
+a.pop() //  [1,2]</code></pre><h3 id="2-3-队列方法"><a href="#2-3-队列方法" class="headerlink" title="2.3 队列方法"></a>2.3 队列方法</h3><blockquote>
+<p>栈数据结构是遵循 先进后出 ，而队列数据结构的访问规则 是 先进先出。队列的末端添加项，从列表的前端移除项。由于 push() 是想数组末端添加项的方法，如果要获取数组的首端项， 则 需要  shift()  方法。同时还有  unshift() 方法，在数组的最前端添加。</p>
+</blockquote>
+<pre><code>let a = [1,2]
+a.shift()   //  1   a =&gt; [2]
+
+a.unshift(3)    // a =&gt; [3,2]</code></pre><h3 id="2-4-重排序方法"><a href="#2-4-重排序方法" class="headerlink" title="2.4 重排序方法"></a>2.4 重排序方法</h3><blockquote>
+<p>数组中可以用 reverse()  和 sort() 对数组进行排序，其中 reverse() 是对数组反转。sort() 默认是对数组升序排列，但是也可以由条件进行控制。</p>
+</blockquote>
+<pre><code>let a = [1,2,3,4]
+a.reverse() // a =&gt; [4,3,2,1]
+
+let a = [1,3,5,2,7]
+a.sort()    // a =&gt; [1,2,3,5,7]</code></pre><h3 id="2-5-操作方法"><a href="#2-5-操作方法" class="headerlink" title="2.5 操作方法"></a>2.5 操作方法</h3><blockquote>
+<p>ES 为数组提供了很多方法， concat() 是基于当前数组创建一个新数组。</p>
+</blockquote>
+<p><strong>规则：</strong></p>
+<ol>
+<li>默认创建当前数组的副本，然后将接受到的参数添加到这个副本的末尾，返回新建的数组</li>
+<li>没有传递参数，就复制当前的数组并返回</li>
+<li>传递了一个或多个数组，则将这些数组的每一项添加到结果数组中。如果传递的值不是数组，则会将值添加到数组末尾</li>
+</ol>
+<blockquote>
+<p>slice() 基于当前数组中的一个或多个项创建新数组。接受 一到两个参数，即返回数组的开始和结束位置。如果只有一个参数，则返回的是起始位置到数组结束位置的所有值。它不会影响原数组。另外如果是两个参数，它返回的是第一个值到最后一个值前一个之间的值。</p>
+</blockquote>
+<pre><code>let a = [1,2,3,4,5,6,7,8]
+
+a.slice(2,4)    // [3, 4]</code></pre><blockquote>
+<p>splice() 用来 删除、插入、替换数组的值。</p>
+</blockquote>
+<ol>
+<li>删除 可以删除任意数量的项，只需要指定2个参数，要删除的第一个位置 和 要删除的数量。 splice(0,2) 删除数组的前两个</li>
+<li>插入 可以向指定位置插入任意数量的项，需要提供3个参数。 起始位置、0、要插入的项。splice(2,0,’a’) 从数组的 第二个项插入 ‘a’</li>
+<li>替换 可以向指定位置插入任意数量的项，同时删除任意数量的项。需要三个参数：起始位置、要删除的项数、要插入的任意数量。插入的数量不必与删除的项数相等。</li>
+</ol>
+<h2 id="3-Date-类型"><a href="#3-Date-类型" class="headerlink" title="3. Date 类型"></a>3. Date 类型</h2><blockquote>
+<p>创建一个日期对象   var now  = new Date() 可以 通过 Date.parse() 和 Date.UTC() 来获取特定的日期和时间对象</p>
+</blockquote>
+<pre><code>Date.parse() 接受一个表示日期的字符串参数。
+Date.UTC() 返回表示日期的毫秒数</code></pre><h3 id="3-1-继承的方法"><a href="#3-1-继承的方法" class="headerlink" title="3.1 继承的方法"></a>3.1 继承的方法</h3><blockquote>
+<p>跟其他类型一样，Date类型也重写了 toLocaleString()、toString() 和 valueOf()方法。在不同浏览器，不同时区，toLocalString() 返回值不同。</p>
+</blockquote>
+<h3 id="3-2-日期的格式方式"><a href="#3-2-日期的格式方式" class="headerlink" title="3.2 日期的格式方式"></a>3.2 日期的格式方式</h3><blockquote>
+<p>Date类型为日期格式化为字符串提供了如下方法：</p>
+</blockquote>
+<ul>
+<li>toDateString()  以特定于实现的格式显示星期几、月、日和年</li>
+<li>toTimeString()  以特定于实现的格式显示时、分、秒和时区</li>
+<li>toLocaleDateString()  以特定于地区的格式显示星期几、月、日和年</li>
+<li>toLocaleTimeString()  以特定于实现的格式显示时、分、秒</li>
+<li>toUTCString()  以特定于实现的格式完整的UTC时间</li>
+</ul>
+<h2 id="4-RegExp类型"><a href="#4-RegExp类型" class="headerlink" title="4. RegExp类型"></a>4. RegExp类型</h2><blockquote>
+<p>通过RegExp 类型支持正则表达式 </p>
+</blockquote>
+<p>g 表示全局模式，即模式被应用于所有字符串，而非发现的第一个匹配项时立即停止</p>
+<p>i 表示不区分大小写模式，即在确定匹配项时忽略模式与字符串的大小写</p>
+<p>m 表示多行模式，即在到达一行文本末尾时还会继续查找下一行中是否存在与模式匹配的项</p>
+<h2 id="5-Function类型"><a href="#5-Function类型" class="headerlink" title="5. Function类型"></a>5. Function类型</h2><blockquote>
+<p>每一个函数都是Function类型的实例，而且都与其他引用类型一样具有属性和方法。由于函数是对象，因此函数名实际上也时一个指向函数对象的指针，不会与某个函数绑定，函数通常是使用函数声明语法定义的。如下：</p>
+</blockquote>
+<pre><code>function a (b,c){
+    return b + c
+}
+
+// 函数表达式声明
+
+var s  = function(a,b){
+    return a + b
+}</code></pre><h3 id="5-1-没有重载"><a href="#5-1-没有重载" class="headerlink" title="5.1 没有重载"></a>5.1 没有重载</h3><blockquote>
+<p>如果命名两个相同 function   那么后一个将会覆盖前一个</p>
+</blockquote>
+<pre><code>function a(b) {
+    retrun b + 100
+}
+
+function a(b){
+    return b + 200
+}
+
+a(100)  // 300</code></pre><h3 id="5-2-函数表达式和函数声明"><a href="#5-2-函数表达式和函数声明" class="headerlink" title="5.2 函数表达式和函数声明"></a>5.2 函数表达式和函数声明</h3><blockquote>
+<p>在执行环境中加载数据的时候，对于函数表达式和函数声明，解析器优先读取函数声明，并使其在执行任何代码之前可用，至于函数表达式，则必须等到解析器执行到它所在的代码行，才会真正的被执行。</p>
+</blockquote>
+<h3 id="5-3-作为值的函数"><a href="#5-3-作为值的函数" class="headerlink" title="5.3 作为值的函数"></a>5.3 作为值的函数</h3><blockquote>
+<p>因为ES 中的函数名本身就是变量，所以函数也可以作为值来使用，也就是说，不仅可以像传递参数一样把一个函数 传递给另外一个函数，而且可以将一个函数作为另外一个函数的结果返回。 </p>
+</blockquote>
+<h3 id="5-4-函数内部属性"><a href="#5-4-函数内部属性" class="headerlink" title="5.4 函数内部属性"></a>5.4 函数内部属性</h3><blockquote>
+<p>在函数内部，有两个特殊的对象：arguments  和 this。其中，arguments 是一个类数组对象，包含着传入函数中的所有参数，虽然 arguments 的主要用途是保存函数参数，但是这个对象还有一个名叫 callee 的属性，该属性是一个指针，指向拥有这个 arguments对象的函数。 </p>
+</blockquote>
+<blockquote>
+<p>this 引用的是函数据以执行操作的对象，或者说 this 是函数在执行时所处作用域，如果是全局  this 指向 window</p>
+</blockquote>
+<p><strong>注意：</strong> 函数的名字仅仅是一个包含指针的变量而已。 </p>
+<h3 id="5-4-函数属性和方法"><a href="#5-4-函数属性和方法" class="headerlink" title="5.4 函数属性和方法"></a>5.4 函数属性和方法</h3><blockquote>
+<p>ES 中函数是对象，因此函数也有属性和方法，每个函数都包含两个属性：length  和 prototype。其中length 表示 函数希望接收的命名参数的个数。</p>
+</blockquote>
+<blockquote>
+<p>prototype 是保存它们所有实例方法的真正所在，换句话说，诸如 toString() 和 valueOf() 等方法实际上保存在prototype名下。只不过通过各自对象的实例访问。</p>
+</blockquote>
+<p>每个函数都包含两个非继承而来的方法： apply() 和 call()。这两个方法的用途都是特定的作用域中调用函数，实际上等于设置函数内 this 对象的值。</p>
+<pre><code>apply()
+
+接受两个参数：一个是其运行函数的作用域，另一个是参数数组。
+其中第二个参数可以是 Array 的实例也可以是 arguments对象。 
+
+call()
+
+和 apply() 的作用相同，只是接受参数的方式不同，第一个参数同
+apply(), 第二个参数是一个参数列表而不是数组。</code></pre><h2 id="6-基本包装类型"><a href="#6-基本包装类型" class="headerlink" title="6. 基本包装类型"></a>6. 基本包装类型</h2><blockquote>
+<p>为了便于操作基本类型值，ES 还提供了3个特殊的引用类型： Boolean、Number 和 String。</p>
+</blockquote>
+<h3 id="6-1-Boolean-类型"><a href="#6-1-Boolean-类型" class="headerlink" title="6.1 Boolean 类型"></a>6.1 Boolean 类型</h3><blockquote>
+<p>Boolean 类型是布尔值对应的引用类型。要创建Boolean对象，可以像下面这样调用Boolean构造函数并传入 true 或 false 值。</p>
+</blockquote>
+<pre><code>let a = new Boolean(true)</code></pre><p><strong>注意：</strong>  基本类型与引用类型的布尔值还有两个区别，首先，typeof操作符对基本类型返回“boolean”,而对引用类型返回“object”。其次，由于Boolean对象是Boolean类型的实例，所以使用 instanceof操作符 测试 Boolean 对象会返回 true，而测试基本类型的布尔值则返回 false。</p>
+<h3 id="6-2-Number-类型"><a href="#6-2-Number-类型" class="headerlink" title="6.2 Number 类型"></a>6.2 Number 类型</h3><blockquote>
+<p>Number 是数字值对应的引用类型。要创建Number对象，可以在调用Number构造函数是向其中传递相应的数值。如下：</p>
+</blockquote>
+<pre><code>let n = new Number(10)</code></pre><p>Number 提供了 toFixed() 方法，来格式化为字符串</p>
+<p>在使用 typeof操作符测试基本类型数值时，始终返回 number ，而在测试 Number 对象时，则返回  object。Number 对象是 Number 类型的实例。而基本类型的数值则不是。</p>
+<h3 id="6-3-String-类型"><a href="#6-3-String-类型" class="headerlink" title="6.3 String 类型"></a>6.3 String 类型</h3><blockquote>
+<p>String 类型是字符串的对象包装类型，如下：</p>
+</blockquote>
+<pre><code>let s = new String(&apos;zifuchuan&apos;)</code></pre><ol>
+<li>字符方法</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">charAt</span><span class="params">()</span></span> <span class="comment">// 接收一个参数，基于0的字符位置。以单字符串的形式返回给定位置的哪个字符。</span></span><br><span class="line"></span><br><span class="line">let s = <span class="string">'abc'</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span>.charAt(<span class="number">1</span>) <span class="comment">// a</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">charCodeAt</span><span class="params">()</span></span>    <span class="comment">// 也是接受一个参数，但是返回的是字符串的编码</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span>.charCodeAt()  <span class="comment">// 97</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>字符串操作方法</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">concat</span><span class="params">()</span></span>    <span class="comment">// 接受任意字符串，将字符串进行拼接</span></span><br><span class="line"><span class="function"><span class="title">slice</span><span class="params">()</span></span>     <span class="comment">// 截取字符串 从第一个参数 到第二个参数结束，如没有第二个参数则到最后一位</span></span><br><span class="line"><span class="function"><span class="title">substring</span><span class="params">()</span></span> <span class="comment">// 同上</span></span><br><span class="line"><span class="function"><span class="title">substr</span><span class="params">()</span></span>    <span class="comment">// 同上</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>字符串的位置方法</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">indexOf</span><span class="params">()</span></span>   <span class="comment">// 都是从第一个字符串中搜索给定的子字符串</span></span><br><span class="line"><span class="function"><span class="title">lastIndexOf</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>字符串大小写转换</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">toLocaleUpperCase</span><span class="params">()</span></span>     <span class="comment">// 转为大写</span></span><br><span class="line"><span class="function"><span class="title">toUpperCase</span><span class="params">()</span></span>   <span class="comment">//  同上</span></span><br><span class="line"><span class="function"><span class="title">toLocaleLowerCase</span><span class="params">()</span></span>     <span class="comment">// 转为小写</span></span><br><span class="line"><span class="function"><span class="title">toLowerCase</span><span class="params">()</span></span>   <span class="comment">// 同上</span></span><br></pre></td></tr></table></figure>
+
+
+<ol start="5">
+<li>字符串的模式匹配方法</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">match</span><span class="params">()</span></span> <span class="comment">// 接受一个参数，要么为正则表达式，要么为RegExp 对象。</span></span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>localeCompare() 方法</li>
+</ol>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">比较两个字符串，返回如下：</span><br><span class="line">    </span><br><span class="line">    -<span class="ruby"> 如果字符串在字母表中应该排在字符串参数之前，则返回负数</span></span><br><span class="line"><span class="ruby">    - 如果字符串等于字符串参数，返回<span class="number">0</span>，</span></span><br><span class="line"><span class="ruby">    - 如果字符串在字母表中排在字符串参数之后，返回一个正数。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="7-内置对象"><a href="#7-内置对象" class="headerlink" title="7. 内置对象"></a>7. 内置对象</h2><blockquote>
+<p>不依赖于宿主环境的对象，这些对象在ES程序执行之前就已经存在了。即不必显式地实例化内置对象。 </p>
+</blockquote>
+<h3 id="7-1-Global对象"><a href="#7-1-Global对象" class="headerlink" title="7.1 Global对象"></a>7.1 Global对象</h3><blockquote>
+<p>不属于任何其他对象的属性和方法，最终都是它的属性和方法。没有全局变量或全局函数，所有在全局作用域中定义的属性和函数，都是Global对象的属性。</p>
+</blockquote>
+<h3 id="7-2-Math对象"><a href="#7-2-Math对象" class="headerlink" title="7.2 Math对象"></a>7.2 Math对象</h3><blockquote>
+<p>ES中为了保存数学公式和信息提供了一个公共位置，即Math对象。</p>
+</blockquote>
+<h2 id="8-总结"><a href="#8-总结" class="headerlink" title="8. 总结"></a>8. 总结</h2><ul>
+<li>引用类型与传统面向对象程序设计中的类相似，但实现不同</li>
+<li>Object 是一个基础类型，其他所有类型都从Object继承了基本的行为。</li>
+<li>Array 类型是一组值的有序列表，同时还提供了操作和转换这些值的功能</li>
+<li>Date 类型提供了有关日期和时间信息，包括当前日期和时间以及相关的计算功能 </li>
+<li>RegExp 类型是ES 支持正则表达式的一个接口，提供了基本的和一些高级的正则表达式功能。</li>
+<li>函数实际上是 Function 类型的实例，因此函数也是对象，而这一点正是 Javascript 最有特色的地方。由于函数也是对象，所有函数也拥有方法。</li>
+<li>每个包装类型都映射到同名的基本类型</li>
+<li>在读取模式下访问基本类型值时，就会创建对应的基本包装类型的一个对象，从而方便了数据操作。</li>
+<li>操作基本类型值的语句一经执行完毕，就会立即销毁新创建的包装类型</li>
+<li>在所有代码执行之前，作用域中就已经存在两个内置对象 Global 和 Math.</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2019/6/18/16b69606d7c1155c?w=258&h=258&f=jpeg&s=26659" alt></p>
+<p align="center" style="font-size:30px;color:#1c8a95"> 欢迎关注 公众号【小夭同学】 </p>
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-08-28T13:52:26.000Z" itemprop="dateUpdated">2019-08-28 21:52:26</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/08/28/重学Javascript之引用类型.html&title=《重学Javascript之引用类型》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/Fm2oY7l_tLgNo86OBIp4oVScSKRM" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/08/28/重学Javascript之引用类型.html&title=《重学Javascript之引用类型》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/08/28/重学Javascript之引用类型.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学Javascript之引用类型》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/08/28/重学Javascript之引用类型.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/08/28/重学Javascript之引用类型.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/09/06/ES6入门之Proxy.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">ES6入门之Proxy</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/08/15/hexo博客首页改版.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">hexo博客首页改版</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/08/28/重学Javascript之引用类型.html&title=《重学Javascript之引用类型》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/Fm2oY7l_tLgNo86OBIp4oVScSKRM" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/08/28/重学Javascript之引用类型.html&title=《重学Javascript之引用类型》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/08/28/重学Javascript之引用类型.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学Javascript之引用类型》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/08/28/重学Javascript之引用类型.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/08/28/重学Javascript之引用类型.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACx0lEQVR42u3awW7CMBAEUP7/p6nUKyWZWduFw8sJAXXyjGRvx/t4xNfz93r3/uunr++/+87r91+v62fYcOHh4eGNHr0degbedcdkBDw8PLzTvOvNIBn63aftaNdTnz8zHh4e3jfwWlhbFr8b7XqC8PDw8L6Z124bsy2hfY2Hh4f3KV6+6CdT05bLyZMcz1rw8PDwYl57APYNrw+e7+Hh4eEtnKony25eTOfbxmwz+OOv8PDw8A7wrsvlvd1NK9PUtnNFvQx4eHh4I95600BSgudTubJV/HF3PDw8vAO8lUgiPypLjtDaWLkdEw8PD28XL7HOWqny5XsWZ0S/Eh4eHt4BXr7Izh4uKYjzoCGZiCKYwMPDwxvx8gdq26FmEW1bat/8GHh4eHjHeG17U1vmtqFwO2VRGY2Hh4e3lZcPnZfLs2K6bWi4mVA8PDy8Y7yV4doIo91CVqJePDw8vBO8fLlvI9SkcWpWRrcj4+Hh4Z3gzYKG5DbthtEy2pHx8PDwdvHyQCGPJ2aV7UpDw9tx8PDw8Lby2mV9pchOItokEEk2kpsYFw8PD2+B1wambfibl87ruevN9oCHh4e3lTcrZPe2F8xijhqGh4eHt8x7xtdK9JAcVrXFd7TZ4OHh4R3mtS1Qs8B3JWioJwgPDw/vAG+lkM0D31mDQrtt1L8kHh4e3iZee/yfvJ9vKit/VeQreHh4eMu8vHSefTMvr/P75gE0Hh4e3v/w2qOsNoCYRcbDLQ0PDw9vK+9ZXu2k5CX4kQYCPDw8vAO89iDqxDdXCvo88MXDw8Pby9tV4LaP2y7ryYHcY5Yl4+Hh4Y14+T/5s9u3G8lsg7nJWvDw8PA+xMvDhagdavToRTMBHh4e3kd57W3Wo+Ek3r0prPHw8PCO8ZIwol3oV5oGVpq68PDw8E7z2mOt6+V7tujPDrc2NA3g4eHhdWP+AGm62k9NUznZAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

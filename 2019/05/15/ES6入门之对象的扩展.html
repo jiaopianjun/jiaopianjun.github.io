@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>ES6入门之对象的扩展 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="ECMAScript6">
+    <meta name="description" content="1. 属性的简洁表示法 在ES6中 允许直接写入变量和函数，作为对象的属性和方法，使得代码的书写更为简洁。  const f = &amp;apos;a&amp;apos; const b = {f} b  // {f: &amp;apos;a&amp;apos;}  等同于 const b = {f: f}在ES6中允许在对象内直接写变量，这时候属性名为变量名，属性值就是变量值 function u(x, y){     re">
+<meta name="keywords" content="ECMAScript6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6入门之对象的扩展">
+<meta property="og:url" content="https://toc.lieme.cn/2019/05/15/ES6入门之对象的扩展.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1. 属性的简洁表示法 在ES6中 允许直接写入变量和函数，作为对象的属性和方法，使得代码的书写更为简洁。  const f = &amp;apos;a&amp;apos; const b = {f} b  // {f: &amp;apos;a&amp;apos;}  等同于 const b = {f: f}在ES6中允许在对象内直接写变量，这时候属性名为变量名，属性值就是变量值 function u(x, y){     re">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-10-21T00:07:42.415Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6入门之对象的扩展">
+<meta name="twitter:description" content="1. 属性的简洁表示法 在ES6中 允许直接写入变量和函数，作为对象的属性和方法，使得代码的书写更为简洁。  const f = &amp;apos;a&amp;apos; const b = {f} b  // {f: &amp;apos;a&amp;apos;}  等同于 const b = {f: f}在ES6中允许在对象内直接写变量，这时候属性名为变量名，属性值就是变量值 function u(x, y){     re">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">ES6入门之对象的扩展</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">ES6入门之对象的扩展</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-05-15T13:19:00.000Z" itemprop="datePublished" class="page-time">
+  2019-05-15
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-属性的简洁表示法"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 属性的简洁表示法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-属性名表达式"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 属性名表达式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-方法的-name-属性"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 方法的 name 属性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-属性的可枚举性和遍历"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. 属性的可枚举性和遍历</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#可枚举性"><span class="post-toc-number">4.0.1.</span> <span class="post-toc-text">可枚举性</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#属性的遍历"><span class="post-toc-number">4.0.2.</span> <span class="post-toc-text">属性的遍历</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-super关键字"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. super关键字</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-ES6入门之对象的扩展"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">ES6入门之对象的扩展</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-05-15 21:19:00" datetime="2019-05-15T13:19:00.000Z"  itemprop="datePublished">2019-05-15</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        1,203
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        5 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h2 id="1-属性的简洁表示法"><a href="#1-属性的简洁表示法" class="headerlink" title="1. 属性的简洁表示法"></a>1. 属性的简洁表示法</h2><blockquote>
+<p>在ES6中 允许直接写入变量和函数，作为对象的属性和方法，使得代码的书写更为简洁。</p>
+</blockquote>
+<pre><code>const f = &apos;a&apos;
+const b = {f}
+b  // {f: &apos;a&apos;}
+
+等同于
+const b = {f: f}</code></pre><p>在ES6中允许在对象内直接写变量，这时候属性名为变量名，属性值就是变量值</p>
+<pre><code>function u(x, y){
+    return {x, y}
+}
+
+// ====
+
+function u(x, y){
+    return {x: x, y: y }
+}
+
+u(1, 2)   // {x:1, y: 2}
+
+
+或者一下写法：
+
+function o() {
+    const x = 1;
+    const x = 2;
+    return {x, y}
+}
+o() // {x:1, y:2}</code></pre><h2 id="2-属性名表达式"><a href="#2-属性名表达式" class="headerlink" title="2. 属性名表达式"></a>2. 属性名表达式</h2><blockquote>
+<p>在JavaScript中属性名的表达式的方法有两种，一种 直接用标识符作为属性名，第二种用表达式作为属性名。第二种写的时候表达式要放在方括号之内</p>
+</blockquote>
+<pre><code>//一
+obj.foo = true
+
+//二
+obj[&apos;a&apos; + &apos;bc&apos;] = 123
+
+//三
+let t = &apos;m&apos;
+
+let obj = {
+    [t]: true,
+    [&apos;a&apos; + &apos;bc&apos;]: 123
+}</code></pre><p>表达式还可以用来定义方法名(注意：属性名表达式不能和简洁表示法同时使用)</p>
+<pre><code>let obj = {
+    [&apos;h&apos; + &apos;ello&apos;]() {
+        return &apos;hi&apos;
+    }
+}
+
+obj.hello() // hi</code></pre><p>如果属性名表达式是一个对象，则默认情况下会自动将对象转为字符串[object Object]</p>
+<pre><code>const ka = {a: 1}
+const kb = {b: 2}
+
+const myObj = {
+    [ka]: &apos;va&apos;,
+    [kb]: &apos;vc&apos;
+}
+
+myObj // Object {[object Object]: &apos;vc&apos;}</code></pre><h2 id="3-方法的-name-属性"><a href="#3-方法的-name-属性" class="headerlink" title="3. 方法的 name 属性"></a>3. 方法的 name 属性</h2><blockquote>
+<p>函数的name 属性，返回函数名，对象方法也是函数，因此也由name 属性</p>
+</blockquote>
+<pre><code>const p = {
+    n() {
+        console.log(&apos;h&apos;)
+    }
+}
+
+p.n.name // n</code></pre><p>特殊情况  getter 和 setter  属性是在 get 和 set上面</p>
+<pre><code>const obj = {
+    get foo() {},
+    set fod() {}
+}
+
+obj.foo.name // undefined
+
+const d = Object.getOwnPropertyDescriptor(obj, &apos;foo&apos;)
+
+d.get.name // get foo
+d.set.name // set fod</code></pre><p>特殊情况 bind创造的函数  name 属性返回  bound 加上原有函数的名字</p>
+<pre><code>var do = function(){
+
+}
+do.bind().name // bound do</code></pre><p>特殊情况 Function构造函数创造的函数，name 返回 anonymous</p>
+<pre><code>(new Function()).name // anonymous</code></pre><p>如果对象的方法是一个Symbol  那么name  返回这个 Symbol的描述</p>
+<pre><code>const k = Symbol(&apos;描述&apos;)
+k.name // &quot;[描述]&quot;</code></pre><h2 id="4-属性的可枚举性和遍历"><a href="#4-属性的可枚举性和遍历" class="headerlink" title="4. 属性的可枚举性和遍历"></a>4. 属性的可枚举性和遍历</h2><h4 id="可枚举性"><a href="#可枚举性" class="headerlink" title="可枚举性"></a>可枚举性</h4><blockquote>
+<p>对象的每个属性都有一个描述对象，用来控制该属性的行为，Object.getOwnPropertyDescriptor 方法可以获取该属性的描述对象</p>
+</blockquote>
+<pre><code>let obj = {f: 234}
+Object.getOwnPropertyDescriptor(obj, &apos;foo&apos;)
+//  {
+//    value: 234,
+//    writable: true,
+//    enumerable: true,
+//    configurable: true
+//  }</code></pre><p>描述对象的 enumerable 属性，称为 “可枚举性”，如果该属性为true就表示某些操作会忽略当前操作</p>
+<pre><code>有四个操作会忽略 enumerate 为 false 的属性
+
+- for...in循环： 只遍历对象自身和继承的可枚举的属性
+- Object.keys()：返回对象自身的所有可枚举的属性的键名
+- JSON.stringify(): 只串行化对象自身的可枚举的属性
+- Object.assign(): 忽略enumerable为false的属性，只
+拷贝对象自身的可枚举的属性</code></pre><p>ES6中 所有class 的原型的方法都是不可枚举的</p>
+<h4 id="属性的遍历"><a href="#属性的遍历" class="headerlink" title="属性的遍历"></a>属性的遍历</h4><blockquote>
+<p>ES6一共有5种方法可以遍历对象的属性。</p>
+</blockquote>
+<pre><code>（1）for...in
+
+for...in循环遍历对象自身的和继承的可枚举属性（不含 Symbol 属性）。
+
+（2）Object.keys(obj)
+
+Object.keys返回一个数组，包括对象自身的（不含继承的）所有可枚举属性（不含 Symbol 属性）的键名。
+
+（3）Object.getOwnPropertyNames(obj)
+
+Object.getOwnPropertyNames返回一个数组，包含对象自身的所有属性（不含 Symbol 属性，但是包括不可枚举属性）的键名。
+
+（4）Object.getOwnPropertySymbols(obj)
+
+Object.getOwnPropertySymbols返回一个数组，包含对象自身的所有 Symbol 属性的键名。
+
+（5）Reflect.ownKeys(obj)
+
+Reflect.ownKeys返回一个数组，包含对象自身的所有键名，不管键名是 Symbol 或字符串，也不管是否可枚举。 1）for..in
+
+
+以上五种方法遍历对象的键名，都遵循同样的属性遍历的次序股则
+
+    首先遍历所有数值键，按照数值升序排列。
+    其次遍历所有字符串键，按照加入时间升序排列。
+    最后遍历所有 Symbol 键，按照加入时间升序排列。</code></pre><h2 id="5-super关键字"><a href="#5-super关键字" class="headerlink" title="5. super关键字"></a>5. super关键字</h2><blockquote>
+<p>this的关键字总是指向函数所在的当前对象，ES6 又新增了另一个类似的关键字 super，指向当前对象的原型对象</p>
+</blockquote>
+<p>注意：super关键字表示原型对象时，只能用在对象的方法之中，用在其他他地方都会报错。</p>
+<pre><code>// 报错
+const obj = {
+  foo: super.foo
+}
+
+// 报错
+const obj = {
+  foo: () =&gt; super.foo
+}
+
+// 报错
+const obj = {
+  foo: function () {
+    return super.foo
+  }
+}</code></pre><p>上面三种super的用法都会报错，因为对于 JavaScript 引擎来说，这里的super都没有用在对象的方法之中。第一种写法是super用在属性里面，第二种和第三种写法是super用在一个函数里面，然后赋值给foo属性。目前，只有对象方法的简写法可以让 JavaScript 引擎确认，定义的是对象的方法。</p>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-10-21T00:07:42.415Z" itemprop="dateUpdated">2019-10-21 08:07:42</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/05/15/ES6入门之对象的扩展.html&title=《ES6入门之对象的扩展》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/05/15/ES6入门之对象的扩展.html&title=《ES6入门之对象的扩展》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/05/15/ES6入门之对象的扩展.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之对象的扩展》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/05/15/ES6入门之对象的扩展.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/05/15/ES6入门之对象的扩展.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/05/21/ES6入门之对象的新增方法.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">ES6入门之对象的新增方法</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/05/14/Node.js 回调函数和事件循环.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Node.js 回调函数和事件循环</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/05/15/ES6入门之对象的扩展.html&title=《ES6入门之对象的扩展》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/05/15/ES6入门之对象的扩展.html&title=《ES6入门之对象的扩展》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/05/15/ES6入门之对象的扩展.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之对象的扩展》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/05/15/ES6入门之对象的扩展.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/05/15/ES6入门之对象的扩展.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuElEQVR42u3aQW4jMQwEwPz/09nrLrDjdJOSkwA1J2Nsa1QyIMokPz7i6/Ph2nw3H7N9Yn3h4eHhHZr638M9PeD1nfbzr0d4ms8XC4SHh4d3jfe0o+aTuBcAnpb79Zzx8PDwfg7vNSw5384mjYeHh/d7eXmSYnMoT0bDw8PD+15eO9H8MJ0fl5MD98VcCx4eHl6XB4iqSD/n9ZX6Hh4eHt61on6yHecH6P3x/XE+eHh4eBd4+YabJxra5UgO8Zt54uHh4d3g3ShQ5YvSLtZmnnh4eHineLOUaNtAkEyo+B3aYICHh4d3iJdvzfti/yxNnDz38Q4eHh7eBV7+yORO/u6mWeFKTQ8PDw9vVFvfNArk4SGfdNK2VdT38PDw8A7xkonmhf/Ndr/PqXyRxsXDw8M7ypsdo2elrDyQzMbBw8PDew9vM1AbGPLExyZtgYeHh/ceXtsK0BaukjCwafn6osqHh4eHd5TX/uGfBYY2wZEX1ep2ATw8PLwFr00ozEZoy2Ozz0RpCDw8PLw1b5ac3QSDPK2w6Zv6DxIPDw/vEO/UX/0klZAfo9sWqyI/jYeHh3eUlydw6xJUeb/odHg9czw8PLxrvGKrHW3Z+5CQF9iGlTc8PDy8rqpVX0n6YL+Is7BxgIqHh4c34rVFprONU0nIWQUJPDw8vDVvw9gkZGep4TZ1goeHh/dOXr7p581S+1DUNh/g4eHh3eblm34bHk4FjDxRgoeHh3eD91leySG4bRc4+61/XuPh4eFd4G028bbE1aZr2++u6nt4eHh4JW+WVsiDRx5y2nejHwAPDw/vGu9Uc1W+0Z+6oj4IPDw8vG/ltafyNjDky1dkqfHw8PB+AG9WY2qXbNU0gIeHh3eZlycC2nJUm0rYtBSsci14eHh4MW/2hz/fxPM7swU6kODAw8PDS3l/AAIfIhbTJoBZAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

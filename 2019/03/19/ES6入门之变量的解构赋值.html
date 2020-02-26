@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>ES6入门之变量的解构赋值 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="ECMAScript6">
+    <meta name="description" content="1.数组的解构赋值 基本用法 ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构。  在ES6之前想要为变量赋值，只能指定其值，如下： let a = 1; let b = 2而在ES6中可以写成这样，如下： let [a,b] = [1,2] // a = 1, b = 2值得注意的是，等式两边的值要对等，这样左边的变量才会被赋上右边对应的值，如果不对等左边的值将会出现">
+<meta name="keywords" content="ECMAScript6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6入门之变量的解构赋值">
+<meta property="og:url" content="https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1.数组的解构赋值 基本用法 ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构。  在ES6之前想要为变量赋值，只能指定其值，如下： let a = 1; let b = 2而在ES6中可以写成这样，如下： let [a,b] = [1,2] // a = 1, b = 2值得注意的是，等式两边的值要对等，这样左边的变量才会被赋上右边对应的值，如果不对等左边的值将会出现">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2020-02-03T08:47:50.012Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6入门之变量的解构赋值">
+<meta name="twitter:description" content="1.数组的解构赋值 基本用法 ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构。  在ES6之前想要为变量赋值，只能指定其值，如下： let a = 1; let b = 2而在ES6中可以写成这样，如下： let [a,b] = [1,2] // a = 1, b = 2值得注意的是，等式两边的值要对等，这样左边的变量才会被赋上右边对应的值，如果不对等左边的值将会出现">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">ES6入门之变量的解构赋值</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">ES6入门之变量的解构赋值</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-19T13:34:00.000Z" itemprop="datePublished" class="page-time">
+  2019-03-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-数组的解构赋值"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.数组的解构赋值</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#基本用法"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">基本用法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#默认值"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">默认值</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对象的解构赋值"><span class="post-toc-number">2.</span> <span class="post-toc-text">对象的解构赋值</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#嵌套赋值"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">嵌套赋值</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#默认值-1"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">默认值</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#注意点："><span class="post-toc-number">2.1.0.1.</span> <span class="post-toc-text">注意点：</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#字符串的解构赋值"><span class="post-toc-number">3.</span> <span class="post-toc-text">字符串的解构赋值</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数值和布尔值的解构赋值"><span class="post-toc-number">4.</span> <span class="post-toc-text">数值和布尔值的解构赋值</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#函数参数的解构赋值"><span class="post-toc-number">5.</span> <span class="post-toc-text">函数参数的解构赋值</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他"><span class="post-toc-number">6.</span> <span class="post-toc-text">其他</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#不能使用圆括号的情况"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">不能使用圆括号的情况</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#可以使用圆括号的情况"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">可以使用圆括号的情况</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解构赋值的用途"><span class="post-toc-number">7.</span> <span class="post-toc-text">解构赋值的用途</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-ES6入门之变量的解构赋值"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">ES6入门之变量的解构赋值</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-19 21:34:00" datetime="2019-03-19T13:34:00.000Z"  itemprop="datePublished">2019-03-19</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        1,447
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        6 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h3 id="1-数组的解构赋值"><a href="#1-数组的解构赋值" class="headerlink" title="1.数组的解构赋值"></a>1.数组的解构赋值</h3><hr>
+<h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><blockquote>
+<p>ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构。</p>
+</blockquote>
+<p>在ES6之前想要为变量赋值，只能指定其值，如下：</p>
+<pre><code>let a = 1;
+let b = 2</code></pre><p>而在ES6中可以写成这样，如下：</p>
+<pre><code>let [a,b] = [1,2]
+// a = 1, b = 2</code></pre><p>值得注意的是，等式两边的值要对等，这样左边的变量才会被赋上右边对应的值，如果不对等左边的值将会出现<strong>undefined</strong>，如下写法：</p>
+<pre><code>let [foo,[[bar],baz]] = [1,[[2],3]]
+foo // 1
+bar // 2
+baz // 3
+
+注意：只有左右两边的 格式一定要对等，数量可以不对等。
+
+let [a,b,c] = [1,2]
+a = 1, b = 2, c = undefined
+
+let [a,,c] = [1,2,3]
+a = 1, c = 3
+
+let [a, ...b] = [1,2,3]
+a = 1, b = [2,3]
+
+let [a] = []
+let [b,a] = [1]
+a = undefined</code></pre><p>还有一种情况，等号左边为数组，但是等号右边为其他值，将会报错。如下：</p>
+<pre><code>let [a] = 1;
+let [a] = false;
+let [a] = NaN;
+let [a] = undefined;
+let [a] = null;
+let [a] = {};
+
+以上都会报错</code></pre><p>但是如果左边为数组，右边为字符串，将会取字符串的第一个下标的值</p>
+<pre><code>let [a] = &apos;121321&apos;  a = &apos;1&apos;
+let [a] = &apos;adgasg&apos;  a = &apos;a&apos;</code></pre><p>对于Set结构，同样可以使用数组的解构赋值。</p>
+<pre><code>let [x,y,z] = new Set([1,2,3])
+x = 1, y = 2, z = 3</code></pre><h4 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h4><blockquote>
+<p>解构赋值允许指定默认值</p>
+</blockquote>
+<pre><code>let [a = 3] = []        // a:3
+let [a = 3,b] = [,4]    // a:3 b:4
+let [a = 3,b] = [5,4]   // a:5 b:4</code></pre><blockquote>
+<p>特殊</p>
+</blockquote>
+<pre><code>let [a = 3] = [undefined]   // a:3
+let [a = 3] = [null]        // a:null</code></pre><p>++++==Tips==++: 在es6中使用严格相等运算符，在结构赋值中如果需要默认值生效，则应对等的值为<strong>undefined</strong>的时候才会采用默认值，否则还是使用赋值。上面中<strong>null</strong> 不严格等于undefined++</p>
+<p>如果默认值的赋值为一个表达式，只有当等号右边的赋值没有值为undefined的时候，才会取表达式中的值，如下：</p>
+<pre><code>function demo(){
+    console.log(&apos;demo&apos;)
+}
+
+let [a = demo()] = []   // a: demo
+let [a = demo()] = [1]  // a : 1</code></pre><h3 id="对象的解构赋值"><a href="#对象的解构赋值" class="headerlink" title="对象的解构赋值"></a>对象的解构赋值</h3><hr>
+<blockquote>
+<p>与数组的不同点是，数组的元素必须和赋值的元素要位置一致才能正确的赋值，而对象的解构赋值则是等号两边的变量和属性同名即可取到正确的值。否则值为 <strong>undefined</strong></p>
+</blockquote>
+<pre><code>let {a,b} = {a:&apos;23&apos;,b:&apos;3&apos;}
+let {a,b} = {b:&apos;3&apos;,a:&apos;23&apos;}
+
+// 上面两个的值 都是 a: 23 b: 3
+
+let {a,b} = {a:&apos;3&apos;,c:&apos;d&apos;}
+//a: 3 b: undefined</code></pre><p>对象的解构赋值还有将某一个现有对象的方法赋值到一个新的变量，如下：</p>
+<pre><code>let {sin,cos} = Math
+// Math 中的sin cos 方法将赋值给变量 sin cos
+
+let {log} = console
+// log(2)  ===  console.log(2)</code></pre><p>如果等号左边的变量名不能和等号右边的对象的属性名一致，则必须写成如下格式：</p>
+<pre><code>let {a:b} = {a:&apos;ss&apos;}     // b：ss
+//a是属性名，b才是实际赋值的变量名</code></pre><p>对象的解构赋值一样是可以嵌套解构的，如下：</p>
+<pre><code>第一种：
+
+let obj = {
+    p:[
+        &apos;Hello&apos;,
+        {y:&apos;world&apos;}
+    ]
+}
+
+let {p:[x,{y}]} = obj 
+// x: Hello, y: world
+
+这边的p只是属性不是变量，如果p想赋值可以写成：
+
+let {p,:[x,{y}]} = obj
+
+第二种：
+const a = {
+    loc: {
+        t :1,
+        b :{
+            c:1,
+            d:2    
+        }
+    }
+}
+let {loc:{t,b:{c,d}}} = a
+或者
+let {loc,loc:{t,b,b:{c,d}}} = a</code></pre><h5 id="嵌套赋值"><a href="#嵌套赋值" class="headerlink" title="嵌套赋值"></a>嵌套赋值</h5><pre><code>let o = {}, arr = []
+
+({foo:o.prop,bar: arr[0]} = {foo:123,bar:true})
+//o: 123, arr = [true]</code></pre><p>如果解构模式 是嵌套的对象，如果子对象所在的父属性不存在，则会报错，如下：</p>
+<pre><code>let {foo:{bar}} = {baz:&apos;baz&apos;} //报错</code></pre><h4 id="默认值-1"><a href="#默认值-1" class="headerlink" title="默认值"></a>默认值</h4><pre><code>let {x = 3} = {}
+// x: 3
+
+let {x,y = 5} = {x : 1}
+// x: 1, y: 5
+
+let {x: y = 5} = {}
+// y = 5
+
+let {x: y = 5} = {x : 4}
+// y = 4
+
+let {x: y = &apos;hhhh&apos;} = {}
+//y = &apos;hhhh&apos;
+
+Tips:以上左边 x为属性名，y为变量
+
+
+let {x = 5} = {x: undefined}
+// x: 5
+
+let {x = 4} = {x: null}
+// x: null
+
+同数组一样遵循 严格等于 
+只有右边为undefined的时候默认值才会生效</code></pre><h6 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h6><p>1）不能将已声明的变量用于解构赋值，因为已经是一个代码块。</p>
+<h3 id="字符串的解构赋值"><a href="#字符串的解构赋值" class="headerlink" title="字符串的解构赋值"></a>字符串的解构赋值</h3><blockquote>
+<p>如果赋值的对象是数组，字符串将被分割为数组的格式，一一对应赋值</p>
+</blockquote>
+<pre><code>let [a,b] = &apos;ha&apos;
+// a = h , b = a
+
+同时可以获得字符串的长度：
+
+let {length:len} = &apos;12121&apos;
+// len = 5</code></pre><h3 id="数值和布尔值的解构赋值"><a href="#数值和布尔值的解构赋值" class="headerlink" title="数值和布尔值的解构赋值"></a>数值和布尔值的解构赋值</h3><blockquote>
+<p>如果等号右边是数字或者布尔值 则转换成对象或者说，除了是数组和对象，其他值都将转换成对象，null 和 undefined 除外。如下：</p>
+</blockquote>
+<pre><code>let {t:s} = 123
+let {t: s} = true</code></pre><h3 id="函数参数的解构赋值"><a href="#函数参数的解构赋值" class="headerlink" title="函数参数的解构赋值"></a>函数参数的解构赋值</h3><pre><code>function add([x,y]){
+    return x+y
+}
+add([3,5]) // 8
+
+[[3,5],[6,7]].map(([a,b]) =&gt; a + b)
+//8 , 13
+
+function m({x=3, y=4} = {}){
+    return [x,y]
+}
+m({x:33,y:8})     // [33,8]
+m({x:32})         // [32,4]
+m({})             // [3,4]
+m()               // [3,4]
+
+function m({x,y} = {x=0,y=0}){
+    return [x,y]
+}
+m({x:33,y:8})     // [33,8]
+// 代替右边的 x:0, y:0 所以是传值 33  8
+
+m({x:32})         // [32,undefined]
+//因为传值替代右边的赋值，但是只有x没有y
+//所以y是取   左边y的默认值，因为你没有赋值 为undefined
+
+m({})             // [undefined,undefined] 
+// 取左边x,y的默认值，因为没有赋值 为undefined
+
+m()               // [0,0]
+// 没有传值，使用本身的赋值 都是0</code></pre><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h4 id="不能使用圆括号的情况"><a href="#不能使用圆括号的情况" class="headerlink" title="不能使用圆括号的情况"></a>不能使用圆括号的情况</h4><ol>
+<li>变量声明语句 </li>
+<li>函数参数</li>
+<li>赋值语句的模式</li>
+</ol>
+<h4 id="可以使用圆括号的情况"><a href="#可以使用圆括号的情况" class="headerlink" title="可以使用圆括号的情况"></a>可以使用圆括号的情况</h4><ol>
+<li>赋值语句的非模式部分，可以使用圆括号</li>
+</ol>
+<h3 id="解构赋值的用途"><a href="#解构赋值的用途" class="headerlink" title="解构赋值的用途"></a>解构赋值的用途</h3><ol>
+<li>交换变量的值</li>
+<li>从函数返回多个值</li>
+<li>函数参数的定义</li>
+<li>提取JOSN数据</li>
+<li>函数参数的默认值</li>
+<li>遍历Map解构</li>
+<li>输入模块的指定方法</li>
+</ol>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-02-03T08:47:50.012Z" itemprop="dateUpdated">2020-02-03 16:47:50</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html&title=《ES6入门之变量的解构赋值》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html&title=《ES6入门之变量的解构赋值》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之变量的解构赋值》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/03/20/Python基础教程之数据类型和变量.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Python基础教程之数据类型和变量</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/11/ES6入门之let、cont.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">ES6入门之let、cont</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html&title=《ES6入门之变量的解构赋值》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html&title=《ES6入门之变量的解构赋值》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之变量的解构赋值》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACxUlEQVR42u3aQW7jMAwF0Nz/0ikwqwKt7U9S7GTxvAqKxNJTAVEi+XrFz/vf0/vO+9uTvOH7N98/ntfGg4eHh9ea+tVzP/AV734q92Ndve2efbkEeHh4eGu8+42+umXnf++NkswZDw8P7xN4ydSTMJAHksn38fDw8D6ZV01V9FIMeHh4eJ/GS5IR5Ve3DujVw/exXAseHh5ezJtsyv/r82J9Dw8PD29QVU+KYb3tu7eI5dni4eHhLfB6Raa80JU3XZ1KVUQ3Bjw8PLwBr3e9vx+411B1taDJWJef8fDw8JZ5yaZcbSBIFqiXuo1GxMPDw1vgJcWnahgonOVbpHLCFw8PD+8oL9ma5wmFybaeh5aHLAseHh7eUV61/t57Q689qzqThxsDHh4e3iFeXvSqthdMSmXVUlzhroCHh4d3iNdrnOqV+XvFsOob8PDw8DZ41aaBXotALyXRawt7KIDh4eHhHeXlx9xq4rWaGp40JVxGPzw8PLxDvGqLQG8JJgncXvsCHh4e3h4vv+r3BsiDRO8AXUhJ4OHh4a3xqsmFfFvPp9ULM1FgwMPDwxvz8tJXtbGg126Vh6joX4KHh4e3wJskBU61T1WTs5MFwsPDwzvFq7ZV9Zq0Th3WywuEh4eHd5Q3Of72hpyXzQrHejw8PLwFXvUUWp3QqfTBpOULDw8P7yyvd+StTitP+PbSGQ9xDw8PD+/PeXnS4dTRPO93eFhuPDw8vAVefu3PGdUiVu/I3mxHwMPDwxvzJkmH3m+TsNELRb/8Cg8PD2+BN2nDqoaHaka5d7g/1mWGh4eHd8vLN/Ty5b9YyspTFXmCAw8PD2+P10tM9Lb+SdvBSkzDw8PDW+NVk7AbR+f8t3h4eHifyesVwCYFs2pwwsPDw9vj9ZIR8+F7231eNsPDw8Pb4PVu9HnSYdLOlS/E4foeHh4e3u+jfwGUmCIWj+7kyAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>如何在Linux服务器部署自己的网站？ | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="服务器">
+    <meta name="description" content="前提 突然想在腾讯云的服务器上部署一个markdown编辑器供自己使用，毕竟自己动手丰衣足食嘛。之前在我的服务器上已经部署过博客、一些静态网页了。但是很长时间没有去操作过了。借着这一次机会再把相关流程巩固一遍。  准备工作1231、云服务器一台2、域名一个3、mac使用Finalshell，win使用 xShell  安装Ngnix1、下载 Nginx，下载地址：http://nginx.org/">
+<meta name="keywords" content="服务器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何在Linux服务器部署自己的网站？">
+<meta property="og:url" content="https://toc.lieme.cn/2020/01/05/如何在Linux服务器部署自己的网站？.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="前提 突然想在腾讯云的服务器上部署一个markdown编辑器供自己使用，毕竟自己动手丰衣足食嘛。之前在我的服务器上已经部署过博客、一些静态网页了。但是很长时间没有去操作过了。借着这一次机会再把相关流程巩固一遍。  准备工作1231、云服务器一台2、域名一个3、mac使用Finalshell，win使用 xShell  安装Ngnix1、下载 Nginx，下载地址：http://nginx.org/">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/Fqdg8OStMFdR7Ugl31XLkxUA1cPs">
+<meta property="og:updated_time" content="2020-01-05T07:42:28.494Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何在Linux服务器部署自己的网站？">
+<meta name="twitter:description" content="前提 突然想在腾讯云的服务器上部署一个markdown编辑器供自己使用，毕竟自己动手丰衣足食嘛。之前在我的服务器上已经部署过博客、一些静态网页了。但是很长时间没有去操作过了。借着这一次机会再把相关流程巩固一遍。  准备工作1231、云服务器一台2、域名一个3、mac使用Finalshell，win使用 xShell  安装Ngnix1、下载 Nginx，下载地址：http://nginx.org/">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/Fqdg8OStMFdR7Ugl31XLkxUA1cPs">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">如何在Linux服务器部署自己的网站？</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">如何在Linux服务器部署自己的网站？</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2020-01-05T07:41:00.000Z" itemprop="datePublished" class="page-time">
+  2020-01-05
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前提"><span class="post-toc-number">1.</span> <span class="post-toc-text">前提</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#准备工作"><span class="post-toc-number">2.</span> <span class="post-toc-text">准备工作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装Ngnix"><span class="post-toc-number">3.</span> <span class="post-toc-text">安装Ngnix</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置ngnix"><span class="post-toc-number">4.</span> <span class="post-toc-text">配置ngnix</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开启https访问"><span class="post-toc-number">5.</span> <span class="post-toc-text">开启https访问</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">6.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-如何在Linux服务器部署自己的网站？"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">如何在Linux服务器部署自己的网站？</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-01-05 15:41:00" datetime="2020-01-05T07:41:00.000Z"  itemprop="datePublished">2020-01-05</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        865
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        4 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><blockquote>
+<p>突然想在腾讯云的服务器上部署一个markdown编辑器供自己使用，毕竟自己动手丰衣足食嘛。之前在我的服务器上已经部署过博客、一些静态网页了。但是很长时间没有去操作过了。借着这一次机会再把相关流程巩固一遍。</p>
+</blockquote>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、云服务器一台</span><br><span class="line"><span class="number">2</span>、域名一个</span><br><span class="line"><span class="number">3</span>、mac使用Finalshell，win使用 xShell</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装Ngnix"><a href="#安装Ngnix" class="headerlink" title="安装Ngnix"></a>安装Ngnix</h2><p>1、下载 Nginx，下载地址：<a href="http://nginx.org/download/nginx-1.6.2.tar.gz" target="_blank" rel="noopener">http://nginx.org/download/nginx-1.6.2.tar.gz</a></p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@cx]<span class="meta"># wget http:<span class="comment">//nginx.org/download/nginx-1.6.2.tar.gz</span></span></span><br></pre></td></tr></table></figure>
+
+<p>2、解压安装包</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[root@cx]</span># <span class="selector-tag">tar</span> <span class="selector-tag">zxvf</span> <span class="selector-tag">nginx-1</span><span class="selector-class">.6</span><span class="selector-class">.2</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span></span><br></pre></td></tr></table></figure>
+
+<p>3、进入安装包目录</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[root@cx]</span># <span class="selector-tag">cd</span> <span class="selector-tag">nginx-1</span><span class="selector-class">.6</span><span class="selector-class">.2</span></span><br></pre></td></tr></table></figure>
+
+<p>4、编译安装</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="meta">@cx</span> nginx<span class="number">-1.6</span><span class="number">.2</span>]# ./configure --prefix=<span class="regexp">/usr/</span>local/webserver/nginx --<span class="keyword">with</span>-http_stub_status_module --<span class="keyword">with</span>-http_ssl_module --<span class="keyword">with</span>-pcre=<span class="regexp">/usr/</span>local/src/pcre<span class="number">-8.35</span></span><br><span class="line">[root<span class="meta">@cx</span><span class="number">-1.6</span><span class="number">.2</span>]# make</span><br><span class="line">[root<span class="meta">@cx</span><span class="number">-1.6</span><span class="number">.2</span>]# make install</span><br></pre></td></tr></table></figure>
+
+<p><strong>安装ngnix 的教程可以自行在网上搜索，很多。</strong></p>
+<h2 id="配置ngnix"><a href="#配置ngnix" class="headerlink" title="配置ngnix"></a>配置ngnix</h2><blockquote>
+<p>在服务器中 cd /etc/ngnix/conf.d 目录下 新增 md.conf 配置如下</p>
+</blockquote>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">server</span> &#123;</span><br><span class="line">    charset utf<span class="number">-8</span>;</span><br><span class="line">    client_max_body_size <span class="number">128</span>M;</span><br><span class="line">    listen <span class="number">80</span>; </span><br><span class="line">    server_name markdown.lieme.cn;      <span class="comment">// 网站访问的域名</span></span><br><span class="line">    root        /usr/share/nginx/html/web/markdown/;    <span class="comment">// 静态文件放置的目录</span></span><br><span class="line">    <span class="keyword">index</span>       <span class="keyword">index</span>.html;</span><br><span class="line">    location / &#123;    </span><br><span class="line">        try_files $uri $uri/ /<span class="keyword">index</span>.html;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果是 vue 打包生成的项目，记得配置一下这个。</span></span><br><span class="line">    <span class="comment">// 将路由访问的页面如果不存在则重定向到idnex.html</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>配置完成后，Esc 然后 wq 保存退出。<br>先nginx -t 查看配置是否正确然，后然后记得重启ngnix   <strong>nginx -s reload</strong> 这时候在浏览器中访问 markdown.lieme.cn 应该可以访问了。</p>
+</blockquote>
+<h2 id="开启https访问"><a href="#开启https访问" class="headerlink" title="开启https访问"></a>开启https访问</h2><blockquote>
+<p>因为这里是腾讯的服务器和域名，直接在腾讯云后台申请一年的免费证书，即可。下载下来是一个 zip 包，因为服务器安装的是ngnix，那我们直接选择ngnix的就行。</p>
+</blockquote>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 解压缩后在文件中ngnix文件中有一个 key 和 crt</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span>_你的域名_bundle.crt</span><br><span class="line"><span class="number">2</span>_你的域名.<span class="type">key</span></span><br></pre></td></tr></table></figure>
+
+<p>将上面两个文件上传到你的 ngnix 目录下</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> <span class="string">/etc/ngnix</span></span><br></pre></td></tr></table></figure>
+
+<p>然后在对ngnix下的conf.d文件中刚刚新建的md.conf添加如下代码：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">charset</span> utf-<span class="number">8</span>;</span><br><span class="line">    <span class="attribute">client_max_body_size</span> <span class="number">128M</span>;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">ssl</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">ssl_certificate</span> /etc/nginx/1_你的域名_bundle.crt;</span><br><span class="line">    <span class="attribute">ssl_certificate_key</span> /etc/nginx/2_你的域名.key;</span><br><span class="line">    <span class="attribute">ssl_session_timeout</span> <span class="number">5m</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置 ssl_ciphers</strong></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">ssl_protocols</span> TLSv1.<span class="number">1</span> TLSv1.<span class="number">2</span>; <span class="comment">#按照这个协议配置</span></span><br><span class="line">    <span class="comment">#ssl_ciphers         HIGH:!aNULL:!MD5;</span></span><br><span class="line">    <span class="comment">#ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;#按照这个套件配置</span></span><br><span class="line">    <span class="attribute">ssl_ciphers</span> <span class="string">'</span></span><br><span class="line"><span class="string">    ECDHE-ECDSA-AES256-GCM-SHA384:</span></span><br><span class="line"><span class="string">    ECDHE-RSA-AES256-GCM-SHA384:</span></span><br><span class="line"><span class="string">    ECDHE-ECDSA-CHACHA20-POLY1305:</span></span><br><span class="line"><span class="string">    ECDHE-RSA-CHACHA20-POLY1305:</span></span><br><span class="line"><span class="string">    ECDHE-ECDSA-AES128-GCM-SHA256:</span></span><br><span class="line"><span class="string">    ECDHE-RSA-AES128-GCM-SHA256:</span></span><br><span class="line"><span class="string">    ECDHE-ECDSA-AES256-SHA384:</span></span><br><span class="line"><span class="string">    ECDHE-RSA-AES256-SHA384:</span></span><br><span class="line"><span class="string">    ECDHE-ECDSA-AES128-SHA256:</span></span><br><span class="line"><span class="string">    ECDHE-RSA-AES128-SHA256'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>配置完成后，Esc然后 wq 保存退出，执行 ngnix -t 检查命令是否有错，如果没错重启 ngnix -s reload</p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote>
+<p>部署完成之后，对于自己的体验和学习又有了进一步加深的作用，虽然之前已经实现过，但是每一次的体验和提升都是不同的感觉：</p>
+</blockquote>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、加深了linux部署的流程</span><br><span class="line"><span class="number">2</span>、ngnix相关的配置</span><br><span class="line"><span class="number">3</span>、网站添加 https </span><br><span class="line"><span class="number">4</span>、域名解析的操作</span><br><span class="line"><span class="number">5</span>、vue打包的项目因为路由设置的不同ngnix的</span><br><span class="line">配置也会有所不同。</span><br><span class="line"></span><br><span class="line">等等</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-01-05T07:42:28.494Z" itemprop="dateUpdated">2020-01-05 15:42:28</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/服务器/">服务器</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2020/01/05/如何在Linux服务器部署自己的网站？.html&title=《如何在Linux服务器部署自己的网站？》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/Fqdg8OStMFdR7Ugl31XLkxUA1cPs" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2020/01/05/如何在Linux服务器部署自己的网站？.html&title=《如何在Linux服务器部署自己的网站？》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2020/01/05/如何在Linux服务器部署自己的网站？.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《如何在Linux服务器部署自己的网站？》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2020/01/05/如何在Linux服务器部署自己的网站？.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2020/01/05/如何在Linux服务器部署自己的网站？.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/01/27/永远的曼巴.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">永远的曼巴</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/12/31/亦如沙粒，亦如星辰，我平凡的2019！！.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">亦如沙粒，亦如星辰，我平凡的2019！！</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2020/01/05/如何在Linux服务器部署自己的网站？.html&title=《如何在Linux服务器部署自己的网站？》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/Fqdg8OStMFdR7Ugl31XLkxUA1cPs" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2020/01/05/如何在Linux服务器部署自己的网站？.html&title=《如何在Linux服务器部署自己的网站？》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2020/01/05/如何在Linux服务器部署自己的网站？.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《如何在Linux服务器部署自己的网站？》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2020/01/05/如何在Linux服务器部署自己的网站？.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2020/01/05/如何在Linux服务器部署自己的网站？.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsElEQVR42u3aQU4lMQwFQO5/aUaaFRID/Z6dfBipsvpqWk0qi9iy/fYWr/e/6+Pvj0++f//z889/ff+0vn9+eOHh4eGNtv7VSkjt+wk1//7DEeDh4eFd4yXBYHMPb0JRvh88PDy838bLnyRhZhNC8PDw8P4vXpt8D7cVFCnw8PDwfpaXX+VtqGgT8SSNvlJrwcPDw4t5swbYz/6+3t/Dw8PDG3XV29Wm6bPSbbEfPDw8vAu85BNtaSAfBcgT61USj4eHh3eUl2PyTSQH0fLy4ki0CTw8PLwF71TzPv/Hs0baho2Hh4d3ljdrxu+fJOEhqcc+hCI8PDy8C7xZ2poPabWDU+33i9EBPDw8vBfyksLBqlgQHFAebIqpLjw8PLwRLykB7JPd9s2c+rBDPDw8vAu8WRssL7nmxY5VHfr7MIaHh4d3lJdf02eHAzZttiI44eHh4V3jbcab8tZUfjTtmw+lWzw8PLyjvFkTq73o29Q5X23gwcPDwzvLa6/gTbMqT8o341l4eHh493htQaFtns02N0vu6y4fHh4e3oK3L63ue3F5UaNItfHw8PCu8dpyahsYNun4qjiCh4eHd4GXl1zzttMMswE87A0PDw/vEG+WBO+LCPcSazw8PLzX8Npg0I5Ytb242XDAl60vPDw8vKO8NgDMiguz6/7UYeHh4eGd5W0u+roRVabm7RDDP97Hw8PDu8DLV8to09/Z99viMh4eHt6e916u2RHk4SEZOMif4+Hh4d3gtYGh/T1LoGf/Fw8PD++VvCQYtEMDLbUt1Bbfx8PDw7vGy8ujs6Jqki6/jRYeHh7e7+dt2lrJd9pixENQwcPDw/tRXnvd58l3XkSuW254eHh413htMSLHtFMMeXssCmB4eHh4F3htA+xUGTcJSPlhHZgpw8PDw3vm/QFvkrGGuqFCgQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

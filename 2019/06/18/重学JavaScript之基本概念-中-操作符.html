@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>重学JavaScript之基本概念(中) =&gt; 操作符 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="js操作符">
+    <meta name="description" content="注意： 本文章为 《重学js之JavaScript高级程序设计》系列第三章第二部分【操作符】。关于《重学js之JavaScript高级程序设计》是重新回顾js基础的学习。 1. 操作符 用于描述一组可以操作数据值的概念叫做操作符。包括 算术操作符（加号和减号）、位操作符、关系操作符和相等操作符。ES的操作符和其他不同的在于它能够适用于很多值，如：字符串、数字值、布尔值、甚至对象。在应用于对象的时候">
+<meta name="keywords" content="js操作符">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重学JavaScript之基本概念(中) =&gt; 操作符">
+<meta property="og:url" content="https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="注意： 本文章为 《重学js之JavaScript高级程序设计》系列第三章第二部分【操作符】。关于《重学js之JavaScript高级程序设计》是重新回顾js基础的学习。 1. 操作符 用于描述一组可以操作数据值的概念叫做操作符。包括 算术操作符（加号和减号）、位操作符、关系操作符和相等操作符。ES的操作符和其他不同的在于它能够适用于很多值，如：字符串、数字值、布尔值、甚至对象。在应用于对象的时候">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/6/18/16b695f1f56afc15?w=1280&h=720&f=jpeg&s=136054">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/6/18/16b69606d7c1155c?w=258&h=258&f=jpeg&s=26659">
+<meta property="og:updated_time" content="2019-10-21T00:00:30.756Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重学JavaScript之基本概念(中) =&gt; 操作符">
+<meta name="twitter:description" content="注意： 本文章为 《重学js之JavaScript高级程序设计》系列第三章第二部分【操作符】。关于《重学js之JavaScript高级程序设计》是重新回顾js基础的学习。 1. 操作符 用于描述一组可以操作数据值的概念叫做操作符。包括 算术操作符（加号和减号）、位操作符、关系操作符和相等操作符。ES的操作符和其他不同的在于它能够适用于很多值，如：字符串、数字值、布尔值、甚至对象。在应用于对象的时候">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/6/18/16b695f1f56afc15?w=1280&h=720&f=jpeg&s=136054">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">重学JavaScript之基本概念(中) =&gt; 操作符</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">重学JavaScript之基本概念(中) =&gt; 操作符</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-06-18T05:03:00.000Z" itemprop="datePublished" class="page-time">
+  2019-06-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/重学JavaScript/">重学JavaScript</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#注意：-本文章为-《重学js之JavaScript高级程序设计》系列第三章第二部分【操作符】。"><span class="post-toc-number">1.</span> <span class="post-toc-text">注意： 本文章为 《重学js之JavaScript高级程序设计》系列第三章第二部分【操作符】。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#关于《重学js之JavaScript高级程序设计》是重新回顾js基础的学习。"><span class="post-toc-number">2.</span> <span class="post-toc-text">关于《重学js之JavaScript高级程序设计》是重新回顾js基础的学习。</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-操作符"><span class="post-toc-number"></span> <span class="post-toc-text">1. 操作符</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-1-一元操作符"><span class="post-toc-number"></span> <span class="post-toc-text">1.1 一元操作符</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-1-1-递增和递减操作符"><span class="post-toc-number"></span> <span class="post-toc-text">1.1.1 递增和递减操作符</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-1-2-一元加和减操作符"><span class="post-toc-number"></span> <span class="post-toc-text">1.1.2 一元加和减操作符</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-位操作符"><span class="post-toc-number"></span> <span class="post-toc-text">1.2 位操作符</span></a>
+        </nav>
+    </aside>
+
+
+<article id="post-重学JavaScript之基本概念-中-操作符"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">重学JavaScript之基本概念(中) => 操作符</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-06-18 13:03:00" datetime="2019-06-18T05:03:00.000Z"  itemprop="datePublished">2019-06-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/重学JavaScript/">重学JavaScript</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        2,467
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        9 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h5 id="注意：-本文章为-《重学js之JavaScript高级程序设计》系列第三章第二部分【操作符】。"><a href="#注意：-本文章为-《重学js之JavaScript高级程序设计》系列第三章第二部分【操作符】。" class="headerlink" title="注意： 本文章为 《重学js之JavaScript高级程序设计》系列第三章第二部分【操作符】。"></a>注意： 本文章为 《重学js之JavaScript高级程序设计》系列第三章第二部分【操作符】。</h5><h5 id="关于《重学js之JavaScript高级程序设计》是重新回顾js基础的学习。"><a href="#关于《重学js之JavaScript高级程序设计》是重新回顾js基础的学习。" class="headerlink" title="关于《重学js之JavaScript高级程序设计》是重新回顾js基础的学习。"></a>关于《重学js之JavaScript高级程序设计》是重新回顾js基础的学习。</h5><p><img src="https://user-gold-cdn.xitu.io/2019/6/18/16b695f1f56afc15?w=1280&h=720&f=jpeg&s=136054" alt></p>
+<h2 id="1-操作符"><a href="#1-操作符" class="headerlink" title="1. 操作符"></a>1. 操作符</h2><blockquote>
+<p>用于描述一组可以操作数据值的概念叫做操作符。包括 算术操作符（加号和减号）、位操作符、关系操作符和相等操作符。ES的操作符和其他不同的在于它能够适用于很多值，如：字符串、数字值、布尔值、甚至对象。在应用于对象的时候，需要调用对象的 valueOf()  和 toString()方法。</p>
+</blockquote>
+<h3 id="1-1-一元操作符"><a href="#1-1-一元操作符" class="headerlink" title="1.1 一元操作符"></a>1.1 一元操作符</h3><blockquote>
+<p>只能操作一个值的操作符叫做一元操作符。</p>
+</blockquote>
+<h4 id="1-1-1-递增和递减操作符"><a href="#1-1-1-递增和递减操作符" class="headerlink" title="1.1.1 递增和递减操作符"></a>1.1.1 递增和递减操作符</h4><blockquote>
+<p>分为两种类型：前置和后置型，前置位于要操作的变量之前。后置则在要操作的变量之后。如下：</p>
+</blockquote>
+<pre><code>var age = 29
+++age // 30
+
+等于
+
+age = age + 1
+
+--age // 28
+
+等于
+
+age = age - 1</code></pre><p><strong>注意：执行前置递增或递减的时候，变量的值都是在语句被求值以前改变的。</strong></p>
+<pre><code>var age = 29
+var a = --age + 2
+
+age // 28
+a // 30
+
+// 由于前置递增和递减与执行语句的优先级相等，
+所以整个语句会被从左到右求值。
+
+var num1 = 2
+var num2 = 20
+var num3 = --num1 + num2 // 21
+var num4 = num1 + ++num3 // 23</code></pre><p>后置型递增和递减操作语法不变，只不过由前面放到了后面，而且最重要的是：<strong>后置型递增和递减的操作都是在变量执行之后在操作的</strong>。如下：</p>
+<pre><code>var num = 3
+var age = 4
+
+num-- + age-- // 7
+num // 2
+age // 4</code></pre><p><strong>总结：</strong></p>
+<p>以上4个操作符对任何值都适用，不限于数字还可以用于字符串、布尔值、浮点数值和对象，规则如下：<br>    1、应用于数字字符的字符串时候，先将其转换为数字值，<br>    在执行加减 1 的操作，字符串变量变成数值变量。</p>
+<pre><code>2、应用于不包含有效数字的字符串时，将其变量的值设置
+位NaN，字符串变量变成数值变量
+
+3、用于布尔值false的时候，将其转换为0，在执行加减1的
+操作，布尔值变成数值
+
+4、用于布尔值true的时候，将其转换为1，在执行加减1的操
+作，布尔值变成数值
+
+5、用于浮点数，执行加减1的操作
+
+6、用于对象，先调用对象的valueOf()方法，如果返回的结果
+是NaN在调用toString()方法，对象的变量变成数值变量。</code></pre><p><strong>上面的说明如下：</strong></p>
+<pre><code>var s1 = &apos;2&apos;
+var s2 = &apos;z&apos;
+var s3 = false
+var s4 = 1.1
+var s5 = {
+    valueOf: function(){
+        return -1
+    }
+}
+
+s1++ // 3
+s2++ // NaN
+s3++ // 1
+s4-- // 0.10000000000009
+s5-- // -2</code></pre><h4 id="1-1-2-一元加和减操作符"><a href="#1-1-2-一元加和减操作符" class="headerlink" title="1.1.2 一元加和减操作符"></a>1.1.2 一元加和减操作符</h4><blockquote>
+<p>一元加操作符放在变量之前是没有任何变化的，而一元减操作符放在变量之前则变量是个负数</p>
+</blockquote>
+<pre><code>var num = 25
+num = +num // 25
+
+num = -num // -25</code></pre><p>注意：还是遵循之前的规则，对于字符串的变量使用加减操作符 则变成 NaN 其他的则相应变成指定规则的数值。</p>
+<p>一元加减操作符主要用于基本的算术运算，也可以用于转换数据类型。</p>
+<h3 id="1-2-位操作符"><a href="#1-2-位操作符" class="headerlink" title="1.2 位操作符"></a>1.2 位操作符</h3><blockquote>
+<p>位操作符是用于内存中表示数值的位来操作数值。ES中所有的值都是按照64位格式存储，但位操作符并直接操作64位值，而是先将64位的值转换成32位整数，然后执行操作，最后在将结果转换位64位。</p>
+</blockquote>
+<blockquote>
+<p>对于有符号的整数，32位中的前31位用于表示整数的值，第32位表示数值的符号，0表示整数，1表示负数。这个表示符号的位叫做符号位。符号位的值决定了其他位数值的格式。其中，正数以纯二进制格式存储，31位中的每一位都表示2的幂，第一位表示 2的0次方以此类推。没有用到的用0填充忽略不计。也就是2进制表示法。</p>
+</blockquote>
+<p>负数同样可以以二进制存储，但是使用的格式是二进制补码，计算一个数值的二进制补码步骤如下：</p>
+<pre><code>1、求这个数值绝对值的二进制码
+2、求二进制反码
+3、得到的二进制反码 +1
+
+如下：求 -18的二进制码
+0000 0000 0000 0000 0000 0001 0010
+求反码 0 1 互换
+1111 1111 1111 1111 1111 1110 1101
+然后 加 1 
+1111 1111 1111 1111 1111 1110 1110</code></pre><p>在ES中，ES会尽力向我们隐藏所有这些信息，也就是说，在二进制字符串形式输出一个负数时，我们看到的只是这个负数绝对值的二进制码之前加了一个负号，如下：</p>
+<pre><code>var num = -18
+num.toString(2) // &apos;-10010&apos;</code></pre><p><strong>注意</strong>：默认情况下，ES中所有的整数都是有符号整数，当然也存在无符号整数，对于无符号整数来说，第32位不再表示符号，因为无符号整数只能是正数，而且无符号整数的值可以更大，因为多出来的一位不再表示符号，可以用来表示数值。</p>
+<blockquote>
+<p>在ES中当对应数值应用位操作符时，后台会发生如下转换过程:64位的数值被转换成32位数值，然后执行位操作，最后再将32位数值转换回64位数值。这样表面上看起来好像是在操作 32 位数值，另外有个问题，这样的操作导致在特殊值 如 NaN 和 Infinity值应用位操作的时候，这两个值会被当成0来处理。</p>
+</blockquote>
+<p><strong>注意</strong>：如果对非数值进行位操作符，那么会先使用 Number() 函数将该值转换为一个数值，在应用位操作，得到的结果是一个数值。</p>
+<ol>
+<li>按位非（NOT）</li>
+</ol>
+<blockquote>
+<p>按位非操作符由一个波浪线(~)表示，执行按位非的结果就是返回数值的反码并减一，如下：</p>
+</blockquote>
+<pre><code>var num = 25    // 二进制 0001 1001
+var num1 = ~num // 二进制 1110 0110
+
+// -26</code></pre><ol start="2">
+<li>按位与</li>
+</ol>
+<blockquote>
+<p>按位与操作符由一个和字符号(&amp;)表示，它有两个操作符数。从本质上来讲，按位与操作就是将两个数值的每一位对齐，根据以下规则，对相同位置上的两个数执行AND操作：</p>
+</blockquote>
+<p><strong>结果：全1才为1，有0返回0</strong></p>
+<table>
+<thead>
+<tr>
+<th>第一个数值的位</th>
+<th>第二个数值的位</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<ol start="3">
+<li>按位或(OR)</li>
+</ol>
+<blockquote>
+<p>按位或由一个竖线符号（|）表示，同样也有两个操作数，操作结果遵循下表。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>第一个数值的位</th>
+<th>第二个数值的位</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p><strong>结果：有1返回1，全0返回0</strong></p>
+<ol start="4">
+<li>按位异或(XOR)</li>
+</ol>
+<blockquote>
+<p>按位异或操作符由一个插入符号 (^)表示，也是两个操作数，结果遵循下表：</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>第一个数值的位</th>
+<th>第二个数值的位</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p><strong>结果：两个数只有1个为1的时候才返回1，同时为1或同时为0 则返回0</strong></p>
+<ol start="5">
+<li>左移</li>
+</ol>
+<blockquote>
+<p>左移操作符由两个小于号（&lt;&lt;）表示，这个操作符会将数值的所有位向左移动指定的位数。如下：</p>
+</blockquote>
+<pre><code>// 将数值2向左移动5位，结果就是64位
+
+var oldnum = 2  // 二进制 10 
+var newnum = oldnum &lt;&lt; 5  // 二进制 1000000 ， 十进制 64
+
+注意： 在向左移位后，原数值的右侧多出了 5 个空位，左移操作
+会以0来填充这些空位，以便得到的结果是一个完整的32位的二进制数。</code></pre><ol start="6">
+<li>有符号的右移</li>
+</ol>
+<blockquote>
+<p>有符号的右移操作符由两个大于号（&gt;&gt;）表示，这个操作符会将数值向右移动，但保留符号位（即正负号标记），有符号的右移操作与左移操作恰好相反，即如果将64向右移动5位，结果将变回2.如下：</p>
+</blockquote>
+<pre><code>var oldnum = 64 // 二进制 1000000
+var newnum = oldnum &gt;&gt; 5    // 二进制 10 2
+
+注意：在移位的过程中，原数值也会出现空位，只不过这次
+空位出现在原数值的左侧、符号位的右侧，这时候ES就会用
+符号位的值来填充所有的空位，以便得到一个完整的值。</code></pre><ol start="7">
+<li>无符号右移</li>
+</ol>
+<blockquote>
+<p>无符号右移操作符右三个大于号（&gt;&gt;&gt;）组成，这个操作符会将数值的所有32位都向右移动，对于正数来说，无符号右移的结果与有符号右移相同，如下</p>
+</blockquote>
+<pre><code>var oldnum = 64     // 二进制 1000000
+var newnum = oldnum &gt;&gt;&gt; 5   // 二进制 10  十进制 2</code></pre><p>注意：在负数下情况就不一样了，首先，无符号右移是<strong>以0来填充空位</strong>，而不是像有符号右移那样以<strong>符号位来填充空位</strong>。所以，对正数的无符号右移与有符号右移结果相同，但对负数的结果就不一样了。其次无符号右移操作符会把负数的二进制码当成正数的二进制码。而且，由于负数以其绝对值补码形式表示，因此就会导致无符号右移后的结果非常之大。如下：</p>
+<pre><code>var oldnum = -64    // 二进制 11111111111111111111111111000000
+var newnum = oldnum &gt;&gt;&gt; 5   // 十进制 134217726</code></pre><p><img src="https://user-gold-cdn.xitu.io/2019/6/18/16b69606d7c1155c?w=258&h=258&f=jpeg&s=26659" alt></p>
+<p align="center" style="font-size:30px;color:#1c8a95"> 欢迎关注 公众号【小夭同学】 </p>
+
+<p><strong>重学js系列</strong></p>
+<p><a href="https://juejin.im/post/5ca2d96b6fb9a05e3d0a770f" target="_blank" rel="noopener">重学js之JavaScript简介</a></p>
+<p><a href="https://juejin.im/post/5cebebe9f265da1b7638802c" target="_blank" rel="noopener">重学 JS 之在 HTML 中使用 JavaScript</a></p>
+<p><a href="https://juejin.im/post/5cf3a9dbf265da1bc4143c29" target="_blank" rel="noopener">重学js之JavaScript基本概念（上）=&gt; 数据类型</a></p>
+<p><strong>ES6入门系列</strong></p>
+<p><a href="https://juejin.im/post/5ca2d96b6fb9a05e3d0a770f" target="_blank" rel="noopener">ES6入门之let、cont</a></p>
+<p><a href="https://juejin.im/post/5cadf187518825710d76ced7" target="_blank" rel="noopener">ES6入门之变量的解构赋值</a></p>
+<p><a href="https://juejin.im/post/5cb9c199518825329e7ea84a" target="_blank" rel="noopener">ES6入门之字符串的扩展</a></p>
+<p><a href="https://juejin.im/post/5cbeff3a6fb9a03202221a68" target="_blank" rel="noopener">ES6入门之正则的扩展</a></p>
+<p><a href="https://juejin.im/post/5cc30a935188252dcc14c68d" target="_blank" rel="noopener">ES6入门之数值的扩展</a></p>
+<p><a href="https://juejin.im/post/5cc30b2551882562457fdc4b" target="_blank" rel="noopener">ES6入门之函数的扩展</a></p>
+<p><a href="https://juejin.im/post/5cd2a392f265da038733b913" target="_blank" rel="noopener">ES6入门之数组的扩展</a></p>
+<p><a href="https://juejin.im/post/5ce3f8d5518825685e02b99e" target="_blank" rel="noopener">ES6入门之对象的扩展</a></p>
+<p><strong>Git教程</strong></p>
+<p><a href="https://segmentfault.com/a/1190000018762537" target="_blank" rel="noopener">前端Git基础教程</a></p>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-10-21T00:00:30.756Z" itemprop="dateUpdated">2019-10-21 08:00:30</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js操作符/">js操作符</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html&title=《重学JavaScript之基本概念(中) => 操作符》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html&title=《重学JavaScript之基本概念(中) => 操作符》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学JavaScript之基本概念(中) => 操作符》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/06/22/Untitled如何免费打造打造一个安全稳定低延迟超高速的科学上网环境.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">如何免费打造打造一个安全稳定低延迟超高速的科学上网环境</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/06/11/JavaScript之继承（未完待续）.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">JavaScript之继承（未完待续）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html&title=《重学JavaScript之基本概念(中) => 操作符》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html&title=《重学JavaScript之基本概念(中) => 操作符》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学JavaScript之基本概念(中) => 操作符》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuklEQVR42u3awXLbMAwE0Pz/T7vXHip1FyCbdObp5HEci08HAl7w6yu+Pr9dT++/f+b9v97v+P7JAxceHh7eYulPX5d85n3p76/z+7brwcPDw7vHe9pR318nBeC9tGweSrIGPDw8vJ/Dazf9FvPe0OPh4eH977x8E7/RlOPh4eF9Fy8JBfabexsTJw36sawFDw8PL+blU6Sf8/rKfA8PDw9vPVVvh0952cgLz2q1eHh4eBd4+Yb7GV15A53ExO068fDw8G7w2k1/s+ikbORFJWr68fDw8C7w8iD1xl/zhR5IWfDw8PAO8doNet8otzFxe5ThD78V8PDw8C7wcmqLb4f9+XqGUzs8PDy8NW/TZG9KyKwT3ozT8PDw8M7y8kF+8n7eUrdHB/IiV6fLeHh4eDGvjV/bg1n7Mdhq8IaHh4d3gZcw2m199rqNkovfCnh4eHgXeO0XtaP9WTDRxspFe42Hh4e34OXFYNbUbhrufFWPjxgPDw/vAi/ZxNtx1CYITpabj8Hw8PDwbvDaEdSN7T4PI/Io5LGlxsPDw1vzZrfPt/hZPJGUogPVDw8PD2/Ey7fXs5t4O8TKDyJ8zaoHHh4e3oi336YP5yKjuORxAIaHh4d3jdcO7PcjtLzMtMEEHh4e3g3e7MBTPsLffCZ/iAeyFjw8PLySN4toZ9HDrMy0BxeiTBoPDw9vzduEEe33zI4jzEJhPDw8vHu85Evzdjk/QFBHCUFzX98GDw8PL+Z9yit5Wu3Dyo8CtA06Hh4e3g1eu/nmzW4ec8yGW/tygoeHh7fhzYpB217fCHajwoCHh4d3jVdnGHFJ2MS+x7IWPDw8vG/ltQHu6vxXvJ5jhQEPDw/vMm8WyyZlY9as4+Hh4f1L3iZE2LfmSeA7G8jh4eHh3eAd+MFfHkfIY9n2Ea/me3h4eHh/5/0Cw6/aT/858xMAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

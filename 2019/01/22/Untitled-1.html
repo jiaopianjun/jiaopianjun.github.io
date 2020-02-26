@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>极简天气之小夭天气 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="小程序">
+    <meta name="description" content="1、利用周末两天的时间，参考小天气的风格，撸了一个天气小程序，【小夭天气】。2、功能十分简单，查看当前地区的天气和搜索其他地区的天气，增加了可以生成图片分享出去。3、上线后发现一个问题，就是极速提供的天气接口对区级市没有区分，例如 上海有宝山区，东北那也有一个。就没有区分。这是一个bug4、其他有什么问题欢迎大家提意见和建议。欢迎大家扫码体验 详情如下">
+<meta name="keywords" content="小程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="极简天气之小夭天气">
+<meta property="og:url" content="https://toc.lieme.cn/2019/01/22/Untitled-1.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1、利用周末两天的时间，参考小天气的风格，撸了一个天气小程序，【小夭天气】。2、功能十分简单，查看当前地区的天气和搜索其他地区的天气，增加了可以生成图片分享出去。3、上线后发现一个问题，就是极速提供的天气接口对区级市没有区分，例如 上海有宝山区，东北那也有一个。就没有区分。这是一个bug4、其他有什么问题欢迎大家提意见和建议。欢迎大家扫码体验 详情如下">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/22/16873ae8187163ad?w=258&h=258&f=jpeg&s=52882">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/22/16873acd619efc83?w=1080&h=1920&f=png&s=143312">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/22/16873acfad34a83c?w=1080&h=1920&f=png&s=144390">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/22/16873ad50d66a12f?w=1080&h=1920&f=png&s=117986">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/22/16873ad7bc7f938f?w=1080&h=1920&f=png&s=151775">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/22/16873adb2851314a?w=1080&h=1920&f=png&s=236193">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/22/16873adf9604c26f?w=1080&h=1920&f=png&s=148132">
+<meta property="og:updated_time" content="2019-10-21T00:18:16.610Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="极简天气之小夭天气">
+<meta name="twitter:description" content="1、利用周末两天的时间，参考小天气的风格，撸了一个天气小程序，【小夭天气】。2、功能十分简单，查看当前地区的天气和搜索其他地区的天气，增加了可以生成图片分享出去。3、上线后发现一个问题，就是极速提供的天气接口对区级市没有区分，例如 上海有宝山区，东北那也有一个。就没有区分。这是一个bug4、其他有什么问题欢迎大家提意见和建议。欢迎大家扫码体验 详情如下">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/1/22/16873ae8187163ad?w=258&h=258&f=jpeg&s=52882">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">极简天气之小夭天气</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">极简天气之小夭天气</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-01-22T05:44:00.000Z" itemprop="datePublished" class="page-time">
+  2019-01-22
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1、利用周末两天的时间，参考小天气的风格，撸了一个天气小程序，【小夭天气】。"><span class="post-toc-number">1.</span> <span class="post-toc-text">1、利用周末两天的时间，参考小天气的风格，撸了一个天气小程序，【小夭天气】。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2、功能十分简单，查看当前地区的天气和搜索其他地区的天气，增加了可以生成图片分享出去。"><span class="post-toc-number">2.</span> <span class="post-toc-text">2、功能十分简单，查看当前地区的天气和搜索其他地区的天气，增加了可以生成图片分享出去。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3、上线后发现一个问题，就是极速提供的天气接口对区级市没有区分，例如-上海有宝山区，东北那也有一个。就没有区分。这是一个bug"><span class="post-toc-number">3.</span> <span class="post-toc-text">3、上线后发现一个问题，就是极速提供的天气接口对区级市没有区分，例如 上海有宝山区，东北那也有一个。就没有区分。这是一个bug</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#4、其他有什么问题欢迎大家提意见和建议。"><span class="post-toc-number">4.</span> <span class="post-toc-text">4、其他有什么问题欢迎大家提意见和建议。</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#欢迎大家扫码体验"><span class="post-toc-number"></span> <span class="post-toc-text">欢迎大家扫码体验</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#详情如下"><span class="post-toc-number"></span> <span class="post-toc-text">详情如下</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#部分代码如下："><span class="post-toc-number"></span> <span class="post-toc-text">部分代码如下：</span></a>
+        </nav>
+    </aside>
+
+
+<article id="post-Untitled-1"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">极简天气之小夭天气</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-01-22 13:44:00" datetime="2019-01-22T05:44:00.000Z"  itemprop="datePublished">2019-01-22</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        873
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        5 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h5 id="1、利用周末两天的时间，参考小天气的风格，撸了一个天气小程序，【小夭天气】。"><a href="#1、利用周末两天的时间，参考小天气的风格，撸了一个天气小程序，【小夭天气】。" class="headerlink" title="1、利用周末两天的时间，参考小天气的风格，撸了一个天气小程序，【小夭天气】。"></a>1、利用周末两天的时间，参考小天气的风格，撸了一个天气小程序，【小夭天气】。</h5><h5 id="2、功能十分简单，查看当前地区的天气和搜索其他地区的天气，增加了可以生成图片分享出去。"><a href="#2、功能十分简单，查看当前地区的天气和搜索其他地区的天气，增加了可以生成图片分享出去。" class="headerlink" title="2、功能十分简单，查看当前地区的天气和搜索其他地区的天气，增加了可以生成图片分享出去。"></a>2、功能十分简单，查看当前地区的天气和搜索其他地区的天气，增加了可以生成图片分享出去。</h5><h5 id="3、上线后发现一个问题，就是极速提供的天气接口对区级市没有区分，例如-上海有宝山区，东北那也有一个。就没有区分。这是一个bug"><a href="#3、上线后发现一个问题，就是极速提供的天气接口对区级市没有区分，例如-上海有宝山区，东北那也有一个。就没有区分。这是一个bug" class="headerlink" title="3、上线后发现一个问题，就是极速提供的天气接口对区级市没有区分，例如 上海有宝山区，东北那也有一个。就没有区分。这是一个bug"></a>3、上线后发现一个问题，就是极速提供的天气接口对区级市没有区分，例如 上海有宝山区，东北那也有一个。就没有区分。这是一个bug</h5><h5 id="4、其他有什么问题欢迎大家提意见和建议。"><a href="#4、其他有什么问题欢迎大家提意见和建议。" class="headerlink" title="4、其他有什么问题欢迎大家提意见和建议。"></a>4、其他有什么问题欢迎大家提意见和建议。</h5><h1 id="欢迎大家扫码体验"><a href="#欢迎大家扫码体验" class="headerlink" title="欢迎大家扫码体验"></a>欢迎大家扫码体验</h1><p><img src="https://user-gold-cdn.xitu.io/2019/1/22/16873ae8187163ad?w=258&h=258&f=jpeg&s=52882" alt="小夭天气"></p>
+<h1 id="详情如下"><a href="#详情如下" class="headerlink" title="详情如下"></a>详情如下</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2019/1/22/16873acd619efc83?w=1080&h=1920&f=png&s=143312" alt="首页" title>
+                </div>
+                <div class="image-caption" style="display:none;">首页</div>
+            </figure>
+
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2019/1/22/16873acfad34a83c?w=1080&h=1920&f=png&s=144390" alt="首页" title>
+                </div>
+                <div class="image-caption" style="display:none;">首页</div>
+            </figure>
+
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2019/1/22/16873ad50d66a12f?w=1080&h=1920&f=png&s=117986" alt="首页" title>
+                </div>
+                <div class="image-caption" style="display:none;">首页</div>
+            </figure>
+
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2019/1/22/16873ad7bc7f938f?w=1080&h=1920&f=png&s=151775" alt="空气质量详情" title>
+                </div>
+                <div class="image-caption" style="display:none;">空气质量详情</div>
+            </figure>
+
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2019/1/22/16873adb2851314a?w=1080&h=1920&f=png&s=236193" alt="生活指数详情" title>
+                </div>
+                <div class="image-caption" style="display:none;">生活指数详情</div>
+            </figure>
+
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2019/1/22/16873adf9604c26f?w=1080&h=1920&f=png&s=148132" alt="多日天气详情" title>
+                </div>
+                <div class="image-caption" style="display:none;">多日天气详情</div>
+            </figure>
+
+<h1 id="部分代码如下："><a href="#部分代码如下：" class="headerlink" title="部分代码如下："></a>部分代码如下：</h1><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!-- 生成图片 --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"saveimage"</span> <span class="attr">wx:if</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;canvasPic&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"loading"</span> <span class="attr">wx:if</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;loading&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span><span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">"../images/loading.gif"</span> <span class="attr">class</span>=<span class="string">"loading"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">canvasdrawer</span> <span class="attr">painting</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;painting&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">bind:getImage</span>=<span class="string">"eventGetImage"</span>/&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"picbox"</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"saveimageCont"</span>&gt;</span><span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;shareImage&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">mode</span>=<span class="string">"widthFix"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"keep"</span> <span class="attr">catchtap</span>=<span class="string">'eventSave'</span>&gt;</span></span><span class="template-variable">&#123;&#123;shareText&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">button</span>&gt;</span> </span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">"keep keep2"</span> <span class="attr">bindtap</span>=<span class="string">"closesaveimage"</span>&gt;</span>返回<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!--选择地区--&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"selectArea </span></span></span><span class="template-variable">&#123;&#123;getLotion === '' ? 'nomargin' :'' &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">wx:if</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;selectArea&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!-- 返回 --&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"selectAreaBox"</span> <span class="attr">:dss</span>=<span class="string">"getLotion"</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"back"</span> <span class="attr">wx:if</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;getLotion === 'null' || getLotion !== ''&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"backIcon"</span> <span class="attr">bindtap</span>=<span class="string">"back"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">"../images/back.png"</span> <span class="attr">class</span>=<span class="string">"img"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"input"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"Jinput"</span> <span class="attr">placeholder</span>=<span class="string">"请输入地区"</span>  <span class="attr">bindinput</span>=<span class="string">'writeArea'</span> <span class="attr">value</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;inpuText&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> &gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">"../images/serchicon.png"</span> <span class="attr">class</span>=<span class="string">"imgicon"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"clear"</span> <span class="attr">bindtap</span>=<span class="string">"clearInpuText"</span>&gt;</span><span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">"../images/clear.png"</span> <span class="attr">class</span>=<span class="string">"clearicon"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"sureBtn"</span> <span class="attr">bindtap</span>=<span class="string">"inputGoWeather"</span>&gt;</span><span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">"../images/surebtn.png"</span> <span class="attr">class</span>=<span class="string">"sureicon"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"tips"</span>&gt;</span>历史记录<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"hisCity"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"hisCityBtn"</span> <span class="attr">data-city</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;list&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">wx:for</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;historyArea&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">wx:for-item</span>=<span class="string">"list"</span> <span class="attr">wx:key</span> <span class="attr">wx:if</span>=<span class="string">"historyArea.length &gt; 0"</span>  <span class="attr">bindtap</span>=<span class="string">"goWeather"</span>&gt;</span></span><span class="template-variable">&#123;&#123;list&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"tips"</span>&gt;</span>热门城市<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"recCity"</span>&gt;</span></span></span><br><span class="line"><span class="xml">             <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"recCityBtn getLocation"</span> <span class="attr">bindtap</span>=<span class="string">"selectLocation"</span>&gt;</span><span class="tag">&lt;<span class="name">image</span> <span class="attr">class</span>=<span class="string">"getLocationimg"</span> <span class="attr">src</span>=<span class="string">"../images/hoticon.png"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span>定位<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"recCityBtn"</span> <span class="attr">data-city</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;list&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">wx:for</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;hotArea&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">wx:for-item</span>=<span class="string">"list"</span> <span class="attr">wx:key</span> <span class="attr">bindtap</span>=<span class="string">"goWeather"</span>&gt;</span></span><span class="template-variable">&#123;&#123;list&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">getWeatherData:function(city)&#123;</span><br><span class="line">   <span class="keyword">var</span> _this = <span class="keyword">this</span>,</span><br><span class="line">         thisdata = <span class="keyword">this</span>.<span class="keyword">data</span>,</span><br><span class="line">         historyArea = thisdata.historyArea;</span><br><span class="line">   wx.request(&#123;</span><br><span class="line">     url: _this.<span class="keyword">data</span>.api,</span><br><span class="line">     <span class="keyword">data</span>: &#123;</span><br><span class="line">       <span class="string">"city"</span>: city</span><br><span class="line">     &#125;,</span><br><span class="line">     method: <span class="string">'get'</span>,</span><br><span class="line">     header: &#123;</span><br><span class="line">       <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span></span><br><span class="line">     &#125;,</span><br><span class="line">     dataType: <span class="string">'jsonp'</span>,</span><br><span class="line">     jsonp: <span class="string">'callback'</span>,</span><br><span class="line">     success: function (res) &#123;</span><br><span class="line">       <span class="keyword">var</span> res = res.<span class="keyword">data</span></span><br><span class="line">       res = JSON.parse(res)</span><br><span class="line">       <span class="keyword">if</span> (res.status === <span class="string">"0"</span>) &#123;</span><br><span class="line">         <span class="keyword">var</span> <span class="keyword">data</span> = res[<span class="string">'result'</span>]</span><br><span class="line">         <span class="keyword">data</span>.img = <span class="string">'../images/condicon/'</span>+<span class="keyword">data</span>.img+<span class="string">'b.png'</span></span><br><span class="line">         _this.setData(&#123;</span><br><span class="line">           getSuccess: <span class="string">'true'</span>,</span><br><span class="line">           getLotion: city,</span><br><span class="line">           realdata: <span class="keyword">data</span>,</span><br><span class="line">           clock: <span class="keyword">data</span>.updatetime,</span><br><span class="line">           aqi: <span class="keyword">data</span>[<span class="string">'aqi'</span>],</span><br><span class="line">           aqiMsg: <span class="keyword">data</span>.aqi.aqiinfo[<span class="string">'affect'</span>] + <span class="string">'，'</span> + <span class="keyword">data</span>.aqi.aqiinfo[<span class="string">'measure'</span>],</span><br><span class="line">           life: <span class="keyword">data</span>[<span class="string">'index'</span>],</span><br><span class="line">           daily: <span class="keyword">data</span>[<span class="string">'daily'</span>],</span><br><span class="line">           hourly: <span class="keyword">data</span>[<span class="string">'hourly'</span>],</span><br><span class="line">           airPredict: <span class="string">'两小时之后天气'</span> + <span class="keyword">data</span>.hourly[<span class="number">2</span>].weather + <span class="string">' ，温度 '</span> + <span class="keyword">data</span>.hourly[<span class="number">2</span>].temp + <span class="string">'°'</span>,</span><br><span class="line">           quality: <span class="keyword">data</span>[<span class="string">'aqi'</span>].quality</span><br><span class="line">         &#125;)</span><br><span class="line">         <span class="comment">// 搜索返回成功后 清除 输入框，将搜索结果放入历史记录</span></span><br><span class="line">         <span class="comment">// _this.$refs.clearText.value = ''</span></span><br><span class="line">         <span class="keyword">if</span> (thisdata.inpuText !== <span class="string">''</span>) &#123;</span><br><span class="line">           <span class="keyword">if</span> (thisdata.historyArea.indexOf(thisdata.inpuText) === <span class="number">-1</span>) &#123;</span><br><span class="line">             historyArea.push(thisdata.inpuText)</span><br><span class="line">             _this.setData(&#123;</span><br><span class="line">               historyArea: historyArea</span><br><span class="line">             &#125;)</span><br><span class="line">           &#125;</span><br><span class="line">         &#125;</span><br><span class="line">         _this.back()</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         wx.showModal(&#123;</span><br><span class="line">           title: <span class="string">'提示'</span>,</span><br><span class="line">           content: res.msg,</span><br><span class="line">           success: function (res) &#123;</span><br><span class="line">             <span class="keyword">if</span> (res.confirm) &#123;</span><br><span class="line">               _this.setData(&#123;</span><br><span class="line">                 msgText: <span class="string">'位置获取失败！！！请手动选择'</span>,</span><br><span class="line">                 loadingBtn: <span class="literal">true</span></span><br><span class="line">               &#125;)</span><br><span class="line">             &#125; <span class="keyword">else</span> <span class="keyword">if</span> (res.cancel) &#123;</span><br><span class="line">               console.log(<span class="string">'用户点击取消'</span>)</span><br><span class="line">             &#125;</span><br><span class="line">           &#125;</span><br><span class="line">         &#125;)</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;,</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定位获取</span></span><br><span class="line">  selectLocation: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> _this = <span class="keyword">this</span></span><br><span class="line">    _this.getlocation();</span><br><span class="line">  &#125;,</span><br><span class="line">  getlocation: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> _this = <span class="keyword">this</span></span><br><span class="line">    wx.getLocation(&#123;</span><br><span class="line">      type: <span class="string">'wgs84'</span>,</span><br><span class="line">      success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res)</span><br><span class="line">        <span class="keyword">var</span> latitude = res.latitude</span><br><span class="line">        <span class="keyword">var</span> longitude = res.longitude</span><br><span class="line">        <span class="keyword">var</span> speed = res.speed</span><br><span class="line">        <span class="keyword">var</span> accuracy = res.accuracy</span><br><span class="line">        qqmapsdk.reverseGeocoder(&#123;</span><br><span class="line">          location: &#123;</span><br><span class="line">            latitude: latitude,</span><br><span class="line">            longitude: longitude</span><br><span class="line">          &#125;,</span><br><span class="line">          success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123; </span><br><span class="line">            <span class="built_in">console</span>.log(res)</span><br><span class="line">            _this.setData(&#123;</span><br><span class="line">              getLotion: res.result.address_component.district ? res.result.address_component.district : res.result.address_component.city</span><br><span class="line">            &#125;)</span><br><span class="line">            wx.setNavigationBarTitle(&#123;</span><br><span class="line">              title: res.result.address_component.district</span><br><span class="line">            &#125;)</span><br><span class="line">            _this.getWeatherData(res.result.address_component.district)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;,</span><br><span class="line">      fail:<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">        _this.setData(&#123;</span><br><span class="line">          msgText: <span class="string">'位置获取失败！！！请手动选择'</span>,</span><br><span class="line">          loadingBtn:<span class="literal">true</span></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-10-21T00:18:16.610Z" itemprop="dateUpdated">2019-10-21 08:18:16</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/01/22/Untitled-1.html&title=《极简天气之小夭天气》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/01/22/Untitled-1.html&title=《极简天气之小夭天气》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/01/22/Untitled-1.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《极简天气之小夭天气》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/01/22/Untitled-1.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/01/22/Untitled-1.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/02/05/CSS实现-Tab-hover-下划线跟随.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">CSS实现 Tab hover 下划线跟随</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/01/14/面获取当前位置信息.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">JS获取当前位置信息</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/01/22/Untitled-1.html&title=《极简天气之小夭天气》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/01/22/Untitled-1.html&title=《极简天气之小夭天气》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/01/22/Untitled-1.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《极简天气之小夭天气》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/01/22/Untitled-1.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/01/22/Untitled-1.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKklEQVR42u3aQY7DMAgF0Ln/pTvbLqbJB9KRQl5WVVrZfq6EjOHnJ35e8XP8+/dvP31+f3Pxg4GBcVtGb1nJco8XnfwmWRsGBsZzGPnQvZB6PEsyzsmaMTAwMAbB93gLjt9jYGBgzBm9kJqPg4GBgVFNYpPJTlLN8WgX5OIYGBg3ZOS37v//+Sv1DQwMjFsxXsVnUs6sblNhFgwMjNWM6jSTYmdy3dZbDwYGxm5GNcxNdqtaWjiGffwfMDAwljImS8wvv5KiZrWc+ccJFwMDYyljnppedXGWl0UxMDCew+gNUV10HmQnLSAYGBhbGfPWil4jxaThLOoWwcDAeBgjeVOFVYsBJ+vEwMBYzaiWBHrxrXfoLB83MTAwljJ6g86Db/MqLfkfMDAwVjOqrQ9JIM4Dd14wOKnEYmBgrGPkaeQ3LtearRUYGBgPY+THuDyJzRtVqwfQcjzGwMBYxMhTyl7bVi8ol4+DGBgYSxnV8mQSTKsFyGT25tkWAwNjHSM/wOWtXfkiqu1iUbMFBgbGUkYSLpNQ2ztE5htRyLkxMDBWM/IWiqtS4sl2Y2BgbGW8is9kyl6BISonYGBgrGZUmyqqB74kKibHxN5xEwMDYxOjF2TzpPSqZo5yYQADA2MdIw98V5Uqq+wTJAYGBkYc+PLEtVcoPbl0w8DAwAjS0UmBYdKcgYGB8QRGsrhqWjtp0Ui2GAMD4zmMPHW8NlDmTa6XFTIxMDDux/gF4dhqmNbwUCwAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

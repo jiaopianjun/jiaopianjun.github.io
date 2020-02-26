@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>重学JavaScript之变量、作用域和内存问题 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="变量、作用域和内存问题">
+    <meta name="description" content="QQ图片20190716221702.jpg               1. 基本类型和引用类型的值 ES变量包含两种不同数据类型的值：基本类型值和引用类型值。  将一个值赋给变量的时候，解析器必须确定这个值是基">
+<meta name="keywords" content="变量、作用域和内存问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重学JavaScript之变量、作用域和内存问题">
+<meta property="og:url" content="https://toc.lieme.cn/2019/07/16/重学JavaScript之变量、作用域和内存问题.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="QQ图片20190716221702.jpg               1. 基本类型和引用类型的值 ES变量包含两种不同数据类型的值：基本类型值和引用类型值。  将一个值赋给变量的时候，解析器必须确定这个值是基">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/FunIhT7TSezDvn2sAd8zT7r1tFP3">
+<meta property="og:updated_time" content="2019-08-11T05:06:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重学JavaScript之变量、作用域和内存问题">
+<meta name="twitter:description" content="QQ图片20190716221702.jpg               1. 基本类型和引用类型的值 ES变量包含两种不同数据类型的值：基本类型值和引用类型值。  将一个值赋给变量的时候，解析器必须确定这个值是基">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/FunIhT7TSezDvn2sAd8zT7r1tFP3">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">重学JavaScript之变量、作用域和内存问题</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">重学JavaScript之变量、作用域和内存问题</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-07-16T14:29:00.000Z" itemprop="datePublished" class="page-time">
+  2019-07-16
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/重学JavaScript/">重学JavaScript</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-基本类型和引用类型的值"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 基本类型和引用类型的值</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-1-基本类型值"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.1 基本类型值</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-引用类型值"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">1.2 引用类型值</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-3-动态属性"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">1.3 动态属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-4-复制变量值"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">1.4 复制变量值</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-5-传递参数"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">1.5 传递参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-6-检测类型"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">1.6 检测类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-7-执行环境及作用域"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">1.7 执行环境及作用域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-7-1-延长作用域链"><span class="post-toc-number">1.7.1.</span> <span class="post-toc-text">1.7.1 延长作用域链</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-8-没有块级作用域"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">1.8 没有块级作用域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-8-1-声明变量"><span class="post-toc-number">1.8.1.</span> <span class="post-toc-text">1.8.1 声明变量</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-8-2-查询标识符"><span class="post-toc-number">1.8.2.</span> <span class="post-toc-text">1.8.2 查询标识符</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-9-垃圾收集"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">1.9 垃圾收集</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-9-1-标记清除"><span class="post-toc-number">1.9.1.</span> <span class="post-toc-text">1.9.1 标记清除</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-9-2-引用计数"><span class="post-toc-number">1.9.2.</span> <span class="post-toc-text">1.9.2 引用计数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-9-3-性能问题"><span class="post-toc-number">1.9.3.</span> <span class="post-toc-text">1.9.3 性能问题</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-9-4-管理内存"><span class="post-toc-number">1.9.4.</span> <span class="post-toc-text">1.9.4 管理内存</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">2.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-重学JavaScript之变量、作用域和内存问题"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">重学JavaScript之变量、作用域和内存问题</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-07-16 22:29:00" datetime="2019-07-16T14:29:00.000Z"  itemprop="datePublished">2019-07-16</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/重学JavaScript/">重学JavaScript</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        4,496
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        16 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FunIhT7TSezDvn2sAd8zT7r1tFP3" alt="QQ图片20190716221702.jpg" title>
+                </div>
+                <div class="image-caption" style="display:none;">QQ图片20190716221702.jpg</div>
+            </figure>
+
+<h2 id="1-基本类型和引用类型的值"><a href="#1-基本类型和引用类型的值" class="headerlink" title="1. 基本类型和引用类型的值"></a>1. 基本类型和引用类型的值</h2><blockquote>
+<p>ES变量包含两种不同数据类型的值：基本类型值和引用类型值。</p>
+</blockquote>
+<p><strong>将一个值赋给变量的时候，解析器必须确定这个值是基本类型还是引用类型</strong></p>
+<h3 id="1-1-基本类型值"><a href="#1-1-基本类型值" class="headerlink" title="1.1 基本类型值"></a>1.1 基本类型值</h3><blockquote>
+<p>指的是那些保存在栈内存中的简单数据，即这种值完全保存在内存中的一个位置。一下五种为基本类型值，它们在内存中分别占有固定大小的空间，因此它们的值可以保存在栈内存中。这样也可以提高查询变量的速度。对于保存基本类型值的变量，它们是按值访问的，我们操作的是它们实际的值。</p>
+</blockquote>
+<ul>
+<li>Undefined</li>
+<li>Null</li>
+<li>Boolean</li>
+<li>Number</li>
+<li>String</li>
+</ul>
+<h3 id="1-2-引用类型值"><a href="#1-2-引用类型值" class="headerlink" title="1.2 引用类型值"></a>1.2 引用类型值</h3><blockquote>
+<p>指的那些保存在堆内存中的对象，意思是变量中保存的实际上只是一个指针，这个指针指向内存中的另一个位置，该位置保存对象。</p>
+</blockquote>
+<p>因此如果想要给一个变量赋值一个引用类型的值，<strong>那么则必须在堆内存中为这个值分配空间</strong>，由于这种值的大小不固定，因此不能把她保存到栈内存中，但是内存地址的大小是固定的，因此可以将内存地址保存在栈内存中。这样，在查询引用类型的变量时，就可以首先从栈中读取内存地址，在找到在堆内存中保存的值。<strong>这种访问方式叫做引用访问，因为我们不是操作的实际的值，而是被那个值引用的对象</strong>。</p>
+<h3 id="1-3-动态属性"><a href="#1-3-动态属性" class="headerlink" title="1.3 动态属性"></a>1.3 动态属性</h3><blockquote>
+<p>定义基本类型值和引用类型值的方式是类似的：创建一个变量并为该变量赋值。但是，当这个值保存到变量中以后，对不同类型值可以执行的操作则大相径庭。对于引用类型的值，我们可以为其添加属性和方法。也可以改变和删除其属性和方法。</p>
+</blockquote>
+<pre><code>var p = new Object()
+p.name = &apos;vue&apos;
+alert(p.name)   // vue</code></pre><h3 id="1-4-复制变量值"><a href="#1-4-复制变量值" class="headerlink" title="1.4 复制变量值"></a>1.4 复制变量值</h3><blockquote>
+<p>除了保存方式不同之外，从一个变量向另外一个变量复制基本类型值和引用类型值时，也存在不同。如果从一个变量向另一个变量复制基本类型的值，会在栈中创建一个新值，然后把该值复制到为新变量分配的位置上：</p>
+</blockquote>
+<pre><code>var n = 5
+var n2 = n
+
+// 注意n 和 n2 之间是独立的。改变n 不会 改变 n2</code></pre><blockquote>
+<p>当一个变量向另一个变量复制引用类型的值时，同样也会将存储在栈中的值复制一份放到为新变量分配的空间中。不同的是，这个值的副本实际上是一个指针，而这个指针指向存储在堆中的一个对象。复制操作结束后，两个变量实际上是引用的同一个对象。因此改变其中一个另外一个也会改变。</p>
+</blockquote>
+<pre><code>var obj = new Object()
+var obj2 = obj1
+obj1.name = &apos;vue&apos;
+alert(obj2.name)    // vue</code></pre><h3 id="1-5-传递参数"><a href="#1-5-传递参数" class="headerlink" title="1.5 传递参数"></a>1.5 传递参数</h3><blockquote>
+<p>ES中 所有函数的参数都是按值传递的，也就是说，把函数外部的值 复制给函数内部的参数。</p>
+</blockquote>
+<p>在向参数传递基本类型的值时，被传递的值会被复制给一个局部变量（即命名参数，或者就是arguments对象中的一个元素），在向参数传递引用类型的值时，会把这个值在内存中的地址复制给一个局部变量，因此这个局部变量的变化会反映在函数的外部。</p>
+<pre><code>function addTen(num){
+    num += 10
+    return num
+}
+
+var count = 20
+var result = addTen(count)
+console.log(count) // 20
+console.log(result) // 30</code></pre><h3 id="1-6-检测类型"><a href="#1-6-检测类型" class="headerlink" title="1.6 检测类型"></a>1.6 检测类型</h3><blockquote>
+<p>可以通过 typeof 操作符检测，在第三章中已经介绍过。当然typeof对基本数据类型的检测是很好，但是对于引用类型的检测则有点困难，这时候就可以通过  instanceof 来检测</p>
+</blockquote>
+<pre><code>result = variable instanceof constructor</code></pre><p>如果变量是给定引用类型的实例，那么 instanceof 操作符就会返回true，如下：</p>
+<pre><code>person instanceof Object    // 变量 person 是 Object？</code></pre><p>根据规定，所有引用类型的值都是Object的实例，因此，在检测一个引用类型值和Object构造函数时，<strong>instanceof</strong> 操作符始终会返回 true，如果使用 instanceof 操作符检测基本类型的值，则该操作符始终返回 false，因为基本类型不是对象。</p>
+<p><strong>注意：</strong> 使用 typeof 操作符检测函数时，该操作符会返回 function 。在 safari 和 chrome 中使用 typeof 检测正则表达式时，这个操作符会错误地返回 function</p>
+<h3 id="1-7-执行环境及作用域"><a href="#1-7-执行环境及作用域" class="headerlink" title="1.7 执行环境及作用域"></a>1.7 执行环境及作用域</h3><blockquote>
+<p>执行环境是js中最为重要的一个概念。执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为，每个执行环境都有一个与之关联的变量对象。环境中定义的所有变量和函数都保存在这个对象中。</p>
+</blockquote>
+<blockquote>
+<p>全局执行环境是最外围的执行环境，根据 ES 实现所在的宿主环境不同，表示执行环境的对象也不一样，在浏览器中，全局执行环境是 window 对象。因此所有全局变量和函数都是作为 window 对象的属性和方法创建的，某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁。</p>
+</blockquote>
+<blockquote>
+<p>每个函数在被调用时都会创建自己的执行环境，当执行流进入一个函数时，函数的环境就会被推入一个环境栈中，而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。</p>
+</blockquote>
+<p>当代码在一个环境中执行时，会创建由变量对象构成的一个作用域链，作用域链的用途，<strong>是保证对执行环境有权访问的所有变量和函数的有序访问</strong>。作用域的前端，始终都是当前执行的代码所在环境的变量对象。如果这个环境是函数，则将其活动对象作为变量对象。活动对象子最开始时只包含一个变量，即 arguments对象。作用域链中的下一个变量对象来在包含环境，而在下一个变量对象则来自下一个包含环境。这样一直延续到全局执行环境，全局执行环境的变量对象始终都是作用域链中的最后一个对象。</p>
+<p><strong>标识符解析沿着作用域一级一级地搜索标识符的过程，搜索过程中始终从作用域链的前端开始，然后逐级地向后回溯，直至找到标识符位置，如果找不到就报错。</strong></p>
+<p><strong>重点：</strong> 在一个特定的执行环境中，内部环境可以通过作用域链访问所有的外部环境，但外部环境不能访问内部环境中的任何变量和函数。这些环境之间的联系是线性、有次序的，每个环境都可以向上搜索作用域链，以查询变量和函数名；但任何环境都不能通过向下搜索作用域链而进入另外一个执行环境。函数的参数也被当做变量来对待，因此其访问规则与执行环境中的其他变量相同。</p>
+<h4 id="1-7-1-延长作用域链"><a href="#1-7-1-延长作用域链" class="headerlink" title="1.7.1 延长作用域链"></a>1.7.1 延长作用域链</h4><blockquote>
+<p>虽然执行环境的类型总共只有两种—全局和局部（函数），我们可以通过其他办法来延长作用域链。原理就是在作用域链的前端临时增加一个变量对象，该变量对象会在代码执行后被一处。可以通过以下两种方式来实现：</p>
+</blockquote>
+<pre><code>try-catch语句的catch块
+with语句</code></pre><p>这个两个语句都会在作用域链的前端添加一个变量对象，对 with 语句来说，其变量对象中包含着为指定对象的所有属性和方法所作变量的声明。对catch 语句来说，其变量对象中包含的事被抛出的错误对象的声明。这些变量都是只读的，因此在 with 和 catch 语句中声明的变量都会被添加到所执行环境的变量对象中。</p>
+<p><strong>注意</strong>： 在IE的JavaScript实现中，存在一个与标准不一致的地方，即在 catch 语句中捕获的错误对象会被添加到执行环境的变量对象中。也就是说，即使在catch块的外部也可以访问到错误对象。</p>
+<h3 id="1-8-没有块级作用域"><a href="#1-8-没有块级作用域" class="headerlink" title="1.8 没有块级作用域"></a>1.8 没有块级作用域</h3><blockquote>
+<p>JavaScript 没有块级作用域。至少在当前这个版本没有</p>
+</blockquote>
+<pre><code>if (true) {
+    var color = &apos;blue&apos;
+}
+
+console.log(color)  // blue  
+
+// 如果是其他语言 在 {} 之内的定义  在{} 外部是无法获取的</code></pre><h4 id="1-8-1-声明变量"><a href="#1-8-1-声明变量" class="headerlink" title="1.8.1 声明变量"></a>1.8.1 声明变量</h4><blockquote>
+<p>在使用 var 关键字声明变量时，这个变量将被自动添加到距离最近的可用环境中，对于函数而言，这个最近的环境就是函数的局部环境，对于前面例子中 with 语句而言，这个最近的环境也是函数的环境。如果变量未经声明的情况下被初始化，那么该变量会被自动添加到全局环境。</p>
+</blockquote>
+<p><strong>注意</strong>： 在编写 JavaScript 代码的过程中，不声明而直接初始化变量时一个常见的错误做法，因为这样可能会导致意外，我们建议时在初始化变量之前，一定要先声明。</p>
+<h4 id="1-8-2-查询标识符"><a href="#1-8-2-查询标识符" class="headerlink" title="1.8.2 查询标识符"></a>1.8.2 查询标识符</h4><blockquote>
+<p>当在某个环境中为了读取和写入而引用一个标识符时，必须通过搜索来确定该标识符实际代表什么，搜索过程从作用域链的前端开始，向上逐级查询与给定名字匹配的标识符。如果在局部环境中找到了该标识符，搜索过程停止、变量就绪。如果在局部环境中没有找到该变量名，则继续沿作用域向上搜索。搜索过程一直追溯到全局环境的变量对象。如果在全局环境中也没有找到这个标识符，那么则意味着该变量未声明。</p>
+</blockquote>
+<pre><code>var color = &apos;blue&apos;
+function getColor () {
+    return color
+}
+
+alert(getColor()) // &apos;blue&apos;</code></pre><p>上述例子， 在调用函数 getColor() 时 会引用变量color，为了确定变量color的值，将开始一个两步搜索过程。首先，搜索 getColor()的变量对象，19查找其中是否包含一个名为color的标识符，在没有找到的情况下，搜索继续到下一个变量对象（全局环境的变量对象），然后在哪里找到了名为 color的标识符。因为搜索到了定义这个变量的变量对象，那么搜索过程结束。</p>
+<p><strong>注意</strong>： 如果在搜索过程中，如果存在一个局部的变量的定义，则搜索会自动停止，不在进入另一个变量对象。换句话说，如果局部环境中有同名标识符，就不会使用位于父环境中的标识符。</p>
+<p><strong>注意</strong>： 另外变量查询也是有代价的，访问局部变量要比访问全局变量更快，因为不用向上搜索作用域链。</p>
+<h3 id="1-9-垃圾收集"><a href="#1-9-垃圾收集" class="headerlink" title="1.9 垃圾收集"></a>1.9 垃圾收集</h3><blockquote>
+<p>JavaScript 具有自动垃圾收集机制，也就是说，执行环境会负责管理代码执行过程中使用的内存。它的原理是：找出那些不再继续使用的变量，然后释放其占用的内存。为此垃圾收集器会按照固定的时间间隔，周期性的执行这一操作。</p>
+</blockquote>
+<h4 id="1-9-1-标记清除"><a href="#1-9-1-标记清除" class="headerlink" title="1.9.1 标记清除"></a>1.9.1 标记清除</h4><blockquote>
+<p>JavaScript 最常用的垃圾收集方式是标记清除，当变量进入环境时，就为这个变量标记一个 “进入环境”，从逻辑上讲，永远不能释放进入环境的变量所占用的内存，因为只要进入了环境，那么就代表可能会用到它，当变量离开环境的时候，会被标记上“离开环境”。垃圾收集器运行的时候会给存储在内存中所有的变量加上标记，然后去掉环境中的变量已经被环境中变量引用的变量标记，那么剩下来的就是准备删除的变量。最后垃圾收集器完成内存清除工作。</p>
+</blockquote>
+<h4 id="1-9-2-引用计数"><a href="#1-9-2-引用计数" class="headerlink" title="1.9.2 引用计数"></a>1.9.2 引用计数</h4><blockquote>
+<p>还有种垃圾收集策略叫做引用计数，就是跟踪记录每个值被引用的次数。当声明了一个变量并将一个引用类型值赋给该变量时，则这个值的引用次数就是1，如果同一个值又被赋给另一个变量则该值的引用次数加1。相反，如果包含对这个值引用的变量又取得了另外一个值，则这个值的引用次数减1.当这个值的引用次数变成 0 时。则说明没有办法在访问这个值了，就可以将其占用的内存空间收回。</p>
+</blockquote>
+<h4 id="1-9-3-性能问题"><a href="#1-9-3-性能问题" class="headerlink" title="1.9.3 性能问题"></a>1.9.3 性能问题</h4><blockquote>
+<p>垃圾收集器时周期性运行的，而且如果为变量分配的内存数量很可观，那么回收工作量也是相当大的。所有就导致性能问题。</p>
+</blockquote>
+<h4 id="1-9-4-管理内存"><a href="#1-9-4-管理内存" class="headerlink" title="1.9.4 管理内存"></a>1.9.4 管理内存</h4><blockquote>
+<p>由于JavaScript分配给web浏览器的可用内存数量通常要比分配给桌面应用程序的少，这样做的目的时出于安全方面的考虑。目的是防止运行 JavaScript的网页耗尽全部系统内存而导致系统崩溃。内存限制问题不仅会影响给变量分配内存，同时还会影响调用栈以及在一个线程中能够同时执行的语句数量。</p>
+</blockquote>
+<p>因此，确保占用最少的内存可以让页面获得更好的新能，而优化内存占用的最佳方式，就是为执行中的代码只保存必要的数据。一旦数据不再有用，<strong>最好通过将其值设置为 null 来释放其引用—- 这个做法叫做 解除引用</strong>。这个方法适用大多数全局变量和全局对象的属性。局部变量会在它们离开执行环境后自动被解除。</p>
+<p><strong>注意：</strong> 解除一个值的引用并不意味着自动回收该值所占用的内存。解除引用的真正作用是让值脱离执行环境，以便垃圾收集器下次运行的时候将其回收。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote>
+<p>JavaScript变量可以用来保存两种类型的值：基本类型和引用类型。基本类型包括： Undefined、Null、Boolean、Number、String。它们具有以下的特点。</p>
+</blockquote>
+<ol>
+<li>基本类型值在内存中占据固定大小的空间，因此被保存在栈内存中。</li>
+<li>从一个变量向另一个变量赋值基本类型的值，会创建这个值的一个副本。</li>
+<li>包含引用类型值的变量实际上包含的并不是对象本身，而是指向该对象的指针。</li>
+<li>从一个变量向另一个变量复制引用类型的值，复制的其实是指针，因此两个变量最终都指向同一个对象。</li>
+<li>确定一个值是哪种基本类型可以使用 typeof操作符，而确定一个值是哪种引用类型可以使用 instanceof操作符。</li>
+</ol>
+<blockquote>
+<p>所有变量都存在一个执行环境当中，这个执行环境决定了变量的生命周期，以及哪一部分代码可以访问其中的变量。如下：</p>
+</blockquote>
+<ol>
+<li>执行环境有 全局执行环境 和 函数执行环境之分。</li>
+<li>每次进入一个新执行环境，都会创建一个用于搜索变量和函数的作用域链。</li>
+<li>函数的局部环境不仅有权访问函数作用域中的变量，而且有权访问其包含（父）环境，乃至全局环境。</li>
+<li>全局环境只能访问在全局环境中定义的变量和函数，而不能直接访问局部环境中的任何数据</li>
+<li>变量的执行环境有助于确定应该何时释放内存</li>
+</ol>
+<blockquote>
+<p>JavaScript 是一门具有自动垃圾收集机制的编程语言，开发人员不必关心内存分配和回收问题，如下：</p>
+</blockquote>
+<ol>
+<li>离开作用域的值将被自动标记为可以回收，因此将在垃圾收集期间被删除。</li>
+<li>“标记清除”是目前主流的垃圾收集算法，这种算法的思想是给当前不使用的值加上标记，然后再回收其内存。</li>
+<li>另一种垃圾收集算法是“引用计数”，这种算法的思想是跟踪记录所有值被引用的次数。JavaScript引擎目前都不再使用这种算法，但再IE中访问非原生JavaScript对象时，这种算法仍然可能会导致问题。</li>
+<li>当代码中存在循环引用现象时，“引用计数”算法就会导致问题。</li>
+<li>解除变量的引用不仅有助于消除循环引用现象，而且对垃圾收集也有好处。为了确保有效地回收内存，应该及时解除不再使用的全局对象，全局对象属性以及循环引用变量的引用。</li>
+</ol>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-08-11T05:06:40.000Z" itemprop="dateUpdated">2019-08-11 13:06:40</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/变量、作用域和内存问题/">变量、作用域和内存问题</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/07/16/重学JavaScript之变量、作用域和内存问题.html&title=《重学JavaScript之变量、作用域和内存问题》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FunIhT7TSezDvn2sAd8zT7r1tFP3" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/07/16/重学JavaScript之变量、作用域和内存问题.html&title=《重学JavaScript之变量、作用域和内存问题》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/07/16/重学JavaScript之变量、作用域和内存问题.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学JavaScript之变量、作用域和内存问题》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/07/16/重学JavaScript之变量、作用域和内存问题.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/07/16/重学JavaScript之变量、作用域和内存问题.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/08/05/ES6入门之Set-和-Map.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">ES6入门之Set 和 Map</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/07/09/我是小夭，一起来玩呀！！！.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">前端两三问</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/07/16/重学JavaScript之变量、作用域和内存问题.html&title=《重学JavaScript之变量、作用域和内存问题》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FunIhT7TSezDvn2sAd8zT7r1tFP3" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/07/16/重学JavaScript之变量、作用域和内存问题.html&title=《重学JavaScript之变量、作用域和内存问题》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/07/16/重学JavaScript之变量、作用域和内存问题.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学JavaScript之变量、作用域和内存问题》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/07/16/重学JavaScript之变量、作用域和内存问题.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/07/16/重学JavaScript之变量、作用域和内存问题.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADMElEQVR42u3awWrDQAwE0Pz/T7vQU6GNO5IciJXnUwkh9ttAlZ3ZxyO+ju8reeXn68ev6/zzz99//vrjFRc2Njb2TdjH6ZV/dP7QE17ynMldsLGxsfexz4fW+Xsmo6WKmTwnNjY2NnY+fiZbiMIQwsbGxsZuDbBqnFSl5iMw3zJhY2NjfwK7GtZUl2ae2ydFxUuyNGxsbOy3Z1eL3nf++4X9NjY2NvZbso/xVS1oe9uMXvX79BOwsbGxF7GTGjWvDarU3vGg/I7/iLCxsbFXsBNwPjZGaz9YxDxU+mNuY2NjY69g92Ka8s2CcD+PsSY1BjY2NvYmdn4cpxcDXZXG98Ks86fCxsbG3sHOg/tkQzJfiOoRoupmCRsbG3sfe34Es7fNqFYF+aKXN1fY2NjYN2dH/+KL4+qqRrV698LyYWNjY69j90rcJNyvbnKS0ZUXyVErgo2NjX1zdvWXee8G1XB/svEoWLCxsbHXsScjLQ+SqmFTPg7LIRc2Njb2InYe35fjm1YJcW2F8Khe2NjY2Ldi5z/lk1GRx0PVWKpaSPzzOdjY2NiL2PnQ6pWsl1WzwSv5QSJsbGzsTewjvubLlIdNvRI3XxRsbGzsTex5oN9brElQVd3SPB3A2NjY2OvYkyM11TGTDL/egaF844SNjY29g90L33sbjOp9exVy9Dc2Njb2IvZVh2OqY6wwXeMwqxlpYWNjYy9lV2/fO+JTHY0vH2DY2NjYN2RXV2gSPFXL2vnzPF0abGxs7A9g90ZXNdxPit6kPM7HJzY2NvY+dq9GrUY5k1BpcgComVFhY2Njr2DnP/Hn0U91QzL/GrCxsbF3s/Of+IUf+sXyeL5wj8mFjY2NfVt29SBmEvH3CoZCOx1vTp7qsLGxsW/OPopXXq9W8Xls1CwAfhe92NjY2CvY89qgFzPlY6+KSb4MbGxs7H3sfGjlsf58jOVHgqrvxMbGxt7KzgdDUhtcGwnNNxV/PCc2Njb2x7N7j9g7djMZkxcPMGxsbOybsyeAZNszr3ILAw8bGxt7HTsvd6uVcH6XPLS6oGDAxsbGXsSejIr5As3HZ/5po34bGxsb+x3ZX5LTJjlSY6atAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

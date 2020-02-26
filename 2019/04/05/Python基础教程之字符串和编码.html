@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>Python基础教程之字符串和编码 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Python">
+    <meta name="description" content="1. 字符编码 由于计算机只能处理数字，如果要处理文本就必须将文本转换为数字才能处理，最早设计的时候采用8b 表示一个字节，一个字节能够表示的最大整数是255,如果要表示更大的整数，就必须用多个字节。另外由于计算机是美国人发明的，所以计算机早期只有127个字符被编码到计算机了，也就是Ascii码，后来要处理中文中国就指定了GB2312  ，但是其他国家也有自己的语言 然后就有了不同的标准， 所以就">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python基础教程之字符串和编码">
+<meta property="og:url" content="https://toc.lieme.cn/2019/04/05/Python基础教程之字符串和编码.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1. 字符编码 由于计算机只能处理数字，如果要处理文本就必须将文本转换为数字才能处理，最早设计的时候采用8b 表示一个字节，一个字节能够表示的最大整数是255,如果要表示更大的整数，就必须用多个字节。另外由于计算机是美国人发明的，所以计算机早期只有127个字符被编码到计算机了，也就是Ascii码，后来要处理中文中国就指定了GB2312  ，但是其他国家也有自己的语言 然后就有了不同的标准， 所以就">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-10-21T00:11:09.679Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python基础教程之字符串和编码">
+<meta name="twitter:description" content="1. 字符编码 由于计算机只能处理数字，如果要处理文本就必须将文本转换为数字才能处理，最早设计的时候采用8b 表示一个字节，一个字节能够表示的最大整数是255,如果要表示更大的整数，就必须用多个字节。另外由于计算机是美国人发明的，所以计算机早期只有127个字符被编码到计算机了，也就是Ascii码，后来要处理中文中国就指定了GB2312  ，但是其他国家也有自己的语言 然后就有了不同的标准， 所以就">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">Python基础教程之字符串和编码</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">Python基础教程之字符串和编码</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-05T13:36:00.000Z" itemprop="datePublished" class="page-time">
+  2019-04-05
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Python系列/">Python系列</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-字符编码"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 字符编码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-python字符串"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. python字符串</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#在操作字符串时，我们经常遇到str和bytes的互相转换。为了避免乱码问题，应当始终坚持使用UTF-8编码对str和bytes进行转换。"><span class="post-toc-number">2.0.0.1.</span> <span class="post-toc-text">在操作字符串时，我们经常遇到str和bytes的互相转换。为了避免乱码问题，应当始终坚持使用UTF-8编码对str和bytes进行转换。</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-格式化"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 格式化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-format"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. format()</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Python基础教程之字符串和编码"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Python基础教程之字符串和编码</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-05 21:36:00" datetime="2019-04-05T13:36:00.000Z"  itemprop="datePublished">2019-04-05</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Python系列/">Python系列</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        739
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        3 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h3 id="1-字符编码"><a href="#1-字符编码" class="headerlink" title="1. 字符编码"></a>1. 字符编码</h3><blockquote>
+<p>由于计算机只能处理数字，如果要处理文本就必须将文本转换为数字才能处理，最早设计的时候采用8b 表示一个字节，一个字节能够表示的最大整数是255,如果要表示更大的整数，就必须用多个字节。另外由于计算机是美国人发明的，所以计算机早期只有127个字符被编码到计算机了，也就是Ascii码，后来要处理中文中国就指定了GB2312  ，但是其他国家也有自己的语言 然后就有了不同的标准， 所以就有组织将所有的统一成 Unicode编码。</p>
+</blockquote>
+<h3 id="2-python字符串"><a href="#2-python字符串" class="headerlink" title="2. python字符串"></a>2. python字符串</h3><blockquote>
+<p>在python 中字符串支持多语言,python 提供了 ord()函数获取字符的整数表示，chr()函数把编码转换为对应的字符，如下：</p>
+</blockquote>
+<pre><code>&gt;&gt;&gt; ord(&apos;A&apos;)
+65
+&gt;&gt;&gt; ord(&apos;中&apos;)
+20013
+&gt;&gt;&gt; chr(66)
+&apos;B&apos;
+&gt;&gt;&gt; chr(25991)
+&apos;文&apos;</code></pre><blockquote>
+<p>由于python字符串类型是str，在内存中以 unicode表示，一个字符对应若干字节，如果需要在网上传输，或者保存磁盘，就需要把str变为以字节为单位的bytes</p>
+</blockquote>
+<blockquote>
+<p>python 对 bytes 类型的数据用 带b前缀的单引号和双引号表示,如下：</p>
+</blockquote>
+<pre><code>x = b &apos;ABC&apos;
+
+&apos;ABC&apos; 和 b&apos;ABC&apos; // 前者是 str 后者是表示字节</code></pre><blockquote>
+<p>在python 中  unicode 表示的str 通过 encode() 方法可以编码为指定的bytes，例如：</p>
+</blockquote>
+<pre><code>&gt;&gt;&gt; &apos;ABC&apos;.encode(&apos;ascii&apos;)
+b&apos;ABC&apos;
+&gt;&gt;&gt; &apos;中文&apos;.encode(&apos;utf-8&apos;)
+b&apos;\xe4\xb8\xad\xe6\x96\x87&apos;
+&gt;&gt;&gt; &apos;中文&apos;.encode(&apos;ascii&apos;)
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+UnicodeEncodeError: &apos;ascii&apos; codec can&apos;t encode characters in position 0-1: ordinal not in range(128)
+
+// 纯英文的str 可以用 ASCII编码为 bytes，含有中文的可以用UTF-8编码为bytes,在bytes中无法显示的ASCII字符的字节，用\x##显示</code></pre><blockquote>
+<p>反之，我们需要读取字节流，可以通过decode()方法，将bytes 转换为str，如果bytes中包含无法解码的字节，decode()会报错。</p>
+</blockquote>
+<pre><code>&gt;&gt;&gt; b&apos;ABC&apos;.decode(&apos;ascii&apos;)
+&apos;ABC&apos;
+&gt;&gt;&gt; b&apos;\xe4\xb8\xad\xe6\x96\x87&apos;.decode(&apos;utf-8&apos;)
+&apos;中文&apos;
+
+&gt;&gt;&gt; b&apos;\xe4\xb8\xad\xff&apos;.decode(&apos;utf-8&apos;)
+Traceback (most recent call last):
+  ...
+UnicodeDecodeError: &apos;utf-8&apos; codec can&apos;t decode byte 0xff in position 3: invalid start byte</code></pre><blockquote>
+<p>len() 函数是用来计算str 的字符数，如果换成bytes， 就计算字节数</p>
+</blockquote>
+<h6 id="在操作字符串时，我们经常遇到str和bytes的互相转换。为了避免乱码问题，应当始终坚持使用UTF-8编码对str和bytes进行转换。"><a href="#在操作字符串时，我们经常遇到str和bytes的互相转换。为了避免乱码问题，应当始终坚持使用UTF-8编码对str和bytes进行转换。" class="headerlink" title="在操作字符串时，我们经常遇到str和bytes的互相转换。为了避免乱码问题，应当始终坚持使用UTF-8编码对str和bytes进行转换。"></a>在操作字符串时，我们经常遇到str和bytes的互相转换。为了避免乱码问题，应当始终坚持使用UTF-8编码对str和bytes进行转换。</h6><h3 id="3-格式化"><a href="#3-格式化" class="headerlink" title="3. 格式化"></a>3. 格式化</h3><blockquote>
+<p>在python 中采用和 c语言一样的格式化方式，用%来实现，如下：</p>
+</blockquote>
+<pre><code>&gt;&gt;&gt; &apos;Hello, %s&apos; % &apos;world&apos;
+&apos;Hello, world&apos;
+&gt;&gt;&gt; &apos;Hi, %s, you have $%d.&apos; % (&apos;Michael&apos;, 1000000)
+&apos;Hi, Michael, you have $1000000.&apos;</code></pre><table>
+<thead>
+<tr>
+<th>占位符</th>
+<th>替换内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%d</td>
+<td>整数</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>浮点数</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>字符串</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>十六进制整数</td>
+</tr>
+</tbody></table>
+<h3 id="4-format"><a href="#4-format" class="headerlink" title="4. format()"></a>4. format()</h3><blockquote>
+<p>通过format方法，它会用传入的参数依次替换字符串内的占位符{0}、{1}等。写法比%麻烦。如下：</p>
+</blockquote>
+<pre><code>&gt;&gt;&gt; &apos;Hello, {0}, 成绩提升了 {1:.1f}%&apos;.format(&apos;小明&apos;, 17.125)
+&apos;Hello, 小明, 成绩提升了 17.1%&apos;</code></pre>
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-10-21T00:11:09.679Z" itemprop="dateUpdated">2019-10-21 08:11:09</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/04/05/Python基础教程之字符串和编码.html&title=《Python基础教程之字符串和编码》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/04/05/Python基础教程之字符串和编码.html&title=《Python基础教程之字符串和编码》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/04/05/Python基础教程之字符串和编码.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python基础教程之字符串和编码》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/04/05/Python基础教程之字符串和编码.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/04/05/Python基础教程之字符串和编码.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/04/08/ES6入门之数值的扩展.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">ES6入门之数值的扩展</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/30/ES6入门之正则的扩展.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">ES6入门之正则的扩展</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/04/05/Python基础教程之字符串和编码.html&title=《Python基础教程之字符串和编码》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/04/05/Python基础教程之字符串和编码.html&title=《Python基础教程之字符串和编码》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/04/05/Python基础教程之字符串和编码.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python基础教程之字符串和编码》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/04/05/Python基础教程之字符串和编码.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/04/05/Python基础教程之字符串和编码.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3aQY7CMAwFUO5/aeYADO23HY860usKQdTkZZEY269X/Lw/nutfP8dcv2fyzgMPHh4e3njp36ZPlvXt/Z/vuYYl80ZbgIeHh7fGS5ZVPXuTS6U6Jl8zHh4e3nN410d5vqBeYI2Hh4f3H3lJoBxNPCDh4eHhPYGXhMXVayNJH/Q2aCXXgoeHhxfz8irScz6v1Pfw8PDwxlX1pF3gOrnQq+NXmwm+vg0PDw9vgVct//fSAdXWhGT2fJ14eHh4Z3nJNNUp54uubsTXNePh4eEt8JIC1eSSqJb/55sbZVPw8PDwxryzgWzvmknG5wkLPDw8vD1eXnSfH/290Lm3KXh4eHh7vN6f/6TAPyn/99IQNwUwPDw8vKO8avCahODV436egCikcfHw8PAGvPkikl+rV8skpI6SEXh4eHgDXi/MTRoFElhvTDlkx8PDwzvKm6RHk8J/XmY7Fcr/ElLj4eHhLfB6IW+y0FPNBM1txcPDw1vgJeFyHjSfbSDIV3Vz/eDh4eGt8apJ2+RKmJTH8ush6ozAw8PDO8rLF5oEuJPERO9aigJrPDw8vKO88t/7o6FwnrBItuzm3sPDw8M7yuvdJJNkwbxgVk7j4uHh4Y15+bGeHO69Y33y/U3Qj4eHh7fAyxMKPcAk6ZCTbjYFDw8Pb42Xpx56Y6ICVcwuF73w8PDwFnjJK6rT9NoFqptYCKnx8PDwjvJ6Ra9X/PQC5eosUcYFDw8Pb8B7F5/8IqmmfXsJ3Jtf8fDw8BZ41aM2P9x7W5CMrG4xHh4e3gbv1GXQK/afbUFo9kfg4eHhtXi9ylGebmi2TLXSHIWmKzw8PLw/4fVG9pILk0IdHh4e3nN4efm/F3wnQXYhaYuHh4e3xqu2T200FlSbGKLv8fDw8BZ41T/81e04FVIfYODh4eFNeT8styvwnTuZPgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

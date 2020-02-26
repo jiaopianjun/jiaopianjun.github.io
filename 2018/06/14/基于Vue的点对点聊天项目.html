@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>基于Vue的点对点聊天项目 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content>
+    <meta name="description" content="前提 一个基于平台内部的聊天项目，需要实现用户之间可以相互聊天发送消息，可以添加好友等功能。且消息必须是实时性的，并且用户下线后再次上线可以接受离线消息。 技术栈Vue.js + Html5 + CSS3 + Sass + Vuex + Axios + Websocket 等 源码Github">
+<meta name="keywords" content="卖坚果的怪叔叔 前端 vue python 微信">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Vue的点对点聊天项目">
+<meta property="og:url" content="https://toc.lieme.cn/2018/06/14/基于Vue的点对点聊天项目.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="前提 一个基于平台内部的聊天项目，需要实现用户之间可以相互聊天发送消息，可以添加好友等功能。且消息必须是实时性的，并且用户下线后再次上线可以接受离线消息。 技术栈Vue.js + Html5 + CSS3 + Sass + Vuex + Axios + Websocket 等 源码Github">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1251988-68766bfa9c448aca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1251988-5bc4ffc5d33ae93f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1251988-466075a6875ce2ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1251988-440cdd8004029070.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1251988-b470937363a3b3e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2020-01-20T03:40:20.503Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于Vue的点对点聊天项目">
+<meta name="twitter:description" content="前提 一个基于平台内部的聊天项目，需要实现用户之间可以相互聊天发送消息，可以添加好友等功能。且消息必须是实时性的，并且用户下线后再次上线可以接受离线消息。 技术栈Vue.js + Html5 + CSS3 + Sass + Vuex + Axios + Websocket 等 源码Github">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1251988-68766bfa9c448aca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">基于Vue的点对点聊天项目</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">基于Vue的点对点聊天项目</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2018-06-14T03:21:11.000Z" itemprop="datePublished" class="page-time">
+  2018-06-14
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#前提"><span class="post-toc-number">1.</span> <span class="post-toc-text">前提</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#技术栈"><span class="post-toc-number">2.</span> <span class="post-toc-text">技术栈</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#源码"><span class="post-toc-number">3.</span> <span class="post-toc-text">源码</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#项目实例"><span class="post-toc-number">4.</span> <span class="post-toc-text">项目实例</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#技术难点"><span class="post-toc-number">5.</span> <span class="post-toc-text">技术难点</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#项目运行"><span class="post-toc-number">6.</span> <span class="post-toc-text">项目运行</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#项目截图"><span class="post-toc-number">7.</span> <span class="post-toc-text">项目截图</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-基于Vue的点对点聊天项目"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">基于Vue的点对点聊天项目</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-06-14 11:21:11" datetime="2018-06-14T03:21:11.000Z"  itemprop="datePublished">2018-06-14</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        242
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        1 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h4 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h4><p> 一个基于平台内部的聊天项目，需要实现用户之间可以相互聊天发送消息，可以添加好友等功能。且消息必须是实时性的，并且用户下线后再次上线可以接受离线消息。</p>
+<h4 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h4><p>Vue.js + Html5 + CSS3 + Sass + Vuex + Axios + Websocket 等</p>
+<h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><p><a href="https://github.com/jiaopianjun/echat" target="_blank" rel="noopener">Github</a></p>
+<a id="more"></a>
+<h4 id="项目实例"><a href="#项目实例" class="headerlink" title="项目实例"></a>项目实例</h4><p>因为项目接口为线上接口 本地运行会报错  你可以将本地loaclhost 地址 指向 stone.snail.com<br>或者直接访问 <a href="http://stone.snail.com/wnchat/#/" target="_blank" rel="noopener">线上地址</a>  在 <a href="http://stone.snail.com/social/index.html#/" target="_blank" rel="noopener">另一个项目社区</a> 注册账号 返回后即可体验</p>
+<h4 id="技术难点"><a href="#技术难点" class="headerlink" title="技术难点"></a>技术难点</h4><ul>
+<li>实现从好友列表到聊天列表的发起</li>
+<li>消息的存储</li>
+<li>上下线状态的即时变动</li>
+<li>收到消息即使提醒以及未读消息的数量</li>
+<li>好友删除的通知 等等</li>
+</ul>
+<h4 id="项目运行"><a href="#项目运行" class="headerlink" title="项目运行"></a>项目运行</h4><p>git clone <a href="https://github.com/jiaopianjun/echat.git" target="_blank" rel="noopener">https://github.com/jiaopianjun/echat.git</a><br>npm install<br>npm run dev</p>
+<h4 id="项目截图"><a href="#项目截图" class="headerlink" title="项目截图"></a>项目截图</h4><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/1251988-68766bfa9c448aca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1.png" title>
+                </div>
+                <div class="image-caption" style="display:none;">1.png</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/1251988-5bc4ffc5d33ae93f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2.png" title>
+                </div>
+                <div class="image-caption" style="display:none;">2.png</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/1251988-466075a6875ce2ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="3.png" title>
+                </div>
+                <div class="image-caption" style="display:none;">3.png</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/1251988-440cdd8004029070.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="4.png" title>
+                </div>
+                <div class="image-caption" style="display:none;">4.png</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://upload-images.jianshu.io/upload_images/1251988-b470937363a3b3e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="6.png" title>
+                </div>
+                <div class="image-caption" style="display:none;">6.png</div>
+            </figure>
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-01-20T03:40:20.503Z" itemprop="dateUpdated">2020-01-20 11:40:20</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/06/14/基于Vue的点对点聊天项目.html&title=《基于Vue的点对点聊天项目》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/06/14/基于Vue的点对点聊天项目.html&title=《基于Vue的点对点聊天项目》 — 卖坚果的怪叔叔&source=前提 一个基于平台内部的聊天项目，需要实现用户之间可以相互聊天发送消息，可以添加好友等功能。且消息必须是实时性的，并且用户下线后再次上线可以接受离线消息。..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2018/06/14/基于Vue的点对点聊天项目.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《基于Vue的点对点聊天项目》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2018/06/14/基于Vue的点对点聊天项目.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2018/06/14/基于Vue的点对点聊天项目.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/06/14/Vue安装vuexsass和引入Jq.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Vue 安装 vuex sass 和 引入 Jq</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/06/14/Vue全家桶web端社区项目.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Vue全家桶web端社区项目</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/06/14/基于Vue的点对点聊天项目.html&title=《基于Vue的点对点聊天项目》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/06/14/基于Vue的点对点聊天项目.html&title=《基于Vue的点对点聊天项目》 — 卖坚果的怪叔叔&source=前提 一个基于平台内部的聊天项目，需要实现用户之间可以相互聊天发送消息，可以添加好友等功能。且消息必须是实时性的，并且用户下线后再次上线可以接受离线消息。..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2018/06/14/基于Vue的点对点聊天项目.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《基于Vue的点对点聊天项目》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2018/06/14/基于Vue的点对点聊天项目.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2018/06/14/基于Vue的点对点聊天项目.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvklEQVR42u3aS47jMAwFwNz/0hmgtxnLj6TkZFFeNfKRVWrAZEi+XvH1/rvWr3y+/v64Pj95dV2t9jpx4eHh4bW2nt9mzVi/sr5jb/31Onh4eHjneMkjPv9Wst1kteSwbtbBw8PD+yovCQB5fpvfMU+v8fDw8H6Nlzz6e6lzbw94eHh43+UlxYibn/3Bmr3jeKjWgoeHhxfzqg2wX/j7YH8PDw8Pb9BV7wWDyX3zwke0Tzw8PLwDvF4pttrWqibou5pheHh4eCd4yYZ6g1PVwYJ5e+w/n8TDw8N7nJcHgDx45K8nR3bzGTw8PLwDvF7hoFdcqFZZq4Fk1PrCw8PDi/eWJM3VR/bkW/OU+qaAi4eHh3eM12vez4sIvVT78l08PDy8A7wckB/BvKDQu+NNeMDDw8PbxMtHmnoFiN67vXw4+r/h4eHhbeLlwSB5dz5AkCOj/h4eHh7eVt6khV8tyFa3lRd5b4odeHh4eMd41WS6+t1qKSE5oCjY4OHh4T3C621rMs5VLSIXVsDDw8M7xqv+fu8FlaTpVT3Qm7vj4eHhHeDNS6hJiSF56OeDCL2xMDw8PLxdvKRQW01z85S9Ci433vDw8PC28npjVdUi7K4hgzym4eHh4Z3jVceh8vR3ksvnQwmF0Ss8PDy8rbxqSz4fFJg87nNGeegKDw8Pb8zLCxDzomq+3c2VaTw8PLytvOpDf1d3qRc28oQbDw8P7zQvT5QLSxdDS3PGYV3AxcPDw9vKexevSct/Mmi1PsRCARcPDw9vzOs9cJOwUQ0M83GrERIPDw+vyOuVTXsJdLXKmh8KHh4e3vO8fPhpPqpVDTmj1h0eHh7eD/B67aveEVRXu6xS4+Hh4X2JVy0HVIeockAhxcfDw8M7xstvv6ut1Wu8lce88PDw8A7w5g2wXoN/cky7Chl4eHh4xV39A1cEAyfN2YAJAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

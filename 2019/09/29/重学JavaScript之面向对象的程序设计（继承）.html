@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>重学JavaScript之面向对象的程序设计（继承） | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="原型链,继承">
+    <meta name="description" content="1. 继承 ES 中只支持实现继承，而且其实现继承主要依靠原型链来实现的。  2. 原型链 ES中 描述了 原型链的概念，并将原型链作为实现继承的主要方法。其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。  回顾一下构造函数、原型和实例的关系 每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。那么假如我们让原型对象等于另一">
+<meta name="keywords" content="原型链,继承">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重学JavaScript之面向对象的程序设计（继承）">
+<meta property="og:url" content="https://toc.lieme.cn/2019/09/29/重学JavaScript之面向对象的程序设计（继承）.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1. 继承 ES 中只支持实现继承，而且其实现继承主要依靠原型链来实现的。  2. 原型链 ES中 描述了 原型链的概念，并将原型链作为实现继承的主要方法。其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。  回顾一下构造函数、原型和实例的关系 每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。那么假如我们让原型对象等于另一">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/FqKZng6aANbXdoIv-99F6DSMgjnc">
+<meta property="og:updated_time" content="2019-09-29T10:24:54.796Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重学JavaScript之面向对象的程序设计（继承）">
+<meta name="twitter:description" content="1. 继承 ES 中只支持实现继承，而且其实现继承主要依靠原型链来实现的。  2. 原型链 ES中 描述了 原型链的概念，并将原型链作为实现继承的主要方法。其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。  回顾一下构造函数、原型和实例的关系 每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。那么假如我们让原型对象等于另一">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/FqKZng6aANbXdoIv-99F6DSMgjnc">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">重学JavaScript之面向对象的程序设计（继承）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">重学JavaScript之面向对象的程序设计（继承）</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-09-29T10:22:36.000Z" itemprop="datePublished" class="page-time">
+  2019-09-29
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/重学JavaScript/">重学JavaScript</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-继承"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 继承</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-原型链"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 原型链</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#回顾一下构造函数、原型和实例的关系"><span class="post-toc-number">2.0.0.0.1.</span> <span class="post-toc-text">回顾一下构造函数、原型和实例的关系</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#上面代码中定义了两个类型："><span class="post-toc-number">2.0.0.0.2.</span> <span class="post-toc-text">上面代码中定义了两个类型：</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-默认的原型"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 默认的原型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-原型和实例的关系"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. 原型和实例的关系</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-谨慎地定义方法"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. 谨慎地定义方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#以上代码中分隔的部分是两个方法的定义。"><span class="post-toc-number">5.0.0.0.1.</span> <span class="post-toc-text">以上代码中分隔的部分是两个方法的定义。</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-原型链的问题"><span class="post-toc-number">6.</span> <span class="post-toc-text">6. 原型链的问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#原型链虽然很强大，可以用它来实现继承，但也存在一定的问题。"><span class="post-toc-number">6.0.0.0.1.</span> <span class="post-toc-text">原型链虽然很强大，可以用它来实现继承，但也存在一定的问题。</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-借用构造函数"><span class="post-toc-number">7.</span> <span class="post-toc-text">7. 借用构造函数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-1-传递参数"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">7.1 传递参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-2-借用构造函数的问题"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">7.2 借用构造函数的问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-组合继承"><span class="post-toc-number">8.</span> <span class="post-toc-text">8. 组合继承</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9-原型式继承"><span class="post-toc-number">9.</span> <span class="post-toc-text">9. 原型式继承</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-寄生式继承"><span class="post-toc-number">10.</span> <span class="post-toc-text">10. 寄生式继承</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#11-总结"><span class="post-toc-number">11.</span> <span class="post-toc-text">11. 总结</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-1-工厂模式"><span class="post-toc-number">11.1.</span> <span class="post-toc-text">11.1 工厂模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-2-构造函数模式"><span class="post-toc-number">11.2.</span> <span class="post-toc-text">11.2 构造函数模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-3-原型模式"><span class="post-toc-number">11.3.</span> <span class="post-toc-text">11.3 原型模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-4-原型式继承"><span class="post-toc-number">11.4.</span> <span class="post-toc-text">11.4 原型式继承</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-5-寄生式继承"><span class="post-toc-number">11.5.</span> <span class="post-toc-text">11.5 寄生式继承</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-6-寄生组合式继承"><span class="post-toc-number">11.6.</span> <span class="post-toc-text">11.6 寄生组合式继承</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-重学JavaScript之面向对象的程序设计（继承）"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">重学JavaScript之面向对象的程序设计（继承）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-09-29 18:22:36" datetime="2019-09-29T10:22:36.000Z"  itemprop="datePublished">2019-09-29</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/重学JavaScript/">重学JavaScript</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        2,642
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        10 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h2 id="1-继承"><a href="#1-继承" class="headerlink" title="1. 继承"></a>1. 继承</h2><blockquote>
+<p>ES 中只支持实现继承，而且其实现继承主要依靠原型链来实现的。</p>
+</blockquote>
+<h2 id="2-原型链"><a href="#2-原型链" class="headerlink" title="2. 原型链"></a>2. 原型链</h2><blockquote>
+<p>ES中 描述了 原型链的概念，并将原型链作为实现继承的主要方法。其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。</p>
+</blockquote>
+<h6 id="回顾一下构造函数、原型和实例的关系"><a href="#回顾一下构造函数、原型和实例的关系" class="headerlink" title="回顾一下构造函数、原型和实例的关系"></a>回顾一下构造函数、原型和实例的关系</h6><blockquote>
+<p>每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。那么假如我们让原型对象等于另一个类型的实例。那么此时的原型对象将包含一个指向另一个原型的指针，相应地，另一个原型中也包含着一个指向另一个构造函数的指针。</p>
+</blockquote>
+<blockquote>
+<p>另外，假如另一个原型又是另一个类型的实例，如此层层递进，就构成了实例与原型的链条。这就是原型链的基本概念。</p>
+</blockquote>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.property = <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SuperType.prototype.getSuperValue = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    retrun <span class="keyword">this</span>.property</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.subproperty = <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 继承了 SuperType</span></span><br><span class="line">SubType.prototype = <span class="keyword">new</span> SuperType()</span><br><span class="line">SubType.prototype.getSubValue = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    retrun <span class="keyword">this</span>.subproperty;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> instance = <span class="keyword">new</span> SubType()</span><br><span class="line">instance.getSuperValue()    <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="上面代码中定义了两个类型："><a href="#上面代码中定义了两个类型：" class="headerlink" title="上面代码中定义了两个类型："></a>上面代码中定义了两个类型：</h6><p>SuperType  和SubType。每个类型分别有一个属性和一个方法。它们的主要区别是：</p>
+<blockquote>
+<p>SubType继承了SuperType,而继承是通过创建SuperType的实例，并将该实例赋给SubType.prototype实现的。实现的本质是重写原型对象，代之以一个新类型的实例。</p>
+</blockquote>
+<blockquote>
+<p>也就是说，原来存在于SuperType的实例中的所有方法和属性，现在也存在于SubType.prototype中。在给SubType.prototype添加一个方法后，这样就在继承了SuperType的属性和方法的基础上又添加了一个新的方法。这样就实现了实例以及构造函数和原型之间的关系。</p>
+</blockquote>
+<p><strong>通过实现原型链，本质上扩展了原型搜索机制，当以读取模式访问一个实例属性时，首先会在实例中搜索该属性。如果没有找到该属性，则会继续搜索实例的原型。在通过原型链实现继承的情况下，搜索过程就得以沿着原型链继续向上。直到最后一步找到该方法。在找不到属性和方法的情况下，搜索过程总是要一环一环地前行到原型链末端才会停下来。</strong></p>
+<h2 id="3-默认的原型"><a href="#3-默认的原型" class="headerlink" title="3. 默认的原型"></a>3. 默认的原型</h2><p>所有引用类型默认都继承了Object，而这个继承也是通过原型链实现的。<strong>所有函数的默认原型都是Object的实例</strong>  因此默认原型都会包含一个内部指针，指向 Object.prototype。这也是所有自定义类型都会继承 toString()、valueOf()默认方法的原因</p>
+<h2 id="4-原型和实例的关系"><a href="#4-原型和实例的关系" class="headerlink" title="4. 原型和实例的关系"></a>4. 原型和实例的关系</h2><p>可以通过两种方式来确定原型和实例之间的关系。第一种方式就是使用 instanceof操作符，只要用这个操作符来测试实例与原型链中出现过的构造函数，结果就会返回 true。如下：</p>
+<pre><code>instance instanceof Object  // true</code></pre><p>第二种方法就是 isPrototypeOf() 方法，同样，只要原型链中出现过的原型，都可以说是该原型链所派生的实例原型，因此 isPrototypeOf() 方法也会返回 true</p>
+<pre><code>Object.prototype.isPrototypeOf(instance)    // true</code></pre><h2 id="5-谨慎地定义方法"><a href="#5-谨慎地定义方法" class="headerlink" title="5. 谨慎地定义方法"></a>5. 谨慎地定义方法</h2><p>子类型有时候需要重写超类型中的某个方法，或者需要添加超类型中不存在的某个方法，但是无论如何，<strong>给原型添加方法的代码一定要放在替换原型的语句之后</strong></p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>  <span class="title">SuperType</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.property = <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SuperType.prototype.getSuperValue = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    retrun <span class="keyword">this</span>.property</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.subproperty = <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line">----</span><br><span class="line"><span class="comment">// 继承了SuperType</span></span><br><span class="line">SubType.prototype = <span class="keyword">new</span> SuperType()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加新方法</span></span><br><span class="line">SubType.prototype.getSubValue = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    retrun <span class="keyword">this</span>.subproperty</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//重写超类型中的方法</span></span><br><span class="line">SubType.prototype.getSuperValue = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    retrun <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line">-----</span><br><span class="line"><span class="keyword">var</span> instance = <span class="keyword">new</span> SubType()</span><br><span class="line">instance.getSuperValue()    <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="以上代码中分隔的部分是两个方法的定义。"><a href="#以上代码中分隔的部分是两个方法的定义。" class="headerlink" title="以上代码中分隔的部分是两个方法的定义。"></a>以上代码中分隔的部分是两个方法的定义。</h6><blockquote>
+<p>第一个方法 getSubValue()被添加到了SubType中，第二个方法 getSuperValue()是原型链中已经存在的一个方法，但重写这个方法将会屏蔽原来那个方法.</p>
+</blockquote>
+<blockquote>
+<p>换句话说，当 SubType 的实例调用 getSuperValue()时，调用的就是这个重新定义的方法，但通过 SuperType的实例调用 getSuperValue()时，还会继续调用原来的那个方法，所有必须要在用SuperType的实例替换原型之后，在定义这两个方法。    </p>
+</blockquote>
+<p><strong>注意</strong>：即在通过原型链实现继承的时候，不能使用对象字面量创建原型方法，因为这样做会重写原型。</p>
+<h2 id="6-原型链的问题"><a href="#6-原型链的问题" class="headerlink" title="6. 原型链的问题"></a>6. 原型链的问题</h2><h6 id="原型链虽然很强大，可以用它来实现继承，但也存在一定的问题。"><a href="#原型链虽然很强大，可以用它来实现继承，但也存在一定的问题。" class="headerlink" title="原型链虽然很强大，可以用它来实现继承，但也存在一定的问题。"></a>原型链虽然很强大，可以用它来实现继承，但也存在一定的问题。</h6><blockquote>
+<p>1、来自包含引用类型值的原型。在之前说过包含引用类型值的原型属性会被所有实例共享。所以这也是为什么要在构造函数中，而不是在原型对象中定义属性的原因。在通过原型来实现继承时，原型实际上会变成另一个类型的实例。于是，原先的实例属性也就顺理成章地变成了现在的原型属性。</p>
+</blockquote>
+<blockquote>
+<p>2、在创建子类型的实例时，不能向超类型的构造函数中传递参数。实际上可以说是没有办法再不影响所有对象实例的情况下，给超类型的构造函数传递参数a。</p>
+</blockquote>
+<h2 id="7-借用构造函数"><a href="#7-借用构造函数" class="headerlink" title="7. 借用构造函数"></a>7. 借用构造函数</h2><p>利用在子类型构造函数的内部调用超类型构造函数。即可以通过 apply() 和 call()方法在新创建的对象上执行构造函数。</p>
+<h3 id="7-1-传递参数"><a href="#7-1-传递参数" class="headerlink" title="7.1 传递参数"></a>7.1 传递参数</h3><p>相对于原型链而言，借用构造函数有一个很大的优势，即可以在子类型构造函数中向超类型构造函数传递参数。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function s(name) &#123;</span><br><span class="line">    this<span class="selector-class">.name</span> = name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function b() &#123;  </span><br><span class="line">    <span class="comment">// 继承 s，同时还传递参数</span></span><br><span class="line">    s.call(this, <span class="string">'nnn'</span>)</span><br><span class="line">    <span class="comment">// 实例属性</span></span><br><span class="line">    this<span class="selector-class">.age</span> = <span class="number">23</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let <span class="selector-tag">i</span> = new B()</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">i</span><span class="selector-class">.name</span> <span class="comment">// nn</span></span><br><span class="line"><span class="selector-tag">i</span><span class="selector-class">.age</span>  <span class="comment">// 29</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="7-2-借用构造函数的问题"><a href="#7-2-借用构造函数的问题" class="headerlink" title="7.2 借用构造函数的问题"></a>7.2 借用构造函数的问题</h3><p>如果仅仅是借用构造函数，那么也就无法避免构造函数模式存在的问题，方法都在构造函数中定义，因此函数复用就无法实现。另外，在超类型的原型中定义的方法，对子类型而言也是不可见的。结果所有类型都只能使用构造 函数模式。所以借用构造函数模式很少单独使用。</p>
+<h2 id="8-组合继承"><a href="#8-组合继承" class="headerlink" title="8. 组合继承"></a>8. 组合继承</h2><p>也叫做伪 经典继承，指的是将原型链和借用构造函数的技术组合到一块。发挥二者的长处的一种继承模式。原理就是使用原型链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承。</p>
+<h2 id="9-原型式继承"><a href="#9-原型式继承" class="headerlink" title="9. 原型式继承"></a>9. 原型式继承</h2><p>借助已有的对象创建新对象，先创建一个临时的构造函数，然后将传入的对象作为这个构造函数的原型，最后返回这个临时类型的新实例。</p>
+<h2 id="10-寄生式继承"><a href="#10-寄生式继承" class="headerlink" title="10. 寄生式继承"></a>10. 寄生式继承</h2><p>创建一个仅用于封装继承过程的函数，该函数在内部以某种方式增强对象，然后再返回对象。同样也是不能做到函数复用而会降低效率</p>
+<h2 id="11-总结"><a href="#11-总结" class="headerlink" title="11. 总结"></a>11. 总结</h2><blockquote>
+<p>ES 支持面向对象编程，但不使用类或接口。对象可以在代码执行过程中创建和增强，因此具有动态性而非严格定义的实体。在没有类的情况下，可以采用 工厂模式、构造函数模式、原型模式创建对象。</p>
+</blockquote>
+<h3 id="11-1-工厂模式"><a href="#11-1-工厂模式" class="headerlink" title="11.1 工厂模式"></a>11.1 工厂模式</h3><p>使用简单的函数创建对象，为对象添加属性和方法，然后返回对象。这个模式被构造函数模式所取代</p>
+<h3 id="11-2-构造函数模式"><a href="#11-2-构造函数模式" class="headerlink" title="11.2 构造函数模式"></a>11.2 构造函数模式</h3><p>创建自定义引用类型，可以像创建内置对象实例一样使用 new 操作符。不过，构造函数模式也有缺点，即它的每个成员无法得到复用，包括函数。由于函数可以不局限于任何对象。因此没有理由不再多个对象之间共享函数。</p>
+<h3 id="11-3-原型模式"><a href="#11-3-原型模式" class="headerlink" title="11.3 原型模式"></a>11.3 原型模式</h3><p>使用构造函数的 prototype 属性来指定那些应该共享的属性和方法。组合使用构造函数模式和原型模式时，使用构造函数定义实例属性，而使用原型定义共享的属性和方法。</p>
+<blockquote>
+<p>JS主要通过原型链实现继承。原型链的构建是将一个类型的实例赋值给另一个构造函数的原型实现。这样，子类型就能够访问超类型的所有属性和方法。这点和基于类的继承很相似。</p>
+</blockquote>
+<blockquote>
+<p>原型链的问题就是对象实例共享所有继承的属性和方法，因此不适合单独使用。 如果想解决这个问题就需要借助于构造函数，即在子类型构造函数的内部调用超类型构造函数。这样就可以做到每个实例都具有自己的属性，同时还能保证只使用构造函数模式来定义类型。</p>
+</blockquote>
+<h3 id="11-4-原型式继承"><a href="#11-4-原型式继承" class="headerlink" title="11.4 原型式继承"></a>11.4 原型式继承</h3><p>可以在不预先定义构造函数的情况下实现继承，其本质是执行对给定对象的浅复制。而复制得到的副本还可以进一步改造</p>
+<h3 id="11-5-寄生式继承"><a href="#11-5-寄生式继承" class="headerlink" title="11.5 寄生式继承"></a>11.5 寄生式继承</h3><p>与原型式继承非常相似，也是基于某个对象或某些信息创建一个对象，然后增强对象，最后返回对象。为了解决组合继承模式由于多次调用超类型构造函数而导致低效率问题，可以将这个模式和组合继承一起使用</p>
+<h3 id="11-6-寄生组合式继承"><a href="#11-6-寄生组合式继承" class="headerlink" title="11.6 寄生组合式继承"></a>11.6 寄生组合式继承</h3><p>集寄生式继承和组合继承的优点于一身，是实现基于类型继承的最有效方式</p>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-09-29T10:24:54.796Z" itemprop="dateUpdated">2019-09-29 18:24:54</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原型链/">原型链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/继承/">继承</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/09/29/重学JavaScript之面向对象的程序设计（继承）.html&title=《重学JavaScript之面向对象的程序设计（继承）》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FqKZng6aANbXdoIv-99F6DSMgjnc" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/09/29/重学JavaScript之面向对象的程序设计（继承）.html&title=《重学JavaScript之面向对象的程序设计（继承）》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/09/29/重学JavaScript之面向对象的程序设计（继承）.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学JavaScript之面向对象的程序设计（继承）》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/09/29/重学JavaScript之面向对象的程序设计（继承）.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/09/29/重学JavaScript之面向对象的程序设计（继承）.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/09/30/ES6入门之Promise.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">ES6入门之Promise</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/09/23/前端两三问-20190923.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">前端两三问(20190923)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/09/29/重学JavaScript之面向对象的程序设计（继承）.html&title=《重学JavaScript之面向对象的程序设计（继承）》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FqKZng6aANbXdoIv-99F6DSMgjnc" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/09/29/重学JavaScript之面向对象的程序设计（继承）.html&title=《重学JavaScript之面向对象的程序设计（继承）》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/09/29/重学JavaScript之面向对象的程序设计（继承）.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学JavaScript之面向对象的程序设计（继承）》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/09/29/重学JavaScript之面向对象的程序设计（继承）.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/09/29/重学JavaScript之面向对象的程序设计（继承）.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADLUlEQVR42u3awW7jMAwE0P7/T3evBTZwZ0jvIlZeTkVjyHrqgSVHX1/x5/vH5+dv8uf//jb5OVnneierDzY2NvZD2N+Xn+sXXG805yWHu9nDi6PBxsbGPo6dl5nripCsvC+TyeH+shNsbGzsD2ZvisrsQPNGBRsbGxs7L2A5PnmyPay20GJjY2N/AjsfCbWNx6ydSA7xP83SsLGxsd+ePWsD3vPnf5JvY2NjY78x+7v8JAVstlq+clu0XrwXGxsb+yB2G+K2L54Vxc14K98/NjY29hnszbgn+f0spm1D3GTnt025sLGxsd+Y3Y7dZ69so9/8OJLWCBsbG/s8dntRZlNg7j24fbCBjY2NfRI7mjwFLcRmLNXu5K7nsbGxsc9gJ01IWzw2Y6n8mNrnsbGxsc9jJ5dj2ufbdqVdM//jFck2NjY29kHs2UB/FsEmA6xZuS2CAWxsbOwj2LMXbFqL623tj+N6ZWxsbOyT2LNBUnt1MlmhbYpuewYbGxv74ezkak7+3/tmFJW3Fm14/OJbbGxs7IPY+QWdfBCfD3pm792MpbCxsbE/gZ2HqZtR1Oyizz66wMbGxj6PnSyXnNxsxN9e99k0M/XtHmxsbOyHsDex7qwtyWPgdrXhGAsbGxv74ey8zLSbawPdPB7YD7mwsbGxT2W3RaK90NOGuJujHwYD2NjY2A9nz0b2eXMya1TyveWRMzY2NvbZ7ORls1FRXpA2sUExP8PGxsY+gr25LtNmpnnoOwsDZtECNjY29kns5J/7tmy0DUx76O2oq6512NjY2Eew90FvvnI7fipKVNu1YGNjYz+KPRv95IP+/Ajy1mU1SMLGxsY+lJ28Phnob65mzoLhxPLiLdjY2NhHs/NRUc7OV5sdTRtdYGNjY5/BvovRhrv7dTaRAzY2NvZJ7Fls0MYA7fWdPK6YHRA2Njb2eeykaLXtyl0Bc1KEhnvGxsbGPo69uS7TbrqNePctDTY2NjZ2GxvMkoq85dhfCcLGxsb+ZHZ7KWfWeMxWLsoYNjY29nHspHnYjH7y7SbH3YYQq3gAGxsb++3Zs7ahHc1vrtTcFS1jY2NjH8f+A6MXr1utN8nOAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

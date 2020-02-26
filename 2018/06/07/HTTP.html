@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>Http基础知识 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="面试,http">
+    <meta name="description" content="http状态码有那些？分别代表是什么意思？ 12345678910111213141516171819简单版   [       100  Continue   继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息       200  OK         正常返回信息       201  Created    请求成功并且服务器">
+<meta name="keywords" content="面试,http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Http基础知识">
+<meta property="og:url" content="https://toc.lieme.cn/2018/06/07/HTTP.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="http状态码有那些？分别代表是什么意思？ 12345678910111213141516171819简单版   [       100  Continue   继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息       200  OK         正常返回信息       201  Created    请求成功并且服务器">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2020-01-20T03:40:20.501Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Http基础知识">
+<meta name="twitter:description" content="http状态码有那些？分别代表是什么意思？ 12345678910111213141516171819简单版   [       100  Continue   继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息       200  OK         正常返回信息       201  Created    请求成功并且服务器">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">Http基础知识</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">Http基础知识</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2018-06-07T10:22:27.000Z" itemprop="datePublished" class="page-time">
+  2018-06-07
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-HTTP"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Http基础知识</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-06-07 18:22:27" datetime="2018-06-07T10:22:27.000Z"  itemprop="datePublished">2018-06-07</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        2,700
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        10 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <p><strong>http状态码有那些？分别代表是什么意思？</strong></p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">简单版</span><br><span class="line">   [</span><br><span class="line">       100  Continue   继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息</span><br><span class="line">       200  OK         正常返回信息</span><br><span class="line">       201  Created    请求成功并且服务器创建了新的资源</span><br><span class="line">       202  Accepted   服务器已接受请求，但尚未处理</span><br><span class="line">       301  Moved Permanently  请求的网页已永久移动到新位置。</span><br><span class="line">       302 Found       临时性重定向。</span><br><span class="line">       303 See Other   临时性重定向，且总是使用 <span class="builtin-name">GET</span> 请求新的 URI。</span><br><span class="line">       304  <span class="keyword">Not</span> Modified 自从上次请求后，请求的网页未修改过。</span><br><span class="line"></span><br><span class="line">       400 Bad Request  服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求。</span><br><span class="line">       401 Unauthorized 请求未授权。</span><br><span class="line">       403 Forbidden   禁止访问。</span><br><span class="line">       404 <span class="keyword">Not</span> Found   找不到如何与 URI 相匹配的资源。</span><br><span class="line"></span><br><span class="line">       500 Internal<span class="built_in"> Server </span><span class="builtin-name">Error</span>  最常见的服务器端错误。</span><br><span class="line">       503<span class="built_in"> Service </span>Unavailable 服务器端暂时无法处理请求（可能是过载或维护）。</span><br><span class="line">   ]</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+<p><strong>一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？（流程说的越详细越好）</strong></p>
+<ul>
+<li><p>注：这题胜在区分度高，知识点覆盖广，再不懂的人，也能答出几句，</p>
+</li>
+<li><p>而高手可以根据自己擅长的领域自由发挥，从URL规范、HTTP协议、DNS、CDN、数据库查询、</p>
+</li>
+<li><p>到浏览器流式解析、CSS规则构建、layout、paint、onload/domready、JS执行、JS API绑定等等；</p>
+</li>
+<li><p>详细版：</p>
+<ul>
+<li>浏览器会开启一个线程来处理这个请求，对 URL 分析判断如果是 http 协议就按照 Web 方式来处理;</li>
+<li>调用浏览器内核中的对应方法，比如 WebView 中的 loadUrl 方法;</li>
+<li>通过DNS解析获取网址的IP地址，设置 UA 等信息发出第二个GET请求;</li>
+<li>进行HTTP协议会话，客户端发送报头(请求报头);</li>
+<li>进入到web服务器上的 Web Server，如 Apache、Tomcat、Node.JS 等服务器;</li>
+<li>进入部署好的后端应用，如 PHP、Java、JavaScript、Python 等，找到对应的请求处理;</li>
+<li>处理结束回馈报头，此处如果浏览器访问过，缓存上有对应资源，会与服务器最后修改时间对比，一致则返回304;</li>
+<li>浏览器开始下载html文档(响应报头，状态码200)，同时使用缓存;</li>
+<li>文档树建立，根据标记请求所需指定MIME类型的文件（比如css、js）,同时设置了cookie;</li>
+<li>页面开始渲染DOM，JS根据DOM API操作DOM,执行事件绑定等，页面显示完成。</li>
+</ul>
+</li>
+<li><p>简洁版：</p>
+<ul>
+<li>浏览器根据请求的URL交给DNS域名解析，找到真实IP，向服务器发起请求；</li>
+<li>服务器交给后台处理完成后返回数据，浏览器接收文件（HTML、JS、CSS、图象等）；</li>
+<li>浏览器对加载到的资源（HTML、JS、CSS等）进行语法解析，建立相应的内部数据结构（如HTML的DOM）；</li>
+<li>载入解析到的资源文件，渲染页面，完成。</li>
+</ul>
+</li>
+</ul>
+<p><strong>说说TCP传输的三次握手四次挥手策略</strong></p>
+<ul>
+<li><p>为了准确无误地把数据送达目标处，TCP协议采用了三次握手策略。用TCP协议把数据包送出去后，TCP不会对传送 后的情况置之不理，它一定会向对方确认是否成功送达。握手过程中使用了TCP的标志：SYN和ACK</p>
+</li>
+<li><p>发送端首先发送一个带SYN标志的数据包给对方。接收端收到后，回传一个带有SYN/ACK标志的数据包以示传达确认信息。 最后，发送端再回传一个带ACK标志的数据包，代表“握手”结束。 若在握手过程中某个阶段莫名中断，TCP协议会再次以相同的顺序发送相同的数据包</p>
+</li>
+</ul>
+<p><strong>断开一个TCP连接则需要“四次握手”：</strong></p>
+<ul>
+<li><p>第一次挥手：主动关闭方发送一个FIN，用来关闭主动方到被动关闭方的数据传送，也就是主动关闭方告诉被动关闭方：我已经不 会再给你发数据了(当然，在fin包之前发送出去的数据，如果没有收到对应的ack确认报文，主动关闭方依然会重发这些数据)，但是，此时主动关闭方还可 以接受数据</p>
+</li>
+<li><p>第二次挥手：被动关闭方收到FIN包后，发送一个ACK给对方，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号）</p>
+</li>
+<li><p>第三次挥手：被动关闭方发送一个FIN，用来关闭被动关闭方到主动关闭方的数据传送，也就是告诉主动关闭方，我的数据也发送完了，不会再给你发数据了</p>
+</li>
+<li><p>第四次挥手：主动关闭方收到FIN后，发送一个ACK给被动关闭方，确认序号为收到序号+1，至此，完成四次挥手</p>
+</li>
+</ul>
+<p><strong>TCP和UDP的区别</strong></p>
+<ul>
+<li><p>TCP（Transmission Control Protocol，传输控制协议）是基于连接的协议，也就是说，在正式收发数据前，必须和对方建立可靠的连接。一个TCP连接必须要经过三次“对话”才能建立起来</p>
+</li>
+<li><p>UDP（User Data Protocol，用户数据报协议）是与TCP相对应的协议。它是面向非连接的协议，它不与对方建立连接，而是直接就把数据包发送过去！ UDP适用于一次只传送少量数据、对可靠性要求不高的应用环境</p>
+</li>
+</ul>
+<p><strong>HTTP和HTTPS</strong></p>
+<ul>
+<li>HTTP协议通常承载于TCP协议之上，在HTTP和TCP之间添加一个安全协议层（SSL或TSL），这个时候，就成了我们常说的HTTPS</li>
+<li>默认HTTP的端口号为80，HTTPS的端口号为443</li>
+</ul>
+<p><strong>为什么HTTPS安全</strong></p>
+<ul>
+<li>因为网络请求需要中间有很多的服务器路由器的转发。中间的节点都可能篡改信息，而如果使用HTTPS，密钥在你和终点站才有。https之所以比http安全，是因为他利用ssl/tls协议传输。它包含证书，卸载，流量转发，负载均衡，页面适配，浏览器适配，refer传递等。保障了传输过程的安全性</li>
+</ul>
+<p><strong>关于Http 2.0 你知道多少？</strong></p>
+<ul>
+<li><p>HTTP/2引入了“服务端推（server push）”的概念，它允许服务端在客户端需要数据之前就主动地将数据发送到客户端缓存中，从而提高性能。</p>
+</li>
+<li><p>HTTP/2提供更多的加密支持</p>
+</li>
+<li><p>HTTP/2使用多路技术，允许多个消息在一个连接上同时交差。</p>
+</li>
+<li><p>它增加了头压缩（header compression），因此即使非常小的请求，其请求和响应的header都只会占用很小比例的带宽</p>
+</li>
+</ul>
+<p><strong>GET和POST的区别，何时使用POST？</strong></p>
+<ul>
+<li><p>GET：一般用于信息获取，使用URL传递参数，对所发送信息的数量也有限制，一般在2000个字符</p>
+</li>
+<li><p>POST：一般用于修改服务器上的资源，对所发送的信息没有限制。</p>
+</li>
+<li><p>GET方式需要使用Request.QueryString来取得变量的值，而POST方式通过Request.Form来获取变量的值，也就是说Get是通过地址栏来传值，而Post是通过提交表单来传值。</p>
+</li>
+<li><p>然而，在以下情况中，请使用 POST 请求：</p>
+<ul>
+<li><p>无法使用缓存文件（更新服务器上的文件或数据库）</p>
+</li>
+<li><p>向服务器发送大量数据（POST 没有数据量限制）</p>
+</li>
+<li><p>发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>说说网络分层里七层模型是哪七层</strong></p>
+<ul>
+<li><p>应用层：应用层、表示层、会话层（从上往下）（HTTP、FTP、SMTP、DNS）</p>
+</li>
+<li><p>传输层（TCP和UDP）</p>
+</li>
+<li><p>网络层（IP）</p>
+</li>
+<li><p>物理和数据链路层（以太网）</p>
+</li>
+</ul>
+<ul>
+<li><p>每一层的作用如下：</p>
+<ul>
+<li>物理层：通过媒介传输比特,确定机械及电气规范（比特Bit）<br>数据链路层：将比特组装成帧和点到点的传递（帧Frame）</li>
+<li>网络层：负责数据包从源到宿的传递和网际互连（包PackeT）</li>
+<li>传输层：提供端到端的可靠报文传递和错误恢复（段Segment）</li>
+<li>会话层：建立、管理和终止会话（会话协议数据单元SPDU）</li>
+<li>表示层：对数据进行翻译、加密和压缩（表示协议数据单元PPDU）</li>
+<li>应用层：允许访问OSI环境的手段（应用协议数据单元APDU）</li>
+</ul>
+</li>
+</ul>
+<p><strong>讲讲304缓存的原理</strong></p>
+<ul>
+<li>服务器首先产生ETag，服务器可在稍后使用它来判断页面是否已经被修改。本质上，客户端通过将该记号传回服务器要求服务器验证其（客户端）缓存</li>
+<li>304是HTTP状态码，服务器用来标识这个文件没修改，不返回内容，浏览器在接收到个状态码后，会使用浏览器已缓存的文件</li>
+<li>客户端请求一个页面（A）。 服务器返回页面A，并在给A加上一个ETag。 客户端展现该页面，并将页面连同ETag一起缓存。 客户再次请求页面A，并将上次请求时服务器返回的ETag一起传递给服务器。 服务器检查该ETag，并判断出该页面自上次客户端请求之后还未被修改，直接返回响应304（未修改——Not Modified）和一个空的响应体</li>
+</ul>
+<p><strong>HTTP/2 与 HTTP/1.x 的关键区别</strong></p>
+<ul>
+<li>二进制协议代替文本协议，更加简洁高效</li>
+<li>针对每个域只使用一个多路复用的连接</li>
+<li>压缩头部信息减小开销</li>
+<li>允许服务器主动推送应答到客户端的缓存中</li>
+</ul>
+<p><strong>一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？</strong></p>
+<ul>
+<li>01.浏览器查找域名对应的IP地址(DNS 查询：浏览器缓存-&gt;系统缓存-&gt;路由器缓存-&gt;ISP DNS 缓存-&gt;根域名服务器)</li>
+<li>02.浏览器向 Web 服务器发送一个 HTTP 请求（TCP三次握手）</li>
+<li>03.服务器 301 重定向（从 <a href="http://example.com" target="_blank" rel="noopener">http://example.com</a> 重定向到 <a href="http://www.example.com）" target="_blank" rel="noopener">http://www.example.com）</a></li>
+<li>04.浏览器跟踪重定向地址，请求另一个带 www 的网址</li>
+<li>05.服务器处理请求（通过路由读取资源）</li>
+<li>06.服务器返回一个 HTTP 响应（报头中把 Content-type 设置为 ‘text/html’）</li>
+<li>07.浏览器进 DOM 树构建</li>
+<li>08.浏览器发送请求获取嵌在 HTML 中的资源（如图片、音频、视频、CSS、JS等）</li>
+<li>09.浏览器显示完成页面</li>
+<li>10.浏览器发送异步请求</li>
+</ul>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-01-20T03:40:20.501Z" itemprop="dateUpdated">2020-01-20 11:40:20</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/06/07/HTTP.html&title=《Http基础知识》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/06/07/HTTP.html&title=《Http基础知识》 — 卖坚果的怪叔叔&source=http状态码有那些？分别代表是什么意思？
+12345678910111213141516171819简单版   [       100  Continu..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2018/06/07/HTTP.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Http基础知识》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2018/06/07/HTTP.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2018/06/07/HTTP.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/06/09/HTML.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">HTML知识点</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/06/06/有一个已经排序的数组，比方-1-4-6-9-11-15-18-给你一个新的数，插入到数组中，写一个function.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">有一个已经排序的数组，比方[1,4,6,9,11,15,18],给你一个新的数，插入到数组中，写一个function</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/06/07/HTTP.html&title=《Http基础知识》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/06/07/HTTP.html&title=《Http基础知识》 — 卖坚果的怪叔叔&source=http状态码有那些？分别代表是什么意思？
+12345678910111213141516171819简单版   [       100  Continu..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2018/06/07/HTTP.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Http基础知识》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2018/06/07/HTTP.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2018/06/07/HTTP.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABxUlEQVR42u3ayW6DMBQF0Pz/T1Mpq1QV9F4bDK2OV1GYDiye/IbXK17be33+/vxn75yfR4/POW3h4uJOc7fDldx6C1b+CX65FhcXdyE3ud0x8fjM9qrd/3FxcR/GTTYlx2EIFxf3/3GPcXn61N4fFxf3Lm6S/LTn5J/gklwNFxd3gjtWMD339+X1XVxc3JO6EnlwaUshg0/ExcVdwm0TmLwA2rZaiwCHi4t7E3dskKJt046FRVxc3Ku5yVBFO5jVNlyLMIeLi7uc2waymZGs5BPspj24uLhLuG07pM1KxjZPuLi493JnNjdjg1Z1KQQXF/dW7thoRfKw/NPsvgYuLu4SbrKxGNuUJGWUdrwDFxf3Odw2KWpfPjm6m7Hh4uIu4Z41nNE2WfMSLS4u7hpum6jMtFGnWim4uLg3ccceP89qh7dwcXFXcvOWST6e1ZZW66twcXFP5W7lGkuKZtoz347i4uIu4Y5FvnYblLRmcXFxn8bNG6VtApMQ64IILi7uQm47EjE2aHVC6MTFxf2D3Lz8moTR3cEsXFzcx3DnhzIvH7bAxcU9lTsPatswg60XXFzcJdyxVKRtiuSh7ZL6Li4ubsr9AkpDdp3q4QS+AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

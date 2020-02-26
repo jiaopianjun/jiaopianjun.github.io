@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>前端两三问(20190915) | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="前端问题,前端日常问题">
+    <meta name="description" content="1、Js获取当前时间12345678910111213141516171819202122232425262728293031function dateFormat(date, format) &amp;#123;  if (!date) &amp;#123;    return &apos;&apos;  &amp;#125;  if (!(date instanceof Date)) &amp;#123;    date = new Date(">
+<meta name="keywords" content="前端问题,前端日常问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端两三问(20190915)">
+<meta property="og:url" content="https://toc.lieme.cn/2019/09/15/前端两三问-20190915.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1、Js获取当前时间12345678910111213141516171819202122232425262728293031function dateFormat(date, format) &amp;#123;  if (!date) &amp;#123;    return &apos;&apos;  &amp;#125;  if (!(date instanceof Date)) &amp;#123;    date = new Date(">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/FtRCpVStWh9DmynW0SnwwESXcW1F">
+<meta property="og:updated_time" content="2019-09-17T12:16:08.157Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端两三问(20190915)">
+<meta name="twitter:description" content="1、Js获取当前时间12345678910111213141516171819202122232425262728293031function dateFormat(date, format) &amp;#123;  if (!date) &amp;#123;    return &apos;&apos;  &amp;#125;  if (!(date instanceof Date)) &amp;#123;    date = new Date(">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/FtRCpVStWh9DmynW0SnwwESXcW1F">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">前端两三问(20190915)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">前端两三问(20190915)</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-09-15T10:00:00.000Z" itemprop="datePublished" class="page-time">
+  2019-09-15
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端两三问/">前端两三问</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、Js获取当前时间"><span class="post-toc-number">1.</span> <span class="post-toc-text">1、Js获取当前时间</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、css-三角形"><span class="post-toc-number">2.</span> <span class="post-toc-text">2、css 三角形</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、js-取并集-交集"><span class="post-toc-number">3.</span> <span class="post-toc-text">3、js 取并集 交集</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-前端两三问-20190915"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">前端两三问(20190915)</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-09-15 18:00:00" datetime="2019-09-15T10:00:00.000Z"  itemprop="datePublished">2019-09-15</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端两三问/">前端两三问</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        372
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        2 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h3 id="1、Js获取当前时间"><a href="#1、Js获取当前时间" class="headerlink" title="1、Js获取当前时间"></a>1、Js获取当前时间</h3><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dateFormat</span>(<span class="params">date, format</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">date</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!(<span class="built_in">date</span> <span class="keyword">instanceof</span> <span class="built_in">Date</span>)) &#123;</span><br><span class="line">    <span class="built_in">date</span> = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">date</span>)</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">date</span>.toString() === <span class="string">'Invalid Date'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'无效时间戳'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  format = format || <span class="string">'yyyy-MM-dd hh:mm:ss'</span></span><br><span class="line">  <span class="keyword">const</span> o = &#123;</span><br><span class="line">    <span class="string">"M+"</span>: <span class="built_in">date</span>.getMonth() + <span class="number">1</span>, <span class="comment">//月份</span></span><br><span class="line">    <span class="string">"d+"</span>: <span class="built_in">date</span>.getDate(), <span class="comment">//日</span></span><br><span class="line">    <span class="string">"h+"</span>: <span class="built_in">date</span>.getHours(), <span class="comment">//小时</span></span><br><span class="line">    <span class="string">"m+"</span>: <span class="built_in">date</span>.getMinutes(), <span class="comment">//分</span></span><br><span class="line">    <span class="string">"s+"</span>: <span class="built_in">date</span>.getSeconds(), <span class="comment">//秒</span></span><br><span class="line">    <span class="string">"q+"</span>: <span class="built_in">Math</span>.floor((<span class="built_in">date</span>.getMonth() + <span class="number">3</span>) / <span class="number">3</span>), <span class="comment">//季度</span></span><br><span class="line">    <span class="string">"S"</span>: <span class="built_in">date</span>.getMilliseconds() <span class="comment">//毫秒</span></span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">if</span> (<span class="regexp">/(y+)/</span>.test(format)) &#123;</span><br><span class="line">    format = format.replace(<span class="built_in">RegExp</span>.$<span class="number">1</span>, (<span class="built_in">date</span>.getFullYear() + <span class="string">""</span>).substr(<span class="number">4</span> - <span class="built_in">RegExp</span>.$<span class="number">1.</span>length));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> k <span class="keyword">in</span> o)</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"("</span> + k + <span class="string">")"</span>).test(format)) &#123;</span><br><span class="line">      format = format.replace(<span class="built_in">RegExp</span>.$<span class="number">1</span>, (<span class="built_in">RegExp</span>.$<span class="number">1.</span>length === <span class="number">1</span>) ? (o[k]) : ((<span class="string">"00"</span> + o[k]).substr((<span class="string">""</span> + o[k]).length)));</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">return</span> format;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">date</span>.Format(<span class="keyword">new</span> <span class="built_in">Date</span>(), <span class="string">'yyyy-MM-dd'</span>)   <span class="comment">// 2019-09-11</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2、css-三角形"><a href="#2、css-三角形" class="headerlink" title="2、css 三角形"></a>2、css 三角形</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.sj</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">0</span>; </span><br><span class="line">  <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">border-width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">border-style</span>: solid;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.sj-left</span> &#123;</span><br><span class="line">  <span class="attribute">border-color</span>: transparent pink transparent transparent;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.sj-right</span> &#123;</span><br><span class="line">  <span class="attribute">border-color</span>: transparent transparent transparent pink;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.sj-top</span> &#123;</span><br><span class="line">  <span class="attribute">border-color</span>: transparent transparent pink transparent;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.sj-bottom</span> &#123;</span><br><span class="line">  <span class="attribute">border-color</span>: pink transparent transparent transparent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、js-取并集-交集"><a href="#3、js-取并集-交集" class="headerlink" title="3、js 取并集 交集"></a>3、js 取并集 交集</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="keyword">let</span> b = [<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sa = <span class="keyword">new</span> <span class="built_in">Set</span>(a);</span><br><span class="line"><span class="keyword">let</span> sb = <span class="keyword">new</span> <span class="built_in">Set</span>(b);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 交集</span></span><br><span class="line"><span class="keyword">let</span> intersect = a.filter(<span class="function"><span class="params">x</span> =&gt;</span> sb.has(x));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 差集</span></span><br><span class="line"><span class="keyword">let</span> minus = a.filter(<span class="function"><span class="params">x</span> =&gt;</span> !sb.has(x));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 补集</span></span><br><span class="line"><span class="keyword">let</span> complement  = [...a.filter(<span class="function"><span class="params">x</span> =&gt;</span> !sb.has(x)), ...b.filter(<span class="function"><span class="params">x</span> =&gt;</span> !sa.has(x))];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 并集</span></span><br><span class="line"><span class="keyword">let</span> unionSet = <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>([...a, ...b]));</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"a与b的交集："</span>, intersect);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"a与b的差集："</span>, minus);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"a与b的补集："</span>, complement);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"a与b的并集："</span>, unionSet);</span><br></pre></td></tr></table></figure>
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-09-17T12:16:08.157Z" itemprop="dateUpdated">2019-09-17 20:16:08</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端日常问题/">前端日常问题</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端问题/">前端问题</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/09/15/前端两三问-20190915.html&title=《前端两三问(20190915)》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FtRCpVStWh9DmynW0SnwwESXcW1F" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/09/15/前端两三问-20190915.html&title=《前端两三问(20190915)》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/09/15/前端两三问-20190915.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端两三问(20190915)》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/09/15/前端两三问-20190915.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/09/15/前端两三问-20190915.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/09/17/前端两三问-20190917.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">前端两三问(20190917)</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/09/12/重学JavaScript之面向对象的程序设计（创建对象）.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">重学js之JavaScript 面向对象的程序设计（创建对象）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/09/15/前端两三问-20190915.html&title=《前端两三问(20190915)》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FtRCpVStWh9DmynW0SnwwESXcW1F" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/09/15/前端两三问-20190915.html&title=《前端两三问(20190915)》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/09/15/前端两三问-20190915.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端两三问(20190915)》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/09/15/前端两三问-20190915.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/09/15/前端两三问-20190915.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3a22rDMBBFUf//T7tQ+lBw7e4zksAZbT2FENtZKUzndhz4nN/n9+vruX7+7jPk/WPFkSFDxscyzsdzZcyFPTPIVTJkyNiHwYPsutB8d4fnp8iQIUMG+UwQFsEXkiFDhowVAXe8hn7F/w0ZMmS8npE2yJ4fnJbBaXIpQ4aM3RizAuKK18vnGzJkyHg94wzPurZa7fv83EGGDBmtGbOStrTQJWklx8uQIaM3Y93qAx9Mkh/in/vLkCGjNYMPDtPWW/BgEOhJ4JYhQ0ZvRrpIwcNx+gPxBp8MGTL2YfDliZGHkdDJw+4fT5QhQ0ZrRpoIBjcNJ4+1u8mQIWMfBg9zPATXytrauFSGDBk7MEiZmi5JpOE7HZrKkCFDRm1hIu7zlQpaGTJk7MngK2K8oK0Vujy4o/pYhgwZLRg8HUxL2bShxoNy8BgZMmS0YPBCkRe6KHUD15JwfzvfkCFDRjsGTwpJYTkSmicsZMiQIaM1g7Te0iHBSALK000ZMmT0ZtSGlDxpqw0P4r+DDBkyNmDU3kkXLGp3QI0/GTJktGbwsMvbbbwo5SUuCsoyZMhoyjjDw+eGI+sXcSCWIUNGawY/vOCclfaN/EwyZMjox0iXHtI1izQ4pusaMmTI2IcxkvbVSt809qPpqwwZMrZnpGHxmcSb/ih8y5AhQwb+QunKBWn9kyAuQ4aMHRgjhWjcvRu46vZaGTJktGasGAykiSYJviMtPBkyZHws4wumR9E/Bxfs/wAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

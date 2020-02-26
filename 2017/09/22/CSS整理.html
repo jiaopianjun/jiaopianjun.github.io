@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>css 笔记整理 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="css,笔记">
+    <meta name="description" content="#  ~选择器：查找某一个元素后面的所有兄弟元素1例如     .test~.name&amp;#123;background:red&amp;#125;  +选择器：查找某一个元素后面紧邻的兄弟元素1例如     .test+.name&amp;#123;background:red&amp;#125;  用 font-size ：0 来清除边距1不要忘记给子元素设置字号  用overflow清除浮动123456.clearf">
+<meta name="keywords" content="css,笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css 笔记整理">
+<meta property="og:url" content="https://toc.lieme.cn/2017/09/22/CSS整理.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="#  ~选择器：查找某一个元素后面的所有兄弟元素1例如     .test~.name&amp;#123;background:red&amp;#125;  +选择器：查找某一个元素后面紧邻的兄弟元素1例如     .test+.name&amp;#123;background:red&amp;#125;  用 font-size ：0 来清除边距1不要忘记给子元素设置字号  用overflow清除浮动123456.clearf">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2020-01-17T09:21:32.747Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css 笔记整理">
+<meta name="twitter:description" content="#  ~选择器：查找某一个元素后面的所有兄弟元素1例如     .test~.name&amp;#123;background:red&amp;#125;  +选择器：查找某一个元素后面紧邻的兄弟元素1例如     .test+.name&amp;#123;background:red&amp;#125;  用 font-size ：0 来清除边距1不要忘记给子元素设置字号  用overflow清除浮动123456.clearf">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">css 笔记整理</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">css 笔记整理</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-22T09:16:08.000Z" itemprop="datePublished" class="page-time">
+  2017-09-22
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#选择器：查找某一个元素后面的所有兄弟元素"><span class="post-toc-number">1.</span> <span class="post-toc-text">#  ~选择器：查找某一个元素后面的所有兄弟元素</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#选择器：查找某一个元素后面紧邻的兄弟元素"><span class="post-toc-number">2.</span> <span class="post-toc-text">+选择器：查找某一个元素后面紧邻的兄弟元素</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#用-font-size-：0-来清除边距"><span class="post-toc-number">3.</span> <span class="post-toc-text">用 font-size ：0 来清除边距</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#用overflow清除浮动"><span class="post-toc-number">4.</span> <span class="post-toc-text">用overflow清除浮动</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#用border-来绘制三角形"><span class="post-toc-number">5.</span> <span class="post-toc-text">用border 来绘制三角形</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#梯形"><span class="post-toc-number">6.</span> <span class="post-toc-text">梯形</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#利用padding实现等比例缩放的盒子"><span class="post-toc-number">7.</span> <span class="post-toc-text">利用padding实现等比例缩放的盒子</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#利用pointer-events禁用事件-光标变成default-阻止-hover和hover-以及-JavaScript-点击事件的触发"><span class="post-toc-number">8.</span> <span class="post-toc-text">利用pointer-events禁用事件  光标变成default  阻止 hover和hover  以及  JavaScript 点击事件的触发</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#利用-max-width-防止图片撑破容器"><span class="post-toc-number">9.</span> <span class="post-toc-text">利用 max-width  防止图片撑破容器</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#利用伪类在打印时候显示a标签的链接"><span class="post-toc-number">10.</span> <span class="post-toc-text">利用伪类在打印时候显示a标签的链接</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#未知高度容器的多种垂直居中方法"><span class="post-toc-number">11.</span> <span class="post-toc-text">未知高度容器的多种垂直居中方法</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#用counter-来模拟-装饰-有序清单"><span class="post-toc-number">12.</span> <span class="post-toc-text">用counter 来模拟/装饰 有序清单</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#伪类和伪元素的区别"><span class="post-toc-number">13.</span> <span class="post-toc-text">伪类和伪元素的区别</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="title-CSS整理"
+  class="post-article article-type-title fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">css 笔记整理</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-22 17:16:08" datetime="2017-09-22T09:16:08.000Z"  itemprop="datePublished">2017-09-22</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        1,149
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        6 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h5 id="选择器：查找某一个元素后面的所有兄弟元素"><a href="#选择器：查找某一个元素后面的所有兄弟元素" class="headerlink" title="#  ~选择器：查找某一个元素后面的所有兄弟元素"></a>#  ~选择器：查找某一个元素后面的所有兄弟元素</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如     <span class="selector-class">.test</span>~<span class="selector-class">.name</span>&#123;<span class="attribute">background</span>:red&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="选择器：查找某一个元素后面紧邻的兄弟元素"><a href="#选择器：查找某一个元素后面紧邻的兄弟元素" class="headerlink" title="+选择器：查找某一个元素后面紧邻的兄弟元素"></a>+选择器：查找某一个元素后面紧邻的兄弟元素</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如     <span class="selector-class">.test</span>+<span class="selector-class">.name</span>&#123;<span class="attribute">background</span>:red&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="用-font-size-：0-来清除边距"><a href="#用-font-size-：0-来清除边距" class="headerlink" title="用 font-size ：0 来清除边距"></a>用 font-size ：0 来清除边距</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">不要忘记给子元素设置字号</span><br></pre></td></tr></table></figure>
+
+<h5 id="用overflow清除浮动"><a href="#用overflow清除浮动" class="headerlink" title="用overflow清除浮动"></a>用overflow清除浮动</h5><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span>&#123;</span><br><span class="line">    <span class="attribute">overflow</span>：hidden</span><br><span class="line">    <span class="attribute">display</span>:block</span><br><span class="line">    clear:both;</span><br><span class="line">    <span class="attribute">content</span>:<span class="string">''</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="用border-来绘制三角形"><a href="#用border-来绘制三角形" class="headerlink" title="用border 来绘制三角形"></a>用border 来绘制三角形</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.border</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">border</span>:<span class="number">40px</span> solie;</span><br><span class="line">    <span class="attribute">border-left-color</span>:red;</span><br><span class="line">    <span class="attribute">border-right-color</span>:yellow;</span><br><span class="line">    <span class="attribute">border-top-color</span>:blue;</span><br><span class="line">    <span class="attribute">border-bottom-color</span>:green;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.border</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">border-width</span>:<span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">border-color</span>:transparent transparent yellow trasparent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="梯形"><a href="#梯形" class="headerlink" title="梯形"></a>梯形</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.border</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">border-width</span>:<span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">border-color</span>:transparent transparent yellow trasparent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="利用padding实现等比例缩放的盒子"><a href="#利用padding实现等比例缩放的盒子" class="headerlink" title="利用padding实现等比例缩放的盒子"></a>利用padding实现等比例缩放的盒子</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">最外层容器&#123;</span><br><span class="line">    <span class="attribute">display</span>:flex;</span><br><span class="line">    <span class="attribute">display</span>:-webkit-box;</span><br><span class="line">    <span class="attribute">display</span>:flex-box;</span><br><span class="line">    <span class="attribute">-ms-flex-wrap</span>:wrap;</span><br><span class="line">    <span class="attribute">flex-wrap</span>:warp;</span><br><span class="line">&#125;</span><br><span class="line">最外层容器 &gt; 子元素&#123;</span><br><span class="line">    <span class="attribute">flex-basis</span>:<span class="number">25%</span>;</span><br><span class="line">&#125;</span><br><span class="line">最外层容器 &gt; 子元素 &gt; 父元素&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">padding-top</span>:<span class="number">75%</span>;</span><br><span class="line">    <span class="attribute">position</span>:relative;</span><br><span class="line">&#125;</span><br><span class="line">最外层容器 &gt; 子元素 &gt; 父元素 &gt; 子元素&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">position</span>:absolute;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="利用pointer-events禁用事件-光标变成default-阻止-hover和hover-以及-JavaScript-点击事件的触发"><a href="#利用pointer-events禁用事件-光标变成default-阻止-hover和hover-以及-JavaScript-点击事件的触发" class="headerlink" title="利用pointer-events禁用事件  光标变成default  阻止 hover和hover  以及  JavaScript 点击事件的触发"></a>利用pointer-events禁用事件  光标变成default  阻止 hover和hover  以及  JavaScript 点击事件的触发</h5><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pointer</span>-events:<span class="keyword">none</span>;</span><br></pre></td></tr></table></figure>
+
+<h5 id="利用-max-width-防止图片撑破容器"><a href="#利用-max-width-防止图片撑破容器" class="headerlink" title="利用 max-width  防止图片撑破容器"></a>利用 max-width  防止图片撑破容器</h5><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">img&#123;</span><br><span class="line">    <span class="built_in">max</span>-<span class="built_in">width</span>：<span class="number">100</span>%；</span><br><span class="line">    <span class="built_in">display</span>：<span class="keyword">inline</span>-block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="利用伪类在打印时候显示a标签的链接"><a href="#利用伪类在打印时候显示a标签的链接" class="headerlink" title="利用伪类在打印时候显示a标签的链接"></a>利用伪类在打印时候显示a标签的链接</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.a</span><span class="selector-attr">[href]</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">    <span class="attribute">content</span>:<span class="string">"("</span> <span class="built_in">attr</span>(href) <span class="string">")"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="未知高度容器的多种垂直居中方法"><a href="#未知高度容器的多种垂直居中方法" class="headerlink" title="未知高度容器的多种垂直居中方法"></a>未知高度容器的多种垂直居中方法</h5><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一种   flex  + margin:auto</span></span><br><span class="line">父元素&#123;</span><br><span class="line">    <span class="attribute">display</span>：<span class="attribute">flex</span>;</span><br><span class="line">&#125;</span><br><span class="line">子元素&#123;</span><br><span class="line">    <span class="attribute">margin</span>：<span class="attribute">auto</span>；</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二种 元素占位方案 利用display：inline-block  和伪元素</span></span><br><span class="line">父元素&#123;</span><br><span class="line">    <span class="attribute">text-align</span>:center;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">父元素::before , 子元素&#123;</span><br><span class="line">    <span class="attribute">display</span>:inline-block;</span><br><span class="line">    <span class="attribute">vertical-align</span>:middle</span><br><span class="line">&#125;</span><br><span class="line">父元素::before&#123;</span><br><span class="line">    content:<span class="string">''</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第三种 absolute + transform</span></span><br><span class="line">父元素&#123;</span><br><span class="line">    <span class="attribute">position</span>：relative；</span><br><span class="line">    <span class="attribute">text-align</span>:center</span><br><span class="line">&#125;</span><br><span class="line">子元素&#123;</span><br><span class="line">    position:absolute;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">50%</span>;</span><br><span class="line">    transfrom:translate(-<span class="number">50%</span>,-<span class="number">50%</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第四种 table-cell  缺点  需要在子元素上额外套一层div</span></span><br><span class="line">父元素&#123;</span><br><span class="line">    <span class="attribute">display</span>:table;</span><br><span class="line">&#125;</span><br><span class="line">父元素 &gt; 二层元素&#123;</span><br><span class="line">    <span class="attribute">display</span>:table-cell;</span><br><span class="line">    <span class="attribute">vertical-align</span>:middle;</span><br><span class="line">    <span class="attribute">text-align</span>:center</span><br><span class="line">&#125;</span><br><span class="line">父元素 &gt; 二层元素 &gt; 子元素&#123;</span><br><span class="line">    display:inline-block;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第四种 flex  flex盒模型是最佳事项方案  有两种方案</span></span><br><span class="line">第一种方案</span><br><span class="line">父元素&#123;</span><br><span class="line">    <span class="attribute">display</span>:flex;</span><br><span class="line">    <span class="attribute">align-items</span>:center;</span><br><span class="line">    <span class="attribute">justify-content</span>:center;</span><br><span class="line">&#125;</span><br><span class="line">第二种方案</span><br><span class="line">父元素&#123;</span><br><span class="line">    <span class="attribute">display</span>：<span class="attribute">flex</span>;</span><br><span class="line">    <span class="attribute">margin</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">父元素 &gt; 子元素&#123;</span><br><span class="line">    <span class="attribute">margin</span>:auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="用counter-来模拟-装饰-有序清单"><a href="#用counter-来模拟-装饰-有序清单" class="headerlink" title="用counter 来模拟/装饰 有序清单"></a>用counter 来模拟/装饰 有序清单</h5><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">父元素&#123;</span><br><span class="line">    <span class="attribute">counter-reset</span>:decimal;</span><br><span class="line">    <span class="attribute">list-style-type</span>:none;</span><br><span class="line">&#125;</span><br><span class="line">父元素 &gt; 子元素&#123;</span><br><span class="line">    <span class="attribute">counter-increment</span>：decimal;</span><br><span class="line">    <span class="attribute">content</span>:counters(decimal,<span class="string">"."</span>) <span class="string">" "</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">用<span class="attribute">table-layout</span> 来控制table td/th 的宽度</span><br><span class="line">table&#123;</span><br><span class="line">    <span class="attribute">table-layout</span>：fixed;</span><br><span class="line"></span><br><span class="line">    用caret-<span class="attribute">color</span> 自定义输入框  光标颜色</span><br><span class="line">    <span class="selector-tag">textarea</span>,<span class="selector-tag">input</span>,[contenteditable]&#123;</span><br><span class="line">    creat-<span class="attribute">color</span>:red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">用user-select 禁止选中文本</span><br><span class="line">文本&#123;</span><br><span class="line">    user-select：<span class="attribute">none</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="伪类和伪元素的区别"><a href="#伪类和伪元素的区别" class="headerlink" title="伪类和伪元素的区别"></a>伪类和伪元素的区别</h5><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">伪类是用： 来表示，伪元素是用：：来表示</span><br><span class="line">常见的伪类有：</span><br><span class="line"><span class="symbol">:hover</span></span><br><span class="line"><span class="symbol">:active</span></span><br><span class="line"><span class="symbol">:focus</span></span><br><span class="line"><span class="symbol">:visited</span></span><br><span class="line"><span class="symbol">:link</span></span><br><span class="line"><span class="symbol">:lang</span></span><br><span class="line"><span class="symbol">:first-child</span></span><br><span class="line"><span class="symbol">:last-child</span></span><br><span class="line"><span class="symbol">:not</span></span><br><span class="line"><span class="symbol">:nth-child</span></span><br><span class="line"></span><br><span class="line">伪元素 就是不存在DOM文档树中的虚拟元素，它们和HTML元素一样，但是你又无法使用javascript去获取</span><br><span class="line">常见伪元素</span><br><span class="line"><span class="symbol">:</span><span class="symbol">:before</span></span><br><span class="line"><span class="symbol">:</span><span class="symbol">:after</span></span><br><span class="line"><span class="symbol">:</span><span class="symbol">:first-letter</span></span><br><span class="line"><span class="symbol">:</span><span class="symbol">:first-line</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">用 ：valid  和 ：invalid 来做表单验证</span><br><span class="line">html5 提供了类似required Email tel 等表单属性</span><br><span class="line">：required 指定具有required属性的表单元素</span><br><span class="line">：valid 指定一个通过匹配正确的所要求的表单元素</span><br><span class="line">：invalid 指定一个不匹配指定要求的表单元素</span><br><span class="line">&lt;input type=<span class="string">"text"</span> required /&gt;   </span><br><span class="line"><span class="symbol">input:</span>vaild&#123;    如果输入文字则变成绿色</span><br><span class="line">    <span class="symbol">border:</span><span class="number">1</span>px solid green;</span><br><span class="line">    box-<span class="symbol">shadow:</span>inset <span class="number">10</span>px <span class="number">0</span> <span class="number">0</span> green;</span><br><span class="line">&#125;</span><br><span class="line"><span class="symbol">input:</span>invaild&#123;   如果没有输入则是红色</span><br><span class="line">    <span class="symbol">border:</span><span class="number">1</span>px solid red;</span><br><span class="line">    box-<span class="symbol">shadow:</span>inset <span class="number">10</span>px <span class="number">0</span> <span class="number">0</span> red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">用：target来实现折叠面板</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">用：<span class="keyword">not</span>来排除其他选择器</span><br><span class="line">：<span class="keyword">not</span>([readonly])<span class="symbol">:not</span>([.disabled])<span class="symbol">:not</span>([text])  等</span><br><span class="line"></span><br><span class="line">用：nth-child 来实现各行变色</span><br><span class="line">：nth-child(<span class="number">2</span>n+<span class="number">1</span>)&#123;<span class="symbol">background:</span>red;&#125;</span><br><span class="line">: nth-child(<span class="number">2</span>n)&#123;<span class="symbol">backgorund:</span>blue;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">用 <span class="symbol">:</span><span class="symbol">:selection</span> 来美化选中文本</span><br><span class="line"><span class="symbol">p:</span><span class="symbol">:selection</span>&#123;</span><br><span class="line">    <span class="symbol">background:</span>red;</span><br><span class="line">    <span class="symbol">color:</span>green;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">用 <span class="symbol">:</span><span class="symbol">:placeholder</span> 美化输入框占位符样式</span><br><span class="line"><span class="symbol">:</span><span class="symbol">:placeholder</span>&#123;</span><br><span class="line">    <span class="symbol">color:</span>Red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">用 <span class="symbol">:</span><span class="symbol">:first-letter</span> 来实现段落首字下沉</span><br><span class="line"><span class="symbol">p:</span><span class="symbol">:first-letter</span>&#123;</span><br><span class="line">    font-<span class="symbol">size:</span><span class="number">30</span>px;</span><br><span class="line">    <span class="symbol">color:</span>Red;</span><br><span class="line">    <span class="symbol">padding:</span><span class="number">20</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">用 <span class="symbol">:</span><span class="symbol">:first-line</span> 来标记段落的第一行</span><br><span class="line"><span class="symbol">p:</span><span class="symbol">:first-line</span>&#123;</span><br><span class="line">    <span class="symbol">color:</span>red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-01-17T09:21:32.747Z" itemprop="dateUpdated">2020-01-17 17:21:32</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2017/09/22/CSS整理.html&title=《css 笔记整理》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2017/09/22/CSS整理.html&title=《css 笔记整理》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2017/09/22/CSS整理.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《css 笔记整理》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2017/09/22/CSS整理.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2017/09/22/CSS整理.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/09/22/JS-Array.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">JS Array</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/08/07/科学上网.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">使用 HyperApp，打造一个安全稳定超高速的科学上网环境</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2017/09/22/CSS整理.html&title=《css 笔记整理》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2017/09/22/CSS整理.html&title=《css 笔记整理》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2017/09/22/CSS整理.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《css 笔记整理》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2017/09/22/CSS整理.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2017/09/22/CSS整理.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACI0lEQVR42u3aQY7DMAgF0N7/0pntSKNWH3BHsv28qtoozsuCguH1itfza/Wu//v53TX5LuWFgYGxLeP5uJLHmr+IHPz2PhgYGBcw8lvnG0+iZf5sGBgYGMk1eSK4dl8MDAyMeQn6+ZtJAoqBgXEnI9kgP0r7nAJODuYW1OIYGBgbMvIi8/8/f6W/gYGBsRXjKa5e6MwL2t7CwMA4m5EHuB4vedxewMXAwLiNUT1EmwxJ9PYaHbphYGBszshDXs5IQvAk0cTAwLiTMSksq6XpZPisPFOGgYFxBGMySDFpN+bN0cKrx8DAOJRRLTULNXExrFdHOqKzQAwMjGsY1SRv0v5sjnpgYGAczeg9RHIA12tJ5q3KQgsTAwNjc8aqVC/HV4vV6FcMDIyjGb20rDe2VYj9wUOXp9swMDC2ZUxahpNBsbypEJW+GBgY1zCqoxV5qTkZ8lgwZoGBgbE5I+8DrkoTe2G68JeAgYFxKKPXkkyO/qsDHL2xDAwMjDsZvdGH5Ju8FZGPgGBgYNzG+MYIV3WAIw/Ky94uBgbGJozqIVd18GuyV1Q2Y2BgHMp4iqsapqtBdpQUYmBgHMqYdAbnyWK16O21JTAwMM5gVI/+q+G1l3TmLU8MDIx7GL0BiFVp5QIkBgYGRlyCTo7Yct6CgIuBgXE0o1dkTl5KFMoxMDAuYEwK0QSQB+W8YYCBgXEPYz5a8TlEJsli9f7NRiYGBsZ+jB8SBwPxiorgdQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

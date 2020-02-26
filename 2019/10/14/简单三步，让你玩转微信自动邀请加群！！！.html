@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>简单三步，让你玩转微信自动邀请加群！！！ | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="微信,python,wxpy">
+    <meta name="description" content="1、需求场景很多管理大量微信社群的小伙伴都有这样的场景，当微信群的人数达到100人之后，将不能在通过分享的群二维码加入群里，必须自主添加好友后，手动去邀请才能加用户拉入群众，如果有大量的用户加群，就只能一个一个手动的拉，想想心情就很美丽，手动哭泣。。。。 2、准备工作1、一台不关机的电脑 OR 一台服务器 2、 安装以下相关依赖（有的不需要） 1234567891011121314151617#c">
+<meta name="keywords" content="微信,python,wxpy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单三步，让你玩转微信自动邀请加群！！！">
+<meta property="og:url" content="https://toc.lieme.cn/2019/10/14/简单三步，让你玩转微信自动邀请加群！！！.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1、需求场景很多管理大量微信社群的小伙伴都有这样的场景，当微信群的人数达到100人之后，将不能在通过分享的群二维码加入群里，必须自主添加好友后，手动去邀请才能加用户拉入群众，如果有大量的用户加群，就只能一个一个手动的拉，想想心情就很美丽，手动哭泣。。。。 2、准备工作1、一台不关机的电脑 OR 一台服务器 2、 安装以下相关依赖（有的不需要） 1234567891011121314151617#c">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/FvyJLSK0bl185U7Ol9kBroOazxXw">
+<meta property="og:updated_time" content="2019-12-10T06:39:06.265Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简单三步，让你玩转微信自动邀请加群！！！">
+<meta name="twitter:description" content="1、需求场景很多管理大量微信社群的小伙伴都有这样的场景，当微信群的人数达到100人之后，将不能在通过分享的群二维码加入群里，必须自主添加好友后，手动去邀请才能加用户拉入群众，如果有大量的用户加群，就只能一个一个手动的拉，想想心情就很美丽，手动哭泣。。。。 2、准备工作1、一台不关机的电脑 OR 一台服务器 2、 安装以下相关依赖（有的不需要） 1234567891011121314151617#c">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/FvyJLSK0bl185U7Ol9kBroOazxXw">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">简单三步，让你玩转微信自动邀请加群！！！</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">简单三步，让你玩转微信自动邀请加群！！！</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-10-14T14:50:45.000Z" itemprop="datePublished" class="page-time">
+  2019-10-14
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/微信/">微信</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、需求场景"><span class="post-toc-number">1.</span> <span class="post-toc-text">1、需求场景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、准备工作"><span class="post-toc-number">2.</span> <span class="post-toc-text">2、准备工作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、代码部分"><span class="post-toc-number">3.</span> <span class="post-toc-text">3、代码部分</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1、注册机器人"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">3.1、注册机器人</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2、自动通过好友后发送的加群提示"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">3.2、自动通过好友后发送的加群提示</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3、自动通过好友请求"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3.3、自动通过好友请求</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-4、关键字回复发送加群邀请链接"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">3.4、关键字回复发送加群邀请链接</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5、邀请用户入群后发送群公告"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">3.5、邀请用户入群后发送群公告</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-5-1、新用户入群发送的公告"><span class="post-toc-number">3.5.1.</span> <span class="post-toc-text">3.5.1、新用户入群发送的公告</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-5-2、为加入的群进行注册，以用来抓取群消息"><span class="post-toc-number">3.5.2.</span> <span class="post-toc-text">3.5.2、为加入的群进行注册，以用来抓取群消息</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4、运行机器人"><span class="post-toc-number">4.</span> <span class="post-toc-text">4、运行机器人</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5、Git"><span class="post-toc-number">5.</span> <span class="post-toc-text">5、Git</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6、如有想体验机器人可以添加微信【wex-5201314】或直接扫描下面二维码"><span class="post-toc-number">6.</span> <span class="post-toc-text">6、如有想体验机器人可以添加微信【wex_5201314】或直接扫描下面二维码</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7、欢迎关注我的公众号【小夭同学】"><span class="post-toc-number">7.</span> <span class="post-toc-text">7、欢迎关注我的公众号【小夭同学】</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-简单三步，让你玩转微信自动邀请加群！！！"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">简单三步，让你玩转微信自动邀请加群！！！</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-10-14 22:50:45" datetime="2019-10-14T14:50:45.000Z"  itemprop="datePublished">2019-10-14</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/微信/">微信</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        859
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        4 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h2 id="1、需求场景"><a href="#1、需求场景" class="headerlink" title="1、需求场景"></a>1、需求场景</h2><p>很多管理大量微信社群的小伙伴都有这样的场景，当微信群的人数达到100人之后，将不能在通过分享的群二维码加入群里，必须自主添加好友后，手动去邀请才能加用户拉入群众，如果有大量的用户加群，就只能一个一个手动的拉，想想心情就很美丽，手动哭泣。。。。</p>
+<h2 id="2、准备工作"><a href="#2、准备工作" class="headerlink" title="2、准备工作"></a>2、准备工作</h2><p>1、一台不关机的电脑 OR 一台服务器</p>
+<p>2、 安装以下相关依赖（有的不需要）</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#coding=utf8</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="title">from</span> requests <span class="keyword">import</span> exceptions</span><br><span class="line"><span class="title">from</span> urllib.request <span class="keyword">import</span> urlopen</span><br><span class="line"><span class="title">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="title">from</span> urllib.parse <span class="keyword">import</span> urlencode</span><br><span class="line"><span class="title">from</span> threading <span class="keyword">import</span> Timer</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="title">from</span> wxpy <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span>  schedule</span><br><span class="line"><span class="keyword">import</span>  time</span><br><span class="line"><span class="keyword">import</span> http</span><br><span class="line"><span class="keyword">import</span>  json </span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> ctypes</span><br></pre></td></tr></table></figure>
+
+<p>3、一个能够在网页版微信登录的账号（重要）</p>
+<p>4、该微信创建群聊，并保存通讯录中（重要）</p>
+<h2 id="3、代码部分"><a href="#3、代码部分" class="headerlink" title="3、代码部分"></a>3、代码部分</h2><h3 id="3-1、注册机器人"><a href="#3-1、注册机器人" class="headerlink" title="3.1、注册机器人"></a>3.1、注册机器人</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bot </span>= <span class="keyword">Bot(cache_path=True,console_qr </span>= <span class="number">2</span>)</span><br><span class="line"><span class="keyword">bot.enable_puid('wxpy_puid.pkl')</span></span><br><span class="line"><span class="keyword">rebot </span>= <span class="keyword">bot.groups().search('Goodog') </span>// 需要加入的群</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2、自动通过好友后发送的加群提示"><a href="#3-2、自动通过好友后发送的加群提示" class="headerlink" title="3.2、自动通过好友后发送的加群提示"></a>3.2、自动通过好友后发送的加群提示</h3><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">allText = '回复关键词加群： <span class="symbol">\n</span><span class="symbol">\n</span>1、羊毛（加入羊毛优惠群）<span class="symbol">\n</span>2、py（加入机器人体验群）<span class="symbol">\n</span>3、互粉（加入公众号互粉群）<span class="symbol">\n</span>4、更多群敬请期待<span class="symbol">\n</span><span class="symbol">\n</span> -PS: 如果回复关键字无效，请耐心等待手工拉入。'</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3、自动通过好友请求"><a href="#3-3、自动通过好友请求" class="headerlink" title="3.3、自动通过好友请求"></a>3.3、自动通过好友请求</h3><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@bot.register(msg_types=FRIENDS)</span><br><span class="line">def auto_audit_msg(msg):<span class="type"></span></span><br><span class="line"><span class="type">    new_friend </span>= bot.accept_friend(msg.card)</span><br><span class="line">    <span class="keyword">new</span><span class="type">_friend</span>.send(<span class="string">'我是Goodog小助手，如果你也想拥有一个跟我一样功能的机器人请添加公众号【小夭同学】留言获取！'</span>)</span><br><span class="line">    <span class="keyword">new</span><span class="type">_friend</span>.send_raw_msg(</span><br><span class="line">        raw_type=<span class="number">42</span>,</span><br><span class="line">        raw_content=<span class="string">'&lt;msg username="infopush" nickname="小夭同学"/&gt;'</span></span><br><span class="line">    ) </span><br><span class="line">    <span class="keyword">new</span><span class="type">_friend</span>.send(allText)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4、关键字回复发送加群邀请链接"><a href="#3-4、关键字回复发送加群邀请链接" class="headerlink" title="3.4、关键字回复发送加群邀请链接"></a>3.4、关键字回复发送加群邀请链接</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@bot.register(Friend, msg_types=TEXT)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">auto_add_msg</span><span class="params">(msg)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">'py'</span> <span class="keyword">in</span> msg.text.lower():</span><br><span class="line">        rebot[<span class="number">0</span>].add_members(msg.sender, use_invitation=<span class="keyword">True</span>)</span><br><span class="line">        msg.sender.send(<span class="string">'如果加入py群失败，请等待人工邀请加入！！'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-5、邀请用户入群后发送群公告"><a href="#3-5、邀请用户入群后发送群公告" class="headerlink" title="3.5、邀请用户入群后发送群公告"></a>3.5、邀请用户入群后发送群公告</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">invite_compile = re.compile(<span class="string">r'邀请"(.*?)"加入了群聊\s*$'</span>) <span class="regexp">//</span> 判断是否为新用户入群</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-5-1、新用户入群发送的公告"><a href="#3-5-1、新用户入群发送的公告" class="headerlink" title="3.5.1、新用户入群发送的公告"></a>3.5.1、新用户入群发送的公告</h4><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">rebot_msg</span> = <span class="string">'''@&#123;atname&#125;\u2005\u2005\u2005🌹🌹🌹欢迎加入群🌹🌹🌹\n</span></span><br><span class="line"><span class="string">⚡⚡⚡⚡ 此群禁止发广告，不然踢！！！\n</span></span><br><span class="line"><span class="string">💣💣💣 无法登录网页微信的问题，无有效解决办法。\n</span></span><br><span class="line"><span class="string">🙋🙋🙋 怎样提问：\n</span></span><br><span class="line"><span class="string">1. 不要问无意义的问题 🌡 </span></span><br><span class="line"><span class="string">2. 问问题前最好贴出截图。🧸 </span></span><br><span class="line"><span class="string">3. 描述清晰，信息充足。💎</span></span><br><span class="line"><span class="string">4. 如果想要源码请关注💡 【小夭同学】💡 回复【帮助】获取'''</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-5-2、为加入的群进行注册，以用来抓取群消息"><a href="#3-5-2、为加入的群进行注册，以用来抓取群消息" class="headerlink" title="3.5.2、为加入的群进行注册，以用来抓取群消息"></a>3.5.2、为加入的群进行注册，以用来抓取群消息</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@bot.register(rebot, NOTE)  // NOTE 为系统通知</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">invite_group</span><span class="params">(msg)</span>:</span></span><br><span class="line">    <span class="string">""" 群通知处理 """</span></span><br><span class="line">    text = msg.text <span class="comment"># 通知的内容</span></span><br><span class="line">    member = msg.member.name <span class="comment"># 消息发送者昵称</span></span><br><span class="line">    invite_names = invite_compile.findall(text)  <span class="comment"># 判断是否是加入了新用户</span></span><br><span class="line">    <span class="keyword">if</span> invite_names:  <span class="comment"># 用于邀请</span></span><br><span class="line">        invite_name = invite_names[<span class="number">0</span>]  <span class="comment"># 加入者的昵称</span></span><br><span class="line">        <span class="keyword">if</span> rebot_msg:</span><br><span class="line">            note = rebot_msg.format(atname=invite_name)</span><br><span class="line">            msg.sender.send(note)  <span class="comment"># 向群里发送欢迎语句</span></span><br><span class="line">        <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4、运行机器人"><a href="#4、运行机器人" class="headerlink" title="4、运行机器人"></a>4、运行机器人</h2><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    schedule.run_pending()</span><br><span class="line">    <span class="built_in">time</span>.<span class="built_in">sleep</span>(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、Git"><a href="#5、Git" class="headerlink" title="5、Git"></a>5、Git</h2><blockquote>
+<p>代码已上传 <a href="https://github.com/jiaopianjun/wepython/blob/master/invite.py" target="_blank" rel="noopener">Github</a></p>
+</blockquote>
+<h2 id="6、如有想体验机器人可以添加微信【wex-5201314】或直接扫描下面二维码"><a href="#6、如有想体验机器人可以添加微信【wex-5201314】或直接扫描下面二维码" class="headerlink" title="6、如有想体验机器人可以添加微信【wex_5201314】或直接扫描下面二维码"></a>6、如有想体验机器人可以添加微信【wex_5201314】或直接扫描下面二维码</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FsES-6dRyjSQGrfKNwmqjo7WzLEM" alt="WechatIMG303.jpeg" title>
+                </div>
+                <div class="image-caption" style="display:none;">WechatIMG303.jpeg</div>
+            </figure>
+
+<h2 id="7、欢迎关注我的公众号【小夭同学】"><a href="#7、欢迎关注我的公众号【小夭同学】" class="headerlink" title="7、欢迎关注我的公众号【小夭同学】"></a>7、欢迎关注我的公众号【小夭同学】</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="qrcode_for_gh_06f1f85b0c04_258 1.jpg" title>
+                </div>
+                <div class="image-caption" style="display:none;">qrcode_for_gh_06f1f85b0c04_258 1.jpg</div>
+            </figure>
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-10T06:39:06.265Z" itemprop="dateUpdated">2019-12-10 14:39:06</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wxpy/">wxpy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信/">微信</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/10/14/简单三步，让你玩转微信自动邀请加群！！！.html&title=《简单三步，让你玩转微信自动邀请加群！！！》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FvyJLSK0bl185U7Ol9kBroOazxXw" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/10/14/简单三步，让你玩转微信自动邀请加群！！！.html&title=《简单三步，让你玩转微信自动邀请加群！！！》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/10/14/简单三步，让你玩转微信自动邀请加群！！！.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《简单三步，让你玩转微信自动邀请加群！！！》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/10/14/简单三步，让你玩转微信自动邀请加群！！！.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/10/14/简单三步，让你玩转微信自动邀请加群！！！.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/10/18/前端两三问-201901018.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">前端两三问(201901018)</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/09/30/ES6入门之Promise.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">ES6入门之Promise</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/10/14/简单三步，让你玩转微信自动邀请加群！！！.html&title=《简单三步，让你玩转微信自动邀请加群！！！》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FvyJLSK0bl185U7Ol9kBroOazxXw" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/10/14/简单三步，让你玩转微信自动邀请加群！！！.html&title=《简单三步，让你玩转微信自动邀请加群！！！》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/10/14/简单三步，让你玩转微信自动邀请加群！！！.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《简单三步，让你玩转微信自动邀请加群！！！》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/10/14/简单三步，让你玩转微信自动邀请加群！！！.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/10/14/简单三步，让你玩转微信自动邀请加群！！！.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADK0lEQVR42u3awW7rMAwEwP7/T+cB79rGXpIKEMnjUxHUkkY5MFrq5yd+Xv+fd5//fq7fejdCPnKytgUPNjY29ibs1+Xze+hkodfLmmzW9fiJBRsbG/tU9vUE10vsbVb13eu15RZsbGzsJ7PzstQrV9WV5MUPGxsbG7sX7vSKWVIysbGxsbF7odJ86XmUXw2PPpilYWNjY389u7qIb/77g/1tbGxs7K9kv4pP7xJPb/t6pTRSYGNjYx/EzqP/Va3Z/IAxKa5RecPGxsY+gp1MmQc0yWZ9IvpPyufb0oWNjY29ObvaHsip1dZv3nKofknY2NjYT2BXo5lkoZNAP2f3Cic2Njb2SexJwZgcS6olMG9RROvHxsbGPog9+hHfioFWNQPy1i82Njb22ex8yrzMVA8ek0Zy70IPNjY29kns5Ad9tQhVr1Tmjd5JqHRzcQcbGxt7c3avQTs5Qky2oNrcLZRSbGxs7G3ZSanIi0G1aOXHm+rh56adgI2Njf0Y9vwgMWkGV3l5cwIbGxv7OexJhJQXuXK434qTsLGxsc9jry0w+SEkj4GqM0YxGTY2NvZB7LwM9CL+tZtVbRU0byFhY2Njb8uudoar+F5ToYoZNXqxsbGxj2P3ylt+YKjO0guwygUMGxsbeyv2JHzPP+/N3msnROEUNjY29kHsakxTvUCTNyHyWKp6yLlpD2BjY2Nvzp5cjqleu5lsZa/x/HYEbGxs7IPYCax6paYXOa2aCxsbG/tp7Dxkr0Y/1WNGtUQlZfVtYcbGxsY+lN28+NJqHs9necXPH+NjY2NjH8Tu/egvF4yl29q7l3TTFcHGxsbelp2Aq3FPL2DqNYCrM/5xUwkbGxv7CPaqpVQPD9WGcR5v3YiwsbGxj2P3AppVbYBki/MAK/oisbGxsQ9i90KZSWBUjfh7a5tsIjY2NvaO7GrRmoREecmZNyRu3sXGxsY+jj1vx/YW1LsAtKCwYWNjYz+S3bumk8dM1dA/mR0bGxsbOy9myf9X28P5aOUCiY2NjX0cOxkoL1STizh5OyF/d5SlYWNjY389e9LozUmT0fJm8LxYYmNjY2/F/gcAJpa6rrsMUwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

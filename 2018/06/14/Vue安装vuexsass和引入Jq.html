@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>Vue 安装 vuex sass 和 引入 Jq | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="vue">
+    <meta name="description" content="1.安装vuex1231. npm install vuex --save2. 在src 目录下新建 store 文件夹  123456789101112131415161718192021222324253. 在store 中新建 store.js    import Vue from &apos;vue&apos;    import vuex from &apos;vuex&apos;        Vue.use(vuex);">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue 安装 vuex sass 和 引入 Jq">
+<meta property="og:url" content="https://toc.lieme.cn/2018/06/14/Vue安装vuexsass和引入Jq.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1.安装vuex1231. npm install vuex --save2. 在src 目录下新建 store 文件夹  123456789101112131415161718192021222324253. 在store 中新建 store.js    import Vue from &apos;vue&apos;    import vuex from &apos;vuex&apos;        Vue.use(vuex);">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2020-02-03T09:53:09.782Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue 安装 vuex sass 和 引入 Jq">
+<meta name="twitter:description" content="1.安装vuex1231. npm install vuex --save2. 在src 目录下新建 store 文件夹  123456789101112131415161718192021222324253. 在store 中新建 store.js    import Vue from &apos;vue&apos;    import vuex from &apos;vuex&apos;        Vue.use(vuex);">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">Vue 安装 vuex sass 和 引入 Jq</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">Vue 安装 vuex sass 和 引入 Jq</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2018-06-14T06:37:48.000Z" itemprop="datePublished" class="page-time">
+  2018-06-14
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#1-安装vuex"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.安装vuex</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#2-安装sass"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 安装sass</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#3-引入JQ"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 引入JQ</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#4-安装axios"><span class="post-toc-number">4.</span> <span class="post-toc-text">4.安装axios</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Vue安装vuexsass和引入Jq"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Vue 安装 vuex sass 和 引入 Jq</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-06-14 14:37:48" datetime="2018-06-14T06:37:48.000Z"  itemprop="datePublished">2018-06-14</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        267
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        1 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h6 id="1-安装vuex"><a href="#1-安装vuex" class="headerlink" title="1.安装vuex"></a>1.安装vuex</h6><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. npm <span class="keyword">install</span> vuex <span class="comment">--save</span></span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 在src 目录下新建 <span class="keyword">store</span> 文件夹</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span>. 在store 中新建 store.js</span><br><span class="line">    import Vue <span class="keyword">from</span> 'vue'</span><br><span class="line">    import vuex <span class="keyword">from</span> 'vuex'</span><br><span class="line">    </span><br><span class="line">    Vue.use(vuex);</span><br><span class="line">    </span><br><span class="line">    import peinfo <span class="keyword">from</span> './peinfo.js'</span><br><span class="line">    export <span class="keyword">default</span> new vuex.Store(&#123;</span><br><span class="line">        modules:&#123;</span><br><span class="line">        	peinfo:peinfo</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    </span><br><span class="line">    peinfo.js</span><br><span class="line">    </span><br><span class="line">    export <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="keyword">state</span>: &#123;</span><br><span class="line">        list: []</span><br><span class="line">    &#125;,</span><br><span class="line">    mutations:&#123;</span><br><span class="line">        perinfo(<span class="keyword">state</span>,data)&#123;</span><br><span class="line">          <span class="keyword">state</span>.list = data.data</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="2-安装sass"><a href="#2-安装sass" class="headerlink" title="2. 安装sass"></a>2. 安装sass</h6><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">npm</span> <span class="selector-tag">install</span> <span class="selector-tag">--save-dev</span> <span class="selector-tag">sass-loader</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">npm</span> <span class="selector-tag">install</span> <span class="selector-tag">--save-dev</span> <span class="selector-tag">node-sass</span></span><br><span class="line">在<span class="selector-tag">build</span>文件夹下的<span class="selector-tag">webpack</span><span class="selector-class">.base</span><span class="selector-class">.conf</span><span class="selector-class">.js</span>的<span class="selector-tag">rules</span>里面添加配置</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attribute">test</span>: /\.sass$/,</span><br><span class="line">  loaders: [<span class="string">'style'</span>, <span class="string">'css'</span>, <span class="string">'sass'</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="3-引入JQ"><a href="#3-引入JQ" class="headerlink" title="3. 引入JQ"></a>3. 引入JQ</h6><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.首先在package.json里的dependencies加入<span class="string">"jquery"</span> : <span class="string">"^3.2.1"</span>,</span><br><span class="line"><span class="number">2</span><span class="selector-class">.npm</span> install jquery -- save-dev</span><br><span class="line"><span class="number">3</span>.找到build文件夹下的webpack<span class="selector-class">.base</span><span class="selector-class">.conf</span><span class="selector-class">.js</span>文件，打开，添加：<span class="selector-tag">var</span> webpack=require(<span class="string">'webpack'</span>)</span><br><span class="line"><span class="number">4</span>.在module.exports里输入：</span><br><span class="line">   plugins: [</span><br><span class="line">       new webpack<span class="selector-class">.optimize</span><span class="selector-class">.CommonsChunkPlugin</span>(<span class="string">'common.js'</span>),</span><br><span class="line">       new webpack.ProvidePlugin(&#123;</span><br><span class="line">           jQuery: <span class="string">"jquery"</span>,</span><br><span class="line">           $: <span class="string">"jquery"</span></span><br><span class="line">       &#125;)  </span><br><span class="line">   ],</span><br><span class="line"><span class="number">5</span>. 在入口文件main.js中输入： import $ from <span class="string">'jquery'</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="4-安装axios"><a href="#4-安装axios" class="headerlink" title="4.安装axios"></a>4.安装axios</h6><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> <span class="built_in">npm</span> install axios</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 在mian.js</span><br><span class="line">    <span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line">    <span class="keyword">import</span> VueAxios <span class="keyword">from</span> <span class="string">'vue-axios'</span></span><br><span class="line">     </span><br><span class="line">    Vue.use(VueAxios, axios)</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-02-03T09:53:09.782Z" itemprop="dateUpdated">2020-02-03 17:53:09</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/06/14/Vue安装vuexsass和引入Jq.html&title=《Vue 安装 vuex sass 和 引入 Jq》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/06/14/Vue安装vuexsass和引入Jq.html&title=《Vue 安装 vuex sass 和 引入 Jq》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2018/06/14/Vue安装vuexsass和引入Jq.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue 安装 vuex sass 和 引入 Jq》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2018/06/14/Vue安装vuexsass和引入Jq.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2018/06/14/Vue安装vuexsass和引入Jq.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/06/20/Vue添加滚动监听.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Vue 添加滚动监听</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/06/14/基于Vue的点对点聊天项目.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">基于Vue的点对点聊天项目</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/06/14/Vue安装vuexsass和引入Jq.html&title=《Vue 安装 vuex sass 和 引入 Jq》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/06/14/Vue安装vuexsass和引入Jq.html&title=《Vue 安装 vuex sass 和 引入 Jq》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2018/06/14/Vue安装vuexsass和引入Jq.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue 安装 vuex sass 和 引入 Jq》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2018/06/14/Vue安装vuexsass和引入Jq.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2018/06/14/Vue安装vuexsass和引入Jq.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACt0lEQVR42u3aMXLDMAwEQP//006bmUTyASA8KlZVxlYkLguCPvD1iq/3n+v351f3JPf//Tv/5NiFh4eHNx761bCuXnA/lN6k3L8lGTMeHh7eNi95XPLt1Z33b7l/QvKWy8/x8PDwHsM7y96YAjw8PLyn8ZKXJc/vkfDw8PCewKvGr5NhJWFHHnAcy1rw8PDwYl7eRXrO3yv9PTw8PLxxVz1ZxPMlPgkjqvd/GC0eHh7eAi9fcHuHCUbxaxxbfLgTDw8Pb4GXAPLhzhf0PLwoBMd4eHh4h3jVTe0krt0+XBXl03h4eHiHePmyPi8Y1ebZqAGGh4eH93VeHq0mQ6weFxj9PsDDw8P7Oi9/Tc7uRcZ5a+2fceLh4eGt8apb2LxsnCoYzYnDw8PDW+Al/1AtDMnSX41uJxEGHh4e3h7v7BGBXqss31jnBQkPDw9vg5dQ8xZUr2wkgXLyrmh7jYeHhzfgJe38XqtsXhiq7EIejIeHhzfgVZfgfGnOa1F0fGpQMPDw8PD2eJP9eK9ZdWrD/SEQwcPDwzvKqxaA/DBBNdjN22+FMePh4eGt8fKWfy+8qE5c4UDV/T14eHh4C7wck0e37+Cal43J/Xh4eHgT3tlNcHWCerFFoajg4eHhLfDyn/3VO3vRbTVQjrb7eHh4eMu8pG3fA/dC4erhg1deW/Dw8PDGvDyuTQ4W9CaoV2Dw8PDwnsDrhQV5g7+69Odji8JcPDw8vAHvXbyqpCS0zYPdvFxdninDw8PDG/N6rawcXz0oUC0qk3KCh4eHN+H1Ht17cR5VVJtt5QYYHh4e3phX3fhWv00mblK0mjkKHh4e3ld41TLQm5TedBdSajw8PLyv86qHopK2WTKG6lEDPDw8vD1eNQjII9p80T/VfsPDw8Pb5k1+8PdaVtWjAF/q7+Hh4eF95v0AYfUr8JoBMtEAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

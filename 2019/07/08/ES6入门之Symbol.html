@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>ES6入门之Symbol | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="ECMAScript6">
+    <meta name="description" content="1. 概述 因为ES5的对象属性名都是字符串，这容易造成属性名的冲突。比如，你使用了他人提供的对象，但又想为这个对象添加新的方法，新方法的名字就有可能与现有的方法产生冲突，所有就有了">
+<meta name="keywords" content="ECMAScript6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6入门之Symbol">
+<meta property="og:url" content="https://toc.lieme.cn/2019/07/08/ES6入门之Symbol.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1. 概述 因为ES5的对象属性名都是字符串，这容易造成属性名的冲突。比如，你使用了他人提供的对象，但又想为这个对象添加新的方法，新方法的名字就有可能与现有的方法产生冲突，所有就有了">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/FscX9fDIbxiH0meBmsW7CAQ5AKH_">
+<meta property="og:updated_time" content="2019-08-11T05:17:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6入门之Symbol">
+<meta name="twitter:description" content="1. 概述 因为ES5的对象属性名都是字符串，这容易造成属性名的冲突。比如，你使用了他人提供的对象，但又想为这个对象添加新的方法，新方法的名字就有可能与现有的方法产生冲突，所有就有了">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/FscX9fDIbxiH0meBmsW7CAQ5AKH_">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">ES6入门之Symbol</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">ES6入门之Symbol</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-07-08T03:12:00.000Z" itemprop="datePublished" class="page-time">
+  2019-07-08
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-概述"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 概述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-Symbol-prototype-description"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. Symbol.prototype.description</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-作为属性名的-Symbol"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 作为属性名的 Symbol</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-实例：消除魔术字符串"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. 实例：消除魔术字符串</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-属性名遍历"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. 属性名遍历</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-Symbol-for-，Symbol-keyFor"><span class="post-toc-number">6.</span> <span class="post-toc-text">6. Symbol.for()，Symbol.keyFor()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-模块的-Singleton-模式"><span class="post-toc-number">7.</span> <span class="post-toc-text">7. 模块的 Singleton 模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-内置的-Symbol-值"><span class="post-toc-number">8.</span> <span class="post-toc-text">8. 内置的 Symbol 值</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-1-Symbol-hasInstance"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">8.1. Symbol.hasInstance</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-2-Symbol-isConcatSpreadable"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">8.2. Symbol.isConcatSpreadable</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-3-Symbol-species"><span class="post-toc-number">8.3.</span> <span class="post-toc-text">8.3. Symbol.species</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-4-Symbol-match"><span class="post-toc-number">8.4.</span> <span class="post-toc-text">8.4. Symbol.match</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-5-Symbol-replace"><span class="post-toc-number">8.5.</span> <span class="post-toc-text">8.5. Symbol.replace</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-6-Symbol-search"><span class="post-toc-number">8.6.</span> <span class="post-toc-text">8.6. Symbol.search</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-7-Symbol-split"><span class="post-toc-number">8.7.</span> <span class="post-toc-text">8.7. Symbol.split</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-8-Symbol-iterator"><span class="post-toc-number">8.8.</span> <span class="post-toc-text">8.8. Symbol.iterator</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-9-Symbol-iterator"><span class="post-toc-number">8.9.</span> <span class="post-toc-text">8.9 Symbol.iterator</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-10-Symbol-toStringTag"><span class="post-toc-number">8.10.</span> <span class="post-toc-text">8.10 Symbol.toStringTag</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-11-Symbol-unscopables"><span class="post-toc-number">8.11.</span> <span class="post-toc-text">8.11. Symbol.unscopables</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-ES6入门之Symbol"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">ES6入门之Symbol</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-07-08 11:12:00" datetime="2019-07-08T03:12:00.000Z"  itemprop="datePublished">2019-07-08</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        2,211
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        9 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2019/7/8/16bcf963ca940d2f?w=4024&h=2682&f=jpeg&s=2064446" alt title>
+                </div>
+                <div class="image-caption" style="display:none;"></div>
+            </figure>
+
+
+<h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><blockquote>
+<p>因为ES5的对象属性名都是字符串，这容易造成属性名的冲突。比如，你使用了他人提供的对象，但又想为这个对象添加新的方法，新方法的名字就有可能与现有的方法产生冲突，所有就有了Symbol，它会保证每个属性名是独一无二的，可以从根本上防止属性名的冲突。</p>
+</blockquote>
+<blockquote>
+<p>ES6引入了一种新的原始数据类型 Symbol，表示独一无二的值，它是Javascript语言的第七种数据类型。</p>
+</blockquote>
+<blockquote>
+<p>Symbol值通过 Symbol函数生成，对象的属性名现在可以有两种类型，一种是原有的字符串，另一种就是新增的Symbol类型。 Symbol类型是独一无二的不会和其他属性名产生冲突</p>
+</blockquote>
+<pre><code>let s = Symbol()
+typeof s
+// &apos;Symbol&apos;</code></pre><p><strong>注意：</strong> Symbol 函数前不能用 new命令，否则会报错。因为生成的Symbol是一个原始类型的值，不是对象。<strong>Symbol值不是对象，无法为其添加属性。</strong>它是一个类似字符串的数据类型</p>
+<p>Symbol函数可以接受一个参数，表示对Symbol实例的描述，方便在控制台显示，在转为字符串的时候方便区分，如下：</p>
+<pre><code>let s1 = Symbol(&apos;foo&apos;);
+let s2 = Symbol(&apos;far&apos;);
+
+s1 // Symbol(foo)
+s2 // Symbol(far)
+
+s1.toString()   //  &apos;Symbol(foo)&apos;
+s2.toString()   //  &apos;Symbol(far)&apos;
+
+// 通过添加描述可以区分到底是哪个Symbol值输出了</code></pre><p>如果 Symbol的参数是一个对象，那么会调用该对象的toString()方法将其转换成字符串，在生成Symbol值</p>
+<pre><code>const obj = {
+    toString() {
+        retrun &apos;abc&apos;
+    }
+}
+const sym = Symbol(obj)
+sym // Symbol(abc)
+
+// 注意： Symbol函数的参数只是表示对当前Symbol值的描述，
+因此相同参数的Symbol函数的返回值不同
+
+let s1 = Symbol()
+let s2 = Symbol()
+
+s1 === s2 // false
+
+let s1 = Symbol(&apos;cc&apos;)
+let s2 = Symbol(&apos;cc&apos;)
+
+s1 === s2 // false</code></pre><p><strong>注意：</strong> Symbol 值不能与其他类型的值进行运算，会报错。但是，Symbol值可以显式转为字符串。另外,Symbol值可以转换为布尔值，但是不能转为数值。</p>
+<h2 id="2-Symbol-prototype-description"><a href="#2-Symbol-prototype-description" class="headerlink" title="2. Symbol.prototype.description"></a>2. Symbol.prototype.description</h2><blockquote>
+<p>创建  Symbol的时候可以添加一个描述。如果读取这个描述，则需要将Symbol显式转为字符串。但是这样很不方便，所以在ES2019中提供 实例属性 description 直接返回 Symbol的描述。</p>
+</blockquote>
+<pre><code>// 添加描述
+const sym = Symbol(&apos;boo&apos;)
+
+// 读取描述
+String(sym) // &apos;Symbol(boo)&apos;
+sym.toString()  // &apos;Symbol(boo)&apos;
+
+// 新增方法
+sym.description // &apos;boo&apos;</code></pre><h2 id="3-作为属性名的-Symbol"><a href="#3-作为属性名的-Symbol" class="headerlink" title="3. 作为属性名的 Symbol"></a>3. 作为属性名的 Symbol</h2><blockquote>
+<p>因为 每一个 Symbol值都是不相等的，这意味着 Symbol 值 可以作为标识符，用于对象的属性名，就能保证不会出现同名的属性，防止某一个键被不小心改写 或 覆盖。如下：</p>
+</blockquote>
+<pre><code>let mySymbol = Symbol()
+
+// 第一种写法
+let a = {}
+a[mySymbol] = &apos;hello&apos;
+
+// 第二种写法
+let a = {
+    [mySymbol]: &apos;hello&apos;
+}
+
+// 第三种写法
+let a = {}
+Object.defineProperty(a, mySymbol, { value: &apos;hello&apos; })
+
+// 结果
+a[mySymbol] // hello</code></pre><p><strong>注意：</strong> Symbol值作为对象属性名时，不能用点运算符，而且使用Symbol值定义属性时，Symbol值必须发放在方括号之中。另外，Symbol值作为属性名时，该属性还是公开属性，不是私有属性。</p>
+<h2 id="4-实例：消除魔术字符串"><a href="#4-实例：消除魔术字符串" class="headerlink" title="4. 实例：消除魔术字符串"></a>4. 实例：消除魔术字符串</h2><blockquote>
+<p>魔术字符串是指，在代码之中出现多次、与代码形成强耦合的某一个具体的字符串或数值。</p>
+</blockquote>
+<pre><code>function getArea(shape, options) {
+  let area = 0;
+
+  switch (shape) {
+    case &apos;Triangle&apos;: // 魔术字符串
+      area = .5 * options.width * options.height;
+      break;
+    /* ... more code ... */
+  }
+
+  return area;
+}
+
+getArea(&apos;Triangle&apos;, { width: 100, height: 100 }); // 魔术字符串</code></pre><p>上述代码中，字符串Triangle就是一个魔术字符串，它多次出现。与代码形成“强耦合”，不利于修改维护，常用的方法就是把它写成一个变量。</p>
+<pre><code>const shapeType = {
+  triangle: &apos;Triangle&apos;
+};
+
+function getArea(shape, options) {
+  let area = 0;
+  switch (shape) {
+    case shapeType.triangle:
+      area = .5 * options.width * options.height;
+      break;
+  }
+  return area;
+}
+
+getArea(shapeType.triangle, { width: 100, height: 100 });</code></pre><p>可以发现 shapeType.triangle等于哪个值并不重要，<strong>只要确保不会跟其他的shapeType属性冲突就行</strong>，这样可以用 Symbol 来代替。</p>
+<pre><code>const shapeType = {
+  triangle: Symbol()
+};</code></pre><h2 id="5-属性名遍历"><a href="#5-属性名遍历" class="headerlink" title="5. 属性名遍历"></a>5. 属性名遍历</h2><blockquote>
+<p>Symbol作为属性名，该属性不会出现在 for..in | for…of 循环中，也不会被 Object.keys()、Object.getOwnPropertyNames()、JSON.stringify()返回。但是它还有个私有属性方法可以获取指定对象的所有Symbol属性名。Object.getOwnPropertySymbols，它返回的是一个数组，成员是该对象所有用作属性名的 Symbol值</p>
+</blockquote>
+<pre><code>const obj = {};
+let a = Symbol(&apos;a&apos;);
+let b = Symbol(&apos;b&apos;);
+
+obj[a] = &apos;Hello&apos;;
+obj[b] = &apos;World&apos;;
+
+const objectSymbols = Object.getOwnPropertySymbols(obj);
+
+objectSymbols
+// [Symbol(a), Symbol(b)]</code></pre><blockquote>
+<p>我们还可以 通过 新API Reflect.ownkeys方法 返回所有类型的键名，包括常规键名和 Symbol键名。</p>
+</blockquote>
+<pre><code>let obj = {
+  [Symbol(&apos;my_key&apos;)]: 1,
+  enum: 2,
+  nonEnum: 3
+};
+
+Reflect.ownKeys(obj)</code></pre><p><strong>重点：由于以Symbol值作为名称的属性，不会被常规的方法遍历到，我们可以利用这个特性为对象定义一些非私有的，但又希望只用于内部的方法。</strong></p>
+<h2 id="6-Symbol-for-，Symbol-keyFor"><a href="#6-Symbol-for-，Symbol-keyFor" class="headerlink" title="6. Symbol.for()，Symbol.keyFor()"></a>6. Symbol.for()，Symbol.keyFor()</h2><blockquote>
+<p>有时候我们希望重新使用同一个 Symbol值，Symbol.for方法可以做到这一点，它接受一个字符串作为参数，然后搜索有没有以该参数作为名称的Symbol值。如果又，就返回这个Symbol值，否则就新建并返回一个以该字符串为名称的Symbol值</p>
+</blockquote>
+<pre><code>let s1 = Symbol.for(&apos;foo&apos;);
+let s2 = Symbol.for(&apos;foo&apos;);
+
+s1 === s2 // true</code></pre><p><strong>区别：</strong> Symbol.for() 与 Symbol 这两种写法，都会生成新的Symbol,不同的是：</p>
+<ul>
+<li>前者会被登记在全局环境中供搜索，后者不会。</li>
+<li>Symbol.for()不会每次调用就返回一个新的Symbol类型的值，而是会先检查给定的key是否已经存在，如果不存在才会新建一个值。</li>
+<li>调用 30此 Symbol.for(‘dog’)，每次都只返回同一个Symbol，而调用Symbol(‘dog’)则会返回30个不同的Symbol值。</li>
+</ul>
+<blockquote>
+<p>Symbol.keyFor方法返回一个已登记的 Symbol 类型值的key 就是和 Symbol.for()对应使用。</p>
+</blockquote>
+<pre><code>let s1 = Symbol.for(&apos;foo&apos;)
+Symbol.keyFor(s1)   // &apos;foo&apos;
+
+let s2 = Symbol(&apos;foo&apos;)
+Symbol.keyFor(s2)   // undefined</code></pre><h2 id="7-模块的-Singleton-模式"><a href="#7-模块的-Singleton-模式" class="headerlink" title="7. 模块的 Singleton 模式"></a>7. 模块的 Singleton 模式</h2><blockquote>
+<p>Singleton 模式指的是调用一个类，任何时候返回的都是同一个实例。可以通过将实例放到顶层对象global实现。</p>
+</blockquote>
+<h2 id="8-内置的-Symbol-值"><a href="#8-内置的-Symbol-值" class="headerlink" title="8. 内置的 Symbol 值"></a>8. 内置的 Symbol 值</h2><h3 id="8-1-Symbol-hasInstance"><a href="#8-1-Symbol-hasInstance" class="headerlink" title="8.1. Symbol.hasInstance"></a>8.1. Symbol.hasInstance</h3><blockquote>
+<p>一个内部方法，当其他对象使用 instanceof 运算符，判断是否为该对象的实例时会调用这个方法。</p>
+</blockquote>
+<h3 id="8-2-Symbol-isConcatSpreadable"><a href="#8-2-Symbol-isConcatSpreadable" class="headerlink" title="8.2. Symbol.isConcatSpreadable"></a>8.2. Symbol.isConcatSpreadable</h3><blockquote>
+<p>是一个布尔值，表示该对象用于 Array.prototype.caocat()时，是否可以展开</p>
+</blockquote>
+<ul>
+<li>数组的默认行为时可以展开。</li>
+<li>类数组的对象默认不展开。</li>
+</ul>
+<h3 id="8-3-Symbol-species"><a href="#8-3-Symbol-species" class="headerlink" title="8.3. Symbol.species"></a>8.3. Symbol.species</h3><blockquote>
+<p>指向一个构造函数，创建衍生对象时，会使用该属性。它的作用在于，实例对象在运行过程中，需要再次调用自身的构造函数时，会调用该属性指定的构造函数。它的主要用途是，有些类库是在基类的基础上修改的。那么子类使用继承的方法时，希望返回的时基类的实例，而不是子类的实例。</p>
+</blockquote>
+<h3 id="8-4-Symbol-match"><a href="#8-4-Symbol-match" class="headerlink" title="8.4. Symbol.match"></a>8.4. Symbol.match</h3><blockquote>
+<p>指向一个函数，当执行 str.match(myObject)时，如果该属性存在，则调用它，返回该方法的返回值。</p>
+</blockquote>
+<h3 id="8-5-Symbol-replace"><a href="#8-5-Symbol-replace" class="headerlink" title="8.5. Symbol.replace"></a>8.5. Symbol.replace</h3><blockquote>
+<p>对象的Symbol.replace属性，指向一个方法。当对象被 String.prototype.replace方法调用的时候，会返回该方法的值。</p>
+</blockquote>
+<h3 id="8-6-Symbol-search"><a href="#8-6-Symbol-search" class="headerlink" title="8.6. Symbol.search"></a>8.6. Symbol.search</h3><blockquote>
+<p>对象的 Symbol.search属性，指向一个方法，当该对象被 String.prototype.search 方法调用时，会返回该方法的值</p>
+</blockquote>
+<h3 id="8-7-Symbol-split"><a href="#8-7-Symbol-split" class="headerlink" title="8.7. Symbol.split"></a>8.7. Symbol.split</h3><blockquote>
+<p>对象调用Symbol.split属性，指向一个方法，当该对象被 String.prototype.split 方法调用时，会返回该方法的值。</p>
+</blockquote>
+<h3 id="8-8-Symbol-iterator"><a href="#8-8-Symbol-iterator" class="headerlink" title="8.8. Symbol.iterator"></a>8.8. Symbol.iterator</h3><blockquote>
+<p>对象的 Symbol.iterator属性，指向该对象默认的遍历器方法</p>
+</blockquote>
+<h3 id="8-9-Symbol-iterator"><a href="#8-9-Symbol-iterator" class="headerlink" title="8.9 Symbol.iterator"></a>8.9 Symbol.iterator</h3><blockquote>
+<p>对象的Symbol.toPrimitive属性，指向一个方法。该对象被转为原始类型的值时，会调用这个方法，返回该对象对应的原始类型值。Symbol.toPrimitive被调用时，会接受一个字符串参数，表示当前运算的模式，一共有三种模式。</p>
+</blockquote>
+<ul>
+<li>Number：该场合需要转成数值</li>
+<li>String：该场合需要转成字符串</li>
+<li>Default：该场合可以转成数值，也可以转成字符串</li>
+</ul>
+<h3 id="8-10-Symbol-toStringTag"><a href="#8-10-Symbol-toStringTag" class="headerlink" title="8.10 Symbol.toStringTag"></a>8.10 Symbol.toStringTag</h3><blockquote>
+<p>对象的Symbol.toStringTag属性，指向一个方法。在该对象上面调用Object.prototype.toString方法时，如果这个属性存在，它的返回值会出现在toString方法返回的字符串之中，表示对象的类型。也就是说，这个属性可以用来定制[object Object]或[object Array]中object后面的那个字符串。</p>
+</blockquote>
+<h3 id="8-11-Symbol-unscopables"><a href="#8-11-Symbol-unscopables" class="headerlink" title="8.11. Symbol.unscopables"></a>8.11. Symbol.unscopables</h3><blockquote>
+<p>对象的 Symbol.unscopables 属性，指向一个对象，该对象指定了使用 with 关键字时，哪些属性会被 with 环境排除。</p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2019/6/18/16b69606d7c1155c?w=258&h=258&f=jpeg&s=26659" alt title>
+                </div>
+                <div class="image-caption" style="display:none;"></div>
+            </figure>
+<p align="center" style="font-size:30px;color:#1c8a95"> 欢迎关注 公众号【小夭同学】 </p>
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-08-11T05:17:38.000Z" itemprop="dateUpdated">2019-08-11 13:17:38</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/07/08/ES6入门之Symbol.html&title=《ES6入门之Symbol》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FscX9fDIbxiH0meBmsW7CAQ5AKH_" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/07/08/ES6入门之Symbol.html&title=《ES6入门之Symbol》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/07/08/ES6入门之Symbol.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之Symbol》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/07/08/ES6入门之Symbol.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/07/08/ES6入门之Symbol.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/07/09/我是小夭，一起来玩呀！！！.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">前端两三问</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/07/05/重学JavaScript之基本概念（下）-逻辑运算.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">重学JavaScript之基本概念（下）=&gt;运算符</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/07/08/ES6入门之Symbol.html&title=《ES6入门之Symbol》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FscX9fDIbxiH0meBmsW7CAQ5AKH_" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/07/08/ES6入门之Symbol.html&title=《ES6入门之Symbol》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/07/08/ES6入门之Symbol.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之Symbol》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/07/08/ES6入门之Symbol.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/07/08/ES6入门之Symbol.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLElEQVR42u3aQY6DQAwEwPz/09nzKoJ0e9iVGIoTSghxcTBjj1+v+Hh/HEfXHF3/+e35r15/cWBgYNyW8T49Esbs2xx5HhsGBsZzGEkCPUqLeUptE3oSGwYGBkZ7ngd0npoxMDAwrmXkxW1e9GJgYGDMitjk+rygzdP0xbU4BgbGDRl51/3/z/9kfwMDA+NWjFnqnCXNfJOyjgoDA2NrxnrjfqWsbYveL3fAwMDYlNE22martba5lmwh/PocAwNja8Ys9KuWeu2gRsTDwMDYmpGPO7Rlat7Knz0gDAyMvRnnIV7b0M9DbO+DgYGxN6MFzEY08oVjm/qLviAGBsZtGXnjPv+za1NtlPoxMDAewGjL0Ty4WfmavwYwMDCew2gTZTta0Q5btOs9DAyMJzDybcJ2hKLdYMhJxXsDAwNjC0YSxPrmZTvSmoxWYGBgPIHRJs1ZoizGuVYODAyMrRl5gmub/nnRmxfDX6LCwMB4DGO2vGuXdCvpOBq8wMDA2IjRtsbyYnU2KJbc87CIxcDAeBijbZ+tLPvaBxFVzBgYGNsx8vNZW3/l+uhXGBgYmzLe5ZEXq3mgbeL+sijEwMDYjtHuDOat/1lR2r4AagwGBsZtGW3pmDyV/Dm12wYYGBhPZuT9q2tHLmbswy1MDAwMjHKCox2bWFrDYmBgYMTLwbwozZNp9F8YGBgPYKwPfs3K0XYz4PCeGBgYWzNWmmKzptvKYNmsqYeBgXFbxg/6DiLgt7iAMgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

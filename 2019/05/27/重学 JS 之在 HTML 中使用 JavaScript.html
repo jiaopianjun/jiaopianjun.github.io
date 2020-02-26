@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>重学 JS 之在 HTML 中使用 JavaScript | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="如何使用js">
+    <meta name="description" content="# 1. 如何在页面中使用JavaScript 现在在HTML中使用JS 的方法主要是通过在页面插入  标签 引入外部文件，另外一种是为  指定type属性然后把js代码放在闭合标签">
+<meta name="keywords" content="如何使用js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重学 JS 之在 HTML 中使用 JavaScript">
+<meta property="og:url" content="https://toc.lieme.cn/2019/05/27/重学 JS 之在 HTML 中使用 JavaScript.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="# 1. 如何在页面中使用JavaScript 现在在HTML中使用JS 的方法主要是通过在页面插入  标签 引入外部文件，另外一种是为  指定type属性然后把js代码放在闭合标签">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/FoWFcLmj2wv67Br8_EuHSC783oeE">
+<meta property="og:updated_time" content="2019-10-21T00:06:24.327Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重学 JS 之在 HTML 中使用 JavaScript">
+<meta name="twitter:description" content="# 1. 如何在页面中使用JavaScript 现在在HTML中使用JS 的方法主要是通过在页面插入  标签 引入外部文件，另外一种是为  指定type属性然后把js代码放在闭合标签">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/FoWFcLmj2wv67Br8_EuHSC783oeE">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">重学 JS 之在 HTML 中使用 JavaScript</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">重学 JS 之在 HTML 中使用 JavaScript</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-05-27T13:32:00.000Z" itemprop="datePublished" class="page-time">
+  2019-05-27
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/重学JavaScript/">重学JavaScript</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-如何在页面中使用JavaScript"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 如何在页面中使用JavaScript</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#注意事项："><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">注意事项：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-标签的位置"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 标签的位置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-延迟脚本-defer-async"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 延迟脚本 defer async</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-总结"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. 总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-重学 JS 之在 HTML 中使用 JavaScript"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">重学 JS 之在 HTML 中使用 JavaScript</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-05-27 21:32:00" datetime="2019-05-27T13:32:00.000Z"  itemprop="datePublished">2019-05-27</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/重学JavaScript/">重学JavaScript</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        636
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        2 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FoWFcLmj2wv67Br8_EuHSC783oeE" alt title>
+                </div>
+                <div class="image-caption" style="display:none;"></div>
+            </figure>
+
+
+<p>#</p>
+<h2 id="1-如何在页面中使用JavaScript"><a href="#1-如何在页面中使用JavaScript" class="headerlink" title="1. 如何在页面中使用JavaScript"></a>1. 如何在页面中使用JavaScript</h2><blockquote>
+<p>现在在HTML中使用JS 的方法主要是通过在页面插入 <script> 标签 引入外部文件，另外一种是为 <script> 指定type属性然后把js代码放在<script>闭合标签中即可。如下：</p>
+</blockquote>
+<p>参数：</p>
+<pre><code>charset - 指定 src 属性的代码字符集，一般为utf-8
+defer - 表示代码可以延迟到DOM完成加载之后在执行
+src - 外部引入js文件的路径
+type - 表示代码使用的脚本语言类型，一般为 text/javascript</code></pre><p>外部引入：</p>
+<blockquote>
+<script type="text/javascirpt" src="a.js" defer charset="utf-8"></script>
+</p></blockquote>
+<p>元素内部使用方法：</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    alert(&apos;abc&apos;)    
+&lt;/script&gt;</code></pre><h4 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h4><p>1、包含在 script 中的代码将依次从上往下依次执行</p>
+<p>2、值得注意的是在js代码解析的过程中页面中其他内容将不会被加载和解析，直到该段js执行完成。</p>
+<p>3、在书写的过程要注意，在script代码块中，不能在代码闭合标签  之前在出现闭合标签，这样会导致代码产生错误。</p>
+<p>4、外部引用js的时候闭合标签可以省略，但是为了在IE中正确执行，建议不省略</p>
+<p>5、如果你使用的是<strong>src</strong>引入外部js，那么在script标签之间不能再有内嵌js块</p>
+<p>6、src引用外域js文件的时候要注意安全，因为这样可能会被替换js文件而导致安全问题。</p>
+<p>7、js 代码块在页面中是顺序执行的，只有第一个全部执行完成之后才会顺序执行后面的。</p>
+<h2 id="2-标签的位置"><a href="#2-标签的位置" class="headerlink" title="2. 标签的位置"></a>2. 标签的位置</h2><blockquote>
+<p>一般按照惯例js代码的引入应该放在 <head><meta name="generator" content="Hexo 3.9.0"> 之中，但是由于 js 代码在执行的时候页面其他元素将不能被加载这样会导致页面的交互性很差，所以现在一般将js代码放在闭合标签之前，所有页面html 之后，这样可以不会因为js的加载而影响页面的加载。</head></p>
+</blockquote>
+<pre><code>&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;demo&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;script type=&quot;text/javascript&quot; src=&quot;a.js&quot;&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html</code></pre><h2 id="3-延迟脚本-defer-async"><a href="#3-延迟脚本-defer-async" class="headerlink" title="3. 延迟脚本 defer async"></a>3. 延迟脚本 defer async</h2><p><strong>defer</strong>： 脚本在执行的时候不会影响页面的构造，因为js的执行会被延迟到页面全部加载之后才运行</p>
+<p><strong>async</strong>： 脚本和页面的加载将同步执行。</p>
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h2><blockquote>
+<p>在页面中使用Javascript有两种方式，一种通过src引入外部脚本，一种是在script标签之间插入js代码。</p>
+</blockquote>
+<p>1、 使用这两种方式都需要把 type 设置 为 text/javascript</p>
+<p>2、 在包含外部js文件的时候，必须将src 设置为指向相应文件的url</p>
+<p>3、 所有 script 代码会按照他们在页面的顺序按序执行，只有之前的被执行完成后续的才会被执行</p>
+<p>4、 浏览器在呈现内容之前，必须先解析html之前的script代码，所以一定要将script代码放在页面的最后</p>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-10-21T00:06:24.327Z" itemprop="dateUpdated">2019-10-21 08:06:24</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/如何使用js/">如何使用js</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/05/27/重学 JS 之在 HTML 中使用 JavaScript.html&title=《重学 JS 之在 HTML 中使用 JavaScript》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoWFcLmj2wv67Br8_EuHSC783oeE" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/05/27/重学 JS 之在 HTML 中使用 JavaScript.html&title=《重学 JS 之在 HTML 中使用 JavaScript》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/05/27/重学 JS 之在 HTML 中使用 JavaScript.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学 JS 之在 HTML 中使用 JavaScript》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/05/27/重学 JS 之在 HTML 中使用 JavaScript.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/05/27/重学 JS 之在 HTML 中使用 JavaScript.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/05/30/Node.js-内置模块.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Node.js内置模块</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/05/26/Node-js-EventEmitter-和-Buffer.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Node.js EventEmitter 和 Buffer</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/05/27/重学 JS 之在 HTML 中使用 JavaScript.html&title=《重学 JS 之在 HTML 中使用 JavaScript》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoWFcLmj2wv67Br8_EuHSC783oeE" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/05/27/重学 JS 之在 HTML 中使用 JavaScript.html&title=《重学 JS 之在 HTML 中使用 JavaScript》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/05/27/重学 JS 之在 HTML 中使用 JavaScript.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学 JS 之在 HTML 中使用 JavaScript》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/05/27/重学 JS 之在 HTML 中使用 JavaScript.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/05/27/重学 JS 之在 HTML 中使用 JavaScript.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACqklEQVR42u3aS27DMAwFwNz/0u22QOv4kRQDFxivitQfjRYW/ajXKz6+Bsf7OyT3/3nOa+PAw8PDOzr097f+feZkgq6e1ZsOPDw8vG3e1YCSR179Nz8/max8uvHw8PCez0tg+bLx/hc8PDy8/8VLStvJoJNr8fDw8J7Dy2PW3i9JkZ2TVrIWPDw8vJiXd5Ge8/dKfw8PDw9vYUNAr+TNS/NqWX8zWjw8PLwF3qS0rQa4vc0B1RD5j/Px8PDwFnh5s3/y6s/ZScyRTw0eHh7eWV41+uw1uqoxcbU9djl+PDw8vDVeuRlf3AQwKbiTwvrmWwEPDw/vKK/6qp1Eusl09Ar3aJHDw8PDO8rLSb0mWb5U5OFIHi7j4eHhneXlZXS54VRcTqqBSLSw4eHh4S3w8lK1FzFUQ95qxBxNCh4eHt4CrxdGTCai1+jKo+Sb7wY8PDy8AS8PVXtBQ7WYruYoN9fi4eHhrfFObRhNFoNJ9VtF4uHh4e3xTj2g2trPl428HMfDw8Pb5vXCgl4brBdn5IvBTZiCh4eHt8ZLyut88ZhsKZhPCh4eHt4Gr7oAVOcsL46rzbPoMwAPDw9vgVe9oPqi74W/vSA4+lbAw8PDG/PyBx+LUw+V3QeWBDw8PLzB3ZJit7dNqvrSn2zSulke8PDw8NZ4+eaAapib3P/UBoLylwEeHh5ei1cNIJLf801X+RjKVDw8PLxlXh4lTBaYXkycH3h4eHh7vK/iUW3k94LX6laDy9Hi4eHhLfCqr9peqV0NIKoNNjw8PLzP8/LFIIclZ1aXnObY8PDw8NZ4veH2WlmTyCMPjvHw8PCexpswqkOvbk3Aw8PDexpvHt324uA8XMbDw8P7DK+31ak3iORukyfi4eHhbfN6H/zV0HY+9ElwjIeHh3eI9w0e8B0pFVKBQgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

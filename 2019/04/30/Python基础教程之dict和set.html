@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>Python基础教程之dict和set | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Python">
+    <meta name="description" content="1. dict Python中的dict等于js中的 map ，使用键-值（key-value）存储，具有极快的查找速度。  如果 我们要根据同学的姓名去查找他的成绩在不用dict的情况下。就需要两个list: names = [&amp;apos;Michael&amp;apos;, &amp;apos;Bob&amp;apos;, &amp;apos;Tracy&amp;apos;] scores = [95, 75, 85]  // 通过">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python基础教程之dict和set">
+<meta property="og:url" content="https://toc.lieme.cn/2019/04/30/Python基础教程之dict和set.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1. dict Python中的dict等于js中的 map ，使用键-值（key-value）存储，具有极快的查找速度。  如果 我们要根据同学的姓名去查找他的成绩在不用dict的情况下。就需要两个list: names = [&amp;apos;Michael&amp;apos;, &amp;apos;Bob&amp;apos;, &amp;apos;Tracy&amp;apos;] scores = [95, 75, 85]  // 通过">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-10-21T00:10:38.406Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python基础教程之dict和set">
+<meta name="twitter:description" content="1. dict Python中的dict等于js中的 map ，使用键-值（key-value）存储，具有极快的查找速度。  如果 我们要根据同学的姓名去查找他的成绩在不用dict的情况下。就需要两个list: names = [&amp;apos;Michael&amp;apos;, &amp;apos;Bob&amp;apos;, &amp;apos;Tracy&amp;apos;] scores = [95, 75, 85]  // 通过">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">Python基础教程之dict和set</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">Python基础教程之dict和set</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-30T14:36:00.000Z" itemprop="datePublished" class="page-time">
+  2019-04-30
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Python系列/">Python系列</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-dict"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. dict</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-set"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. set</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-不可变对象"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 不可变对象</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Python基础教程之dict和set"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Python基础教程之dict和set</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-30 22:36:00" datetime="2019-04-30T14:36:00.000Z"  itemprop="datePublished">2019-04-30</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Python系列/">Python系列</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        777
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        3 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h3 id="1-dict"><a href="#1-dict" class="headerlink" title="1. dict"></a>1. dict</h3><blockquote>
+<p>Python中的dict等于js中的 map ，使用键-值（key-value）存储，具有极快的查找速度。</p>
+</blockquote>
+<p>如果 我们要根据同学的姓名去查找他的成绩在不用dict的情况下。就需要两个list:</p>
+<pre><code>names = [&apos;Michael&apos;, &apos;Bob&apos;, &apos;Tracy&apos;]
+scores = [95, 75, 85]
+
+// 通过一个名字，去查找对应的位置，再从scores中取出对应的成绩
+这样导致list的越来越长，速度越来越慢
+
+// 如果通过dict实现，只需要“名字-成绩”就行，无论这个表多大，查找速度都不会变慢，如下：
+
+&gt;&gt;&gt; d = {&apos;Michael&apos;: 95, &apos;Bob&apos;: 75, &apos;Tracy&apos;: 85}
+&gt;&gt;&gt; d[&apos;Michael&apos;]
+95</code></pre><blockquote>
+<p>原理： 因为dict是通过索引去查找的而不是通过遍历的方式去找的。</p>
+</blockquote>
+<pre><code>// 除了初始化指定外，还可以通过key放入：
+
+&gt;&gt;&gt; d[&apos;Adam&apos;] = 67
+&gt;&gt;&gt; d[&apos;Adam&apos;]
+67
+
+
+// 由于一个key只能对应一个value，所以，多次对一个key放入value，后面的值会把前面的值冲掉：
+&gt;&gt;&gt; d[&apos;Jack&apos;] = 90
+&gt;&gt;&gt; d[&apos;Jack&apos;]
+90
+&gt;&gt;&gt; d[&apos;Jack&apos;] = 88
+&gt;&gt;&gt; d[&apos;Jack&apos;]
+88</code></pre><blockquote>
+<p>如果key不存在，dict将会报错。 可以通过in判断key是否存在<br>    或者通过get()方法</p>
+</blockquote>
+<pre><code>// in 方法
+&gt;&gt;&gt; &apos;Thomas&apos; in d
+False
+
+//  get() key不存在返回None
+&gt;&gt;&gt; d.get(&apos;Thomas&apos;)
+&gt;&gt;&gt; d.get(&apos;Thomas&apos;, -1)
+-1
+
+// 删除key 通过 pop()方法
+&gt;&gt;&gt; d.pop(&apos;Bob&apos;)
+75
+&gt;&gt;&gt; d
+{&apos;Michael&apos;: 95, &apos;Tracy&apos;: 85}</code></pre><blockquote>
+<p>注意点：</p>
+</blockquote>
+<pre><code>1. dict 内部存放的顺序和key的放入顺序没有关系
+2. 和list比较
+    2.1 查找和插入速度极快，不会随着key的增加而变慢
+    2.2 需要占用大量的内存，内存浪费多
+3. 和list相反
+    3.1 查找和插入时间随着元素的增加而增加
+    3.2 占用空间小，浪费内存少
+4. dict是一种以空间换时间的方法
+5. dict的key必须是不可变对象
+6. 字符串和整数等不可变，可以作为key，而list的则不行。</code></pre><h3 id="2-set"><a href="#2-set" class="headerlink" title="2. set"></a>2. set</h3><blockquote>
+<p>和dict类似，但是不存储value，key不重复。创建set，需要提供一个list作为输入集合，如下：</p>
+</blockquote>
+<pre><code>&gt;&gt;&gt; s = set([1, 2, 3])
+&gt;&gt;&gt; s
+{1, 2, 3}
+// 传入的参数[1, 2, 3]是一个list，而显示的{1, 2,
+3}只是告诉你这个set内部有1，2，3这3个元素，
+显示的顺序也不表示set是有序的
+
+// set中重复将会被过滤
+
+&gt;&gt;&gt; s = set([1, 1, 2, 2, 3, 3])
+&gt;&gt;&gt; s
+{1, 2, 3}
+
+
+// 通过add(key)可以向set中添加元素，可以重复添加但无效果
+&gt;&gt;&gt; s.add(4)
+&gt;&gt;&gt; s
+{1, 2, 3, 4}
+&gt;&gt;&gt; s.add(4)
+&gt;&gt;&gt; s
+{1, 2, 3, 4}
+
+
+// 通过remove(key)删除元素
+&gt;&gt;&gt; s.remove(4)
+&gt;&gt;&gt; s
+{1, 2, 3}</code></pre><blockquote>
+<p>set和dict的区别仅在于没有存储对应的value。</p>
+</blockquote>
+<h3 id="3-不可变对象"><a href="#3-不可变对象" class="headerlink" title="3. 不可变对象"></a>3. 不可变对象</h3><blockquote>
+<p>对于可变对象，对它进行操作，对象本想将会变化</p>
+</blockquote>
+<pre><code>&gt;&gt;&gt; a = [&apos;c&apos;, &apos;b&apos;, &apos;a&apos;]
+&gt;&gt;&gt; a.sort()
+&gt;&gt;&gt; a
+[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]</code></pre><blockquote>
+<p>对于不可变对象，对象本身不会变化</p>
+</blockquote>
+<pre><code>&gt;&gt;&gt; a = &apos;abc&apos;
+&gt;&gt;&gt; a.replace(&apos;a&apos;, &apos;A&apos;)
+&apos;Abc&apos;
+&gt;&gt;&gt; a
+&apos;abc&apos;</code></pre><blockquote>
+<p>所以，对于不变对象来说，调用对象自身的任意方法，也不会改变该对象自身的内容。相反，这些方法会创建新的对象并返回，这样，就保证了不可变对象本身永远是不可变的。    </p>
+</blockquote>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-10-21T00:10:38.406Z" itemprop="dateUpdated">2019-10-21 08:10:38</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/04/30/Python基础教程之dict和set.html&title=《Python基础教程之dict和set》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/04/30/Python基础教程之dict和set.html&title=《Python基础教程之dict和set》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/04/30/Python基础教程之dict和set.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python基础教程之dict和set》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/04/30/Python基础教程之dict和set.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/04/30/Python基础教程之dict和set.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/05/05/重学JavaScript之基础数据.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">重学Javascript之基础数据</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/04/25/Python基础教程之条件判断和循环.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Python基础教程之条件判断和循环</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/04/30/Python基础教程之dict和set.html&title=《Python基础教程之dict和set》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/04/30/Python基础教程之dict和set.html&title=《Python基础教程之dict和set》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/04/30/Python基础教程之dict和set.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python基础教程之dict和set》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/04/30/Python基础教程之dict和set.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/04/30/Python基础教程之dict和set.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACs0lEQVR42u3awUoFMQwFUP//pxVcuXnz7k1aVDizkkHbnAptJunHR/x8fj/Pb36+f/X7r57ZmMcePDw8vFHom4lPzZIsUDsaHh4e3j3ec+j5dv/8/jm4ZFHq5cbDw8P7VV4+ZbLdb1JqPDw8vP/Cm4U4S47z5cbDw8P7LV5SjNhs7nlKPYvnQK0FDw8PL+a1DbC/8PPF/h4eHh7eoim1OSTacTbJ98tZ8PDw8C7wZheqZqnzrKSblJLfxIOHh4d3lJcnssn0bRD50TJspOHh4eFd4LUtq3ziWV2kTdajy2F4eHh4R3nPQcxaULOj5TmJnz14eHh493inQmnbV+0CtSUPPDw8vBu89iN/kzq3JYbN5QY8PDy827yoAR8fA23oswJH0YrDw8PDu8Cbtf9nhYO2aNum1DUVDw8Pr+TNQskvbBVduPILIDls8PDw8O7xZmluWwiugysvLhQrhIeHh7fg5ZnnqaLtvoBbj4CHh4d3lDdr7edXr9oGW57QR0cXHh4e3jXepm3fJsd5oSEpdrwZGQ8PD+8CL9ncZyXXGTtvjBVx4uHh4R3lzdpa7aaft8HOXtjCw8PDu8fbb+5J0bb9/fYfsKq14OHh4S2+2WdNqRafz5UUdp8XCA8PD+8sL9/QZ+WJ5Emy3zqZxsPDw7vMyyeYJdkzdrsoxRcDHh4e3oKXbLKzZDffvvNFSYq/UX8PDw8Pb8HLiw5tOz+/ODUr1Eaj4eHh4V3m5YnsppyxOSTqQgYeHh7eBd6soXVq+rN/u2rd4eHh4ZW8sw2qdv3yBlue1he9ODw8PLwFb5bg5p369mjZlyTw8PDw/gJvE0Rb5pjFszoY8PDw8C7zZslxW8bNiyNvihF4eHh4F3hJMWL2ZtYSay8ivBwNDw8P7wLvVDq7OSTaoIdXBPDw8PC2vC/FF7GGN4AM9QAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

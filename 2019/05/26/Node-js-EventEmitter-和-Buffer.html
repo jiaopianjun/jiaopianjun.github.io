@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>Node.js EventEmitter 和 Buffer | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="node学习">
+    <meta name="description" content="1. Node.js EventEmitter Node.js 所有的异步 I/O 操作在完成时都会发送一个事件到事件队列。Node.js 中许多对象都会分发事件。一个net.Server对象会在每次有新连接时触发一个事件，而另外一个 fs.readStream对象会在文件被打开的时候触发一个事件，所有的这些产生的事件对象都是 events.EventEmitter的实例。  EventEmitt">
+<meta name="keywords" content="node学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js EventEmitter 和 Buffer">
+<meta property="og:url" content="https://toc.lieme.cn/2019/05/26/Node-js-EventEmitter-和-Buffer.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1. Node.js EventEmitter Node.js 所有的异步 I/O 操作在完成时都会发送一个事件到事件队列。Node.js 中许多对象都会分发事件。一个net.Server对象会在每次有新连接时触发一个事件，而另外一个 fs.readStream对象会在文件被打开的时候触发一个事件，所有的这些产生的事件对象都是 events.EventEmitter的实例。  EventEmitt">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-10-21T00:06:49.156Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js EventEmitter 和 Buffer">
+<meta name="twitter:description" content="1. Node.js EventEmitter Node.js 所有的异步 I/O 操作在完成时都会发送一个事件到事件队列。Node.js 中许多对象都会分发事件。一个net.Server对象会在每次有新连接时触发一个事件，而另外一个 fs.readStream对象会在文件被打开的时候触发一个事件，所有的这些产生的事件对象都是 events.EventEmitter的实例。  EventEmitt">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">Node.js EventEmitter 和 Buffer</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">Node.js EventEmitter 和 Buffer</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-05-26T11:19:00.000Z" itemprop="datePublished" class="page-time">
+  2019-05-26
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Node系列/">Node系列</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-Node-js-EventEmitter"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. Node.js EventEmitter</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#EventEmitter-类"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">EventEmitter 类</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#error-事件"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">error 事件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#继承-EventEmitter"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">继承 EventEmitter</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-Node-js-Buffer-缓冲区"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. Node.js Buffer(缓冲区)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Buffer与字符编码"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Buffer与字符编码</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#创建-Buffer类"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">创建 Buffer类</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#写入缓冲区"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">写入缓冲区</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#从缓冲区读取数据"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">从缓冲区读取数据</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#将-Buffer-转换为-JSON对象"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">将 Buffer 转换为 JSON对象</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#缓冲区合并"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">缓冲区合并</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#缓冲区比较"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">缓冲区比较</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#拷贝缓冲区"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">拷贝缓冲区</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#缓冲区裁剪"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">缓冲区裁剪</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#缓冲区长度"><span class="post-toc-number">2.10.</span> <span class="post-toc-text">缓冲区长度</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Node-js-EventEmitter-和-Buffer"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Node.js EventEmitter 和 Buffer</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-05-26 19:19:00" datetime="2019-05-26T11:19:00.000Z"  itemprop="datePublished">2019-05-26</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Node系列/">Node系列</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        2,719
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        11 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h1 id="1-Node-js-EventEmitter"><a href="#1-Node-js-EventEmitter" class="headerlink" title="1. Node.js EventEmitter"></a>1. Node.js EventEmitter</h1><blockquote>
+<p>Node.js 所有的异步 I/O 操作在完成时都会发送一个事件到事件队列。Node.js 中许多对象都会分发事件。一个net.Server对象会在每次有新连接时触发一个事件，而另外一个 fs.readStream对象会在文件被打开的时候触发一个事件，所有的这些产生的事件对象都是 events.EventEmitter的实例。</p>
+</blockquote>
+<h3 id="EventEmitter-类"><a href="#EventEmitter-类" class="headerlink" title="EventEmitter 类"></a>EventEmitter 类</h3><blockquote>
+<p>events 模块只提供了一个对象：events.EventEmitter。events.EventEmitter的核心就是事件触发和事件监听器功能的封装。你可以通过 require(‘events’)来使用该模块，如下：</p>
+</blockquote>
+<pre><code>// 引入 events 模块
+var events = require(&apos;events&apos;);
+
+// 创建 eventEmitter 对象
+var eventEmitter = new events.EventEmitter();</code></pre><p>EventEmitter对象如果在实例化的时候发生错误，将会触发 <strong>error</strong> 事件。当添加新的监听器的时候，newListener事件会被触发，当该监听器被移除的时候，removeListener 将会被触发。</p>
+<pre><code>案例：
+
+//event.js 文件
+var EventEmitter = require(&apos;events&apos;).EventEmitter; 
+var event = new EventEmitter(); 
+event.on(&apos;some_event&apos;, function() { 
+    console.log(&apos;1s后 some_event 事件触发&apos;); 
+}); 
+setTimeout(function() { 
+    event.emit(&apos;some_event&apos;); 
+}, 1000); 
+
+// node event.js
+// 1s 后执行 </code></pre><p>EventEmitter 的每个事件由一个 <strong>事件名</strong> 和 若干个 <strong>参数</strong> 组成，事件名是一个字符串，通常表达一个的意思，对于每个事件，EventEmitter支持多个事件监听器。当事件触发的时候，注册到这个事件上的事件监听器将依次被调用，事件参数作为回调函数参数传递。如下：</p>
+<pre><code> // event.js 文件
+var events = require(&apos;events&apos;); 
+var emitter = new events.EventEmitter(); 
+emitter.on(&apos;someEvent&apos;, function(arg1, arg2) { 
+    console.log(&apos;listener1&apos;, arg1, arg2); 
+}); 
+emitter.on(&apos;someEvent&apos;, function(arg1, arg2) { 
+console.log(&apos;listener2&apos;, arg1, arg2); 
+}); 
+emitter.emit(&apos;someEvent&apos;, &apos;arg1 参数&apos;, &apos;arg2 参数&apos;); 
+
+// node event.js
+listener1 arg1 参数 arg2 参数
+listener2 arg1 参数 arg2 参数</code></pre><p>在上面例子中，emitter为事件someEvent注册了两个事件监听器，然后触发了someEvent事件，从运行结果中可以看到 两个事件监听器的回调函数 先后被调用。</p>
+<p>EventEmitter提供了多个属性，如 on 和 emit  。 on 函数用来绑定事件函数，emit 用来触发一个事件，具体参数如下：</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>addListener(event, listener)</td>
+<td><strong>为指定事件添加一个监听器到监听器数组的尾部</strong></td>
+</tr>
+<tr>
+<td>on(event, listener)</td>
+<td><strong>为指定事件注册一个监听器，接受一个字符串 event 和一个回调函数</strong></td>
+</tr>
+<tr>
+<td>once(event, listener)</td>
+<td><strong>为指定事件注册一个单次监听器，即 监听器最多只会触发一次，触发后立刻解除该监听器</strong></td>
+</tr>
+<tr>
+<td>removeListener(event, listener)</td>
+<td><strong>移除指定事件的某个监听器，监听器必须是该事件已经注册过的监听器。它接受两个参数，第一个是事件名称，第二个是回调函数名称</strong></td>
+</tr>
+<tr>
+<td>removeAllListeners([event])</td>
+<td><strong>移除所有事件的所有监听器， 如果指定事件，则移除指定事件的所有监听器</strong></td>
+</tr>
+<tr>
+<td>setMaxListeners(n)</td>
+<td><strong>用于提高监听器的默认限制的数量</strong></td>
+</tr>
+<tr>
+<td>listeners(event)</td>
+<td><strong>返回指定事件的监听器数组</strong></td>
+</tr>
+<tr>
+<td>emit(event, [arg1], [arg2], […])</td>
+<td><strong>按监听器的顺序执行执行每个监听器，如果事件有注册监听返回 true，否则返回 false</strong></td>
+</tr>
+<tr>
+<td>listenerCount(emitter, event)</td>
+<td><strong>返回指定事件的监听器数量</strong></td>
+</tr>
+<tr>
+<td>newListener</td>
+<td><strong>该事件在添加新监听器时被触发</strong></td>
+</tr>
+<tr>
+<td>removeListener</td>
+<td><strong>当指定监听器被删除的时候触发，注意：该触发器之后的监听器</strong></td>
+</tr>
+</tbody></table>
+<p>实例：</p>
+<pre><code>var events = require(&apos;events&apos;);
+var eventEmitter = new events.EventEmitter();
+
+// 监听器 #1
+var listener1 = function listener1() {
+   console.log(&apos;监听器 listener1 执行。&apos;);
+}
+
+// 监听器 #2
+var listener2 = function listener2() {
+  console.log(&apos;监听器 listener2 执行。&apos;);
+}
+
+// 绑定 connection 事件，处理函数为 listener1 
+eventEmitter.addListener(&apos;connection&apos;, listener1);
+
+// 绑定 connection 事件，处理函数为 listener2
+eventEmitter.on(&apos;connection&apos;, listener2);
+
+var eventListeners = eventEmitter.listenerCount(&apos;connection&apos;);
+console.log(eventListeners + &quot; 个监听器监听连接事件。&quot;);
+
+// 处理 connection 事件 
+eventEmitter.emit(&apos;connection&apos;);
+
+// 移除监绑定的 listener1 函数
+eventEmitter.removeListener(&apos;connection&apos;, listener1);
+console.log(&quot;listener1 不再受监听。&quot;);
+
+// 触发连接事件
+eventEmitter.emit(&apos;connection&apos;);
+
+eventListeners = eventEmitter.listenerCount(&apos;connection&apos;);
+console.log(eventListeners + &quot; 个监听器监听连接事件。&quot;);
+
+console.log(&quot;程序执行完毕。&quot;);
+
+
+// 执行结果：
+
+$ node main.js
+2 个监听器监听连接事件。
+监听器 listener1 执行。
+监听器 listener2 执行。
+listener1 不再受监听。
+监听器 listener2 执行。
+1 个监听器监听连接事件。
+程序执行完毕</code></pre><h2 id="error-事件"><a href="#error-事件" class="headerlink" title="error 事件"></a>error 事件</h2><blockquote>
+<p>  执行error事件，当error被触发的时候，EventEmitter 规定如果没有响应的监听器，那么node.js就将它当作异常，退出程序并输出错误信息。所以我们要为error设置监听器，避免因为错误导致程序崩溃。如下：</p>
+</blockquote>
+<pre><code>var events = require(&apos;events&apos;); 
+var emitter = new events.EventEmitter(); 
+emitter.emit(&apos;error&apos;); </code></pre><h2 id="继承-EventEmitter"><a href="#继承-EventEmitter" class="headerlink" title="继承 EventEmitter"></a>继承 EventEmitter</h2><blockquote>
+<p>大多数时候不会在node中直接使用EventEmitter，而是在对象中继承去使用它，例如 fs、net、http等，只要是支持事件响应的核心模块都是EventEmitter的子类这样做的原因有两点，如下：</p>
+</blockquote>
+<p><strong>1、具有某个实体功能的对象实现事件符合语义，事件的监听和发生应该是一个对象的方法</strong></p>
+<p><strong>2、另外，因为JavaScript的对象机制是基于原型的，支持部分多重继承，继承EventEmitter不会打乱对象原有的继承关系</strong></p>
+<h1 id="2-Node-js-Buffer-缓冲区"><a href="#2-Node-js-Buffer-缓冲区" class="headerlink" title="2. Node.js Buffer(缓冲区)"></a>2. Node.js Buffer(缓冲区)</h1><blockquote>
+<p>因为JavaScript只有字符串数据类型没有二进制数据类型。但是在处理TCP流或文件流时，必须使用二进制数据。所以在node.js定义了一个Buffer类，该类用来创建一个专门存放二进制数据的缓存区。</p>
+</blockquote>
+<p>在node.js中,Buffer类是随Node内核一起发布的核心库，Buffer库可以让nodejs处理二进制数据，一个Buffer类似一个整数数组。</p>
+<h2 id="Buffer与字符编码"><a href="#Buffer与字符编码" class="headerlink" title="Buffer与字符编码"></a>Buffer与字符编码</h2><blockquote>
+<p>Buffer实例一般用于表示编码字符的序列，比如 UTF-8, Base64, 或十六进制编码的数据，通过使用显示的字符编码，就可以在Buffer实例与普通的JavaScript字符串之间进行相互转换。如下：</p>
+</blockquote>
+<pre><code>const buf = Buffer.from(&apos;runoob&apos;, &apos;ascii&apos;);
+
+// 输出 72756e6f6f62
+console.log(buf.toString(&apos;hex&apos;));
+
+// 输出 cnVub29i
+console.log(buf.toString(&apos;base64&apos;));</code></pre><p>nodejs支持的字符编码：</p>
+<pre><code>ascii -- 仅支持7位ASCII数据
+utf8 -- 多字节编码的Unicode字符
+utf16le -- 2 或 4 个字节
+ucs2
+base64
+latin1
+binary
+hex</code></pre><h2 id="创建-Buffer类"><a href="#创建-Buffer类" class="headerlink" title="创建 Buffer类"></a>创建 Buffer类</h2><blockquote>
+<p>Buffer提供下面多个api来创建Buffer类</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Api类名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Buffer.alloc(size[, fill[, encoding]])</td>
+<td>返回一个指定大小的 Buffer 实例</td>
+</tr>
+<tr>
+<td>Buffer.allocUnsafe(size)</td>
+<td>返回一个指定大小的 Buffer 实例</td>
+</tr>
+<tr>
+<td>Buffer.allocUnsafeSlow(size)</td>
+<td></td>
+</tr>
+<tr>
+<td>Buffer.from(array)</td>
+<td>返回一个被 array 的值初始化的新的 Buffer 实例</td>
+</tr>
+<tr>
+<td>Buffer.from(arrayBuffer[, byteOffset[, length]])</td>
+<td>返回一个新建的与给定的 ArrayBuffer 共享同一内存的 Buffer</td>
+</tr>
+<tr>
+<td>Buffer.from(buffer)</td>
+<td>复制传入的 Buffer 实例的数据，并返回一个新的 Buffer 实例</td>
+</tr>
+<tr>
+<td>Buffer.from(string[, encoding])</td>
+<td>返回一个被 string 的值初始化的新的 Buffer 实例</td>
+</tr>
+</tbody></table>
+<p><em>案例：</em></p>
+<pre><code>// 创建一个长度为 10、且用 0 填充的 Buffer。
+const buf1 = Buffer.alloc(10);
+
+// 创建一个长度为 10、且用 0x1 填充的 Buffer。 
+const buf2 = Buffer.alloc(10, 1);
+
+// 创建一个长度为 10、且未初始化的 Buffer。
+// 这个方法比调用 Buffer.alloc() 更快，
+// 但返回的 Buffer 实例可能包含旧数据，
+// 因此需要使用 fill() 或 write() 重写。
+const buf3 = Buffer.allocUnsafe(10);
+
+// 创建一个包含 [0x1, 0x2, 0x3] 的 Buffer。
+const buf4 = Buffer.from([1, 2, 3]);
+
+// 创建一个包含 UTF-8 字节 [0x74, 0xc3, 0xa9, 0x73, 0x74] 的 Buffer。
+const buf5 = Buffer.from(&apos;tést&apos;);
+
+// 创建一个包含 Latin-1 字节 [0x74, 0xe9, 0x73, 0x74] 的 Buffer。
+const buf6 = Buffer.from(&apos;tést&apos;, &apos;latin1&apos;);</code></pre><h2 id="写入缓冲区"><a href="#写入缓冲区" class="headerlink" title="写入缓冲区"></a>写入缓冲区</h2><p><strong>语法：</strong></p>
+<p>写入node缓冲区的语法如下：</p>
+<blockquote>
+<p>bur.write(string[, offset[, length]][, encoding])</p>
+</blockquote>
+<p><strong>参数：</strong></p>
+<pre><code>string - 写入缓冲区的字符串
+offset - 缓冲区开始写入的索引值，默认为0
+length - 写入的字节数，默认为buffer.length
+encoding - 使用的编码，默认 ‘utf8’</code></pre><blockquote>
+<p>根据encoding的字符编码写入 string 到 buf中 offset位置，length参数是写入的字节数，如果buf没有足够的空间保存整个字符串，那么只会写入string的一部分，只部分解码的字符不会被写入。</p>
+</blockquote>
+<p><strong>返回值：</strong><br>返回值实际写入的大小，如果buffer空间不足，则只会写入部分字符串</p>
+<p><strong>实例</strong></p>
+<pre><code>buf = Buffer.alloc(256);
+len = buf.write(&quot;www.runoob.com&quot;);
+
+console.log(&quot;写入字节数 : &quot;+  len);
+
+// 结果
+
+$node main.js
+写入字节数 : 14</code></pre><h2 id="从缓冲区读取数据"><a href="#从缓冲区读取数据" class="headerlink" title="从缓冲区读取数据"></a>从缓冲区读取数据</h2><p><strong>语法：</strong></p>
+<blockquote>
+<p>buf.toString([encoding[, start[, end]]])</p>
+</blockquote>
+<p><strong>参数：</strong></p>
+<pre><code>encoding - 使用的编码
+start - 指定开始读取的索引位置
+end - 结束位置，默认为缓冲区的末尾</code></pre><p><strong>返回值：</strong><br>解码缓冲区数据并使用指定的编码返回字符串</p>
+<p><strong>实例：</strong></p>
+<pre><code>buf = Buffer.alloc(26);
+for (var i = 0 ; i &lt; 26 ; i++) {
+  buf[i] = i + 97;
+}
+
+
+console.log( buf.toString(&apos;ascii&apos;));       // 输出: abcdefghijklmnopqrstuvwxyz
+console.log( buf.toString(&apos;ascii&apos;,0,5));   // 输出: abcde
+console.log( buf.toString(&apos;utf8&apos;,0,5));    // 输出: abcde
+console.log( buf.toString(undefined,0,5)); // 使用 &apos;utf8&apos; 编码, 并输出: abcde
+
+// 结果
+
+$ node main.js
+abcdefghijklmnopqrstuvwxyz
+abcde
+abcde
+abcde</code></pre><h2 id="将-Buffer-转换为-JSON对象"><a href="#将-Buffer-转换为-JSON对象" class="headerlink" title="将 Buffer 转换为 JSON对象"></a>将 Buffer 转换为 JSON对象</h2><p><strong>语法：</strong></p>
+<blockquote>
+<p>buf.toJSON()</p>
+</blockquote>
+<p>注意：当字符串化一个 Buffer 实例时，JSON.stringify()会隐式地调用该toJSON()</p>
+<p><strong>返回值：</strong><br>返回JSON对象</p>
+<p><strong>实例：</strong></p>
+<pre><code>const buf = Buffer.from([0x1, 0x2, 0x3, 0x4, 0x5]);
+const json = JSON.stringify(buf);
+
+// 输出: {&quot;type&quot;:&quot;Buffer&quot;,&quot;data&quot;:[1,2,3,4,5]}
+console.log(json);
+
+const copy = JSON.parse(json, (key, value) =&gt; {
+  return value &amp;&amp; value.type === &apos;Buffer&apos; ?
+    Buffer.from(value.data) :
+    value;
+});
+
+// 输出: &lt;Buffer 01 02 03 04 05&gt;
+console.log(copy);
+
+// 结果
+
+{&quot;type&quot;:&quot;Buffer&quot;,&quot;data&quot;:[1,2,3,4,5]}
+&lt;Buffer 01 02 03 04 05&gt;</code></pre><h2 id="缓冲区合并"><a href="#缓冲区合并" class="headerlink" title="缓冲区合并"></a>缓冲区合并</h2><p><strong>语法：</strong></p>
+<blockquote>
+<p>Buffer.concat(list[, totalLength])</p>
+</blockquote>
+<p><strong>参数：</strong></p>
+<pre><code>list - 用于合并的 Buffer 对象数组列表
+totalLength - 指定合并后 Buffer 对象的总长度</code></pre><p><strong>返回值</strong>：</p>
+<p>返回一个多个成员合并的新 Buffer 对象。</p>
+<p><strong>实例：</strong></p>
+<pre><code>var buffer1 = Buffer.from((&apos;1&apos;));
+var buffer2 = Buffer.from((&apos;2&apos;));
+var buffer3 = Buffer.concat([buffer1,buffer2]);
+console.log(&quot;gogo 内容: &quot; + buffer3.toString());
+
+// 结果
+
+gogo 内容: 12</code></pre><h2 id="缓冲区比较"><a href="#缓冲区比较" class="headerlink" title="缓冲区比较"></a>缓冲区比较</h2><p><strong>语法：</strong></p>
+<blockquote>
+<p>buf.compare(otherBuffer)</p>
+</blockquote>
+<p><strong>参数：</strong></p>
+<p>ohterBuffer - 与 buf 对象比较的另外一个 Buffer 对象</p>
+<p><strong>返回值：</strong></p>
+<blockquote>
+<p>返回一个数字，表示 buf 在 otherBuffer 之前，之后或相同</p>
+</blockquote>
+<p><strong>实例：</strong></p>
+<pre><code>var buffer1 = Buffer.from(&apos;ABC&apos;);
+var buffer2 = Buffer.from(&apos;ABCD&apos;);
+var result = buffer1.compare(buffer2);
+
+if(result &lt; 0) {
+   console.log(buffer1 + &quot; 在 &quot; + buffer2 + &quot;之前&quot;);
+}else if(result == 0){
+   console.log(buffer1 + &quot; 与 &quot; + buffer2 + &quot;相同&quot;);
+}else {
+   console.log(buffer1 + &quot; 在 &quot; + buffer2 + &quot;之后&quot;);
+
+// 结果
+
+ABC在ABCD之前</code></pre><h2 id="拷贝缓冲区"><a href="#拷贝缓冲区" class="headerlink" title="拷贝缓冲区"></a>拷贝缓冲区</h2><p><strong>语法：</strong></p>
+<blockquote>
+<p>buf.copy(targetBuffer[, targetStart[, sourceStart[, sourceEnd]]])</p>
+</blockquote>
+<p><strong>参数：</strong></p>
+<pre><code>targetBuffer - 要拷贝的Buffer对象
+targetStart - 数字，默认 0
+sourceStart - 数字，默认 0
+sourceEnd - 数字，默认： buffer.length</code></pre><p><strong>实例：</strong></p>
+<pre><code>var buf1 = Buffer.from(&apos;abcdefghijkl&apos;);
+var buf2 = Buffer.from(&apos;RUNOOB&apos;);
+
+//将 buf2 插入到 buf1 指定位置上
+buf2.copy(buf1, 2);
+
+console.log(buf1.toString());
+
+// 结果
+
+abRUNOOBijkl</code></pre><h2 id="缓冲区裁剪"><a href="#缓冲区裁剪" class="headerlink" title="缓冲区裁剪"></a>缓冲区裁剪</h2><blockquote>
+<p>buf.slice([start[, end]])</p>
+</blockquote>
+<p><strong>参数：</strong></p>
+<pre><code>start - 数字 可选，默认 0 
+end - 数字 可选 默认： buffer.length</code></pre><p><strong>返回值：</strong></p>
+<p>返回一个新的缓冲区，它和旧缓冲区指向同一块内存，但是从索引 start 到 end 的位置剪切。</p>
+<p><strong>实例：</strong></p>
+<pre><code>var buffer1 = Buffer.from(&apos;cui&apos;);
+// 剪切缓冲区
+var buffer2 = buffer1.slice(0,2);
+console.log(&quot;buffer2 content: &quot; + buffer2.toString());
+
+// 结果
+
+buffer2 content: cu</code></pre><h2 id="缓冲区长度"><a href="#缓冲区长度" class="headerlink" title="缓冲区长度"></a>缓冲区长度</h2><p><strong>语法：</strong></p>
+<blockquote>
+<p>buf.length</p>
+</blockquote>
+<p><strong>返回值：</strong><br>返回 Buffer 对象所占据的内存长度</p>
+<p><strong>实例：</strong></p>
+<pre><code>var buffer = Buffer.from(&apos;1&apos;);
+//  缓冲区长度
+console.log(&quot;buffer length: &quot; + buffer.length);
+
+// 结果
+buffer length: 1</code></pre>
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-10-21T00:06:49.156Z" itemprop="dateUpdated">2019-10-21 08:06:49</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node学习/">node学习</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/05/26/Node-js-EventEmitter-和-Buffer.html&title=《Node.js EventEmitter 和 Buffer》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/05/26/Node-js-EventEmitter-和-Buffer.html&title=《Node.js EventEmitter 和 Buffer》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/05/26/Node-js-EventEmitter-和-Buffer.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Node.js EventEmitter 和 Buffer》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/05/26/Node-js-EventEmitter-和-Buffer.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/05/26/Node-js-EventEmitter-和-Buffer.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/05/27/重学 JS 之在 HTML 中使用 JavaScript.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">重学 JS 之在 HTML 中使用 JavaScript</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/05/21/ES6入门之对象的新增方法.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">ES6入门之对象的新增方法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/05/26/Node-js-EventEmitter-和-Buffer.html&title=《Node.js EventEmitter 和 Buffer》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/05/26/Node-js-EventEmitter-和-Buffer.html&title=《Node.js EventEmitter 和 Buffer》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/05/26/Node-js-EventEmitter-和-Buffer.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Node.js EventEmitter 和 Buffer》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/05/26/Node-js-EventEmitter-和-Buffer.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/05/26/Node-js-EventEmitter-和-Buffer.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrklEQVR42u3aQW6DUAwEUO5/6XYbKQLGNk5T6bGqWgL/UYnvjH0c8fHzcrz/5v14Pad3/tkVjo0DDw8Pb7D06xuf3eDsU9cP6Pru84eLh4eHt807W1Dyik+ukwPm98LDw8P7Nl6Cn1S2eUGPh4eH979412del9fVIrv6EPHw8PA+w5u8sq+RCTuPMxazFjw8PLyYl3eRvufnlf4eHh4e3rirnrzKywXuOGgorBYPDw9vgddbxLMh7CS2iM7Ew8PDW+DlpDyE7cHmkUSh+MbDw8Nr8XqLTgKLZGOYhw43n8LDw8Nb4OVf8udNr8kmlPwzmv09PDw8vCIvacZPCuhJ4786EHCz7+Hh4eF9hFf9/VOjAPkjLoQReHh4eI/yJoFp/tf5QFXSJCt0w/Dw8PBavOQ2vZAij4YnG0AzksDDw8Mb8KpjAdW4dj4sVS3Zo5IaDw8Pb8DLN4PeouexRS/qxcPDw9vjzW82aXHlD6t3ZTw8PLwN3jyMeKpV9uwIAh4eHt4eLy92J7NMvfI6H/Y6PR8PDw9vgdcbZqqGEb0hgMkGg4eHh7fHy1tK1UVMhlCrecLNTBkeHh7eo7zqWECyMUw2jHmDDQ8PD2+blzSxei/3SYybt+huHigeHh7eAq96uV4IuxFD9JpneHh4eE/xqm2napg7eRC9SPfIL42Hh4c35lWb9L2otxeFVDcqPDw8vG1e70t+XmQn2888Ai6kvHh4eHhjWHJUS+S8NO8V9Dd/xcPDw1vgPdXOz4vyXlCb/7wyrYCHh4dXrDzzJVavNo8eoo0BDw8Pb423/brfS1OijQEPDw/vT3n5y7q6YeSMQlsODw8P7wt4eQs/+VR1DeXHhIeHh7fGq8YH1YZZEgcn4wjlzQkPDw9vgdf7wp8sMRmxSgC98hoPDw9vgfcL0cgiFiN9LcMAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

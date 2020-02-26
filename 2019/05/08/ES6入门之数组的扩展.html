@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>ES6入门之数组的扩展 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="ECMAScript6">
+    <meta name="description" content="1. 扩展运算符 …表示，将一个数组转为用逗号分隔的参数序列，如下：  console.log(...[1,2,3]) // 1 2 3  console.log(1, ...[2,3,4], 5) // 1 2 3 4 5  [...document.querySelectorAll(&amp;apos;div&amp;apos;)] // [&amp;lt;div&amp;gt;, &amp;lt;div&amp;gt;, &amp;lt;div&amp;">
+<meta name="keywords" content="ECMAScript6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6入门之数组的扩展">
+<meta property="og:url" content="https://toc.lieme.cn/2019/05/08/ES6入门之数组的扩展.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1. 扩展运算符 …表示，将一个数组转为用逗号分隔的参数序列，如下：  console.log(...[1,2,3]) // 1 2 3  console.log(1, ...[2,3,4], 5) // 1 2 3 4 5  [...document.querySelectorAll(&amp;apos;div&amp;apos;)] // [&amp;lt;div&amp;gt;, &amp;lt;div&amp;gt;, &amp;lt;div&amp;">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-10-21T00:08:59.267Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6入门之数组的扩展">
+<meta name="twitter:description" content="1. 扩展运算符 …表示，将一个数组转为用逗号分隔的参数序列，如下：  console.log(...[1,2,3]) // 1 2 3  console.log(1, ...[2,3,4], 5) // 1 2 3 4 5  [...document.querySelectorAll(&amp;apos;div&amp;apos;)] // [&amp;lt;div&amp;gt;, &amp;lt;div&amp;gt;, &amp;lt;div&amp;">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">ES6入门之数组的扩展</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">ES6入门之数组的扩展</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-05-08T08:35:00.000Z" itemprop="datePublished" class="page-time">
+  2019-05-08
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-扩展运算符"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 扩展运算符</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#扩展运算符可以和正常函数结合使用，如下："><span class="post-toc-number">1.0.0.1.</span> <span class="post-toc-text">扩展运算符可以和正常函数结合使用，如下：</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#扩展运算符后面也可以是表达式，如下："><span class="post-toc-number">1.0.0.2.</span> <span class="post-toc-text">扩展运算符后面也可以是表达式，如下：</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#重要：如果扩展运算符后面是一个空数组，将不会有任何效果。另外只有在函数调用的时候扩展函数在放在圆括号之内，其他的则会报错。"><span class="post-toc-number">1.0.0.3.</span> <span class="post-toc-text">重要：如果扩展运算符后面是一个空数组，将不会有任何效果。另外只有在函数调用的时候扩展函数在放在圆括号之内，其他的则会报错。</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#替代函数的apply方法"><span class="post-toc-number">1.0.0.4.</span> <span class="post-toc-text">替代函数的apply方法</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#扩展运算符的应用"><span class="post-toc-number">1.0.0.5.</span> <span class="post-toc-text">扩展运算符的应用</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-Array-from"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. Array.from()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-Array-of"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. Array.of()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-数组的实例-copyWithin"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. 数组的实例 copyWithin()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-数组实例的-find-和-findIndex"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. 数组实例的 find() 和 findIndex()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-数组实例的-fill"><span class="post-toc-number">6.</span> <span class="post-toc-text">6. 数组实例的 fill()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-数组实例的-entries-keys-values"><span class="post-toc-number">7.</span> <span class="post-toc-text">7. 数组实例的 entries(), keys(), values()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-数组实例的-includes"><span class="post-toc-number">8.</span> <span class="post-toc-text">8. 数组实例的 includes()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-数组的实例-flat-flatMap"><span class="post-toc-number">9.</span> <span class="post-toc-text">9. 数组的实例 flat(), flatMap()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-数组的空位-避免出现空位"><span class="post-toc-number">10.</span> <span class="post-toc-text">10. 数组的空位(避免出现空位)</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-ES6入门之数组的扩展"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">ES6入门之数组的扩展</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-05-08 16:35:00" datetime="2019-05-08T08:35:00.000Z"  itemprop="datePublished">2019-05-08</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        2,285
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        10 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h3 id="1-扩展运算符"><a href="#1-扩展运算符" class="headerlink" title="1. 扩展运算符"></a>1. 扩展运算符</h3><blockquote>
+<p>…表示，将一个数组转为用逗号分隔的参数序列，如下：</p>
+</blockquote>
+<pre><code>console.log(...[1,2,3]) // 1 2 3
+
+console.log(1, ...[2,3,4], 5) // 1 2 3 4 5
+
+[...document.querySelectorAll(&apos;div&apos;)] // [&lt;div&gt;, &lt;div&gt;, &lt;div&gt;]
+
+
+function add(x, y){
+    return x + y
+}
+const n = [3, 5]
+add(...n) // 8</code></pre><h6 id="扩展运算符可以和正常函数结合使用，如下："><a href="#扩展运算符可以和正常函数结合使用，如下：" class="headerlink" title="扩展运算符可以和正常函数结合使用，如下："></a>扩展运算符可以和正常函数结合使用，如下：</h6><pre><code>function f(a,b,c,d,e){
+    console.log(a,b,c,d,e)
+}
+const age = [0,1]
+
+f(-1,...age,2,...[3]) // -1 0 1 2 3</code></pre><h6 id="扩展运算符后面也可以是表达式，如下："><a href="#扩展运算符后面也可以是表达式，如下：" class="headerlink" title="扩展运算符后面也可以是表达式，如下："></a>扩展运算符后面也可以是表达式，如下：</h6><pre><code>const x = 10
+const arr = [
+    ...(x &gt; 0 ? [&apos;a&apos;] : []), &apos;b&apos;,
+]
+
+arr // [&apos;a&apos;, &apos;b&apos;]</code></pre><h6 id="重要：如果扩展运算符后面是一个空数组，将不会有任何效果。另外只有在函数调用的时候扩展函数在放在圆括号之内，其他的则会报错。"><a href="#重要：如果扩展运算符后面是一个空数组，将不会有任何效果。另外只有在函数调用的时候扩展函数在放在圆括号之内，其他的则会报错。" class="headerlink" title="重要：如果扩展运算符后面是一个空数组，将不会有任何效果。另外只有在函数调用的时候扩展函数在放在圆括号之内，其他的则会报错。"></a>重要：如果扩展运算符后面是一个空数组，将不会有任何效果。另外只有在函数调用的时候扩展函数在放在圆括号之内，其他的则会报错。</h6><h6 id="替代函数的apply方法"><a href="#替代函数的apply方法" class="headerlink" title="替代函数的apply方法"></a>替代函数的apply方法</h6><blockquote>
+<p>扩展函数可以展开数组，所以将不需要apply方法来将数组转换为函数的参数。</p>
+</blockquote>
+<pre><code>function f(x, y, z){
+    console.log(x, y, z)
+}
+
+var a = [1,2,4]
+
+// ES5 
+f.apply(null, args)
+
+// ES6
+f(...a)
+
+
+// Math.max方法
+
+//ES5
+Math.max.apply(null, [14, 3, 99])
+
+//ES6
+Math.max(...[12, 4, 55])
+
+//等同于
+Math.max(12, 4, 55)
+
+// push方法的应用
+
+var a = [0,1,2]
+var b = [3,4,5]
+
+//ES5
+Array.prototype.push.apply(a,b) // 0,1,2,3,4,5
+
+//ES6
+a.push(...b)</code></pre><h6 id="扩展运算符的应用"><a href="#扩展运算符的应用" class="headerlink" title="扩展运算符的应用"></a>扩展运算符的应用</h6><ol>
+<li><p>复制数组</p>
+<pre><code>因为数组是复合的数据类型，直接的复制只是复制数组在堆内存中的指针地址
+
+const a1 = [1,2]
+const a2 = a1
+
+a2[0] = 3
+a1 // [3,2]
+
+// ES5 通过变通方法来复制
+const a1 = [1,2]
+const a2 = a1.concat()
+
+a2[0] = 23
+a1 // [1,2]
+
+// ES6写法
+const b1 = [1,3]
+const b2 = [...b1] or [...b2] = b1</code></pre></li>
+<li><p>合并数组</p>
+<pre><code>const a1 = [&apos;b&apos;, &apos;c&apos;]
+const a2 = [&apos;d&apos;]
+const a3 = [&apos;x&apos;, &apos;y&apos;]
+
+// ES5中合并数组
+a1.concat(a2, a3)
+
+// ES6中合并数组
+[...a1, ...a2, ...a3]
+
+//以上两种都是浅拷贝，修改原数组和同步新数组</code></pre></li>
+<li><p>与解构赋值一起使用,扩展只能放在最后一位，不然会报错</p>
+<pre><code>// ES5
+a = list[0], rest = list.slice(1)
+
+// ES6
+[a,...rest] = list
+
+// 其他
+const [a,...c] = [1,2,4,5,4,6] // a 1   c 2,4,5,4,6
+const [a,...c] = [] // a undefined   c []
+const [a,...c] = [&apos;a&apos;] // a &apos;a&apos;   c []  </code></pre></li>
+<li><p>字符串，将字符串转换为数组</p>
+<pre><code>[...&apos;hello&apos;] // [h,e,l,l,0]</code></pre></li>
+<li><p>实现了Iterator接口的对象</p>
+<pre><code>任何定义了遍历器接口对象，都可以用扩展运算符转为真正的数组
+
+let nodelist = document.querySelectorAll(&apos;div&apos;)
+let array = [...nodelist]
+// querySelectorAll 返回的是一个类数组，通过扩展运算符
+将其转换为一个真正的数组</code></pre></li>
+<li><p>Map 和 Set 解构，Generator函数</p>
+<pre><code>扩展运算符调用的是数据解构的Iterator接口，只要有Iterator接口的
+对象，都可以使用扩展运算符
+
+// Map
+let map = new Map([
+    [1, &apos;a&apos;],
+    [2, &apos;b&apos;],
+    [3, &apos;c&apos;],
+])
+let arr = [...map.keys()] // 1, 2, 3
+let arr = [...map.values()] // &apos;a&apos;, &apos;b&apos;, &apos;c&apos;
+
+//Generator函数
+const go = function*(){
+    yield 1;
+    yield 2;
+    yield 3;
+}
+[...go()] // [1, 2, 3]</code></pre></li>
+</ol>
+<h3 id="2-Array-from"><a href="#2-Array-from" class="headerlink" title="2. Array.from()"></a>2. Array.from()</h3><blockquote>
+<p>Array.from 方法用于将两类对象转为真正的数组。1、类似数组对象 和 可遍历的对象（包裹Set和Map），如下：</p>
+</blockquote>
+<pre><code>let arrLike = {
+    &apos;0&apos;: &apos;a&apos;,
+    &apos;1&apos;: &apos;b&apos;,
+    &apos;2&apos;: &apos;c&apos;,
+    length: 3
+}
+
+// ES5 
+var a1 = [].slice.call(arrLike)
+
+// ES6
+var a2 = Array.from(arrLike)</code></pre><p>在实际中，像获取dom后返回的Nodelist集合，以及函数内部的arguments对象就是类数组，通过 Array.from将它们转换为真正的数组。</p>
+<pre><code>// NodeList 对象
+let ps = document.querySelectorAll(&apos;p&apos;)
+Array.from(ps).filter(p =&gt; {
+    return p.textContent.length &gt; 100
+})
+
+// arguments 对象
+function foo(){
+    var arg = Array.from(arguments)
+}
+
+// 只要部署了Iterator接口的数据解构，Array.from都能将其转成数组
+Array.from(&apos;hello&apos;) // [&apos;h&apos;, &apos;e&apos;, &apos;l&apos;, &apos;l&apos;, &apos;o&apos;]
+
+let nl = new Set([1, 2])
+Array.from(nl) // [1, 2]
+
+// 如果是真数组则返回一样的
+Array.from([1, 2, 3]) // [1, 2, 3]</code></pre><blockquote>
+<p>… 扩展运算符也可以将某些类数组转换为数组，如arguments和NodeList集合</p>
+</blockquote>
+<blockquote>
+<p>拥有lenght属性的对象都可以通过Array.from转换为数组，而扩展运算符则不行。</p>
+</blockquote>
+<pre><code>Array.from({lenght:3}) // [undefined, undefined, undefined]</code></pre><blockquote>
+<p>对于低版本的浏览器，可以通过 <strong>Array.prototype.slice</strong> 方法替代</p>
+</blockquote>
+<p><strong>Array.from 还可以接受第二个参数如同map一样，用来对每个元素进行操作，并将处理后的值放入返回的数组中。</strong></p>
+<pre><code>const arrlike = new Set([1,2,3])
+Array.from(arrlike, x =&gt; x * x)   // =
+Array.from(arrlike).map(x =&gt; x * x)   // [1, 4, 9]
+
+//注意： 如果map中用到了this，可以传入Array.from
+的第三个参数，用来绑定this</code></pre><p>Array.from 可以将各种值转换为真正的数组，并且还提供map相关功能，这样代表如果有个原始数据结构，可以先将他转换为数组，然后使用数组相关的方法。</p>
+<h3 id="3-Array-of"><a href="#3-Array-of" class="headerlink" title="3. Array.of()"></a>3. Array.of()</h3><blockquote>
+<p>用于将一组值，转换为数组。主要用来弥补Array函数因为参数个数不同而导致的差异</p>
+</blockquote>
+<pre><code>Array.of(3,11,6) // [3, 11, 6]
+Array.of(3) // [3]
+Array.of(4).length // 1</code></pre><h3 id="4-数组的实例-copyWithin"><a href="#4-数组的实例-copyWithin" class="headerlink" title="4. 数组的实例 copyWithin()"></a>4. 数组的实例 copyWithin()</h3><blockquote>
+<p>将当前数组中指定位置的元素复制到另外一个位置，并且会覆盖那个位置的原有元素，会修改当前数组  </p>
+</blockquote>
+<pre><code>// 有三个参数
+1. target(必须)：从该位置开始替换数据，如果是负值，则倒数
+2. start(可选)：从该位置读取数据，默认0，负值同上
+3. end(可选)：到这个位置停止读取数据，默认等于数组长度，负值同上
+
+
+let p = [1,2,3,4,5,6,7]
+p.copyWithin(0,5,7)
+[6, 7, 3, 4, 5, 6, 7]</code></pre><h3 id="5-数组实例的-find-和-findIndex"><a href="#5-数组实例的-find-和-findIndex" class="headerlink" title="5. 数组实例的 find() 和 findIndex()"></a>5. 数组实例的 find() 和 findIndex()</h3><blockquote>
+<p>find 用来找出数组中符合条件的成员，它的参数是一个回调函数，找到一个返回值为true的返回，如果没有则返回undefined</p>
+</blockquote>
+<pre><code>let s = [1,2,3,4,5,6]
+
+s.find(x =&gt; x &gt; 4)
+// 5
+
+find 方法的回调函数有三个参数
+
+    value // 当前值
+    index // 当前的位置
+    arr // 原数组</code></pre><blockquote>
+<p>findIndex 同find方法类似，只不过都不符合返回的是 -1,而且符合是返回符合条件值的位置而不是值。</p>
+</blockquote>
+<pre><code>let s = [1,2,3,4,5,6]
+
+s.find(x =&gt; x &gt; 4)
+// 4</code></pre><blockquote>
+<p>find 和 findIndex 都可以接受第二个参数</p>
+</blockquote>
+<pre><code>function o(p){
+    return p &gt; this.age
+}
+
+const u = {name: &apos;cx&apos;, age: 11}
+const y = [8,11,22,2,4]
+
+y.find(o, u) // 22  返回的值
+y.findIndex(o, u) // 2  返回值的位置</code></pre><h3 id="6-数组实例的-fill"><a href="#6-数组实例的-fill" class="headerlink" title="6. 数组实例的 fill()"></a>6. 数组实例的 fill()</h3><blockquote>
+<p>通过给定值，填充一个数组</p>
+</blockquote>
+<pre><code>let sz = [1,2,3,4,5,6]
+
+sz.fill(1) // [1,1,1,1,1,1]
+
+sz.fill(1,0,3) 
+// 接受三个参数，第一个为填充值，第二个为起始位置，第三个为截至位置
+
+sz.fill(1,3)
+// 如果省略最后一个参数，则默认从起始位置到数组默认长度结束</code></pre><h3 id="7-数组实例的-entries-keys-values"><a href="#7-数组实例的-entries-keys-values" class="headerlink" title="7. 数组实例的 entries(), keys(), values()"></a>7. 数组实例的 entries(), keys(), values()</h3><blockquote>
+<p>三种方法主要用于遍历数组，可以用 for…of…进行遍历，keys()对应键名，values对应键值,entries()对键值对的遍历</p>
+</blockquote>
+<pre><code>let bo = [&apos;a&apos;, &apos;c&apos;]
+
+for(let r of bo.keys()){
+    console.log(r) // 0 1
+}
+// 0 1
+
+for(let n of bo.values()){
+    console.log(n) 
+}
+// a c
+
+for(let s of bo.entries()){
+    console.log(s)
+}
+// [0, &quot;a&quot;]
+// [1, &quot;c&quot;]</code></pre><h3 id="8-数组实例的-includes"><a href="#8-数组实例的-includes" class="headerlink" title="8. 数组实例的 includes()"></a>8. 数组实例的 includes()</h3><blockquote>
+<p>用来表示某个数组是否包含给定的值，返回一个布尔值</p>
+</blockquote>
+<pre><code>let i = [&apos;a&apos;,1,2,3]
+
+i.includes()  // false
+i.includes(1) // true
+i.includes(10) // false</code></pre><blockquote>
+<p>indexOf 和includes 的区别</p>
+</blockquote>
+<pre><code>indexOf // 不够语义化，它的作用是找到参数出现的第一个位置，
+所以要比较是否为 -1,另外由于 内部使用的是 ===  则导致NaN
+的误判。
+
+// [NaN].indexOf(NaN) // -1
+
+includes // 使用的是不一样的算法，则不会有这个问题
+
+// [NaN].includes(NaN) // true</code></pre><blockquote>
+<p>Map 和 Set 的has 方法和includes的区别</p>
+</blockquote>
+<pre><code>Map 的has 方法是用来查找键名的
+Set 的has 方法是用来查找值的</code></pre><h3 id="9-数组的实例-flat-flatMap"><a href="#9-数组的实例-flat-flatMap" class="headerlink" title="9. 数组的实例 flat(), flatMap()"></a>9. 数组的实例 flat(), flatMap()</h3><blockquote>
+<p>flat() 将嵌套的二维数组变成一维数组，如果需要拉平多维数组，则flat(多维数量) 或者使用 Infinity 直接转为一维数组</p>
+</blockquote>
+<pre><code>let rw = [1,2,3,[4,5,6],7]
+rw.flat()  // [1, 2, 3, 4, 5, 6, 7]
+
+let dw =  [1,2,3,[4,5,6,[7,8],[2,[&apos;a&apos;,&apos;b&apos;],4,5]],[5,6,]]
+dw.flat(3) // [1, 2, 3, 4, 5, 6, 7, 8, 2, &quot;a&quot;, &quot;b&quot;, 4, 5, 5, 6]
+
+// 如果你不知道是多少层嵌套而都想转成一维，可以使用 Infinity
+dw.flat(Infinity) 
+// [1, 2, 3, 4, 5, 6, 7, 8, 2, &quot;a&quot;, &quot;b&quot;, 4, 5, 5, 6]</code></pre><blockquote>
+<p>flatMap() 对数组执行map，然后对返回值组成的数组 执行flat，不会改变原数组。flatMap只能展开一层数组。</p>
+</blockquote>
+<pre><code>let mp = [2,3,4,5]
+
+mp.flatMap((item) =&gt; [item, item* 2])
+// [2, 4, 3, 6, 4, 8, 5, 10]
+====
+mp.map((item) =&gt; [item, item*2])
+// [[2,4],[3,6],[4,8],[5,10]]
+mp.flat()
+// [2, 4, 3, 6, 4, 8, 5, 10]    </code></pre><h3 id="10-数组的空位-避免出现空位"><a href="#10-数组的空位-避免出现空位" class="headerlink" title="10. 数组的空位(避免出现空位)"></a>10. 数组的空位(避免出现空位)</h3><blockquote>
+<p>数组的空位指的是该数组中某一个位置没有任何值。另外空位不是undefined，如果一个位置的值是undefined，那么这个位置还是有值的。</p>
+</blockquote>
+<pre><code>Array(3) // [, , ,]</code></pre><blockquote>
+<p>ES5中大多数情况中对待空位都是会忽略</p>
+</blockquote>
+<pre><code>- forEach(), filter(), reduce(), every() 和 some() 都会跳过空位
+- map() 跳过但保留这个值
+- join() 和 toString() 中 空位 === undefined，而 undefined和null会被处理成空字符串</code></pre><blockquote>
+<p>ES6 中 空位则转换为undefined</p>
+</blockquote>
+<pre><code>- Array.from([1,,2]) // [1, undefined, 2]
+- [...[&apos;a&apos;,,&apos;b&apos;]]    // [ &quot;a&quot;, undefined, &quot;b&quot; ]
+
+entries()
+keys()
+values()
+find()
+findIndex()  // 都会将空位处理成undefined。</code></pre>
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-10-21T00:08:59.267Z" itemprop="dateUpdated">2019-10-21 08:08:59</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/05/08/ES6入门之数组的扩展.html&title=《ES6入门之数组的扩展》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/05/08/ES6入门之数组的扩展.html&title=《ES6入门之数组的扩展》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/05/08/ES6入门之数组的扩展.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之数组的扩展》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/05/08/ES6入门之数组的扩展.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/05/08/ES6入门之数组的扩展.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/05/09/Flex布局入门.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Flex布局入门</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/05/05/重学JavaScript之基础数据.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">重学Javascript之基础数据</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/05/08/ES6入门之数组的扩展.html&title=《ES6入门之数组的扩展》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/05/08/ES6入门之数组的扩展.html&title=《ES6入门之数组的扩展》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/05/08/ES6入门之数组的扩展.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之数组的扩展》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/05/08/ES6入门之数组的扩展.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/05/08/ES6入门之数组的扩展.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuElEQVR42u3aUW7jMAwE0N7/0t0DFHFmSCkIsM9fQdrGegpgsUP+/MTX758r+c1Xf/t8JZ95+MLDw8NbL/15ifkt//60fef5dbRBeHh4eNd4z4tLHsr3DoBXm5tsKB4eHt438PLDIHno54vGw8PD+x94+UM/CT7w8PDwvo2XhBH5Yzopi5/vnmz34awFDw8Pr8sBoi7S97y+0t/Dw8PDW3fV982w5J22XC5Wi4eHh3eBN2tutQVxvlltmR6tEw8PD+8CL/lXPz8S2p/mQcOqkYaHh4d3iNeWvLMyOl9QPiJQJyh4eHh4F6Lb38XVxgqbMGL29eDh4eGd5eVt+/x4mBXNmzGv4nvDw8PDW/Daj06C2lOjAG0UEvX38PDw8Na8toQ9dZDMiu/ZIYSHh4d3j9feOI8G8pGCNuSN+nt4eHh4R3ntkNNsiflDvw2X3xT9eHh4eBd4swbYbByh3Yh8jKCYKcPDw8Nb8/Kl50NRm1GDzWYNhwbw8PDwSl4Shp4aJmgL4ln4+waJh4eHt+a1B8Pm8Z2X10nTq8ha8PDw8K7xNuNTmzb/bOgqOpDw8PDwPsLbL+7soMBsO14eDHh4eHhr3qwgzlv+7YGRl9HFZ+Lh4eF9hNcGEO1yZ2HxqrDGw8PDO8prG/9tYJEPTiUtsbZkx8PDw7vBK4aWRlHFrDRvI4noG8PDw8M7ynt+TOfHw75hlq8nugseHh7eNV5Stu6Dif2Bka8EDw8P7wZvFj3sI9o8VtgcHnh4eHg3eO0DdzZS8Fyg58MKs+AYDw8P7wZv0+LKx6HaOCPfgjffGx4eHt413ixiyGHDYneWr+Dh4eF9Ga+t0PfDW7MyHQ8PD+/7efnAQRv4rhp1eHh4eNd4m5gg2bI8StiMFKyyFjw8PLwuPaj/4U9u//zoT4YSPhRw4OHh4aW8f/Lrc6gO601ZAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

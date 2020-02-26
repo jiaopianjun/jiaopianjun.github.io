@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>面试题（一） | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="面试">
+    <meta name="description" content="HTML Doctype作用？严格模式与混杂模式如何区分？它们有何意义? HTML5 为什么只需要写 ？ 行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？ 页面导入样式时，使用link和@import有什么区别？ 介绍一下你对浏览器内核的理解？ 常见的浏览器内核有哪些？ html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5">
+<meta name="keywords" content="面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试题（一）">
+<meta property="og:url" content="https://toc.lieme.cn/2018/06/11/面试题一.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="HTML Doctype作用？严格模式与混杂模式如何区分？它们有何意义? HTML5 为什么只需要写 ？ 行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？ 页面导入样式时，使用link和@import有什么区别？ 介绍一下你对浏览器内核的理解？ 常见的浏览器内核有哪些？ html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2020-01-20T03:40:20.504Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面试题（一）">
+<meta name="twitter:description" content="HTML Doctype作用？严格模式与混杂模式如何区分？它们有何意义? HTML5 为什么只需要写 ？ 行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？ 页面导入样式时，使用link和@import有什么区别？ 介绍一下你对浏览器内核的理解？ 常见的浏览器内核有哪些？ html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">面试题（一）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">面试题（一）</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2018-06-11T10:02:27.000Z" itemprop="datePublished" class="page-time">
+  2018-06-11
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HTML"><span class="post-toc-number">1.</span> <span class="post-toc-text">HTML</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#CSS"><span class="post-toc-number">2.</span> <span class="post-toc-text">CSS</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#JavaScript"><span class="post-toc-number">3.</span> <span class="post-toc-text">JavaScript</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#其他问题"><span class="post-toc-number">4.</span> <span class="post-toc-text">其他问题</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-面试题一"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">面试题（一）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-06-11 18:02:27" datetime="2018-06-11T10:02:27.000Z"  itemprop="datePublished">2018-06-11</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        3,629
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        13 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h4 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h4><ul>
+<li>Doctype作用？严格模式与混杂模式如何区分？它们有何意义?</li>
+<li>HTML5 为什么只需要写 <!DOCTYPE HTML>？</li>
+<li>行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？</li>
+<li>页面导入样式时，使用link和@import有什么区别？</li>
+<li>介绍一下你对浏览器内核的理解？</li>
+<li>常见的浏览器内核有哪些？</li>
+<li>html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？</li>
+<li>简述一下你对HTML语义化的理解？</li>
+</ul>
+<a id="more"></a>
+
+<ul>
+<li>HTML5的离线储存怎么使用，工作原理能不能解释一下？</li>
+<li>浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？</li>
+<li>请描述一下 cookies，sessionStorage 和 localStorage 的区别？</li>
+<li>iframe有那些缺点？</li>
+<li>Label的作用是什么？是怎么用的？（加 for 或 包裹）</li>
+<li>HTML5的form如何关闭自动完成功能？</li>
+<li>如何实现浏览器内多个标签页之间的通信? (阿里)</li>
+<li>webSocket如何兼容低浏览器？(阿里)</li>
+<li>页面可见性（Page Visibility）API 可以有哪些用途？</li>
+<li>如何在页面上实现一个圆形的可点击区域？</li>
+<li>实现不使用 border 画出1px高的线，在不同浏览器的Quirksmode和CSSCompat模式下都能保持同一效果。</li>
+<li>网页验证码是干嘛的，是为了解决什么安全问题？</li>
+<li>tite与h1的区别、b与strong的区别、i与em的区别？</li>
+</ul>
+<h4 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h4><ul>
+<li>介绍一下标准的CSS的盒子模型？与低版本IE的盒子模型有什么不同的？</li>
+<li>CSS选择符有哪些？哪些属性可以继承？</li>
+<li>CSS优先级算法如何计算？</li>
+<li>CSS3新增伪类有那些？</li>
+<li>如何居中div？如何居中一个浮动元素？如何让绝对定位的div居中？</li>
+<li>display有哪些值？说明他们的作用。</li>
+<li>position的值relative和absolute定位原点是？</li>
+<li>CSS3有哪些新特性？</li>
+<li>请解释一下CSS3的Flexbox（弹性盒布局模型）,以及适用场景？</li>
+<li>用纯CSS创建一个三角形的原理是什么？</li>
+<li>一个满屏 品 字布局 如何设计?</li>
+<li>常见兼容性问题？</li>
+<li>li与li之间有看不见的空白间隔是什么原因引起的？有什么解决办法？</li>
+<li>经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用hack的技巧 ？</li>
+<li>为什么要初始化CSS样式。</li>
+<li>absolute的containing block计算方式跟正常流有什么不同？</li>
+<li>CSS里的visibility属性有个collapse属性值是干嘛用的？在不同浏览器下以后什么区别？</li>
+<li>position跟display、margin collapse、overflow、float这些特性相互叠加后会怎么样？</li>
+<li>对BFC规范(块级格式化上下文：block formatting context)的理解？</li>
+<li>CSS权重优先级是如何计算的？</li>
+<li>请解释一下为什么会出现浮动和什么时候需要清除浮动？清除浮动的方式</li>
+<li>移动端的布局用过媒体查询吗？</li>
+<li>使用 CSS 预处理器吗？喜欢那个？</li>
+<li>CSS优化、提高性能的方法有哪些？</li>
+<li>浏览器是怎样解析CSS选择器的？</li>
+<li>在网页中的应该使用奇数还是偶数的字体？为什么呢？</li>
+<li>margin和padding分别适合什么场景使用？</li>
+<li>抽离样式模块怎么写，说出思路，有无实践经验？[阿里航旅的面试题]</li>
+<li>元素竖向的百分比设定是相对于容器的高度吗？</li>
+<li>全屏滚动的原理是什么？用到了CSS的那些属性？</li>
+<li>什么是响应式设计？响应式设计的基本原理是什么？如何兼容低版本的IE？</li>
+<li>视差滚动效果，如何给每页做不同的动画？（回到顶部，向下滑动要再次出现，和只出现一次分别怎么做？）</li>
+<li>::before 和 :after中双冒号和单冒号 有什么区别？解释一下这2个伪元素的作用。</li>
+<li>如何修改chrome记住密码后自动填充表单的黄色背景 ？</li>
+<li>你对line-height是如何理解的？</li>
+<li>设置元素浮动后，该元素的display值是多少？（自动变成display:block）</li>
+<li>怎么让Chrome支持小于12px 的文字？</li>
+<li>让页面里的字体变清晰，变细用CSS怎么做？（-webkit-font-smoothing: antialiased;）</li>
+<li>font-style属性可以让它赋值为“oblique” oblique是什么意思？</li>
+<li>position:fixed;在android下无效怎么处理？</li>
+<li>如果需要手动写动画，你认为最小时间间隔是多久，为什么？（阿里）</li>
+<li>display:inline-block 什么时候会显示间隙？(携程</li>
+<li>overflow: scroll时不能平滑滚动的问题怎么处理？</li>
+<li>有一个高度自适应的div，里面有两个div，一个高度100px，希望另一个填满剩下的高度。</li>
+<li>png、jpg、gif 这些图片格式解释一下，分别什么时候用。有没有了解过webp？</li>
+<li>什么是Cookie 隔离？（或者说：请求资源的时候不要让它带cookie怎么做）</li>
+<li>style标签写在body后与body前有什么区别？</li>
+</ul>
+<h4 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h4><ul>
+<li>介绍JavaScript的基本数据类型。</li>
+<li>说说写JavaScript的基本规范？</li>
+<li>JavaScript原型，原型链 ? 有什么特点？</li>
+<li>JavaScript有几种类型的值？（堆：原始数据类型和 栈：引用数据类型），你能画一下他们的内存图吗？</li>
+<li>Javascript如何实现继承？</li>
+<li>Javascript创建对象的几种方式？</li>
+<li>Javascript作用链域?</li>
+<li>谈谈This对象的理解。</li>
+<li>eval是做什么的？</li>
+<li>什么是window对象? 什么是document对象?</li>
+<li>null，undefined的区别？</li>
+<li>写一个通用的事件侦听器函数(机试题)。</li>
+<li>[“1”, “2”, “3”].map(parseInt) 答案是多少？</li>
+<li>关于事件，IE与火狐的事件机制有什么区别？ 如何阻止冒泡？</li>
+<li>什么是闭包（closure），为什么要用它？</li>
+<li>javascript 代码中的”use strict”;是什么意思 ? 使用它区别是什么？</li>
+<li>如何判断一个对象是否属于某个类？</li>
+<li>new操作符具体干了什么呢?</li>
+<li>用原生JavaScript的实现过什么功能吗？</li>
+<li>Javascript中，有一个函数，执行时对象查找时，永远不会去查找原型，这个函数是？</li>
+<li>对JSON的了解？</li>
+<li>[].forEach.call($$(“*”),function(a){ a.style.outline=”1px solid #”+(~~(Math.random()*(1&lt;&lt;24))).toString(16) }) - 能解释一下这段代码的意思吗？</li>
+<li>js延迟加载的方式有哪些？</li>
+<li>Ajax 是什么? 如何创建一个Ajax？</li>
+<li>同步和异步的区别?</li>
+<li>如何解决跨域问题?</li>
+<li>页面编码和被请求的资源编码如果不一致如何处理？</li>
+<li>模块化开发怎么做？</li>
+<li>AMD（Modules/Asynchronous-Definition）、CMD（Common Module Definition）规范区别？</li>
+<li>requireJS的核心原理是什么？（如何动态加载的？如何避免多次加载的？如何 缓存的？）</li>
+<li>让你自己设计实现一个requireJS，你会怎么做？</li>
+<li>谈一谈你对ECMAScript6的了解？</li>
+<li>ECMAScript6 怎么写class么，为什么会出现class这种东西?</li>
+<li>异步加载的方式有哪些？</li>
+<li>documen.write和 innerHTML的区别?</li>
+<li>DOM操作——怎样添加、移除、移动、复制、创建和查找节点?</li>
+<li>.call() 和 .apply() 的含义和区别？</li>
+<li>数组和对象有哪些原生方法，列举一下？</li>
+<li>JS 怎么实现一个类。怎么实例化这个类</li>
+<li>JavaScript中的作用域与变量声明提升？</li>
+<li>如何编写高性能的Javascript？</li>
+<li>那些操作会造成内存泄漏？</li>
+<li>JQuery的源码看过吗？能不能简单概况一下它的实现原理？</li>
+<li>jQuery.fn的init方法返回的this指的是什么对象？为什么要返回this？</li>
+<li>jquery中如何将数组转化为json字符串，然后再转化回来？</li>
+<li>jQuery 的属性拷贝(extend)的实现原理是什么，如何实现深拷贝？</li>
+<li>jquery.extend 与 jquery.fn.extend的区别？</li>
+<li>jQuery 的队列是如何实现的？队列可以用在哪些地方？</li>
+<li>谈一下Jquery中的bind(),live(),delegate(),on()的区别？</li>
+<li>JQuery一个对象可以同时绑定多个事件，这是如何实现的？</li>
+<li>是否知道自定义事件。jQuery里的fire函数是什么意思，什么时候用？</li>
+<li>jQuery 是通过哪个方法和 Sizzle 选择器结合的？（jQuery.fn.find()进入Sizzle）</li>
+<li>针对 jQuery性能的优化方法？</li>
+<li>Jquery与jQuery UI有啥区别？</li>
+<li>JQuery的源码看过吗？能不能简单说一下它的实现原理？</li>
+<li>jquery 中如何将数组转化为json字符串，然后再转化回来？</li>
+<li>jQuery和Zepto的区别？各自的使用场景？</li>
+<li>针对 jQuery 的优化方法？</li>
+<li>Zepto的点透问题如何解决？</li>
+<li>jQueryUI如何自定义组件?</li>
+<li>需求：实现一个页面操作不会整页刷新的网站，并且能在浏览器前进、后退时正确响应。给出你的技术实现方案？</li>
+<li>如何判断当前脚本运行在浏览器还是node环境中？（阿里）</li>
+<li>移动端最小触控区域是多大？</li>
+<li>jQuery 的 slideUp动画 ，如果目标元素是被外部事件驱动, 当鼠标快速地连续触发外部元素事件, 动画会滞后的反复执行，该如何处理呢?</li>
+<li>把 Script 标签 放在页面的最底部的body封闭之前 和封闭之后有什么区别？浏览器会如何解析它们？</li>
+<li>移动端的点击事件的有延迟，时间是多久，为什么会有？ 怎么解决这个延时？（click 有 300ms 延迟,为了实现safari的双击事件的设计，浏览器要知道你是不是要双击操作。）</li>
+<li>知道各种JS框架(Angular, Backbone, Ember, React, Meteor, Knockout…)么? 能讲出他们各自的优点和缺点么?</li>
+<li>Underscore 对哪些 JS 原生对象进行了扩展以及提供了哪些好用的函数方法？</li>
+<li>解释JavaScript中的作用域与变量声明提升？</li>
+<li>那些操作会造成内存泄漏？</li>
+<li>JQuery一个对象可以同时绑定多个事件，这是如何实现的？</li>
+<li>Node.js的适用场景？</li>
+<li>(如果会用node)知道route, middleware, cluster, nodemon, pm2, server-side rendering么?</li>
+<li>解释一下 Backbone 的 MVC 实现方式？</li>
+<li>什么是“前端路由”?什么时候适合使用“前端路由”? “前端路由”有哪些优点和缺点?</li>
+<li>知道什么是webkit么? 知道怎么用浏览器的各种工具来调试和debug代码么?</li>
+<li>如何测试前端代码么? 知道BDD, TDD, Unit Test么? - 知道怎么测试你的前端工程么(mocha, sinon, jasmin, qUnit..)?</li>
+<li>前端templating(Mustache, underscore, handlebars)是干嘛的, 怎么用?</li>
+<li>简述一下 Handlebars 的基本用法？</li>
+<li>简述一下 Handlerbars 的对模板的基本处理流程， 如何编译的？如何缓存的？</li>
+<li>用js实现千位分隔符?(来源：前端农民工，提示：正则+replace)</li>
+<li>检测浏览器版本版本有哪些方式？</li>
+<li>我们给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡，你来说下会执行几次事件，然后会先执行冒泡还是捕获]</li>
+</ul>
+<h4 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h4><ul>
+<li>原来公司工作流程是怎么样的，如何与其他人协作的？如何夸部门合作的？</li>
+<li>你遇到过比较难的技术问题是？你是如何解决的？</li>
+<li>设计模式 知道什么是singleton, factory, strategy, decrator么?</li>
+<li>常使用的库有哪些？常用的前端开发工具？开发过什么应用或组件？</li>
+<li>页面重构怎么操作？</li>
+<li>列举IE与其他浏览器不一样的特性？</li>
+<li>99%的网站都需要被重构是那本书上写的？</li>
+<li>什么叫优雅降级和渐进增强？</li>
+<li>是否了解公钥加密和私钥加密。</li>
+<li>WEB应用从服务器主动推送Data到客户端有那些方式？</li>
+<li>对Node的优点和缺点提出了自己的看法？</li>
+<li>你有用过哪些前端性能优化的方法？</li>
+<li>http状态码有那些？分别代表是什么意思？</li>
+<li>一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？（流程说的越详细越好）</li>
+<li>部分地区用户反应网站很卡，请问有哪些可能性的原因，以及解决方法？</li>
+<li>从打开app到刷新出内容，整个过程中都发生了什么，如果感觉慢，怎么定位问题，怎么解决?</li>
+<li>除了前端以外还了解什么其它技术么？你最最厉害的技能是什么？</li>
+<li>你用的得心应手用的熟练地编辑器&amp;开发环境是什么样子？</li>
+<li>对前端界面工程师这个职位是怎么样理解的？它的前景会怎么样？</li>
+<li>你怎么看待Web App 、hybrid App、Native App？</li>
+<li>你移动端前端开发的理解？（和 Web 前端开发的主要区别是什么？）</li>
+<li>你对加班的看法？</li>
+<li>平时如何管理你的项目？</li>
+<li>说说最近最流行的一些东西吧？常去哪些网站？</li>
+<li>如何设计突发大规模并发架构？</li>
+<li>说说最近最流行的一些东西吧？常去哪些网站？</li>
+<li>是否了解开源的工具 bower、npm、yeoman、grunt、gulp，一个 npm 的包里的 package.json 具备的必要的字段都有哪些？（名称、版本号，依赖）</li>
+<li>每个模块的代码结构都应该比较简单，且每个模块之间的关系也应该非常清晰，随着功能和迭代次数越来越多，你会如何去保持这个状态的？</li>
+<li>Git知道branch, diff, merge么?</li>
+<li>如何设计突发大规模并发架构？</li>
+<li>当团队人手不足，把功能代码写完已经需要加班的情况下，你会做前端代码的测试吗？</li>
+<li>说说最近最流行的一些东西吧？平时常去哪些网站？</li>
+<li>知道什么是SEO并且怎么优化么? 知道各种meta data的含义么?</li>
+<li>移动端（Android IOS）怎么做好用户体验?</li>
+<li>简单描述一下你做过的移动APP项目研发流程？</li>
+<li>你在现在的团队处于什么样的角色，起到了什么明显的作用？</li>
+<li>你认为怎样才是全端工程师（Full Stack developer）？</li>
+<li>介绍一个你最得意的作品吧？</li>
+<li>你有自己的技术博客吗，用了哪些技术？</li>
+<li>对前端安全有什么看法？</li>
+<li>是否了解Web注入攻击，说下原理，最常见的两种攻击（XSS 和 CSRF）了解到什么程度？</li>
+<li>项目中遇到国哪些印象深刻的技术难题，具体是什么问题，怎么解决？。</li>
+<li>最近在学什么东西？</li>
+<li>你的优点是什么？缺点是什么？</li>
+<li>如何管理前端团队?</li>
+<li>最近在学什么？能谈谈你未来3，5年给自己的规划吗？</li>
+</ul>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-01-20T03:40:20.504Z" itemprop="dateUpdated">2020-01-20 11:40:20</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/06/11/面试题一.html&title=《面试题（一）》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/06/11/面试题一.html&title=《面试题（一）》 — 卖坚果的怪叔叔&source=HTML
+Doctype作用？严格模式与混杂模式如何区分？它们有何意义?
+HTML5 为什么只需要写 ？
+行内元素有哪些？块级元素有哪些？ 空(void)..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2018/06/11/面试题一.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《面试题（一）》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2018/06/11/面试题一.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2018/06/11/面试题一.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/06/11/Vue基础知识.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Vue基础知识</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/06/11/JS处理时间戳显示为多少分钟前，多少天前的.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">JS处理时间戳显示为多少分钟前，多少天前的</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/06/11/面试题一.html&title=《面试题（一）》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/06/11/面试题一.html&title=《面试题（一）》 — 卖坚果的怪叔叔&source=HTML
+Doctype作用？严格模式与混杂模式如何区分？它们有何意义?
+HTML5 为什么只需要写 ？
+行内元素有哪些？块级元素有哪些？ 空(void)..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2018/06/11/面试题一.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《面试题（一）》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2018/06/11/面试题一.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2018/06/11/面试题一.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKElEQVR42u3aS47CQAwFQO5/6cx2JEjz7A5IOJUVgpmkKwvLv8cjvo5/1/P3Z5+fr7Nf10+57MLAwPhZxrG88gf3qL3X8YKKgYFxA8ZZBFvfev1NEkaT17c+GwYGBsb6cxIW13+fPxcDAwNj53bVkNorjDEwMDDyFC0vZfMX9NVaHAMD4wcZedf9+58/Mt/AwMD4KcZRvPIBZ/VYeZB9cSoMDIzRjOpj8rIzL2t32BgYGBjJoXdCcK8Bd/o9BgbGUEYvIF6V8FWD7+l5MDAwbsbIFyN6S2DVRl5SPGNgYMxm5OE1WXe4KsWstvYwMDDuxugtOvTWMqoj0jdIDAyMoYx1IthLE/Pkr7pHUc5wMTAwRjD2U7pk7XW/9b+1bIGBgTGUsbMkkZeghVZa8r8YGBhDGZ8OqfmK2FZrDwMD4zaM5LgJrDdyqDb1mvkjBgbGCEbeIMvx1ftXW3IYGBizGZ9etqjC8tQTAwPjnozeYCAfYeZDguQpUdcQAwNjHKPa1l/fulmOxsE6arphYGDcgNFrw1012syHFhgYGPdh5I225KA7gbtKxcDAmM04ilc1gUsGABeMEzAwMEYzrhp29pK/PJT30k0MDIxJjGqx2lvq2n9lb4YHGBgYN2DkgW9nkWKniH2DxMDAwNh45P4QNMpqMTAwMFqFa7WGXo8toyIWAwNjNCMpYqtrXnkKmA8D3qSGGBgYQxnVJC8J0DuH3hmLYmBgjGP8AQu2IuD1Xb3uAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

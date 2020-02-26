@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>ES6入门之Module | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="ECMAScript6">
+    <meta name="description" content="1、概述 JS中一直没有 module 体系，无法将一个大程序拆分成依赖的小文件，在用简单的方法拼接起来。ES6 的模块设计思想是尽量静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量。  ES6模块不是对象，而是通过 export 命令显式指定输出的代码，再通过import 命令输入。如下： 1import &amp;#123;state, getNum, setPost&amp;#125; for">
+<meta name="keywords" content="ECMAScript6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6入门之Module">
+<meta property="og:url" content="https://toc.lieme.cn/2019/11/25/ES6入门之Module.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1、概述 JS中一直没有 module 体系，无法将一个大程序拆分成依赖的小文件，在用简单的方法拼接起来。ES6 的模块设计思想是尽量静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量。  ES6模块不是对象，而是通过 export 命令显式指定输出的代码，再通过import 命令输入。如下： 1import &amp;#123;state, getNum, setPost&amp;#125; for">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/Fh1SEWMFch41fOuNfxb31dudMmRA">
+<meta property="og:updated_time" content="2019-11-26T01:45:58.247Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6入门之Module">
+<meta name="twitter:description" content="1、概述 JS中一直没有 module 体系，无法将一个大程序拆分成依赖的小文件，在用简单的方法拼接起来。ES6 的模块设计思想是尽量静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量。  ES6模块不是对象，而是通过 export 命令显式指定输出的代码，再通过import 命令输入。如下： 1import &amp;#123;state, getNum, setPost&amp;#125; for">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/Fh1SEWMFch41fOuNfxb31dudMmRA">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">ES6入门之Module</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">ES6入门之Module</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-25T03:12:00.000Z" itemprop="datePublished" class="page-time">
+  2019-11-25
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、概述"><span class="post-toc-number">1.</span> <span class="post-toc-text">1、概述</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-1-ES6模块的好处"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.1 ES6模块的好处</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、严格模式"><span class="post-toc-number">2.</span> <span class="post-toc-text">2、严格模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-严格模式的限制"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2.1 严格模式的限制</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、export命令"><span class="post-toc-number">3.</span> <span class="post-toc-text">3、export命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4、import命令"><span class="post-toc-number">4.</span> <span class="post-toc-text">4、import命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5、模块的整体加载"><span class="post-toc-number">5.</span> <span class="post-toc-text">5、模块的整体加载</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6、export-default"><span class="post-toc-number">6.</span> <span class="post-toc-text">6、export default</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7、export-与-import-的复合写法"><span class="post-toc-number">7.</span> <span class="post-toc-text">7、export 与 import 的复合写法</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-ES6入门之Module"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">ES6入门之Module</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-11-25 11:12:00" datetime="2019-11-25T03:12:00.000Z"  itemprop="datePublished">2019-11-25</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        1,393
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        6 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h2 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h2><blockquote>
+<p>JS中一直没有 module 体系，无法将一个大程序拆分成依赖的小文件，在用简单的方法拼接起来。ES6 的模块设计思想是尽量静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量。</p>
+</blockquote>
+<p>ES6模块不是对象，而是通过 export 命令显式指定输出的代码，再通过import 命令输入。如下：</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#123;<span class="keyword">state</span>, getNum, <span class="built_in">set</span>Post&#125; form 'api'</span><br></pre></td></tr></table></figure>
+
+<p>以上方法实质上是从 api模块加载了3个方法，api中其他的方法不加载。这种加载就是 <strong>编译时加载或者静态加载</strong></p>
+<h3 id="1-1-ES6模块的好处"><a href="#1-1-ES6模块的好处" class="headerlink" title="1.1 ES6模块的好处"></a>1.1 ES6模块的好处</h3><ul>
+<li>不在需要UMD模块格式。</li>
+<li>将来浏览器的新API就能用模块格式提供，不在必须做成全局变量或 navigator 对象的属性。</li>
+<li>不在需要命名空间</li>
+</ul>
+<h2 id="2、严格模式"><a href="#2、严格模式" class="headerlink" title="2、严格模式"></a>2、严格模式</h2><blockquote>
+<p>ES6的模块自动采用严格模式，不管你有没有再模块头部加上 「use strict」</p>
+</blockquote>
+<h3 id="2-1-严格模式的限制"><a href="#2-1-严格模式的限制" class="headerlink" title="2.1 严格模式的限制"></a>2.1 严格模式的限制</h3><ul>
+<li>变量必须声明再使用</li>
+<li>函数的参数不能有同名属性，否则报错</li>
+<li>不能使用with语句</li>
+<li>不能对只读属性赋值，否则报错</li>
+<li>不能删除不可删除的属性，否则报错</li>
+<li>不能删除变量 delete prop，会报错，只能删除属性delete global[prop]</li>
+<li>eval不会在它的外层作用域引入变量</li>
+<li>eval和arguments不能被重新赋值</li>
+<li>arguments不会自动反应函数的变化</li>
+<li>不能使用 arguments.callee</li>
+<li>不能使用 arguments.caller</li>
+<li>禁止 this 指向全局对象（顶层指向 undefined，<strong>所以不能在顶层代码中使用 this</strong>）</li>
+<li>不能使用 fn.caller 和 fn.arguments获取调用的堆栈</li>
+<li>增加了保留字段（如：protected、static、interface）</li>
+</ul>
+<h2 id="3、export命令"><a href="#3、export命令" class="headerlink" title="3、export命令"></a>3、export命令</h2><blockquote>
+<p>模块功能主要由两个命令构成：export 和 import。export 命令用于规定模块的对外接口，import 命令用于输入其他模块提供的功能</p>
+</blockquote>
+<p>另外一个模块就是一个独立的文件。该文件内部的所有变量，外部无法获取。如果你希望能够再外部读取某个模块内部的变量，那么就需要使用 export 输出该变量。如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'export'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> test = <span class="string">'test'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; test &#125;</span><br></pre></td></tr></table></figure>
+
+<p>第一种方法是直接输出该变量，第二种这是一次性输出一组变量。可根据情况酌情使用。</p>
+<blockquote>
+<p>通常情况下，export输出的是变量本身的名字，如果想重命名的话，可以通过 as 关键字。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123;</span><br><span class="line">    a <span class="keyword">as</span> a1,</span><br><span class="line">    b <span class="keyword">as</span> b1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>敲黑板：</strong> export 规定的是对外的接口，必须与模块内部的变量建立一一对应关系。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="number">1</span> <span class="comment">// 报错</span></span><br><span class="line"><span class="keyword">var</span> m = <span class="number">1</span> </span><br><span class="line"><span class="keyword">export</span> m <span class="comment">// 报错</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> m = <span class="number">1</span> <span class="comment">// 正确</span></span><br><span class="line"><span class="keyword">export</span>(<span class="keyword">const</span> m = <span class="number">1</span>) <span class="comment">// 正确</span></span><br><span class="line"><span class="keyword">const</span> n = <span class="number">1</span></span><br><span class="line"><span class="keyword">export</span> &#123;n <span class="keyword">as</span> m&#125; <span class="comment">// 正确</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">export</span> a    <span class="comment">// 报错</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;&#125; <span class="comment">// 正确</span></span><br><span class="line"><span class="keyword">export</span>(a)   <span class="comment">//正确</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>export 命令可以出现在模块的任何位置，只要处于模块顶层就可以。如果处于块级作用域中就会报错。</strong></p>
+<h2 id="4、import命令"><a href="#4、import命令" class="headerlink" title="4、import命令"></a>4、import命令</h2><blockquote>
+<p>使用了export 输出模块定义的接口之后可以使用 import 加载这个模块。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a.js</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">b.js</span><br><span class="line"><span class="keyword">import</span> test <span class="keyword">from</span> <span class="string">'a.js'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 为 test 重新定义名字</span></span><br><span class="line"><span class="keyword">import</span> &#123;test <span class="keyword">as</span> ttt&#125; <span class="keyword">from</span> <span class="string">'a.js'</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">如果有多个接口可以一行引入</span><br><span class="line">import &#123;<span class="selector-tag">a</span>, <span class="selector-tag">b</span>, c&#125; from <span class="string">'a'</span></span><br><span class="line"></span><br><span class="line">import <span class="string">'a'</span>  <span class="comment">// 加载a中所有模块</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>敲重点：</strong> import 输入的变量都是只读的，因为它的本质是输入接口。也就是说，不允许在加载模块的脚本里改写接口。</p>
+<h2 id="5、模块的整体加载"><a href="#5、模块的整体加载" class="headerlink" title="5、模块的整体加载"></a>5、模块的整体加载</h2><blockquote>
+<p>除了指定加载某个输出值，还可以使用整体加载，即用 星号 （*）指定对象，所有输出值都加载在这个对象上面。如下：</p>
+</blockquote>
+<p><strong>一般写法</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">a.js 中</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">add</span> (<span class="params">num</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> num = num * num</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">put</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">    retrun name = name + <span class="string">'hh'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 引用</span></span><br><span class="line"><span class="keyword">import</span> &#123;add, put&#125; <span class="keyword">from</span> <span class="string">'a'</span></span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">3</span>), put(<span class="string">'put'</span>))</span><br></pre></td></tr></table></figure>
+
+<p><strong>整体加载</strong></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import * <span class="keyword">as</span> <span class="keyword">go</span> from <span class="string">'a'</span></span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">go</span>.<span class="built_in">add</span>(<span class="number">3</span>), <span class="keyword">go</span>.<span class="keyword">put</span>(<span class="string">'put'</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、export-default"><a href="#6、export-default" class="headerlink" title="6、export default"></a>6、export default</h2><blockquote>
+<p>在上面可以看出，使用 import 命令的时候，用户需要知道所要加载的变量名或函数名，否则无法加载。如果想快速的加载模块，在这里可以使用 export default, 为模块指定默认输出。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hahha'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> hhh <span class="keyword">from</span> <span class="string">'a'</span> <span class="comment">// 引用的时候可以指定任意名字</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>非匿名函数</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">hah</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'哈哈'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hah</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hah'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> hah</span><br><span class="line"><span class="keyword">import</span> hah <span class="keyword">from</span> <span class="string">'a'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可以更换名字</span></span><br><span class="line"><span class="keyword">import</span> &#123;b <span class="keyword">as</span> a &#125; <span class="keyword">import</span> <span class="string">'a'</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>敲黑板：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// defautl 方式输出 import 引入的时候变量名直接写</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">aa</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">import</span> aa form <span class="string">'a'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 非defautl 方式输出 import 引入的时候变量名需加花括号</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">aa</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">import</span> &#123;aa&#125; form <span class="string">'a'</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>export default 命令用于指定模块的默认输出。显然，一个模块只能有一个默认输出。因此 export default 命令只能使用一次。所以 import引入的时候 方法名才不需要加括号。</p>
+</blockquote>
+<h2 id="7、export-与-import-的复合写法"><a href="#7、export-与-import-的复合写法" class="headerlink" title="7、export 与 import 的复合写法"></a>7、export 与 import 的复合写法</h2><blockquote>
+<p>如果在一个模块中，先输入后输出同一个模块</p>
+</blockquote>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123; c, b &#125; <span class="keyword">from</span> <span class="string">'a'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以简单理解为</span></span><br><span class="line"><span class="keyword">import</span> &#123; c, b &#125; <span class="keyword">from</span> <span class="string">'a'</span>;</span><br><span class="line"><span class="keyword">export</span> &#123; c, b &#125;;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-11-26T01:45:58.247Z" itemprop="dateUpdated">2019-11-26 09:45:58</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/11/25/ES6入门之Module.html&title=《ES6入门之Module》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/Fh1SEWMFch41fOuNfxb31dudMmRA" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/11/25/ES6入门之Module.html&title=《ES6入门之Module》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/11/25/ES6入门之Module.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之Module》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/11/25/ES6入门之Module.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/11/25/ES6入门之Module.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/11/29/前端常用的CSS代码块.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">前端CSS常用代码集合</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/11/22/Vuepress-发布流程.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Vuepress 发布流程</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/11/25/ES6入门之Module.html&title=《ES6入门之Module》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/Fh1SEWMFch41fOuNfxb31dudMmRA" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/11/25/ES6入门之Module.html&title=《ES6入门之Module》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/11/25/ES6入门之Module.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之Module》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/11/25/ES6入门之Module.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/11/25/ES6入门之Module.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3awW7EMAhF0fz/T6fbkabB74EzkuFmVaWp6+MFAsN1yc/98Xy++f7m+/unv43fX288MGDAOJZxh0/um3j9pz3ox/HPOjBgwBjAyC2thGMlgMZHE+8NBgwYMJQgqKeDlf8LAwYMGO5yevEZv3fxMGDAmMzQl9PTxLigzV3MbajFYcCAcSBDv3X//c+v9DdgwIBxFOM2nzg504N1vFF7VzBgwGjNyF3cu5duympK0btYAQYMGAMYbqLmbtQ9AvdCEAYMGF0Zua3rSd6u67xFcwIGDBjjGW7z0k0TK8cEAwaMaYxc0qYXn/XhjMcjhgEDRmtG7uLsDbw+lmFkoDBgwBjAqJem9VBrXAXCgAGjKWPXZX0l4Orth8eVYcCA0ZphlIhmk9IelUjBjHs7GDBgtGPsGu1y26I6SQq4MGDAaMFw25b1f1lhb5gZgQEDxoEM5ddxsZrD5xLKK3d+MGDAOJxRLyOVloB7MWfvCgYMGK0ZeormkiqVdKWRAAMGjK6MSgGphNp680BaDQYMGIMZv0n7buFZHAQMGDAGMHbdYrkFsJsOLgIuDBgw2jFu89FDsDtsoQfuRVIIAwaMdgy3S+hu3R25UBqo7vAHDBgwejBypaMbjnNHZiSgMGDAGMBwA5/yJve93ryEAQMGDHdb9bGJUuCGAQMGDGH8QvlSL3T1UQ8YMGDMYejNgMqYRaW1uVgNBgwYrRmVvMuY6TCv6vSmKQwYMFoz/gCF9LwqAQBRTQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

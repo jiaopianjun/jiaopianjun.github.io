@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>ES6入门之Set 和 Map | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Set,Map">
+    <meta name="description" content="1. Set1.1 基本用法 Set 类似于数组，但是成员的 值都是唯一的，没用重复的值。Set本身是一个构造函数，用来生成Set数据结构。  const s = new Set()">
+<meta name="keywords" content="Set,Map">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6入门之Set 和 Map">
+<meta property="og:url" content="https://toc.lieme.cn/2019/08/05/ES6入门之Set-和-Map.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1. Set1.1 基本用法 Set 类似于数组，但是成员的 值都是唯一的，没用重复的值。Set本身是一个构造函数，用来生成Set数据结构。  const s = new Set()">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/FmMNnc1qSvl-_XnqdNzxBsmTfyNo">
+<meta property="og:updated_time" content="2019-08-11T05:16:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6入门之Set 和 Map">
+<meta name="twitter:description" content="1. Set1.1 基本用法 Set 类似于数组，但是成员的 值都是唯一的，没用重复的值。Set本身是一个构造函数，用来生成Set数据结构。  const s = new Set()">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/FmMNnc1qSvl-_XnqdNzxBsmTfyNo">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">ES6入门之Set 和 Map</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">ES6入门之Set 和 Map</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-08-05T02:00:00.000Z" itemprop="datePublished" class="page-time">
+  2019-08-05
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-Set"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. Set</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-1-基本用法"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.1 基本用法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-Set-实例的属性和方法"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">1.2 Set 实例的属性和方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-3-遍历操作"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">1.3 遍历操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-3-1-keys-、values、entries"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">1.3.1 keys()、values、entries()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-3-2-forEach"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">1.3.2 forEach()</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-3-3-遍历的应用"><span class="post-toc-number">1.3.3.</span> <span class="post-toc-text">1.3.3 遍历的应用</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-WeakSet"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. WeakSet</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-1-语法"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2.1 语法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-WeakSet的方法"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.2 WeakSet的方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-Map"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. Map</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-Map的属性和操作方法"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">3.1 Map的属性和操作方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-size-属性"><span class="post-toc-number">3.1.0.1.</span> <span class="post-toc-text">1. size 属性</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-Map-prototype-set-key-value"><span class="post-toc-number">3.1.0.2.</span> <span class="post-toc-text">2. Map.prototype.set(key, value)</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3-Map-prototype-get-key"><span class="post-toc-number">3.1.0.3.</span> <span class="post-toc-text">3. Map.prototype.get(key)</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#4-Map-prototype-has-key"><span class="post-toc-number">3.1.0.4.</span> <span class="post-toc-text">4. Map.prototype.has(key)</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#5-Map-prototype-delete-key"><span class="post-toc-number">3.1.0.5.</span> <span class="post-toc-text">5. Map.prototype.delete(key)</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#6-Map-prototype-clear"><span class="post-toc-number">3.1.0.6.</span> <span class="post-toc-text">6. Map.prototype.clear()</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-遍历方法"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">3.2 遍历方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-与其他数据结构的互相转换"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3.3 与其他数据结构的互相转换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-Map转为数组"><span class="post-toc-number">3.3.0.1.</span> <span class="post-toc-text">1. Map转为数组</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-数组转为Map"><span class="post-toc-number">3.3.0.2.</span> <span class="post-toc-text">2. 数组转为Map</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3-Map-转为对象"><span class="post-toc-number">3.3.0.3.</span> <span class="post-toc-text">3. Map 转为对象</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#4-对象转为-Map"><span class="post-toc-number">3.3.0.4.</span> <span class="post-toc-text">4. 对象转为 Map</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#5-Map-转为-JSON"><span class="post-toc-number">3.3.0.5.</span> <span class="post-toc-text">5. Map 转为 JSON</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#6-JSON-转为-Map"><span class="post-toc-number">3.3.0.6.</span> <span class="post-toc-text">6. JSON 转为 Map</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-WeakMap"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. WeakMap</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-WeakMap-的语法"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">4.1 WeakMap 的语法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-2-WeakMap的用途"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">4.2 WeakMap的用途</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-ES6入门之Set-和-Map"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">ES6入门之Set 和 Map</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-08-05 10:00:00" datetime="2019-08-05T02:00:00.000Z"  itemprop="datePublished">2019-08-05</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        3,237
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        13 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FunIhT7TSezDvn2sAd8zT7r1tFP3" alt title>
+                </div>
+                <div class="image-caption" style="display:none;"></div>
+            </figure>
+
+
+<h2 id="1-Set"><a href="#1-Set" class="headerlink" title="1. Set"></a>1. Set</h2><h3 id="1-1-基本用法"><a href="#1-1-基本用法" class="headerlink" title="1.1 基本用法"></a>1.1 基本用法</h3><blockquote>
+<p>Set 类似于数组，但是成员的 值都是唯一的，没用重复的值。Set本身是一个构造函数，用来生成Set数据结构。</p>
+</blockquote>
+<pre><code>const s = new Set();
+
+[2,3,4,5,6,4,2,2,7].forEach(x =&gt; s.add(x))
+
+for (let i of s) {
+    console.log(i)
+} // 2 3 4 5 6 7
+
+// Set 不会添加重复的值。</code></pre><p>Set 函数可以接受一个数组（或具有 iterable 接口的其他数据结构）作为参数，用来初始化，如下：</p>
+<pre><code>// 实例一
+const set = new Set([1,2,3,4,5,5])
+[...set] // [1,2,3,4,5]
+
+// 实例二
+const items = new Set([1,2,3,3,4])
+items.size // 4
+
+// 上面代码还展示了数组去重的方法
+
+[...new Set(array)]
+
+// 或者字符串去重
+
+[...new Set(&apos;aabbcc&apos;)].join(&apos;&apos;)</code></pre><p>向 Set 加入值的时候，不会发生类型转换， 所有<strong>5 和 ‘5’</strong>两个不同的值。在Set 内部判断两个值是否不同，使用的算法叫做 ‘Same-value-zero equality’,它和 ‘===’类似，区别在于 向 Set 加入值的时候认为 NaN等于自身，而 ‘===’ 则认为 NaN 不等于自身</p>
+<pre><code>let set = new Set();
+let a = NaN;
+let b = NaN;
+set.add(a);
+set.add(b);
+set // Set {NaN}
+// 如上，只能向Set中添加一个NaN则说明了刚刚的证明</code></pre><blockquote>
+<p>在 Set中两个对象总是不相等的。</p>
+</blockquote>
+<pre><code>let set = new Set();
+set.add({})
+set.size // 1
+
+set.add({})
+set.size // 2</code></pre><h3 id="1-2-Set-实例的属性和方法"><a href="#1-2-Set-实例的属性和方法" class="headerlink" title="1.2 Set 实例的属性和方法"></a>1.2 Set 实例的属性和方法</h3><p>Set 结构的实例有以下属性</p>
+<ul>
+<li>Set.prototype.constructor // 构造函数，默认是Set函数</li>
+<li>Set.prototype.size // 返回 Set实例的成员总数。</li>
+</ul>
+<blockquote>
+<p>Set 实例的方法分为两大类：操作方法和遍历方法</p>
+</blockquote>
+<p>Set.prototype.add(value)    // 添加某个值，返回 Set 结构本身<br>Set.prototype.delete(value)     // 删除某个值，返回一个布尔值，表示是否删除成功<br>Set.prototype.has(value)    // 返回一个布尔值，表示该值是否为Set的成员<br>Set.prototype.clear()   // 清除所有成员，没用返回值</p>
+<pre><code>s.add(1).add(2).add(2);
+// 注意2被加入了两次
+
+s.size // 2
+
+s.has(1) // true
+s.has(2) // true
+s.has(3) // false
+
+s.delete(2);
+s.has(2) // false
+
+// Object 和 Set 如何判断一个键的区别
+
+// 对象
+const p = {
+    &apos;w&apos;: 1,
+    &apos;h&apos;: 2
+}
+if(p[a]){
+    no
+}
+
+// Set
+const p = new Set()
+p.add(&apos;w&apos;)
+p.add(&apos;h&apos;)
+if(p.has(c)){
+    no
+}</code></pre><blockquote>
+<p>Array.from 方法可以将 Set 结构转为数组，如下：</p>
+</blockquote>
+<pre><code>const items = new Set([1,2,3,4,5])
+const array = Array.from(items)
+
+// 数组去重的另外一种方法
+
+function d(a){
+    return Array.from(new Set(a))
+}
+d([1,2,3,3,5])</code></pre><h3 id="1-3-遍历操作"><a href="#1-3-遍历操作" class="headerlink" title="1.3 遍历操作"></a>1.3 遍历操作</h3><blockquote>
+<p>Set 结构的实例有四个遍历方法，用于遍历成员</p>
+</blockquote>
+<ul>
+<li>Set.prototype.keys()    // 返回键名的遍历器</li>
+<li>Set.prototype.values()   // 返回键值的遍历器</li>
+<li>Set.prototype.entries()     // 返回键值对的遍历器</li>
+<li>Set.prototype.forEach()     // 使用回调函数遍历每个成员</li>
+</ul>
+<p><strong>注意</strong>：Set遍历顺序就是插入顺序，这个特性在特定情况非常有用，比如使用Set保存一个回调函数列表，调用时就能保证按照添加顺序调用。</p>
+<h4 id="1-3-1-keys-、values、entries"><a href="#1-3-1-keys-、values、entries" class="headerlink" title="1.3.1 keys()、values、entries()"></a>1.3.1 keys()、values、entries()</h4><blockquote>
+<p>上面三个都是返回遍历器对象，由于Set结构没用键名，只有键值（或者说键名和键值是同一个值），所以以上方法的行为完全一致</p>
+</blockquote>
+<pre><code>let set = new Set([&apos;red&apos;, &apos;green&apos;, &apos;blue&apos;]);
+
+for (let item of set.keys()) {
+  console.log(item);
+}
+// red
+// green
+// blue
+
+for (let item of set.values()) {
+  console.log(item);
+}
+// red
+// green
+// blue
+
+for (let item of set.entries()) {
+  console.log(item);
+}
+// [&quot;red&quot;, &quot;red&quot;]
+// [&quot;green&quot;, &quot;green&quot;]
+// [&quot;blue&quot;, &quot;blue&quot;]</code></pre><p><strong>注意</strong>：Set结构的实例默认可遍历，它的默认遍历器生成函数就是它的 values方法，这样我们就可以省略 values，直接用 for…of循环遍历Set</p>
+<h4 id="1-3-2-forEach"><a href="#1-3-2-forEach" class="headerlink" title="1.3.2 forEach()"></a>1.3.2 forEach()</h4><blockquote>
+<p>Set结构的实例和数组一样，也有 forEach方法，用于对每个成员执行某种操作，没用返回值。forEach 可以用第二个参数表示绑定处理函数内部的 this 对象。</p>
+</blockquote>
+<h4 id="1-3-3-遍历的应用"><a href="#1-3-3-遍历的应用" class="headerlink" title="1.3.3 遍历的应用"></a>1.3.3 遍历的应用</h4><blockquote>
+<p>扩展运算符(…)内部使用 for…of循环样能用于 Set 结构</p>
+</blockquote>
+<pre><code>let arr = [3, 5, 2, 2, 5, 5];
+let unique = [...new Set(arr)];
+// [3, 5, 2]用来去重操作
+
+// 实现 并集、交集、差集
+let a = new Set([1, 2, 3]);
+let b = new Set([4, 3, 2]);
+
+// 并集
+let union = new Set([...a, ...b]);
+// Set {1, 2, 3, 4}
+
+// 交集
+let intersect = new Set([...a].filter(x =&gt; b.has(x)));
+// set {2, 3}
+
+// 差集
+let difference = new Set([...a].filter(x =&gt; !b.has(x)));
+// Set {1}</code></pre><blockquote>
+<p>如果想在遍历操作中同步改变原理的Set结构，只能利用原有的Set结构映射一个新的结构，然后赋值给原来的Set,另一个就是通过 Array.from方法。</p>
+</blockquote>
+<pre><code>// 方法一
+let set = new Set([1, 2, 3]);
+set = new Set([...set].map(val =&gt; val * 2));
+// set的值是2, 4, 6
+
+// 方法二
+let set = new Set([1, 2, 3]);
+set = new Set(Array.from(set, val =&gt; val * 2));
+// set的值是2, 4, 6</code></pre><h2 id="2-WeakSet"><a href="#2-WeakSet" class="headerlink" title="2. WeakSet"></a>2. WeakSet</h2><blockquote>
+<p>WeakSet 结构与Set类似，也不是重复的值的集合，但是和Set有两个区别，第一个它的成员只能为对象，另一个它的对象都是弱印象，即垃圾回收机制不考虑 WeakSet对该对象的引用，通俗的讲就是，如果该对象没用在其他对象中被引用，那么该对象就会被回收，不会考虑这个对象是否在 WeakSet中。</p>
+</blockquote>
+<p>依赖于垃圾回收进制依赖引用计数，如果一个值的引用次数不为0，那么就不会被回收，但是有的时候，结束使用该值后，会忘记取消引用，就会导致内存无法释放从而导致内存泄漏。但是 WeakSet里面的而引用不会计入垃圾回收机制，所以适合存放临时的对象，一旦外部消失，那么WeakSet里面的引用就会自动消失。</p>
+<p><strong>基于以上的特点，WeakSet 成员不适合被引用，所以 WeakSet无法被遍历。</strong></p>
+<h3 id="2-1-语法"><a href="#2-1-语法" class="headerlink" title="2.1 语法"></a>2.1 语法</h3><blockquote>
+<p>它也是一个构造函数，可以通过  new 来创建</p>
+</blockquote>
+<pre><code>const ws = new WeakSet()
+
+// 做为构造函数，WeakSet
+
+可以接受一个数组或类似数组的对象作为参数，该数组的所有成员，
+都会自动成为 WeakSet实例对象的成员。</code></pre><p><strong>注意</strong>：只能是数组的成员成为WeakSet的成员，而不是 a 数组本身，这就意味着，数组的成员只能是对象。</p>
+<h3 id="2-2-WeakSet的方法"><a href="#2-2-WeakSet的方法" class="headerlink" title="2.2 WeakSet的方法"></a>2.2 WeakSet的方法</h3><ol>
+<li>WeakSet.prototype.add(value): 向 WeakSet实例添加一个新成员。</li>
+<li>WeakSet.prototype.delete(value): 清除 WeakSet实例的指定成员。</li>
+<li>WeakSet.prototype.has(value): 返回一个布尔值，表示某个值是否存在 WeakSet实例中。 </li>
+</ol>
+<p><strong>注意</strong>： WeakSet 同样没有size 属性，不能遍历其成员。</p>
+<h2 id="3-Map"><a href="#3-Map" class="headerlink" title="3. Map"></a>3. Map</h2><blockquote>
+<p>JavaScript的对象，本质上是键值对的集合，但是传统上只能字符串当做键，这给他带来了很大的限制。Map的出现，就是让各种类型的值都可以当作键。Map提供的是  “值-值”的对应。</p>
+</blockquote>
+<pre><code>const map = new Map([
+  [&apos;name&apos;, &apos;张三&apos;],
+  [&apos;title&apos;, &apos;Author&apos;]
+]);
+
+map.size // 2
+map.has(&apos;name&apos;) // true
+map.get(&apos;name&apos;) // &quot;张三&quot;
+map.has(&apos;title&apos;) // true
+map.get(&apos;title&apos;) // &quot;Author&quot;</code></pre><p><strong>注意</strong>：Set 和 Map 都可以用来生成新的Map，如果对同一个键多次赋值，那么前面的将被后面的值覆盖。另外只有对同一个对象的引用，Map结构才将其视为同一个键。另外同样的两个实例，在Map中将被视为两个键。</p>
+<p><strong>总结：</strong>综上所述，Map的键实际上跟内存地址绑定的，只要内存地址不一样，就视为两个键。这样就可以解决同名属性碰撞的问题。如果我们扩展别人库的时候，如果使用对象最为键名，就不用担心自己的属性与原作者属性冲突。 </p>
+<p>如果Map的键是一个简单类型的数值，则只要两个值严格相等，Map将其视为一个键，0 和 -0 是一个键，true 和 ‘true’则是两个不同的键， undefined 和 null 也是两个不同的键， 另外 NaN 在Map 中视为同一个键</p>
+<h3 id="3-1-Map的属性和操作方法"><a href="#3-1-Map的属性和操作方法" class="headerlink" title="3.1 Map的属性和操作方法"></a>3.1 Map的属性和操作方法</h3><h5 id="1-size-属性"><a href="#1-size-属性" class="headerlink" title="1. size 属性"></a>1. size 属性</h5><blockquote>
+<p>size 属性返回Map结构的成员总数</p>
+</blockquote>
+<pre><code>const map = new Map()
+map.set(&apos;foo&apos;, ture)
+map.set(&apos;bar&apos;, false)
+
+map.size // 2</code></pre><h5 id="2-Map-prototype-set-key-value"><a href="#2-Map-prototype-set-key-value" class="headerlink" title="2. Map.prototype.set(key, value)"></a>2. Map.prototype.set(key, value)</h5><blockquote>
+<p>set 方法设置键名 key 对应的键值为 value，然后返回整个 Map 结构。如果 key 已经有值，则键值会被更新，否则就新生成该键。</p>
+</blockquote>
+<pre><code>const m = new Map()
+m.set(&apos;e&apos;, 6)   // 键值是字符串
+m.set(2, &apos;s&apos;)   // 键是数值
+m.set(undefined, &apos;n&apos;)   // 键是 undefined
+
+// set方法返回的是当前的Map对象，因此可以采用链式写法
+
+let map = new Map()
+.set(1, &apos;a&apos;)
+.set(2, &apos;b&apos;)
+.set(3, &apos;c&apos;)</code></pre><h5 id="3-Map-prototype-get-key"><a href="#3-Map-prototype-get-key" class="headerlink" title="3. Map.prototype.get(key)"></a>3. Map.prototype.get(key)</h5><blockquote>
+<p>get 方法读取 key 对应的键值，如果找不到key就返回 undefined</p>
+</blockquote>
+<pre><code>const m = new Map();
+
+m.set(&apos;c&apos;,  124)
+m.get(&apos;c&apos;)  // 124</code></pre><h5 id="4-Map-prototype-has-key"><a href="#4-Map-prototype-has-key" class="headerlink" title="4. Map.prototype.has(key)"></a>4. Map.prototype.has(key)</h5><blockquote>
+<p>返回一个布尔值，用来表示某个键是否在当前 Map 对象中</p>
+</blockquote>
+<pre><code>let map = new Map()
+.set(1, &apos;a&apos;)
+.set(2, &apos;b&apos;)
+.set(3, &apos;c&apos;)
+
+map.has(1)  // true
+map.has(4)  // false</code></pre><h5 id="5-Map-prototype-delete-key"><a href="#5-Map-prototype-delete-key" class="headerlink" title="5. Map.prototype.delete(key)"></a>5. Map.prototype.delete(key)</h5><blockquote>
+<p>delete方法删除某个键，返回 true,如果删除失败，则返回 false </p>
+</blockquote>
+<pre><code>let map = new Map()
+    .set(1, &apos;a&apos;)
+    .set(2, &apos;b&apos;)
+    .set(3, &apos;c&apos;)
+
+map.delete(1)   // true
+map.delete(4)   // false</code></pre><h5 id="6-Map-prototype-clear"><a href="#6-Map-prototype-clear" class="headerlink" title="6. Map.prototype.clear()"></a>6. Map.prototype.clear()</h5><blockquote>
+<p> clear 方法清除所有成员，没有返回值</p>
+</blockquote>
+<pre><code>let map = new Map()
+    .set(1, &apos;a&apos;)
+    .set(2, &apos;b&apos;)
+    .set(3, &apos;c&apos;)
+
+map.size    // 3
+map.clear() 
+map.size    // 0</code></pre><h3 id="3-2-遍历方法"><a href="#3-2-遍历方法" class="headerlink" title="3.2 遍历方法"></a>3.2 遍历方法</h3><ol>
+<li>Map.prototype.keys()： 返回键名的遍历器</li>
+<li>Map.prototype.values(): 返回键值的遍历器</li>
+<li>Map.prototype.entries(): 返回所有成员的遍历器</li>
+<li>Map.prototype.forEach(): 遍历Map的所有成员</li>
+</ol>
+<p><strong>注意：Map的遍历顺序就是插入顺序。</strong></p>
+<p>Map 结构转为数组结构，比较快速的方法是使用扩展运算符（…），另外Map可以通过 forEach 可以实现遍历。</p>
+<pre><code>const map = new Map([
+  [1, &apos;one&apos;],
+  [2, &apos;two&apos;],
+  [3, &apos;three&apos;],
+]);
+
+[...map.keys()]
+// [1, 2, 3]
+
+[...map.values()]
+// [&apos;one&apos;, &apos;two&apos;, &apos;three&apos;]
+
+[...map.entries()]
+// [[1,&apos;one&apos;], [2, &apos;two&apos;], [3, &apos;three&apos;]]
+
+[...map]
+// [[1,&apos;one&apos;], [2, &apos;two&apos;], [3, &apos;three&apos;]]</code></pre><h3 id="3-3-与其他数据结构的互相转换"><a href="#3-3-与其他数据结构的互相转换" class="headerlink" title="3.3 与其他数据结构的互相转换"></a>3.3 与其他数据结构的互相转换</h3><h5 id="1-Map转为数组"><a href="#1-Map转为数组" class="headerlink" title="1. Map转为数组"></a>1. Map转为数组</h5><blockquote>
+<p>通过扩展运算符(…)</p>
+</blockquote>
+<h5 id="2-数组转为Map"><a href="#2-数组转为Map" class="headerlink" title="2. 数组转为Map"></a>2. 数组转为Map</h5><blockquote>
+<p>将数组 传入 Map构造函数，就可以转为Map</p>
+</blockquote>
+<pre><code>new Map([
+  [true, 7],
+  [{foo: 3}, [&apos;abc&apos;]]
+])</code></pre><h5 id="3-Map-转为对象"><a href="#3-Map-转为对象" class="headerlink" title="3. Map 转为对象"></a>3. Map 转为对象</h5><blockquote>
+<p>如果Map的键都是字符串，它可以无损地转为对象，如果有非字符串的键名，那么这个键名会被转成字符串，再作为对象的键名。</p>
+</blockquote>
+<h5 id="4-对象转为-Map"><a href="#4-对象转为-Map" class="headerlink" title="4. 对象转为 Map"></a>4. 对象转为 Map</h5><h5 id="5-Map-转为-JSON"><a href="#5-Map-转为-JSON" class="headerlink" title="5. Map 转为 JSON"></a>5. Map 转为 JSON</h5><blockquote>
+<p>Map转为JSON要区分两种情况。一种情况是，Map 的键名都是字符串，这时可以选择转为对象JSON。另外一种情况是，Map 的键名有非字符串，这时可以选择转为数组JSON</p>
+</blockquote>
+<h5 id="6-JSON-转为-Map"><a href="#6-JSON-转为-Map" class="headerlink" title="6. JSON 转为 Map"></a>6. JSON 转为 Map</h5><blockquote>
+<p>JSON转为Map,正常情况下，所有键名都是字符串。但是，有一种特殊情况，整个JSON就是一个数组，且每个数组成员本身，又是一个有两个成员的数组。这时，它可以一一对应地转为Map.</p>
+</blockquote>
+<h2 id="4-WeakMap"><a href="#4-WeakMap" class="headerlink" title="4. WeakMap"></a>4. WeakMap</h2><blockquote>
+<p>WeakMap 结构与 Map 结构类似，也是用于生成键值对的集合</p>
+</blockquote>
+<p>WeakMap 和 Map 的区别</p>
+<pre><code>1. WeakMap只接受对象作为键名(null除外)，不接受其他类型的值作为键名。
+2. WeakMap的键名所指向的对象，不计入垃圾回收机制。</code></pre><p>如果 我们想在某个对象上面存放以未数据，但是会形成对于这个对象的引用，如果我们不需要这两个对象，就必须手动删除，否则垃圾回收机制就不会释放占用的内存。</p>
+<p>WeakMap 就是为了解决这个问题而诞生，它的键名所引用的对象都是弱引用，即垃圾回收机制不将该引用考虑在内。因此，只要所引用的对象的其他引用被清除，垃圾回收机制就会释放该对象所占用的内存，也就是说一旦不再需要，WeakMap里面的键名对象和所对应的键值对会自动消失，不用手动删除。</p>
+<p>注意： WeakMap弱引用的只是键名，而不是键值。键值依然是正常引用。</p>
+<h3 id="4-1-WeakMap-的语法"><a href="#4-1-WeakMap-的语法" class="headerlink" title="4.1 WeakMap 的语法"></a>4.1 WeakMap 的语法</h3><blockquote>
+<p>WeakMap 与 Map 在 API的区别主要有两个，一是没有遍历操作（没有keys，values，entries）,也没有size属性。因为没有办法列出所有键名，某个键名是否存在完全不可预测，跟垃圾回收机制是否运行相关。这一刻可以取到键名，下一个垃圾回收机制突然运行了，这个键名就没有了。为了防止不确定性，就统一规定不能取到键名。二是无法情况，即不支持 clear 方法。因此 WeakMap 有四个方法： get()、set()、has()、delete()</p>
+</blockquote>
+<pre><code>const wm = new WeakMap();
+
+// size、forEach、clear 方法都不存在
+wm.size // undefined
+wm.forEach // undefined
+wm.clear // undefined</code></pre><h3 id="4-2-WeakMap的用途"><a href="#4-2-WeakMap的用途" class="headerlink" title="4.2 WeakMap的用途"></a>4.2 WeakMap的用途</h3><ol>
+<li>应用于 DOM 节点作为键名</li>
+<li>WeakMap 的另一个用处是部署私有属性</li>
+<li>就是防止内存泄漏的风险</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2019/6/18/16b69606d7c1155c?w=258&h=258&f=jpeg&s=26659" alt></p>
+<p align="center" style="font-size:30px;color:#1c8a95"> 欢迎关注 公众号【小夭同学】 </p>
+
+
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-08-11T05:16:10.000Z" itemprop="dateUpdated">2019-08-11 13:16:10</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Map/">Map</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Set/">Set</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/08/05/ES6入门之Set-和-Map.html&title=《ES6入门之Set 和 Map》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FmMNnc1qSvl-_XnqdNzxBsmTfyNo" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/08/05/ES6入门之Set-和-Map.html&title=《ES6入门之Set 和 Map》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/08/05/ES6入门之Set-和-Map.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之Set 和 Map》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/08/05/ES6入门之Set-和-Map.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/08/05/ES6入门之Set-和-Map.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/08/07/常用的JS正则校验表达式.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">常用的JS正则校验表达式</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/07/16/重学JavaScript之变量、作用域和内存问题.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">重学JavaScript之变量、作用域和内存问题</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/08/05/ES6入门之Set-和-Map.html&title=《ES6入门之Set 和 Map》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FmMNnc1qSvl-_XnqdNzxBsmTfyNo" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/08/05/ES6入门之Set-和-Map.html&title=《ES6入门之Set 和 Map》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/08/05/ES6入门之Set-和-Map.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之Set 和 Map》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/08/05/ES6入门之Set-和-Map.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/08/05/ES6入门之Set-和-Map.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3aQW7DMAwEwP7/0ynQU4HCzi7lFIk8OgVtYnN0IEhRX1/xevys35+P/pL89+j559+5YGFgYHws43G6kkAT9t/Psy04fDsGBsYNGHkoSaLM027yq/PYMDAwMPJwj5JpFMRo+zAwMDDyVNi2nedsDAwMjJUmNvn+64rFy3pxDAyMD2TMBgP/8/nl8w0MDIy3ZzxGa5ZAk7JvGA8GBsbWjPxYLS/a2sTablDUi2NgYGzEmF2byMcAybFavlmHm4KBgbE1ox0rnr9gvT2eUTEwMO7AeFy6kiDaKxfRVQwMDIytGUmaSxrR110pq0eYGBgYGzFmqbOtOpPmth0bDG+LYGBgfCwjP9jKA8qvTVxQbmJgYGzNaIcB68m03aY26WNgYOzHmB2Eta3m7LJF0VpjYGBszUiKuTzhzn7bPqGoczEwMLZgrAwXV9rLlTHDk1SLgYGxHWN20JaXg+3B2RCAgYGxNSNPlCv71B7V1e0xBgbGbRhJIs6veSXH+m1yP3wLBgbG1ozZ8Vn90NHIEwMDAyNPneflY/L6WejFEzAwMLZmzAaKeWs6Kz2TlI2BgXEfxuxYf9agrg9En9wWwcDA2JTRprmrAlppYpcWBgbGxzJm1yPaEWZ7JNe2zRgYGHdgtO3orGTMi85hF46BgYFRXh1rK7c2KgwMDIx8DJAn0PZwrWikMTAwbsBom9j2aedbc8FwFAMDY2vGbDAwC/GqsC4bYWJgYLw74xsmGBQZJOf1NAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

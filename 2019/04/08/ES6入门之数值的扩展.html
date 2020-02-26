@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>ES6入门之数值的扩展 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="ECMAScript6">
+    <meta name="description" content="1. 二进制和八进制表示法 ES6提供了二进制和八进制数值的新写法，分别用前缀 0b(0B) 和 0o(0O)表示 如下：  0b111110111 === 503 // true 0o767 === 503 // true2. Number.isFinite(), Number.isNaN() ES6在number上提供了 Number.isFinite(), Number.isNaN()两个方">
+<meta name="keywords" content="ECMAScript6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6入门之数值的扩展">
+<meta property="og:url" content="https://toc.lieme.cn/2019/04/08/ES6入门之数值的扩展.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1. 二进制和八进制表示法 ES6提供了二进制和八进制数值的新写法，分别用前缀 0b(0B) 和 0o(0O)表示 如下：  0b111110111 === 503 // true 0o767 === 503 // true2. Number.isFinite(), Number.isNaN() ES6在number上提供了 Number.isFinite(), Number.isNaN()两个方">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2020-02-03T08:37:38.146Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6入门之数值的扩展">
+<meta name="twitter:description" content="1. 二进制和八进制表示法 ES6提供了二进制和八进制数值的新写法，分别用前缀 0b(0B) 和 0o(0O)表示 如下：  0b111110111 === 503 // true 0o767 === 503 // true2. Number.isFinite(), Number.isNaN() ES6在number上提供了 Number.isFinite(), Number.isNaN()两个方">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">ES6入门之数值的扩展</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">ES6入门之数值的扩展</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-08T13:35:00.000Z" itemprop="datePublished" class="page-time">
+  2019-04-08
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-二进制和八进制表示法"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 二进制和八进制表示法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-Number-isFinite-Number-isNaN"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. Number.isFinite(), Number.isNaN()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-Number-parseInt-Number-parseFloat"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. Number.parseInt(), Number.parseFloat()</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-Number-isInteger"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">4. Number.isInteger()</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-Number-EPSILON"><span class="post-toc-number">4.</span> <span class="post-toc-text">5. Number.EPSILON</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-安全整数和-Number-isSafeInteger"><span class="post-toc-number">5.</span> <span class="post-toc-text">6. 安全整数和 Number.isSafeInteger()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-Math-对象的扩展"><span class="post-toc-number">6.</span> <span class="post-toc-text">7. Math 对象的扩展</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#Math-trunc"><span class="post-toc-number">6.0.0.1.</span> <span class="post-toc-text">Math.trunc()</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#Math-sign"><span class="post-toc-number">6.0.0.2.</span> <span class="post-toc-text">Math.sign()</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#Math-cbrt"><span class="post-toc-number">6.0.0.3.</span> <span class="post-toc-text">Math.cbrt()</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#Math-clz32"><span class="post-toc-number">6.0.0.4.</span> <span class="post-toc-text">Math.clz32()</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#Math-imul"><span class="post-toc-number">6.0.0.5.</span> <span class="post-toc-text">Math.imul()</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#Math-fround"><span class="post-toc-number">6.0.0.6.</span> <span class="post-toc-text">Math.fround()</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#Math-hypot"><span class="post-toc-number">6.0.0.7.</span> <span class="post-toc-text">Math.hypot()</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-对数方法"><span class="post-toc-number">7.</span> <span class="post-toc-text">8. 对数方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#8-1-Math-expm1"><span class="post-toc-number">7.0.0.1.</span> <span class="post-toc-text">8.1 Math.expm1()</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#8-2-Math-log1p"><span class="post-toc-number">7.0.0.2.</span> <span class="post-toc-text">8.2 Math.log1p()</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#8-3-Math-log10"><span class="post-toc-number">7.0.0.3.</span> <span class="post-toc-text">8.3 Math.log10()</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#8-4-Math-log2"><span class="post-toc-number">7.0.0.4.</span> <span class="post-toc-text">8.4 Math.log2()</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-双曲函数方法"><span class="post-toc-number">8.</span> <span class="post-toc-text">9. 双曲函数方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-指数运算"><span class="post-toc-number">9.</span> <span class="post-toc-text">10. 指数运算</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-ES6入门之数值的扩展"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">ES6入门之数值的扩展</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-08 21:35:00" datetime="2019-04-08T13:35:00.000Z"  itemprop="datePublished">2019-04-08</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        1,298
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        6 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h3 id="1-二进制和八进制表示法"><a href="#1-二进制和八进制表示法" class="headerlink" title="1. 二进制和八进制表示法"></a>1. 二进制和八进制表示法</h3><blockquote>
+<p>ES6提供了二进制和八进制数值的新写法，分别用前缀 0b(0B) 和 0o(0O)表示 如下：</p>
+</blockquote>
+<pre><code>0b111110111 === 503 // true
+0o767 === 503 // true</code></pre><h3 id="2-Number-isFinite-Number-isNaN"><a href="#2-Number-isFinite-Number-isNaN" class="headerlink" title="2. Number.isFinite(), Number.isNaN()"></a>2. Number.isFinite(), Number.isNaN()</h3><blockquote>
+<p>ES6在number上提供了 Number.isFinite(), Number.isNaN()两个方法，前者用来检查数值是否为有限的，后者用来检查一个值是否为NAN，如下：</p>
+</blockquote>
+<pre><code>Number.isFinite(15); // true
+Number.isFinite(0.8); // true
+Number.isFinite(NaN); // false
+Number.isFinite(Infinity); // false
+Number.isFinite(-Infinity); // false
+Number.isFinite(&apos;foo&apos;); // false
+Number.isFinite(&apos;15&apos;); // false
+Number.isFinite(true); // false
+
+参数类型如果不是数字就返回false
+
+
+Number.isNaN(NaN) // true
+Number.isNaN(15) // false
+Number.isNaN(&apos;15&apos;) // false
+Number.isNaN(true) // false
+Number.isNaN(9/NaN) // true
+Number.isNaN(&apos;true&apos; / 0) // true
+Number.isNaN(&apos;true&apos; / &apos;true&apos;) // true</code></pre><p>与传统的isFinite() 和 isNaN() 的区别在于，传统方法优先调用Number()将非数值的值转为数值，在进行判断。而Number.isFinite()对于非数值一律返回false, Number.isNaN()只有对于NaN才返回true，非NaN一律返回false。</p>
+<h3 id="3-Number-parseInt-Number-parseFloat"><a href="#3-Number-parseInt-Number-parseFloat" class="headerlink" title="3. Number.parseInt(), Number.parseFloat()"></a>3. Number.parseInt(), Number.parseFloat()</h3><blockquote>
+<p>ES6 将全局方法parseInt()和parseFloat()，移植到Number对象上面，行为完全保持不变。减少全局性方法，使得语言逐渐模块化。如下：</p>
+</blockquote>
+<pre><code>// ES5的写法
+parseInt(&apos;12.34&apos;) // 12
+parseFloat(&apos;123.45#&apos;) // 123.45
+
+// ES6的写法
+Number.parseInt(&apos;12.34&apos;) // 12
+Number.parseFloat(&apos;123.45#&apos;) // 123.45</code></pre><h4 id="4-Number-isInteger"><a href="#4-Number-isInteger" class="headerlink" title="4. Number.isInteger()"></a>4. Number.isInteger()</h4><blockquote>
+<p>Number.isInteger()用来判断一个数值是否为整数，如下：</p>
+</blockquote>
+<pre><code>Number.isInteger(25) // true
+Number.isInteger(25.1) // false
+Number.isInteger(25.0) // true 整数和浮点数采用相同的存储方式</code></pre><p>但是Number.isInteger() 对于数据精度要求比较高的情况不能很好的判断，不建议使用。</p>
+<h3 id="5-Number-EPSILON"><a href="#5-Number-EPSILON" class="headerlink" title="5. Number.EPSILON"></a>5. Number.EPSILON</h3><blockquote>
+<p>Number.EPSILON 用来表示1 与 大于1的最小浮点数之间的差，实际上就是JavaScript能够表示的最小精度。</p>
+</blockquote>
+<pre><code>function withinErrorMargin (left, right) {
+  return Math.abs(left - right) &lt; Number.EPSILON * Math.pow(2, 2);
+}
+
+0.1 + 0.2 === 0.3 // false
+withinErrorMargin(0.1 + 0.2, 0.3) // true
+
+1.1 + 1.3 === 2.4 // false
+withinErrorMargin(1.1 + 1.3, 2.4) // true</code></pre><h3 id="6-安全整数和-Number-isSafeInteger"><a href="#6-安全整数和-Number-isSafeInteger" class="headerlink" title="6. 安全整数和 Number.isSafeInteger()"></a>6. 安全整数和 Number.isSafeInteger()</h3><blockquote>
+<p>JavaScript能够精准表示的整数范围在 -2^53到2^53之间（不含两个端点），ES6引入了Number.MAX_SAFE_INTEGER和Number.MIN_SAFE_INTEGER这两个常量，用来表示这个范围的上下限。而Number.isSafeInteger() 就是判断一个整数是否在这个范围之内。</p>
+</blockquote>
+<h3 id="7-Math-对象的扩展"><a href="#7-Math-对象的扩展" class="headerlink" title="7. Math 对象的扩展"></a>7. Math 对象的扩展</h3><blockquote>
+<p>ES6 在 Math 对象上新增了 17 个与数学相关的方法。所有这些方法都是静态方法，只能在 Math 对象上调用。</p>
+</blockquote>
+<hr>
+<h6 id="Math-trunc"><a href="#Math-trunc" class="headerlink" title="Math.trunc()"></a>Math.trunc()</h6><blockquote>
+<p>用于去除一个数的小树部分，返回整数部分。对于非数值，则用Number方法将其转换为数值，对于空值和无法截取整数的值，返回 NaN。如下：</p>
+</blockquote>
+<pre><code>Math.trunc(4.1) // 4
+Math.trunc(4.9) // 4
+Math.trunc(-4.1) // -4
+Math.trunc(-4.9) // -4
+Math.trunc(-0.1234) // -0
+
+// 非数值
+
+Math.trunc(&apos;123.456&apos;) // 123
+Math.trunc(true) //1
+Math.trunc(false) // 0
+Math.trunc(null) // 0
+
+// 空值和无法截取的值
+
+Math.trunc(NaN);      // NaN
+Math.trunc(&apos;foo&apos;);    // NaN
+Math.trunc();         // NaN
+Math.trunc(undefined) // NaN</code></pre><h6 id="Math-sign"><a href="#Math-sign" class="headerlink" title="Math.sign()"></a>Math.sign()</h6><blockquote>
+<p>用来判断一个数是否为正数、负数、还是零，对于非数值，则将其转换为数值。</p>
+</blockquote>
+<pre><code>// 返回五种结果：
+
+-     参数为正数，返回+1；
+-     参数为负数，返回-1；
+-     参数为 0，返回0；
+-     参数为-0，返回-0;
+-     其他值，返回NaN。
+
+Math.sign(-5) // -1
+Math.sign(5) // +1
+Math.sign(0) // +0
+Math.sign(-0) // -0
+Math.sign(NaN) // NaN
+
+Math.sign(&apos;&apos;)  // 0
+Math.sign(true)  // +1
+Math.sign(false)  // 0
+Math.sign(null)  // 0
+Math.sign(&apos;9&apos;)  // +1
+Math.sign(&apos;foo&apos;)  // NaN
+Math.sign()  // NaN
+Math.sign(undefined)  // NaN</code></pre><h6 id="Math-cbrt"><a href="#Math-cbrt" class="headerlink" title="Math.cbrt()"></a>Math.cbrt()</h6><blockquote>
+<p>用来计算一个数的立方根，与其他相同如果不是数值就先转换为数值。</p>
+</blockquote>
+<pre><code>Math.cbrt(-1) // -1
+Math.cbrt(0)  // 0
+Math.cbrt(1)  // 1
+Math.cbrt(2)  // 1.2599210498948734</code></pre><h6 id="Math-clz32"><a href="#Math-clz32" class="headerlink" title="Math.clz32()"></a>Math.clz32()</h6><blockquote>
+<p>用来将参数转为32位无符号整数的形式，然后这个32位值里面有多个前导0</p>
+</blockquote>
+<h6 id="Math-imul"><a href="#Math-imul" class="headerlink" title="Math.imul()"></a>Math.imul()</h6><blockquote>
+<p>用来返回两个数以32位带符号整数形式相乘的结果，返回的也是一个32位的带符号的整数。</p>
+</blockquote>
+<h6 id="Math-fround"><a href="#Math-fround" class="headerlink" title="Math.fround()"></a>Math.fround()</h6><blockquote>
+<p>返回一个32位单精度浮点数形式</p>
+</blockquote>
+<h6 id="Math-hypot"><a href="#Math-hypot" class="headerlink" title="Math.hypot()"></a>Math.hypot()</h6><blockquote>
+<p>返回所有参数的平方和的平方根</p>
+</blockquote>
+<h3 id="8-对数方法"><a href="#8-对数方法" class="headerlink" title="8. 对数方法"></a>8. 对数方法</h3><h6 id="8-1-Math-expm1"><a href="#8-1-Math-expm1" class="headerlink" title="8.1 Math.expm1()"></a>8.1 Math.expm1()</h6><blockquote>
+<p>Math.expm1(x)返回 ex - 1，即Math.exp(x) - 1。</p>
+</blockquote>
+<h6 id="8-2-Math-log1p"><a href="#8-2-Math-log1p" class="headerlink" title="8.2 Math.log1p()"></a>8.2 Math.log1p()</h6><blockquote>
+<p>Math.log1p(x)方法返回1 + x的自然对数，即Math.log(1 + x)。如果x小于-1，返回NaN。</p>
+</blockquote>
+<h6 id="8-3-Math-log10"><a href="#8-3-Math-log10" class="headerlink" title="8.3 Math.log10()"></a>8.3 Math.log10()</h6><blockquote>
+<p>Math.log10(x)返回以 10 为底的x的对数。如果x小于 0，则返回 NaN。</p>
+</blockquote>
+<h6 id="8-4-Math-log2"><a href="#8-4-Math-log2" class="headerlink" title="8.4 Math.log2()"></a>8.4 Math.log2()</h6><blockquote>
+<p>Math.log2(x)返回以 2 为底的x的对数。如果x小于 0，则返回 NaN。</p>
+</blockquote>
+<h3 id="9-双曲函数方法"><a href="#9-双曲函数方法" class="headerlink" title="9. 双曲函数方法"></a>9. 双曲函数方法</h3><blockquote>
+<p>ES6 新增了 6 个双曲函数方法。</p>
+</blockquote>
+<pre><code>Math.sinh(x) 返回x的双曲正弦（hyperbolic sine）
+Math.cosh(x) 返回x的双曲余弦（hyperbolic cosine）
+Math.tanh(x) 返回x的双曲正切（hyperbolic tangent）
+Math.asinh(x) 返回x的反双曲正弦（inverse hyperbolic sine）
+Math.acosh(x) 返回x的反双曲余弦（inverse hyperbolic cosine）
+Math.atanh(x) 返回x的反双曲正切（inverse hyperbolic tangent）</code></pre><h3 id="10-指数运算"><a href="#10-指数运算" class="headerlink" title="10. 指数运算"></a>10. 指数运算</h3><blockquote>
+<p>ES6 新增了指数运算符（**），而且是从右往左计算。</p>
+</blockquote>
+<pre><code>2 ** 3  // 16
+2 ** 2 ** 3  === 2 ** (2 ** 3)  //  256 
+
+let a = 1.5  a** = 2  ===  a = a*a
+let b =4     b** = 3  ===  b = b* b* b</code></pre><p> 和 Math.pow 在运算结果的最后一位数字有差异，特别大的运算结果有细微的差异</p>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-02-03T08:37:38.146Z" itemprop="dateUpdated">2020-02-03 16:37:38</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/04/08/ES6入门之数值的扩展.html&title=《ES6入门之数值的扩展》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/04/08/ES6入门之数值的扩展.html&title=《ES6入门之数值的扩展》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/04/08/ES6入门之数值的扩展.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之数值的扩展》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/04/08/ES6入门之数值的扩展.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/04/08/ES6入门之数值的扩展.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/04/09/CSS函数.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">CSS函数</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/04/05/Python基础教程之字符串和编码.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Python基础教程之字符串和编码</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/04/08/ES6入门之数值的扩展.html&title=《ES6入门之数值的扩展》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/04/08/ES6入门之数值的扩展.html&title=《ES6入门之数值的扩展》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/04/08/ES6入门之数值的扩展.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之数值的扩展》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/04/08/ES6入门之数值的扩展.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/04/08/ES6入门之数值的扩展.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvklEQVR42u3aQW4bMRAEQP//0841RqBV9wxpKEDtSbAkLmsNkFTPfH3F1/df16u//3sln3n1reTuxy48PDy8xdRPTfF5ovlfnl9H98XDw8O7xnueyqvXz8v3qQ3g1cjJ48PDw8P7BF6+3CeL/ubB4eHh4f1fvDyYyMGvxmk3Jzw8PLzf4SWTSxb32VbRBhlXshY8PDy8LgeIqkif8/pKfQ8PDw9vXVV/XnBnz3ITfNSzxcPDw7vAyyfaHnZnIUUbf0TzxMPDwzvKO1XOz6PbTUNVXUjDw8PD+0VeXqrPF+5k/Nl9izACDw8P70J0m9x404zVxsRJUa24Ix4eHt6a14a2s8aCWeG/fYjDngg8PDy8EW+zk7TH4s2k803rRxiBh4eHd5Q3C2TzYtUp6qoIh4eHh3eUNzva5pFEe0xvQ966AIaHh4e35h372V/C8sB38w/Aw8PDu81rbzA7CrdNA+328+YXAx4eHt5RXl62T5b7trSWbxj5yHh4eHg3eG300DYZzILdfRsBHh4e3j1eG7luivr7QlqymUWbBB4eHt6aN4sb8sNusXzHTVfJI8bDw8O7x5uFre3OM2sU2ITFeHh4ePd4mxs/bxKz5oM28K23BDw8PLzFmHViEUe9szpU3RbwPBoeHh7eBV4bLrQl/Fm0kRfh6l8MeHh4eId47RDR01os7rPtpA5w8fDw8I7y9u2kbSPs5rG+uQseHh7eNV4yobYoNWsOaJsM3nweDw8P7yjvu7za4/UsF9l868drPDw8vAu82SLeNhO0DyLZqGblNDw8PLxTvLyUNTt251tO+27ReoWHh4d3gXeqnF/HrOvrzZh4eHh4H8Brz+kz/P6YjoeHh/dpvDy2yDH7A/qxjQEPDw8v4M2CgFlYkLw7aylYZS14eHh4MW/2g789ZOfFs+fxky0EDw8P7xrvD9dSGDx6e2xtAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

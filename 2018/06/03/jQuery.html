@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>Jquery基础知识 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="javascript,面试,jquery">
+    <meta name="description" content="你觉得jQuery或zepto源码有哪些写的好的地方  jquery源码封装在一个匿名函数的自执行环境中，有助于防止变量的全局污染，然后通过传入window对象参数，可以使window对象作为局部变量使用，好处是当jquery中访问window对象的时候，就不用将作用域链退回到顶层作用域了，从而可以更快的访问window对象。同样，传入undefined参数，可以缩短查找undefined时的作用">
+<meta name="keywords" content="javascript,面试,jquery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jquery基础知识">
+<meta property="og:url" content="https://toc.lieme.cn/2018/06/03/jQuery.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="你觉得jQuery或zepto源码有哪些写的好的地方  jquery源码封装在一个匿名函数的自执行环境中，有助于防止变量的全局污染，然后通过传入window对象参数，可以使window对象作为局部变量使用，好处是当jquery中访问window对象的时候，就不用将作用域链退回到顶层作用域了，从而可以更快的访问window对象。同样，传入undefined参数，可以缩短查找undefined时的作用">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2020-01-20T03:40:20.500Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jquery基础知识">
+<meta name="twitter:description" content="你觉得jQuery或zepto源码有哪些写的好的地方  jquery源码封装在一个匿名函数的自执行环境中，有助于防止变量的全局污染，然后通过传入window对象参数，可以使window对象作为局部变量使用，好处是当jquery中访问window对象的时候，就不用将作用域链退回到顶层作用域了，从而可以更快的访问window对象。同样，传入undefined参数，可以缩短查找undefined时的作用">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">Jquery基础知识</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">Jquery基础知识</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2018-06-03T03:02:27.000Z" itemprop="datePublished" class="page-time">
+  2018-06-03
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-jQuery"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Jquery基础知识</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-06-03 11:02:27" datetime="2018-06-03T03:02:27.000Z"  itemprop="datePublished">2018-06-03</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        1,704
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        7 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <p><strong>你觉得jQuery或zepto源码有哪些写的好的地方</strong></p>
+<ul>
+<li>jquery源码封装在一个匿名函数的自执行环境中，有助于防止变量的全局污染，然后通过传入window对象参数，可以使window对象作为局部变量使用，好处是当jquery中访问window对象的时候，就不用将作用域链退回到顶层作用域了，从而可以更快的访问window对象。同样，传入undefined参数，可以缩短查找undefined时的作用域链</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> <span class="built_in">window</span>, <span class="literal">undefined</span> </span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//用一个函数域包起来，就是所谓的沙箱</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//在这里边var定义的变量，属于这个函数域内的局部变量，避免污染全局</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//把当前沙箱需要的外部变量通过函数参数引入进来</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//只要保证参数对内提供的接口的一致性，你还可以随意替换传进来的这个参数</span></span><br><span class="line"></span><br><span class="line">       <span class="built_in">window</span>.jQuery = <span class="built_in">window</span>.$ = jQuery;</span><br><span class="line"></span><br><span class="line">   &#125;)( <span class="built_in">window</span> );</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>jquery将一些原型属性和方法封装在了jquery.prototype中，为了缩短名称，又赋值给了jquery.fn，这是很形象的写法</li>
+<li>有一些数组或对象的方法经常能使用到，jQuery将其保存为局部变量以提高访问速度</li>
+<li>jquery实现的链式调用可以节约代码，所返回的都是同一个对象，可以提高代码效率</li>
+</ul>
+<p><strong>jQuery 的实现原理？</strong></p>
+<ul>
+<li><p><code>(function(window, undefined) {})(window);</code></p>
+</li>
+<li><p>jQuery 利用 JS 函数作用域的特性，采用立即调用表达式包裹了自身，解决命名空间和变量污染问题</p>
+</li>
+<li><p><code>window.jQuery = window.$ = jQuery;</code></p>
+</li>
+<li><p>在闭包当中将 jQuery 和 $ 绑定到 window 上，从而将 jQuery 和 $ 暴露为全局变量</p>
+</li>
+</ul>
+<p><strong>jQuery.fn 的 init 方法返回的 this 指的是什么对象？ 为什么要返回 this？</strong></p>
+<ul>
+<li>jQuery.fn 的 init 方法 返回的 this 就是 jQuery 对象</li>
+<li>用户使用 jQuery() 或 $() 即可初始化 jQuery 对象，不需要动态的去调用 init 方法</li>
+</ul>
+<p><strong>jQuery.extend 与 jQuery.fn.extend 的区别？</strong></p>
+<ul>
+<li>$.fn.extend() 和 $.extend() 是 jQuery 为扩展插件提拱了两个方法</li>
+<li>$.extend(object); // 为jQuery添加“静态方法”（工具方法）</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$.extend(&#123;</span><br><span class="line">　　min: <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123; <span class="keyword">return</span> a &lt; b ? a : b; &#125;,</span><br><span class="line">　　max: <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123; <span class="keyword">return</span> a &gt; b ? a : b; &#125;</span><br><span class="line">&#125;);</span><br><span class="line">$.min(<span class="number">2</span>,<span class="number">3</span>); <span class="comment">//  2</span></span><br><span class="line">$.max(<span class="number">4</span>,<span class="number">5</span>); <span class="comment">//  5</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>$.extend([true,] targetObject, object1[, object2]); // 对targt对象进行扩展<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span> settings = &#123;validate:<span class="literal">false</span>, <span class="built_in">limit</span>:<span class="number">5</span>&#125;;</span><br><span class="line"><span class="built_in">var</span> options = &#123;validate:<span class="literal">true</span>, name:<span class="string">"bar"</span>&#125;;</span><br><span class="line">$.extend(settings, options);  // 注意：不支持第一个参数传 <span class="literal">false</span></span><br><span class="line">// settings == &#123;validate:<span class="literal">true</span>, <span class="built_in">limit</span>:<span class="number">5</span>, name:<span class="string">"bar"</span>&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<ul>
+<li>$.fn.extend(json); // 为jQuery添加“成员函数”（实例方法）</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$.fn.extend(&#123;</span><br><span class="line">   alertValue: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      $(<span class="keyword">this</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert($(<span class="keyword">this</span>).val());</span><br><span class="line">      &#125;);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(<span class="string">"#email"</span>).alertValue();</span><br></pre></td></tr></table></figure>
+
+<p><strong>jQuery 的属性拷贝(extend)的实现原理是什么，如何实现深拷贝？</strong></p>
+<ul>
+<li><p>浅拷贝（只复制一份原始对象的引用）<br><code>var newObject = $.extend({}, oldObject);</code></p>
+</li>
+<li><p>深拷贝（对原始对象属性所引用的对象进行进行递归拷贝）<br><code>var newObject = $.extend(true, {}, oldObject);</code></p>
+</li>
+</ul>
+<p><strong>jQuery 的队列是如何实现的？队列可以用在哪些地方？</strong></p>
+<ul>
+<li>jQuery 核心中有一组队列控制方法，由 queue()/dequeue()/clearQueue() 三个方法组成。</li>
+<li>主要应用于 animate()，ajax，其他要按时间顺序执行的事件中</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;alert(<span class="string">'事件1'</span>);&#125;</span><br><span class="line"><span class="keyword">var</span> func2 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;alert(<span class="string">'事件2'</span>);&#125;</span><br><span class="line"><span class="keyword">var</span> func3 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;alert(<span class="string">'事件3'</span>);&#125;</span><br><span class="line"><span class="keyword">var</span> func4 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;alert(<span class="string">'事件4'</span>);&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 入栈队列事件</span></span><br><span class="line">$(<span class="string">'#box'</span>).queue(<span class="string">"queue1"</span>, func1);  <span class="comment">// push func1 to queue1</span></span><br><span class="line">$(<span class="string">'#box'</span>).queue(<span class="string">"queue1"</span>, func2);  <span class="comment">// push func2 to queue1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 替换队列事件</span></span><br><span class="line">$(<span class="string">'#box'</span>).queue(<span class="string">"queue1"</span>, []);  <span class="comment">// delete queue1 with empty array</span></span><br><span class="line">$(<span class="string">'#box'</span>).queue(<span class="string">"queue1"</span>, [func3, func4]);  <span class="comment">// replace queue1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取队列事件（返回一个函数数组）</span></span><br><span class="line">$(<span class="string">'#box'</span>).queue(<span class="string">"queue1"</span>);  <span class="comment">// [func3(), func4()]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 出栈队列事件并执行</span></span><br><span class="line">$(<span class="string">'#box'</span>).dequeue(<span class="string">"queue1"</span>); <span class="comment">// return func3 and do func3</span></span><br><span class="line">$(<span class="string">'#box'</span>).dequeue(<span class="string">"queue1"</span>); <span class="comment">// return func4 and do func4</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 清空整个队列</span></span><br><span class="line">$(<span class="string">'#box'</span>).clearQueue(<span class="string">"queue1"</span>); <span class="comment">// delete queue1 with clearQueue</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>jQuery 中的 bind(), live(), delegate(), on()的区别？</strong></p>
+<ul>
+<li>bind 直接绑定在目标元素上</li>
+<li>live 通过冒泡传播事件，默认document上，支持动态数据</li>
+<li>delegate 更精确的小范围使用事件代理，性能优于 live</li>
+<li>on 是最新的1.9版本整合了之前的三种方式的新事件绑定机制</li>
+</ul>
+<p><strong>是否知道自定义事件？ jQuery 里的 fire 函数是什么意思，什么时候用？</strong></p>
+<ul>
+<li>事件即“发布/订阅”模式，自定义事件即“消息发布”，事件的监听即“订阅订阅”</li>
+<li>JS 原生支持自定义事件，示例：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.createEvent(type); <span class="comment">// 创建事件</span></span><br><span class="line">event.initEvent(eventType, canBubble, prevent); <span class="comment">// 初始化事件</span></span><br><span class="line">target.addEventListener(<span class="string">'dataavailable'</span>, handler, <span class="literal">false</span>); <span class="comment">// 监听事件</span></span><br><span class="line">target.dispatchEvent(e);  <span class="comment">// 触发事件</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>jQuery 里的 fire 函数用于调用 jQuery 自定义事件列表中的事件</li>
+</ul>
+<p><strong>jQuery 通过哪个方法和 Sizzle 选择器结合的？</strong></p>
+<ul>
+<li>Sizzle 选择器采取 Right To Left 的匹配模式，先搜寻所有匹配标签，再判断它的父节点</li>
+<li>jQuery 通过 $(selecter).find(selecter); 和 Sizzle 选择器结合</li>
+</ul>
+<p><strong>jQuery 中如何将数组转化为 JSON 字符串，然后再转化回来？</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过原生 JSON.stringify/JSON.parse 扩展 jQuery 实现</span></span><br><span class="line"> $.array2json = <span class="function"><span class="keyword">function</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">JSON</span>.stringify(array);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> $.json2array = <span class="function"><span class="keyword">function</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// $.parseJSON(array); // 3.0 开始，已过时</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">JSON</span>.parse(array);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 调用</span></span><br><span class="line"> <span class="keyword">var</span> json = $.array2json([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]);</span><br><span class="line"> <span class="keyword">var</span> array = $.json2array(json);</span><br></pre></td></tr></table></figure>
+
+<p><strong>jQuery 一个对象可以同时绑定多个事件，这是如何实现的？</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#btn"</span>).on(<span class="string">"mouseover mouseout"</span>, func);</span><br><span class="line"></span><br><span class="line">$(<span class="string">"#btn"</span>).on(&#123;</span><br><span class="line">    mouseover: func1,</span><br><span class="line">    mouseout: func2,</span><br><span class="line">    click: func3</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>针对 jQuery 的优化方法？</strong></p>
+<ul>
+<li>缓存频繁操作DOM对象</li>
+<li>尽量使用id选择器代替class选择器</li>
+<li>总是从#id选择器来继承</li>
+<li>尽量使用链式操作</li>
+<li>使用时间委托 on 绑定事件</li>
+<li>采用jQuery的内部函数data()来存储数据</li>
+<li>使用最新版本的 jQuery</li>
+</ul>
+<p><strong>jQuery 的 slideUp 动画，当鼠标快速连续触发, 动画会滞后反复执行，该如何处理呢?</strong></p>
+<ul>
+<li>在触发元素上的事件设置为延迟处理：使用 JS 原生 setTimeout 方法</li>
+<li>在触发元素的事件时预先停止所有的动画，再执行相应的动画事件：$(‘.tab’).stop().slideUp();</li>
+</ul>
+<p><strong>jQuery UI 如何自定义组件？</strong></p>
+<ul>
+<li>通过向 $.widget() 传递组件名称和一个原型对象来完成</li>
+<li><code>$.widget(&quot;ns.widgetName&quot;, [baseWidget], widgetPrototype);</code></li>
+</ul>
+<p><strong>jQuery 与 jQuery UI、jQuery Mobile 区别？</strong></p>
+<ul>
+<li><p>jQuery 是 JS 库，兼容各种PC浏览器，主要用作更方便地处理 DOM、事件、动画、AJAX</p>
+</li>
+<li><p>jQuery UI 是建立在 jQuery 库上的一组用户界面交互、特效、小部件及主题</p>
+</li>
+<li><p>jQuery Mobile 以 jQuery 为基础，用于创建“移动Web应用”的框架</p>
+</li>
+</ul>
+<p><strong>jQuery 和 Zepto 的区别？ 各自的使用场景？</strong></p>
+<ul>
+<li>jQuery 主要目标是PC的网页中，兼容全部主流浏览器。在移动设备方面，单独推出 jQuery Mobile</li>
+<li>Zepto 从一开始就定位移动设备，相对更轻量级。它的 API 基本兼容 jQuery，但对PC浏览器兼容不理想</li>
+</ul>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-01-20T03:40:20.500Z" itemprop="dateUpdated">2020-01-20 11:40:20</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jquery/">jquery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/06/03/jQuery.html&title=《Jquery基础知识》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/06/03/jQuery.html&title=《Jquery基础知识》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2018/06/03/jQuery.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Jquery基础知识》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2018/06/03/jQuery.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2018/06/03/jQuery.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/06/03/display-flex.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">display:flex</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/06/02/移动端常见兼容性问题.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">移动端常见兼容性问题</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/06/03/jQuery.html&title=《Jquery基础知识》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/06/03/jQuery.html&title=《Jquery基础知识》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2018/06/03/jQuery.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Jquery基础知识》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2018/06/03/jQuery.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2018/06/03/jQuery.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJElEQVR42u3aQQ7CMAxEUe5/6bJhVyWdsQ0o9s+qEpDmBcmK7bxe8rhuY/Xp6vv3T1fP9/nLBgwYMI5lXNuxX6iOvD/HZl5SYcCAMYCximC1S3EDurI2GDBgwNh/RwmLsRAMAwYMGHmGHlL1VPYPARcGDBhHMdwCmVtiy29QWS4OAwaMAxl61f33z1/pb8CAAeMoxmWOfMOydj2fmWHAgNGaob/GTS/1tFZKUJUZYMCA0ZThNhdjLclYGmwUBGHAgDGG4S5Ub21mjo9SYQ4GDBhjGO4hr2oLlPT4YftgwIAxgKGnl0ZmXDRnMAuHAQPGAIZbPnMDqBtkH94OAwaM1oxYkcu9HmEf9WItBBgwYAxg6ElsrJ2pbFnsWgYMGDAmMNwAWpXu6mE6eNqFAQPGGIYSHJXUN38JTPoVDBgwmjLcV2bambXgZS4OAwaMRgyl0KannS6v7NAJAwaMAQx36XlqpgBnlNhgwIDRguG2CZUAmgm7Bf8JDBgwWjOUwn0ssMaWa5fhYMCAMYCxX0SmJOdefo2RYMCAMYERe2XVDAUXNWDAgNGUcZnDbVtmklsjVYYBA0ZrRlXMdo+MboEvFtZhwIDRiaEEWb34pe9TZlOMPBgGDBiNGHrgc+fU09qCVBYGDBgwhEsSeuKaOcM+VA1hwIAxnhE76inzZC5nwIABYwJDSWL1F+zDq3uxTALDgAGjNSNTy8oESpdU0MiEAQPGeYw3CbfGBE3x4icAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

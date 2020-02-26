@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>重学Javascript之基础数据 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JavaScript">
+    <meta name="description" content="第一章 javascript字符串1.0、字符串基本数据类型1、javascript字符串可以是一个基本数据类型或者一个对象2、与JavaScript中其他四种数据类型并列：数字、布尔、null 和 undefined3、作为基本数据类型，字符串也是JavaScript直接量：这是一个集合，包含数字 数组 对象和正则表达式、数字和布尔值的直接量格式 1.0、字符串对象123456789101112">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重学Javascript之基础数据">
+<meta property="og:url" content="https://toc.lieme.cn/2019/05/05/重学JavaScript之基础数据.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="第一章 javascript字符串1.0、字符串基本数据类型1、javascript字符串可以是一个基本数据类型或者一个对象2、与JavaScript中其他四种数据类型并列：数字、布尔、null 和 undefined3、作为基本数据类型，字符串也是JavaScript直接量：这是一个集合，包含数字 数组 对象和正则表达式、数字和布尔值的直接量格式 1.0、字符串对象123456789101112">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2020-01-17T05:52:32.585Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重学Javascript之基础数据">
+<meta name="twitter:description" content="第一章 javascript字符串1.0、字符串基本数据类型1、javascript字符串可以是一个基本数据类型或者一个对象2、与JavaScript中其他四种数据类型并列：数字、布尔、null 和 undefined3、作为基本数据类型，字符串也是JavaScript直接量：这是一个集合，包含数字 数组 对象和正则表达式、数字和布尔值的直接量格式 1.0、字符串对象123456789101112">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">重学Javascript之基础数据</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">重学Javascript之基础数据</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-05-05T13:32:00.000Z" itemprop="datePublished" class="page-time">
+  2019-05-05
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/重学JS系列/">重学JS系列</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#第一章-javascript字符串"><span class="post-toc-number">1.</span> <span class="post-toc-text">第一章 javascript字符串</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#1-0、字符串基本数据类型"><span class="post-toc-number">1.0.0.0.0.1.</span> <span class="post-toc-text">1.0、字符串基本数据类型</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#1-0、字符串对象"><span class="post-toc-number">1.0.0.0.0.2.</span> <span class="post-toc-text">1.0、字符串对象</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#1-1、连接两个或多个-字符串"><span class="post-toc-number">1.0.0.0.0.3.</span> <span class="post-toc-text">1.1、连接两个或多个 字符串</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#1-2、连接字符串和另一种数据类型"><span class="post-toc-number">1.0.0.0.0.4.</span> <span class="post-toc-text">1.2、连接字符串和另一种数据类型</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#1-3、条件比较字符串"><span class="post-toc-number">1.0.0.0.0.5.</span> <span class="post-toc-text">1.3、条件比较字符串</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-重学JavaScript之基础数据"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">重学Javascript之基础数据</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-05-05 21:32:00" datetime="2019-05-05T13:32:00.000Z"  itemprop="datePublished">2019-05-05</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/重学JS系列/">重学JS系列</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        885
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        3 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h1 id="第一章-javascript字符串"><a href="#第一章-javascript字符串" class="headerlink" title="第一章 javascript字符串"></a>第一章 javascript字符串</h1><h6 id="1-0、字符串基本数据类型"><a href="#1-0、字符串基本数据类型" class="headerlink" title="1.0、字符串基本数据类型"></a>1.0、字符串基本数据类型</h6><p>1、javascript字符串可以是一个基本数据类型或者一个对象<br>2、与JavaScript中其他四种数据类型并列：数字、布尔、null 和 undefined<br>3、作为基本数据类型，字符串也是JavaScript直接量：这是一个集合，包含数字 数组 对象和正则表达式、数字和布尔值的直接量格式</p>
+<h6 id="1-0、字符串对象"><a href="#1-0、字符串对象" class="headerlink" title="1.0、字符串对象"></a>1.0、字符串对象</h6><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、字符串对象叫做<span class="built_in">string</span>，与其他JavaScript对象一样，它拥有预先构建到对象类型中的一组属性</span><br><span class="line"><span class="number">2</span>、可以使用JavaScript的<span class="literal">new</span>运算符来实例化一个<span class="built_in">string</span>对象，从而创建一个新的对象实例：</span><br><span class="line"></span><br><span class="line">   <span class="built_in">var</span> city = <span class="literal">new</span> <span class="built_in">String</span>(<span class="string">"This is pin"</span>)</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、一旦实例化了，可用的字符串属性的任何一个，都可以通过字符串进行访问，例如：</span><br><span class="line"></span><br><span class="line">   <span class="built_in">var</span> lcCity = city.toLowerCase(); <span class="comment">// 将字符串中的大写字母转换成小写   结果：this is pin</span></span><br><span class="line">   </span><br><span class="line"><span class="number">4</span>、如果你没有使用<span class="literal">new</span>来访问<span class="built_in">String</span>构造函数，将会创建一个字符串直接量，而不是一个<span class="built_in">String</span>对象</span><br><span class="line"></span><br><span class="line">    <span class="built_in">var</span> city = <span class="built_in">String</span>(<span class="string">"Ar. louis"</span>);</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>、如果需要在一个直接量上访问<span class="built_in">String</span> 对象方法：让JavaScript引擎创建了一个<span class="built_in">String</span>对象，用它包含了字符串直接量，执行方法调用，然后丢弃掉<span class="built_in">string</span>对象</span><br><span class="line"></span><br><span class="line"><span class="number">6</span>、与使用字符串直接量相比，使用<span class="built_in">String</span>的时候，要依赖于具体环境，除非你计划使用<span class="built_in">String</span>对象属性，否则应该尽可能地使用字符串直接量，如果你要使用<span class="built_in">String</span>方法，那么将字符串创建为对象。</span><br></pre></td></tr></table></figure>
+
+<h6 id="1-1、连接两个或多个-字符串"><a href="#1-1、连接两个或多个-字符串" class="headerlink" title="1.1、连接两个或多个 字符串"></a>1.1、连接两个或多个 字符串</h6><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、问题：想要把两个或者多个字符串合并为一个</span><br><span class="line">   解决方案：</span><br><span class="line">       使用相加（+）运算符来连接字符串</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">var</span> str1 = <span class="string">'ming tian'</span>;</span><br><span class="line">       <span class="keyword">var</span> str2 = <span class="string">'qu na li'</span>;</span><br><span class="line">       <span class="keyword">var</span> str3 = str1 + str2;    <span class="comment">// ming tian qu na li</span></span><br><span class="line">       </span><br><span class="line"><span class="number">2</span>、有一个内建的<span class="keyword">string</span> 方法，可以连接多个字符串，这就是concat,它接受一个或者多个字符串参数，其中每一个都连接到字符串对象的末尾；</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> str = <span class="string">""</span> .concat(<span class="string">"ni"</span>,<span class="string">"shi"</span>,<span class="string">"yi"</span>,<span class="string">"zhu"</span>)  <span class="comment">//ni shi yi zhu</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="1-2、连接字符串和另一种数据类型"><a href="#1-2、连接字符串和另一种数据类型" class="headerlink" title="1.2、连接字符串和另一种数据类型"></a>1.2、连接字符串和另一种数据类型</h6><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、问题：想要把一个字符串和另一种数据类型（如数字）连接起来</span><br><span class="line">   解决方案：</span><br><span class="line">   </span><br><span class="line">   使用与连接字符串的时候完全相同的运算符  +  或者 += </span><br><span class="line">   <span class="selector-tag">var</span> num = <span class="number">131</span></span><br><span class="line">   <span class="selector-tag">var</span> str = <span class="string">"ni shi shui"</span></span><br><span class="line">   <span class="selector-tag">var</span> strr2 = str + num  <span class="comment">//ni shi shui 131</span></span><br><span class="line">   </span><br><span class="line"><span class="number">2</span>、注意点：</span><br><span class="line"></span><br><span class="line">    当把一个字符串和其他数据类型相加的时候，过程有所不同。在其他数据类型的情况下，如布尔或者数字，   js引擎先将其他数据转换为一个字符串，然后在将其连接</span><br></pre></td></tr></table></figure>
+
+<h6 id="1-3、条件比较字符串"><a href="#1-3、条件比较字符串" class="headerlink" title="1.3、条件比较字符串"></a>1.3、条件比较字符串</h6><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、问题：想要比较两个字符串看看是否相同</span><br><span class="line"></span><br><span class="line">   解决方案：</span><br><span class="line">   </span><br><span class="line">   使用 ==  运算符来判断</span><br><span class="line">   </span><br><span class="line">   如果遇到大小写混合的例子可以先使用 toLowerCase 或 toUpperCase 将字符串转换为大写或者小写来比对，这两个方法不接受任何参数。</span><br><span class="line">   </span><br><span class="line"><span class="number">2</span>、有时候，不想让自动数据发生转化，想要在比较的值拥有不同的数据类型时，比较失败，如果一个值是字符直接量，e</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-01-17T05:52:32.585Z" itemprop="dateUpdated">2020-01-17 13:52:32</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/05/05/重学JavaScript之基础数据.html&title=《重学Javascript之基础数据》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/05/05/重学JavaScript之基础数据.html&title=《重学Javascript之基础数据》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/05/05/重学JavaScript之基础数据.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学Javascript之基础数据》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/05/05/重学JavaScript之基础数据.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/05/05/重学JavaScript之基础数据.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/05/08/ES6入门之数组的扩展.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">ES6入门之数组的扩展</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/04/30/Python基础教程之dict和set.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Python基础教程之dict和set</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/05/05/重学JavaScript之基础数据.html&title=《重学Javascript之基础数据》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/05/05/重学JavaScript之基础数据.html&title=《重学Javascript之基础数据》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/05/05/重学JavaScript之基础数据.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学Javascript之基础数据》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/05/05/重学JavaScript之基础数据.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/05/05/重学JavaScript之基础数据.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtUlEQVR42u3aQW7jMBAEQP//01kgpwWyUrpnxMQLlE5GLIssHkSmZ16v+Pr4vO6//fuer5+vnnB159X1OnHh4eHhjaZ+/7iP+EoWKB/xfvmiOeDh4eEd47UTSraHfKLtuMmc8fDw8N6Btzn45ttAvrXg4eHh/Y+8hLGJOfDw8PDemTeLBu6P0fmv8r8czFrw8PDwDlSR3ufzwfoeHh4e3qKqvimGzV7fbZDxzfPx8PDwDvA2RaZ8ijm+DT6iWeHh4eEd5iU/27QRbA7Q7YaEh4eHd4J39YhNu0C7tcyi2+iZeHh4eMd4myghL4blrQPJ/ckWgoeHh3eO18ap7ZH3/rX+1K9eMwYeHh7empe/dtu/t7Fs2whbhBF4eHh4a14+0fxVvnlLz4LjfzwTDw8P70d47dRnBbDkaZuNp1g/PDw8vBGvHaA9Xs9e/ZuNAQ8PD+80bzPMJoDIWwfa7Wd1pMbDw8OLefuy0yySyDeeeoHw8PDwfoR3H0Dky9Eu3Gb5io0BDw8P71Fe0mI1m3TSENAe2aNwBA8PD+8AbzP8vujVLkd+0MfDw8P7Xd6Gnbdk7b/db1F4eHh4CS8/TOcP3USxSQhSzBYPDw/vMC8JRmfNTzN2Mvo3bWF4eHh4B3h5GT4qOMUn93ZyeUHuclw8PDy8h3g5oA0dNtPNmw+K+h4eHh7eYV7eLtAGvvlZt8Z8HREPDw/vAC8PZGcDtCWxI00AeHh4eI/yPsprFkDMgozZIRsPDw/vNG/WYpVPbl/EmsUWNRUPDw+v5CUDb6bVtlglLQhF0IyHh4d3jDcr2OdpQNtY0IbFl/fj4eHh/SpvFuzmmPwYXSw6Hh4e3tvwNsFBUgx7rPCGh4eHd4yXhxHJYTeJM/KNpN0S8PDw8E7z2n/y8yaDJLSdldAeaxrAw8PD63h/AICJsYbvHERrAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

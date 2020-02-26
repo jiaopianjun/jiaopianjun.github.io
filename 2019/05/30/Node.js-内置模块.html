@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>Node.js内置模块 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="node学习">
+    <meta name="description" content="1. http模块 用来搭建本地服务器   const http = require(&amp;apos;http&amp;apos;),  http.createServer创建一个服务。2. fs文件系统模块 赋予node读取本地文件的能力  const fs = require(&amp;apos;fs&amp;apos;);  fs.writeFile(path, fileData, cb) // 写入文件  fs.re">
+<meta name="keywords" content="node学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js内置模块">
+<meta property="og:url" content="https://toc.lieme.cn/2019/05/30/Node.js-内置模块.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1. http模块 用来搭建本地服务器   const http = require(&amp;apos;http&amp;apos;),  http.createServer创建一个服务。2. fs文件系统模块 赋予node读取本地文件的能力  const fs = require(&amp;apos;fs&amp;apos;);  fs.writeFile(path, fileData, cb) // 写入文件  fs.re">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-10-21T00:03:29.873Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js内置模块">
+<meta name="twitter:description" content="1. http模块 用来搭建本地服务器   const http = require(&amp;apos;http&amp;apos;),  http.createServer创建一个服务。2. fs文件系统模块 赋予node读取本地文件的能力  const fs = require(&amp;apos;fs&amp;apos;);  fs.writeFile(path, fileData, cb) // 写入文件  fs.re">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">Node.js内置模块</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">Node.js内置模块</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-05-30T11:19:00.000Z" itemprop="datePublished" class="page-time">
+  2019-05-30
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Node系列/">Node系列</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-http模块"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. http模块</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-fs文件系统模块"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. fs文件系统模块</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-path路径模块"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. path路径模块</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-ur模块"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. ur模块</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-querystring-查询字符串模块"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. querystring 查询字符串模块</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-assert-断言"><span class="post-toc-number">6.</span> <span class="post-toc-text">6. assert 断言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-stream-流"><span class="post-toc-number">7.</span> <span class="post-toc-text">7. stream 流</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-zlib压缩"><span class="post-toc-number">8.</span> <span class="post-toc-text">8. zlib压缩</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Node.js-内置模块"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Node.js内置模块</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-05-30 19:19:00" datetime="2019-05-30T11:19:00.000Z"  itemprop="datePublished">2019-05-30</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Node系列/">Node系列</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        554
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        3 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h2 id="1-http模块"><a href="#1-http模块" class="headerlink" title="1. http模块"></a>1. http模块</h2><blockquote>
+<p>用来搭建本地服务器 </p>
+</blockquote>
+<pre><code>const http = require(&apos;http&apos;), 
+http.createServer创建一个服务。</code></pre><h2 id="2-fs文件系统模块"><a href="#2-fs文件系统模块" class="headerlink" title="2. fs文件系统模块"></a>2. fs文件系统模块</h2><blockquote>
+<p>赋予node读取本地文件的能力</p>
+</blockquote>
+<pre><code>const fs = require(&apos;fs&apos;);
+
+fs.writeFile(path, fileData, cb) // 写入文件
+
+fs.readFile(path, cb) // 读取文件</code></pre><h2 id="3-path路径模块"><a href="#3-path路径模块" class="headerlink" title="3. path路径模块"></a>3. path路径模块</h2><blockquote>
+<p>用来处理路径相关</p>
+</blockquote>
+<pre><code>const path = require(&apos;path&apos;)
+
+let str = &apos;/c/dir/index.html&apos;
+
+console.log(path.dirname(str))
+
+path.resolve() // 路径解析，用来拼合路径，返回一个绝对路径</code></pre><h2 id="4-ur模块"><a href="#4-ur模块" class="headerlink" title="4. ur模块"></a>4. ur模块</h2><blockquote>
+<p>用来处理网址相关，或者用来获取地址路径或参数</p>
+</blockquote>
+<pre><code>const url = require(&apos;url&apos;)
+
+let site = &apos;http://www.a.cn/a/b/index.html?a=1&amp;b=2&apos;
+
+let {pathname, query} = url.parse(site, true) //解析网址 true就是将参数解析为对象
+
+console.log(pathname, query)
+// &apos;/a/b/index.html&apos; {a: &apos;1&apos;, n: &apos;2&apos;}</code></pre><h2 id="5-querystring-查询字符串模块"><a href="#5-querystring-查询字符串模块" class="headerlink" title="5. querystring 查询字符串模块"></a>5. querystring 查询字符串模块</h2><blockquote>
+<p>主要用来将参数拼接字符串解析为对象</p>
+</blockquote>
+<pre><code>const queryString = require(&apos;querystring&apos;)
+
+let str = &apos;a=1&amp;b=2&amp;c=3&apos;
+let obj = queryString.parse(str)
+
+console.log(obj, obj.a) //{a:&apos;1&apos;,b:&apos;2&apos;,c:&apos;3&apos;}, &apos;1&apos; 
+
+let o = queryString.stringify(obj)
+console.log(0) // &apos;a=1&amp;b=2&amp;c=3&apos;</code></pre><h2 id="6-assert-断言"><a href="#6-assert-断言" class="headerlink" title="6. assert 断言"></a>6. assert 断言</h2><blockquote>
+<p>判断条件是正确，如果正确则继续执行，如果错误则抛出异常</p>
+</blockquote>
+<pre><code>const assert = require(&apos;assert&apos;)
+
+// assert.deepEqual(变量，预期值，错误信息)   变量 == 预期值
+// assert.deepStrictEqual(变量，预期值，错误信息)  变量 === 预期值
+// 同样也是错误的时候抛出信息，正确的时候继续默默执行
+
+const obj = {a: {b: 1}}
+const obj1 = {a: {b: 1}}
+
+assert.deepEqual(obj, obj1, &apos;不等&apos;) // true</code></pre><h2 id="7-stream-流"><a href="#7-stream-流" class="headerlink" title="7. stream 流"></a>7. stream 流</h2><blockquote>
+<p>以工作流的模式，读取文件，使得文件的读取跟水流一样。一边读取一边使用。合理分配内存，避免内存爆掉的风险</p>
+</blockquote>
+<pre><code>const fs = require(&apos;fs&apos;)
+
+// 读取流：fs.createReadStream();
+// 写入流：fs.createWriteStream();
+
+let rs = fs.createReadStream(a.txt)     // 读取的文件
+let ws = fs.createWriteStream(a2.txt)   // 写入的文件
+
+rs.pipe(ws) // pipe将rs 和 ws 连接起来，使得读取流的数据传输到输出流
+
+rs.on(&apos;error&apos;, err =&gt; {
+  console.log(err);
+});
+ws.on(&apos;finish&apos;, () =&gt; {
+  console.log(&apos;成功&apos;);
+})</code></pre><h2 id="8-zlib压缩"><a href="#8-zlib压缩" class="headerlink" title="8. zlib压缩"></a>8. zlib压缩</h2><blockquote>
+<p>用来将文件压缩</p>
+</blockquote>
+<pre><code>const fs = require(&apos;fs&apos;)
+const zlib = require(&apos;zlib&apos;)
+
+let rs = fs.createReadStream(&apos;a.jpg&apos;)
+let gz = zlib.createGzip()
+let ws = fs.createWriteStream(&apos;a.jpg.gz&apos;)
+
+rs.pipe(gz).pipe(ws) // 原始文件 =&gt; 压缩 =&gt; 写入
+
+rs.on(&apos;error&apos;, err =&gt; {
+  console.log(err);
+});
+ws.on(&apos;finish&apos;, () =&gt; {
+  console.log(&apos;成功&apos;);
+})</code></pre>
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-10-21T00:03:29.873Z" itemprop="dateUpdated">2019-10-21 08:03:29</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node学习/">node学习</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/05/30/Node.js-内置模块.html&title=《Node.js内置模块》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/05/30/Node.js-内置模块.html&title=《Node.js内置模块》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/05/30/Node.js-内置模块.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Node.js内置模块》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/05/30/Node.js-内置模块.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/05/30/Node.js-内置模块.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/06/02/天气很好，周末的瞎溜达.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">周末，天气很棒，瞎溜达</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/05/27/重学 JS 之在 HTML 中使用 JavaScript.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">重学 JS 之在 HTML 中使用 JavaScript</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/05/30/Node.js-内置模块.html&title=《Node.js内置模块》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/05/30/Node.js-内置模块.html&title=《Node.js内置模块》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/05/30/Node.js-内置模块.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Node.js内置模块》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/05/30/Node.js-内置模块.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/05/30/Node.js-内置模块.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACM0lEQVR42u3aQW7DMAwF0dz/0i7QVYHCynzSTSFqtDICxdbzghZFvl54XN+D/P7zl9/XZP7dsx4YMmTI2JZxLQeZs14cWS7Br58oQ4aMExjrYLpe7pq9hvGQ/WbNMmTIkAEAa9IaQK5lyJAhgzPIIviy/i3gypAhY0MGD5ppYCUnY+tX8HAuLkOGjA0ZaWHgk9d/WN+QIUPGJowrHLVCAg++xVXJkCFjNCPd6pEoR7aGvJmDsGXIkHECgxcva0lprWDJnytDhowTGDx0pqlmZ0PJX40MGTJmM2pH8GnQ7JcqUfoqQ4aMoQyeIpJNHrlDqwDJ7yNDhoxBjFqCylPTznYzSG5lyJBxDCM9piehs1bCjD8DMmTIOJ7Rb6fgm85a35cMGTJOYPCjMcKo1U7TTeGbwoAMGTLGMdIDMt5GduGRJsDBQaIMGTLGMdLj+/SInxcYgnAsQ4aM0YxaSwQ/6OcAUiRA1VcZMmSMZvBSJW8U66SmcdOGDBkyRjNqpco0XPbv39qYypAhY1sGD6NpATKd2WkRkyFDxmmMpxLL/iaSb1hlyJAxm8GP+9OjtFc4eHlAhgwZpzGucNQKCbx1o9bMIUOGjNmMp5okao1icTtFpzAgQ4aMzRlpCXP9L97y1QnNMmTIOJNRaxd7qrTAvwC3M2XIkCEDLyJt6krD9O1MGTJkyAiXm8ZDUlp4bGsoQ4aMbRm1UFgrG5D5PJWVIUPGCYxO6pgy0jBKXrEMGTJGM74AoifrQS4pkaEAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>ES6入门之Proxy | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="ECMAScript6">
+    <meta name="description" content="1. 概述 Proxy 用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种『元编程』即对编程语言进行编程。  1.1 理解 Proxy 是在目标对象之前架设一层『拦截』，外部对对象的访问，都需要经过该层拦截。因此在拦截中对外界的访问进行过滤和改写。  在Es6 中 提供了原生的 Proxy 构造函数，可以用来生成 Proxy实例。 let proxy = new Proxy(tar">
+<meta name="keywords" content="ECMAScript6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6入门之Proxy">
+<meta property="og:url" content="https://toc.lieme.cn/2019/09/06/ES6入门之Proxy.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1. 概述 Proxy 用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种『元编程』即对编程语言进行编程。  1.1 理解 Proxy 是在目标对象之前架设一层『拦截』，外部对对象的访问，都需要经过该层拦截。因此在拦截中对外界的访问进行过滤和改写。  在Es6 中 提供了原生的 Proxy 构造函数，可以用来生成 Proxy实例。 let proxy = new Proxy(tar">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/FvLjZVvWJXTHFtooYM98N19NklJX">
+<meta property="og:updated_time" content="2019-09-06T00:51:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6入门之Proxy">
+<meta name="twitter:description" content="1. 概述 Proxy 用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种『元编程』即对编程语言进行编程。  1.1 理解 Proxy 是在目标对象之前架设一层『拦截』，外部对对象的访问，都需要经过该层拦截。因此在拦截中对外界的访问进行过滤和改写。  在Es6 中 提供了原生的 Proxy 构造函数，可以用来生成 Proxy实例。 let proxy = new Proxy(tar">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/FvLjZVvWJXTHFtooYM98N19NklJX">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">ES6入门之Proxy</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">ES6入门之Proxy</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-09-06T00:44:11.000Z" itemprop="datePublished" class="page-time">
+  2019-09-06
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-概述"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 概述</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-1-理解"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.1 理解</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-get"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">1.2 get()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-3-set"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">1.3 set</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-5-has"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">1.5 has</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-6-construct"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">1.6 construct</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-7-deleteProperty"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">1.7 deleteProperty()</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-this问题"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. this问题</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-ES6入门之Proxy"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">ES6入门之Proxy</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-09-06 08:44:11" datetime="2019-09-06T00:44:11.000Z"  itemprop="datePublished">2019-09-06</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        1,336
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        5 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><blockquote>
+<p>Proxy 用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种『元编程』即对编程语言进行编程。</p>
+</blockquote>
+<h3 id="1-1-理解"><a href="#1-1-理解" class="headerlink" title="1.1 理解"></a>1.1 理解</h3><blockquote>
+<p>Proxy 是在目标对象之前架设一层『拦截』，外部对对象的访问，都需要经过该层拦截。因此在拦截中对外界的访问进行过滤和改写。</p>
+</blockquote>
+<p>在Es6 中 提供了原生的 Proxy 构造函数，可以用来生成 Proxy实例。</p>
+<pre><code>let proxy = new Proxy(target, handler)</code></pre><p>Proxy 对象的所有用法，都是上面的形式，不同的只是handler参数的写法。其中new Proxy() 表示生成一个 Proxy实例，target 参数表示所有拦截的目标对象， handler 参数也是一个对象，用来定制拦截行为。如下：</p>
+<pre><code>let proxy = new Proxy({}, {
+    get: function(target, property) {
+        return 35
+    }
+})
+
+proxy.time // 35
+proxy.name // 35
+proxy.title // 35</code></pre><p><strong>解读：</strong></p>
+<p>在上面中，作为构造函数，Proxy接受两个参数。第一个参数即所要代理的目标对象，如果没有 Proxy的介入，操作原来要访问的就是这个对象。第二个参数是一个配置对象，用来对每个代理对象的操作，提供具体的函数和拦截操作。上述代码中有一个 get 函数，用来拦截对目标对象属性的访问请求。</p>
+<p>另外，要使 Proxy起作用，必须针对 Proxy 实例进行操作，而不是针对目标对象进行操作。</p>
+<p>如果 handler 没有设置任何拦截，那就等同于直接通向原对象。如下：</p>
+<pre><code>let target = {}
+let handler = {}
+let proxy = new Proxy(target, handler)
+
+
+proxy.a = &apos;b&apos;
+target.a = &apos;b&apos;</code></pre><p>对于上面的例子，我们可以讲Proxy对象，设置到 object.proxy属性，从而可以在object对象上调用。</p>
+<pre><code>let object = {proxy: new Proxy(target, handler)}</code></pre><p>Proxy 实例也可以作为其他对象的原型对象。</p>
+<pre><code>let proxy = new Proxy({}, {
+    get: function(target, property) {
+        retrun 35
+    }
+})
+
+let obj = Object.create(proxy)
+obj.time    // 35
+
+另外同一个拦截器，可以设置多个拦截操作。</code></pre><p>常用的Proxy支持的拦截操作如下：</p>
+<ul>
+<li>get(target, propKey, receiver): 拦截对象属性的读取，比如 proxy.foo 和 proxy[‘foo’]</li>
+<li>set(target, propKey, value, receiver): 拦截对象属性的设置，比如 proxy.foo = v 或 proxy[‘foo’] = v， 返回一个布尔值</li>
+<li>has(target, proKey): 拦截propKey in proxy的操作，返回一个布尔值</li>
+<li>apply(target, object, args): 拦截Proxy 实例作为函数调用的操作，比如 proxy(…args)、proxy.call(object, …args) 、 proxy.apply(…)。</li>
+<li>deleteProperty(target, proKey): 拦截 delete proxy[propKey]的操作，返回一个布尔值</li>
+<li>ownKeys(target): 拦截 Object.getOwnProPertyNames(proxy),返回一个数组。该方法返回目标对象所有自身的属性的属性名，而Object.keys() 的返回结果仅包括目标对象自身的可遍历属性。</li>
+</ul>
+<h3 id="1-2-get"><a href="#1-2-get" class="headerlink" title="1.2 get()"></a>1.2 get()</h3><blockquote>
+<p>get 方法用于拦截某个属性的读取操作，可以接受三个参数，依次为目标对象、属性名和proxy实例本身，最后一个参数可选。</p>
+</blockquote>
+<pre><code>let p = {
+    name: &apos;李四&apos;
+}
+
+let proxy = new Proxy(p, {
+    get: function(target, property) {
+        if (property in target) {
+            retrun target[property]
+        } else {
+            console.log(&apos;报错&apos;)
+        }
+    }
+})
+
+proxy.name // &apos;李四&apos;
+proxy.age  // &apos;报错&apos;</code></pre><p><strong>注意点</strong></p>
+<ul>
+<li>get方法可以继承</li>
+<li>get方法可以进行链式操作</li>
+</ul>
+<h3 id="1-3-set"><a href="#1-3-set" class="headerlink" title="1.3 set"></a>1.3 set</h3><blockquote>
+<p>set 方法用来拦截某个属性的赋值操作，可以接受四个参数，依次为目标对象、属性名、属性值和Proxy实例本身，最后一个可选</p>
+</blockquote>
+<pre><code>let v = {
+    set: function(obj, prop, value) {
+         if (prop === &apos;age&apos;) {
+             if(!Number.isInteger(value)) {
+                 console.log(&apos;报错&apos;)
+             }
+
+             if(value &gt; 200) {
+                 console.log(&apos;成功&apos;)
+             }
+
+             obj[prop] = value
+         }
+    }
+}
+
+let p = new Proxy({}, v)
+
+p.age = 100
+
+p.age   // 100
+
+p.age = &apos;n&apos;
+p.age   // 报错</code></pre><p><strong>利用set方法，可以数据绑定，即每当对象发生变化时，会自动更新Dom</strong></p>
+<p>如果目标对象自身的某个属性，不可写且不可配置，那么Set 方法将不起作用。</p>
+<p>1.4 apply()</p>
+<blockquote>
+<p>apply 方法拦截函数的调用、call 和 apply操作。它可以接受三个参数，分别时目标对象、目标对象的上下文对象（this）和目标对象的参数数组。</p>
+</blockquote>
+<pre><code>let h = {
+    apply(target, ctx, args) {
+        return Reflect.apply(...arguments)
+    }
+}
+
+let target = function() {return &apos;haha&apos;)
+let h = {
+    apply: function() {
+        return &apos;heihei&apos;
+    }
+}
+
+let p = new Proxy(taraget, h)
+
+p() // &apos;heihei&apos;</code></pre><h3 id="1-5-has"><a href="#1-5-has" class="headerlink" title="1.5 has"></a>1.5 has</h3><blockquote>
+<p>has 方法用来拦截 HasProperty 操作， 即判断对象是否具有某个属性时，这个方法会生效。</p>
+</blockquote>
+<p>has 方法可以接受两个参数，分别时目标对象、需要查询的属性名。</p>
+<p>注意：has 方法拦截的时 HasProperty操作，而不是HasOwnProperty操作，即has 方法不判断一个属性是对象自身的属性，还是继承的属性。</p>
+<h3 id="1-6-construct"><a href="#1-6-construct" class="headerlink" title="1.6 construct"></a>1.6 construct</h3><blockquote>
+<p>construct 方法用于拦截 new命令，下面是拦截对象的写法</p>
+</blockquote>
+<pre><code>let h = {
+    construct(target, args, newTarget) {
+        retrun new target(...args)
+    }
+}
+
+target: 目标对象
+args： 构造函数的参数对象
+newTarget: 创造实例对象时，new命令作用的构造函数</code></pre><h3 id="1-7-deleteProperty"><a href="#1-7-deleteProperty" class="headerlink" title="1.7 deleteProperty()"></a>1.7 deleteProperty()</h3><blockquote>
+<p>deleteProperty 方法用于拦截 delete 操作，如果这个方法抛出错误或者返回false，当前属性就无法被delete命令删除。</p>
+</blockquote>
+<h2 id="2-this问题"><a href="#2-this问题" class="headerlink" title="2. this问题"></a>2. this问题</h2><blockquote>
+<p>虽然 Proxy 可以代理针对目标对象的访问，但它不是目标对象的透明代理，即不做任何拦截的情况下，也无法保证目标对象的行为一致。主要原因就是在Proxy代理的情况下，目标对象内部的this关键字会指向Proxy代理</p>
+</blockquote>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-09-06T00:51:26.000Z" itemprop="dateUpdated">2019-09-06 08:51:26</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/09/06/ES6入门之Proxy.html&title=《ES6入门之Proxy》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FvLjZVvWJXTHFtooYM98N19NklJX" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/09/06/ES6入门之Proxy.html&title=《ES6入门之Proxy》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/09/06/ES6入门之Proxy.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之Proxy》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/09/06/ES6入门之Proxy.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/09/06/ES6入门之Proxy.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/09/12/重学JavaScript之面向对象的程序设计（创建对象）.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">重学js之JavaScript 面向对象的程序设计（创建对象）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/08/28/重学Javascript之引用类型.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">重学Javascript之引用类型</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/09/06/ES6入门之Proxy.html&title=《ES6入门之Proxy》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FvLjZVvWJXTHFtooYM98N19NklJX" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/09/06/ES6入门之Proxy.html&title=《ES6入门之Proxy》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/09/06/ES6入门之Proxy.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之Proxy》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/09/06/ES6入门之Proxy.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/09/06/ES6入门之Proxy.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJUlEQVR42u3aQW7kMAwEwPz/05PrAoso3ZQnwEilk+F4bJcPDEXy6yter3/W7Hx+/P/dHlsYGBgfy3gtV3LN+sHrKxNw9EQMDIwLGD89Pj9ev9b6KevPt343DAwMjPU1SdDMU0AMDAyMdzDWL5eE2nX6iIGBgdFuYpNbz0LzbPOMgYFxDyOvuv/98Vv6GxgYGB/FeJVrtgVtX7F+KwwMjKMZz966bRsUG9QkDcXAwDiakY84tOnjU2Nhw9ohBgbGcYy8ZJaX9dtUbzbYgYGBcQOjHcyaAWaFvPy3GBgYZzPyqDxrNLaJ3YyNgYFxKmMY1Mp8sx2/qJsKGBgYRzOKeByc32l/JiG+/r+BgYFxBCPZQM6Gt54t/f/yOTAwMI5m7AOeTQdbWN2pwMDAOIix03psGwxtu7QIuBgYGEcwkvbkrEyWJIX5X385g4GBcTRjZ9wh2VjOEsfhwsDAuIwxK37lIxpJWtlubjEwMG5g7DcDZh9lFo5/LLdhYGBcwHhfJjYrsRUlPAwMjAsY+e2Srews4dsaLMPAwLiG0Y6WzopoeWGu+BUGBsahjFe5ZsliEqy3xmcxMDCOZrRb1jpdCzax7bjGzsYbAwPjcxl1Yettxbh861v0NzAwMA5iJK/SBt9Zka79QBgYGBg5o00Qn2p2YmBgYCTXtOE4L/0n6SMGBsY9jFlBLblyv0kQ3QcDA+Noxk7eVQTE7eblzngHBgbGxzK+AfordHIzdx8EAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

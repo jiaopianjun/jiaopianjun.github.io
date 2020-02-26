@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>Node.js REPL | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="node学习">
+    <meta name="description" content="Node.js REPL Node.js REPL (交互式解释器)，表示一个电脑的环境，类似window的终端或者shell,使的我们可以在终端中输入名，并接受系统的响应。Node自带了交互式解释器，可以执行下面任务：  1. 读取 - 读取用户输入，解析输入了JavaScript数据结构并存储到内存中。 2. 执行 - 执行输入的数据结构 3. 打印 - 输出结果 4. 循环 - 循环操作以上">
+<meta name="keywords" content="node学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js REPL">
+<meta property="og:url" content="https://toc.lieme.cn/2019/04/19/Node-js-REPL.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="Node.js REPL Node.js REPL (交互式解释器)，表示一个电脑的环境，类似window的终端或者shell,使的我们可以在终端中输入名，并接受系统的响应。Node自带了交互式解释器，可以执行下面任务：  1. 读取 - 读取用户输入，解析输入了JavaScript数据结构并存储到内存中。 2. 执行 - 执行输入的数据结构 3. 打印 - 输出结果 4. 循环 - 循环操作以上">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2020-01-17T05:58:50.166Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js REPL">
+<meta name="twitter:description" content="Node.js REPL Node.js REPL (交互式解释器)，表示一个电脑的环境，类似window的终端或者shell,使的我们可以在终端中输入名，并接受系统的响应。Node自带了交互式解释器，可以执行下面任务：  1. 读取 - 读取用户输入，解析输入了JavaScript数据结构并存储到内存中。 2. 执行 - 执行输入的数据结构 3. 打印 - 输出结果 4. 循环 - 循环操作以上">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">Node.js REPL</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">Node.js REPL</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-19T13:33:00.000Z" itemprop="datePublished" class="page-time">
+  2019-04-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Node系列/">Node系列</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Node-js-REPL"><span class="post-toc-number">1.</span> <span class="post-toc-text">Node.js REPL</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#1-简单的表达式运算"><span class="post-toc-number">1.0.0.1.</span> <span class="post-toc-text">1. 简单的表达式运算</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#2-使用变量"><span class="post-toc-number">1.0.0.2.</span> <span class="post-toc-text">2. 使用变量</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#3-多行表达式"><span class="post-toc-number">1.0.0.3.</span> <span class="post-toc-text">3. 多行表达式</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#4-下划线-变量"><span class="post-toc-number">1.0.0.4.</span> <span class="post-toc-text">4. 下划线(_)变量</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#5-REPL-命令"><span class="post-toc-number">1.0.0.5.</span> <span class="post-toc-text">5. REPL 命令</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Node-js-REPL"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Node.js REPL</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-19 21:33:00" datetime="2019-04-19T13:33:00.000Z"  itemprop="datePublished">2019-04-19</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Node系列/">Node系列</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        543
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        2 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h3 id="Node-js-REPL"><a href="#Node-js-REPL" class="headerlink" title="Node.js REPL"></a>Node.js REPL</h3><blockquote>
+<p>Node.js REPL (交互式解释器)，表示一个电脑的环境，类似window的终端或者shell,使的我们可以在终端中输入名，并接受系统的响应。Node自带了交互式解释器，可以执行下面任务：</p>
+</blockquote>
+<pre><code>1. 读取 - 读取用户输入，解析输入了JavaScript数据结构并存储到内存中。
+2. 执行 - 执行输入的数据结构
+3. 打印 - 输出结果
+4. 循环 - 循环操作以上步骤直到用户按下两次Ctrl-c 退出</code></pre><blockquote>
+<p>我们在安装Node后 可以通过输入node启动终端</p>
+</blockquote>
+<h6 id="1-简单的表达式运算"><a href="#1-简单的表达式运算" class="headerlink" title="1. 简单的表达式运算"></a>1. 简单的表达式运算</h6><pre><code>$ node
+&gt; 1 +4
+5
+&gt; 5 / 2
+2.5
+&gt; 3 * 6
+18
+&gt; 4 - 1
+3
+&gt; 1 + ( 2 * 3 ) - 4
+3
+&gt;
+ctrl + c - 退出当前终端。</code></pre><h6 id="2-使用变量"><a href="#2-使用变量" class="headerlink" title="2. 使用变量"></a>2. 使用变量</h6><blockquote>
+<p>你可以将数据存储在变量中，并在你需要的时候使用它。</p>
+</blockquote>
+<p>变量声明需要使用 var 关键字，如果没有使用 var 关键字变量会直接打印出来。</p>
+<p>使用 var 关键字的变量可以使用 console.log() 来输出变量。</p>
+<pre><code>$ node
+&gt; x = 10
+10
+&gt; var y = 10
+undefined
+&gt; x + y
+20
+&gt; console.log(&quot;Hello World&quot;)
+Hello World
+undefined
+&gt; console.log(&quot;www.runoob.com&quot;)
+www.runoob.com
+undefined</code></pre><h6 id="3-多行表达式"><a href="#3-多行表达式" class="headerlink" title="3. 多行表达式"></a>3. 多行表达式</h6><blockquote>
+<p>Node REPL 支持输入多行表达式，这就有点类似 JavaScript。接下来让我们来执行一个 do-while 循环：</p>
+</blockquote>
+<pre><code>$ node
+&gt; var x = 0
+undefined
+&gt; do {
+... x++;
+... console.log(&quot;x: &quot; + x);
+... } while ( x &lt; 5 );
+x: 1
+x: 2
+x: 3
+x: 4
+x: 5
+undefined
+&gt;
+ctrl + c 按下两次 - 退出 Node REPL。
+
+// ... 三个点的符号是系统自动生成的，你回车换行后即可。Node 会自动检测是否为连续的表达式。</code></pre><h6 id="4-下划线-变量"><a href="#4-下划线-变量" class="headerlink" title="4. 下划线(_)变量"></a>4. 下划线(_)变量</h6><blockquote>
+<p>你可以使用下划线(_)获取上一个表达式的运算结果：</p>
+</blockquote>
+<pre><code>$ node
+&gt; var x = 10
+undefined
+&gt; var y = 20
+undefined
+&gt; x + y
+30
+&gt; var sum = _
+undefined
+&gt; console.log(sum)
+30
+undefined
+&gt;</code></pre><h6 id="5-REPL-命令"><a href="#5-REPL-命令" class="headerlink" title="5. REPL 命令"></a>5. REPL 命令</h6><pre><code>ctrl + d - 退出 Node REPL.
+
+向上/向下 键 - 查看输入的历史命令
+
+tab 键 - 列出当前命令
+
+.help - 列出使用命令
+
+.break - 退出多行表达式
+
+.clear - 退出多行表达式
+
+.save filename - 保存当前的 Node REPL 会话到指定文件
+
+.load filename - 载入当前 Node REPL 会话的文件内容。</code></pre>
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-01-17T05:58:50.166Z" itemprop="dateUpdated">2020-01-17 13:58:50</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node学习/">node学习</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/04/19/Node-js-REPL.html&title=《Node.js REPL》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/04/19/Node-js-REPL.html&title=《Node.js REPL》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/04/19/Node-js-REPL.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Node.js REPL》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/04/19/Node-js-REPL.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/04/19/Node-js-REPL.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/04/25/Python基础教程之条件判断和循环.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Python基础教程之条件判断和循环</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/04/19/Python基础教程之list和tuple.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Python基础教程之list和tuple</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/04/19/Node-js-REPL.html&title=《Node.js REPL》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/04/19/Node-js-REPL.html&title=《Node.js REPL》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/04/19/Node-js-REPL.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Node.js REPL》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/04/19/Node-js-REPL.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/04/19/Node-js-REPL.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACK0lEQVR42u3aS27DMAwFwNz/0i7QVYEmyiPpoLU8Xhn5WaMADyKlxyO+ju9rff/zleT13/evvnvahYGBcVnGsbzWw52/m0zTemwYGBj3YeQhuw7W8uOXgZuMDQMDAyNZuiVDTBadyfRhYGBg9AK3F6lJyGJgYGBUi9he7E4C+iO1OAYGxgUZZ20MfOL+D/Y3MDAw/hnjGFyTojQP9GgkGBgYWzOShVo+0Ekpu/5kFMQYGBibMnqNtioy/50mEgMDY2tG79BD3srPm3RnTSIGBsZ+jMlwzwrNfKvg5UgwMDBuw+g9vrqF8JEjGhgYGDdg9DYvk5J1Erj5dGBgYNyHMT+q1dtySBagGBgYGPkQq8cmytEZR3ZUi2NgYNyAUV0gVr/b27soBy4GBsbFGdXYzQM3adJVv/VmujEwMDZl5C3+vPictPDyqXnyP2BgYGzKSFpjk6NdeWT3gvjJuxgYGJsy1oOoLvjyRWF+/CKKdQwMjK0Zebzm8Vc9BJYvK6PPY2BgbMeoHp7ID2dUW/8jHgYGxm0Yk/DNj1nkMZ2XuxgYGHszekcc8sAdlaOtshkDA2MnxlG8qvPRC9PyRiYGBsbWjF7M5ZuO1fvJJzEwMPZm9DYR86ZbvnBM3h2tXjEwMC7OmIRsPrhJ6r8poTEwMDCWj0yK0l4pW2jMYWBgYLQa/UmkntZcw8DAuAEjKWKT2O39Wg7GwMC4J6PXy+odNm220pIiFgMDY0/GF9U3S6kZyLAUAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

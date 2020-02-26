@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>我不知道的Event Loop | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="事件循环">
+    <meta name="description" content="EventLoop是MS中的高频问题，理解繁琐，一步小心，步步入坑。  1、本文要点123451、EventLoop是什么？2、任务队列是什么？3、同步任务和异步任务？4、微任务和宏任务？...  2、EventLoop是什么？ 我们都知道Js是单线程语言，即同一时间只能做一件事情，但是为了协调各种事件、用户交互、脚本加载、UI渲染和网络处理等行为，避免主线不阻塞，出现了EventLoop =&amp;">
+<meta name="keywords" content="事件循环">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我不知道的Event Loop">
+<meta property="og:url" content="https://toc.lieme.cn/2019/12/27/我不知道的Event-Loop.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="EventLoop是MS中的高频问题，理解繁琐，一步小心，步步入坑。  1、本文要点123451、EventLoop是什么？2、任务队列是什么？3、同步任务和异步任务？4、微任务和宏任务？...  2、EventLoop是什么？ 我们都知道Js是单线程语言，即同一时间只能做一件事情，但是为了协调各种事件、用户交互、脚本加载、UI渲染和网络处理等行为，避免主线不阻塞，出现了EventLoop =&amp;">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/FvGndrULr8hjezWZROnzEB4M4_NB">
+<meta property="og:updated_time" content="2019-12-27T09:20:34.268Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我不知道的Event Loop">
+<meta name="twitter:description" content="EventLoop是MS中的高频问题，理解繁琐，一步小心，步步入坑。  1、本文要点123451、EventLoop是什么？2、任务队列是什么？3、同步任务和异步任务？4、微任务和宏任务？...  2、EventLoop是什么？ 我们都知道Js是单线程语言，即同一时间只能做一件事情，但是为了协调各种事件、用户交互、脚本加载、UI渲染和网络处理等行为，避免主线不阻塞，出现了EventLoop =&amp;">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/FvGndrULr8hjezWZROnzEB4M4_NB">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">我不知道的Event Loop</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">我不知道的Event Loop</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-12-27T09:16:42.000Z" itemprop="datePublished" class="page-time">
+  2019-12-27
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、本文要点"><span class="post-toc-number">1.</span> <span class="post-toc-text">1、本文要点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、EventLoop是什么？"><span class="post-toc-number">2.</span> <span class="post-toc-text">2、EventLoop是什么？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3、任务队列是什么？"><span class="post-toc-number">3.</span> <span class="post-toc-text">3、任务队列是什么？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4、同步任务和异步任务？"><span class="post-toc-number">4.</span> <span class="post-toc-text">4、同步任务和异步任务？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#通俗的讲"><span class="post-toc-number">4.0.0.1.</span> <span class="post-toc-text">通俗的讲</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5、微任务和宏任务？"><span class="post-toc-number">5.</span> <span class="post-toc-text">5、微任务和宏任务？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#5-1-宏任务（MacroTask）"><span class="post-toc-number">5.0.1.</span> <span class="post-toc-text">5.1 宏任务（MacroTask）</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#5-2-微任务（MicroTask）"><span class="post-toc-number">5.0.2.</span> <span class="post-toc-text">5.2 微任务（MicroTask）</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#5-3-执行顺序"><span class="post-toc-number">5.0.3.</span> <span class="post-toc-text">5.3 执行顺序</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6、结语"><span class="post-toc-number">6.</span> <span class="post-toc-text">6、结语</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">7.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-我不知道的Event-Loop"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">我不知道的Event Loop</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-12-27 17:16:42" datetime="2019-12-27T09:16:42.000Z"  itemprop="datePublished">2019-12-27</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        1,533
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        5 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>EventLoop是MS中的高频问题，理解繁琐，一步小心，步步入坑。</p>
+</blockquote>
+<h3 id="1、本文要点"><a href="#1、本文要点" class="headerlink" title="1、本文要点"></a>1、本文要点</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、EventLoop是什么？</span><br><span class="line"><span class="number">2</span>、任务队列是什么？</span><br><span class="line"><span class="number">3</span>、同步任务和异步任务？</span><br><span class="line"><span class="number">4</span>、微任务和宏任务？</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、EventLoop是什么？"><a href="#2、EventLoop是什么？" class="headerlink" title="2、EventLoop是什么？"></a>2、EventLoop是什么？</h3><blockquote>
+<p>我们都知道Js是单线程语言，即同一时间只能做一件事情，但是为了协调各种事件、用户交互、脚本加载、UI渲染和网络处理等行为，避免主线不阻塞，出现了EventLoop =&gt; ==事件循环==也就是我们常说的 <strong>异步</strong> 的方案。</p>
+</blockquote>
+<p><strong>过程：</strong></p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">在执行主线程的任务时，如果有异步任务，会进入到Event Table并注册回调函数，当指定的事情完成后，</span><br><span class="line">会将这个回调函数放到 callback<span class="built_in"> queue </span>中</span><br><span class="line"></span><br><span class="line">在主线程执行完毕之后，会去读取 callback queue中的回调函数，进入主线程执行</span><br><span class="line"></span><br><span class="line">不断的重复这个过程，也就是常说的Event Loop（事件循环）了</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、任务队列是什么？"><a href="#3、任务队列是什么？" class="headerlink" title="3、任务队列是什么？"></a>3、任务队列是什么？</h3><blockquote>
+<p>事件循环是通过任务队列的机制来进行协调的。一个EventLoop中，可以有一个或者多个任务队列(task queue)，一个任务队列便是一系列有序任务(task)的集合；每个任务都有一个任务源(task source)，源自同一个任务源的 task 必须放到同一个任务队列，从不同源来的则被添加到不同队列。</p>
+</blockquote>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">在事件循环中，每进行一次循环操作称为 tick，每一次 tick 的任务处理模型是比较复杂的，但关键步骤如下：</span><br><span class="line"></span><br><span class="line">1、在此次 tick 中选择最先进入队列的任务(oldest task)，如果有则执行(一次)</span><br><span class="line">2、检查是否存在 Microtasks，如果存在则不停地执行，直至清空 Microtasks Queue</span><br><span class="line">3、更新 render</span><br><span class="line">4、主线程重复执行上述步骤</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、同步任务和异步任务？"><a href="#4、同步任务和异步任务？" class="headerlink" title="4、同步任务和异步任务？"></a>4、同步任务和异步任务？</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">同步：一定要等任务执行完了，得到结果，才执行下一个任务。同步会阻塞代码运行，例如 alert</span><br><span class="line">异步：异步任务会在异步任务有了结果后，将注册的回调函数放入任务队列中等待主线程空闲的时候（调用栈被清空），被读取到栈内等待主线程的执行。。例如 <span class="built_in">setTimeout</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>异步并不是同步，异步是单线程，异步指的是让CPU暂时搁置当前请求的响应,处理下一个请求,当通过轮询或其他方式得到回调通知后,开始运行。</p>
+</blockquote>
+<h6 id="通俗的讲"><a href="#通俗的讲" class="headerlink" title="通俗的讲"></a>通俗的讲</h6><blockquote>
+<p>同步就是我强依赖你(对方)，我必须等到你的回复，才能做出下一步响应。即我的操作(行程)是顺序执行的，中间少了哪一步都不可以，或者说中间哪一步出错都不可以，类似于编程中程序被解释器顺序执行一样；同时如果我没有收到你的回复，我就一直处于等待、也就是阻塞的状态。 异步则相反，我并不强依赖你，我对你响应的时间也不敏感，无论你返回还是不返回，我都能继续运行；你响应并返回了，我就继续做之前的事情，你没有响应，我就做其他的事情。也就是说我不存在等待对方的概念，我就是非阻塞的。</p>
+</blockquote>
+<p>所以像setTimeOut定时任务、ajax请求都是需要一定的时间的，所以一般都是用异步方式，不会阻塞后边代码的执行，而是设置了定时时间之后、或发送了请求之后，就移动到单线程的任务队列的最尾端，等后边执行完之后再执行定时代码或者ajax请求的回调函数内代码。</p>
+<p><strong>注意：</strong></p>
+<blockquote>
+<p>异步并不是Js同时执行两段操作，它只是设定了定时的时间，然后放到任务队列的最后面，然后去执行其他操作，当设定的时间到了之后在把事件拿回来继续执行。</p>
+</blockquote>
+<h3 id="5、微任务和宏任务？"><a href="#5、微任务和宏任务？" class="headerlink" title="5、微任务和宏任务？"></a>5、微任务和宏任务？</h3><blockquote>
+<p>异步任务又分为 <strong>宏任务（MacroTask）</strong> 跟 <strong>微任务（MicroTask）</strong>，主要区别在于执行顺序的不同。我们都知道js应该是按照语句先后顺序执行，在出现异步时，则发起异步请求，再接着往下执行，待异步结果返回后再接着执行。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">注意：</span><br><span class="line"></span><br><span class="line">这两个任务分别维护一个队列，均采用先进先出的策略进行执行！同步执行的任务都在宏任务上执行。</span><br><span class="line"></span><br><span class="line">宏任务队列macrotask一次只从队列中取一个任务执行，执行完后就去执行微任务队列中的任务；</span><br><span class="line">微任务队列中所有的任务都会被依次取出来执行，知道microtask <span class="built_in">queue</span>为空；</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-1-宏任务（MacroTask）"><a href="#5-1-宏任务（MacroTask）" class="headerlink" title="5.1 宏任务（MacroTask）"></a>5.1 宏任务（MacroTask）</h5><ul>
+<li>script全部代码、setTimeout、setInterval、setImmediate（浏览器暂时不支持，只有IE10支持，具体可见MDN）、I/O、UI Rendering。</li>
+</ul>
+<h5 id="5-2-微任务（MicroTask）"><a href="#5-2-微任务（MicroTask）" class="headerlink" title="5.2 微任务（MicroTask）"></a>5.2 微任务（MicroTask）</h5><ul>
+<li>Promise、 MutationObserver、 process.nextTick(Node.js 环境)。</li>
+</ul>
+<h5 id="5-3-执行顺序"><a href="#5-3-执行顺序" class="headerlink" title="5.3 执行顺序"></a>5.3 执行顺序</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/Fnn5r4wC2w6krP0rfPrOHyu_SNAy" alt="eventLoop.jpg" title>
+                </div>
+                <div class="image-caption" style="display:none;">eventLoop.jpg</div>
+            </figure>
+
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>首先执行同步代码，这属于宏任务</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>当执行完所有同步代码后，执行栈为空，查询是否有异步代码需要执行</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>执行所有微任务</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span>当执行完所有微任务后，如有必要会渲染页面</span><br><span class="line"></span><br><span class="line"><span class="number">5.</span>然后开始下一轮EventLoop，执行宏任务中的异步代码，也就是setTimeout中的回调函数</span><br></pre></td></tr></table></figure>
+
+<h3 id="6、结语"><a href="#6、结语" class="headerlink" title="6、结语"></a>6、结语</h3><blockquote>
+<p>之前兜兜转转，总是忘记事件的执行顺序。长时间不接触，有些记忆越发的淡忘。只能不断重拾记忆，加深。</p>
+</blockquote>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><a href="https://www.cnblogs.com/zhaoyanhaoBlog/p/11296223.html" target="_blank" rel="noopener">js同步和异步</a></li>
+<li><a href="https://www.cnblogs.com/xumengxuan/p/10867590.html" target="_blank" rel="noopener">前端中的事件循环eventloop机制</a></li>
+<li><a href="https://segmentfault.com/a/1190000016278115?utm_source=tag-newest" target="_blank" rel="noopener">带你彻底弄懂Event Loop</a></li>
+<li><a href="https://www.cnblogs.com/lentoo/p/10245598.html" target="_blank" rel="noopener">用大白话告诉你什么是Event Loop</a></li>
+<li><a href="https://juejin.im/post/5c3d8956e51d4511dc72c200?utm_source=gold_browser_extension#comment" target="_blank" rel="noopener">一次弄懂Event Loop（彻底解决此类面试问题）</a></li>
+<li><a href="https://github.com/dwqs/blog/issues/61" target="_blank" rel="noopener">从一道题浅说 JavaScript 的事件循环</a></li>
+</ul>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-12-27T09:20:34.268Z" itemprop="dateUpdated">2019-12-27 17:20:34</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/事件循环/">事件循环</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/12/27/我不知道的Event-Loop.html&title=《我不知道的Event Loop》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FvGndrULr8hjezWZROnzEB4M4_NB" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/12/27/我不知道的Event-Loop.html&title=《我不知道的Event Loop》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/12/27/我不知道的Event-Loop.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《我不知道的Event Loop》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/12/27/我不知道的Event-Loop.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/12/27/我不知道的Event-Loop.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/12/31/亦如沙粒，亦如星辰，我平凡的2019！！.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">亦如沙粒，亦如星辰，我平凡的2019！！</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/12/16/前端两三问.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">前端两三问</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/12/27/我不知道的Event-Loop.html&title=《我不知道的Event Loop》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FvGndrULr8hjezWZROnzEB4M4_NB" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/12/27/我不知道的Event-Loop.html&title=《我不知道的Event Loop》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/12/27/我不知道的Event-Loop.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《我不知道的Event Loop》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/12/27/我不知道的Event-Loop.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/12/27/我不知道的Event-Loop.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACCklEQVR42u3aSW5CMRAFwNz/0uQAEcl73RAJu7xCDMb1F60e/PUVr8eP9ez95Dv5/i9eGBgYH8vIj/Lz+7+/0zKS3z7dBwMD4wJGu/WzB5Gwc2pyNgwMDIw2gCbI2f9iYGBgJNvNUsAWhoGBgbEpYpNisv00L49fVotjYGB8ICPvuv//67fMNzAwMD6K8ShXO86cHbc+FQYGxtGMzQizDc2bAUBUymJgYFzDmIXUtnnX5nh1uw0DA+M4Rls6zgYARZIXX+DAwMC4gTErO9tPN6lk8isMDIwbGO1VsFc1ztrw+kejDQMD41BGnvC14LysTfbPwzcGBsbZjHeMFdtkcXbJDAMD42zGfhgwu1SRJ4t1houBgXEoI0+58mCatNhmCWXRNcTAwDiC8docc/ZpC8bAwLiTsQm1bUqXjx/qR4CBgXEBIw+Im+HlLIlMrl9gYGDcw8j/+N1hun1wGBgY9zA2ITVpyeUHbYejGBgY9zCSQ28YeSKYP0oMDIzbGHka1x5u33T7Y5yAgYFxNGM2OMwL3Ta5bLtqGBgYZzMe5dpc7cqvcbQBGgMD42xGvv4zvLbpIwYGxg2M2QgzuRKx2a2+ioGBgXEBY3ZVIk8oNwODKN3EwMDAWJeasysXdfaKgYGBsQiUmwEnBgYGxr6ITdizgWhyTgwMjBsYs9KxbocFR9m8xsDAOJTxDSURo4l86RJ4AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

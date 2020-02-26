@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>前端网络相关基础以及安全 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="网络">
+    <meta name="description" content="1.TCP UDP的区别12345678910111213141516171819202122TCP的优点：可靠，稳定 TCP的可靠体现在TCP在传递数据之前，会有三次握手来建立连接，而且在数据传递时，有确认、窗口、重传、拥塞控制机制，在数据传完后，还会断开连接用来节约系统资源。TCP的缺点： 慢，效率低，占用系统资源高，易被攻击 TCP在传递数据之前，要先建连接，这会消耗时间，而且在数据传递时，">
+<meta name="keywords" content="网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端网络相关基础以及安全">
+<meta property="og:url" content="https://toc.lieme.cn/2018/12/25/端网络相关基础.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1.TCP UDP的区别12345678910111213141516171819202122TCP的优点：可靠，稳定 TCP的可靠体现在TCP在传递数据之前，会有三次握手来建立连接，而且在数据传递时，有确认、窗口、重传、拥塞控制机制，在数据传完后，还会断开连接用来节约系统资源。TCP的缺点： 慢，效率低，占用系统资源高，易被攻击 TCP在传递数据之前，要先建连接，这会消耗时间，而且在数据传递时，">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2020-01-17T06:55:17.132Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端网络相关基础以及安全">
+<meta name="twitter:description" content="1.TCP UDP的区别12345678910111213141516171819202122TCP的优点：可靠，稳定 TCP的可靠体现在TCP在传递数据之前，会有三次握手来建立连接，而且在数据传递时，有确认、窗口、重传、拥塞控制机制，在数据传完后，还会断开连接用来节约系统资源。TCP的缺点： 慢，效率低，占用系统资源高，易被攻击 TCP在传递数据之前，要先建连接，这会消耗时间，而且在数据传递时，">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">前端网络相关基础以及安全</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">前端网络相关基础以及安全</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-25T06:22:00.000Z" itemprop="datePublished" class="page-time">
+  2018-12-25
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#1-TCP-UDP的区别"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.TCP UDP的区别</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#2-浏览器输入URL后发生了什么"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.浏览器输入URL后发生了什么</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#3-OSI-ISO七层模型"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.OSI/ISO七层模型</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#4-TCP三次握手和四次挥手的全过程"><span class="post-toc-number">4.</span> <span class="post-toc-text">4.TCP三次握手和四次挥手的全过程</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#5-http协议"><span class="post-toc-number">5.</span> <span class="post-toc-text">5.http协议</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#6-IP划分"><span class="post-toc-number">6.</span> <span class="post-toc-text">6.IP划分</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#7-Ngnix代理跨域"><span class="post-toc-number">7.</span> <span class="post-toc-text">7.Ngnix代理跨域</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#8-交换机与路由器有什么区别"><span class="post-toc-number">8.</span> <span class="post-toc-text">8.交换机与路由器有什么区别</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#9-TCP-IP的流量控制"><span class="post-toc-number">9.</span> <span class="post-toc-text">9.TCP/IP的流量控制</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#10-ICMP协议和DHCP协议"><span class="post-toc-number">10.</span> <span class="post-toc-text">10.ICMP协议和DHCP协议</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#11-传输层协议与网络层协议的区别？"><span class="post-toc-number">11.</span> <span class="post-toc-text">11.传输层协议与网络层协议的区别？</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#12-说说静态路由和动态路由有什么区别"><span class="post-toc-number">12.</span> <span class="post-toc-text">12.说说静态路由和动态路由有什么区别</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#13-跨站脚本攻击-XSS攻击"><span class="post-toc-number">13.</span> <span class="post-toc-text">13.跨站脚本攻击(XSS攻击)</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#14-跨站请求伪造-CSRF攻击"><span class="post-toc-number">14.</span> <span class="post-toc-text">14.跨站请求伪造(CSRF攻击)</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#15-SQL注入攻击"><span class="post-toc-number">15.</span> <span class="post-toc-text">15.SQL注入攻击</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#16-文件上传漏洞"><span class="post-toc-number">16.</span> <span class="post-toc-text">16.文件上传漏洞</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-端网络相关基础"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">前端网络相关基础以及安全</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-25 14:22:00" datetime="2018-12-25T06:22:00.000Z"  itemprop="datePublished">2018-12-25</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        5,038
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        19 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h6 id="1-TCP-UDP的区别"><a href="#1-TCP-UDP的区别" class="headerlink" title="1.TCP UDP的区别"></a>1.TCP UDP的区别</h6><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">TCP的优点：可靠，稳定 TCP的可靠体现在TCP在传递数据之前，会有三次握手来建立连接，而且在数据传递时，有确认、窗口、重传、拥塞控制机制，在数据传完后，还会断开连接用来节约系统资源。</span><br><span class="line"></span><br><span class="line">TCP的缺点： 慢，效率低，占用系统资源高，易被攻击 TCP在传递数据之前，要先建连接，这会消耗时间，而且在数据传递时，确认机制、重传机制、拥塞控制机制等都会消耗大量的时间，而且要在每台设备上维护所有的传输连接，事实上，每个连接都会占用系统的CPU、内存等硬件资源。 而且，因为TCP有确认机制、三次握手机制，这些也导致TCP容易被人利用，实现DOS、DDOS、CC等攻击。</span><br><span class="line"></span><br><span class="line">UDP的优点： 快，比TCP稍安全 UDP没有TCP的握手、确认、窗口、重传、拥塞控制等机制，UDP是一个无状态的传输协议，所以它在传递数据时非常快。没有TCP的这些机制，UDP较TCP被攻击者利用的漏洞就要少一些。但UDP也是无法避免攻击的，比如：UDP Flood攻击…… </span><br><span class="line"></span><br><span class="line">UDP的缺点： 不可靠，不稳定 因为UDP没有TCP那些可靠的机制，在数据传递时，如果网络质量不好，就会很容易丢包。 基于上面的优缺点，那么： 什么时候应该使用TCP： 当对网络通讯质量有要求的时候，比如：整个数据要准确无误的传递给对方，这往往用于一些要求可靠的应用，比如HTTP、HTTPS、FTP等传输文件的协议，POP、SMTP等邮件传输的协议。 在日常生活中，常见使用TCP协议的应用如下： 浏览器，用的HTTP FlashFXP，用的FTP Outlook，用的POP、SMTP Putty，用的Telnet、SSH QQ文件传输 ………… 什么时候应该使用UDP： 当对网络通讯质量要求不高的时候，要求网络通讯速度能尽量的快，这时就可以使用UDP。 比如，日常生活中，常见使用UDP协议的应用如下： QQ语音 QQ视频 TFTP ……</span><br><span class="line">有些应用场景对可靠性要求不高会用到UPD，比如长视频，要求速率</span><br><span class="line"></span><br><span class="line">TCP与UDP区别总结：</span><br><span class="line"><span class="number">1</span>、TCP面向连接（如打电话要先拨号建立连接）;UDP是无连接的，即发送数据之前不需要建立连接</span><br><span class="line"><span class="number">2</span>、TCP提供可靠的服务。也就是说，通过TCP连接传送的数据，无差错，不丢失，不重复，且按序到达;UDP尽最大努力交付，即不保证可靠交付</span><br><span class="line"><span class="number">3</span>、TCP面向字节流，实际上是TCP把数据看成一连串无结构的字节流;UDP是面向报文的</span><br><span class="line">UDP没有拥塞控制，因此网络出现拥塞不会使源主机的发送速率降低（对实时应用很有用，如IP电话，实时视频会议等）</span><br><span class="line"><span class="number">4</span>、每一条TCP连接只能是点到点的;UDP支持一对一，一对多，多对一和多对多的交互通信</span><br><span class="line"><span class="number">5</span>、TCP首部开销<span class="number">20</span>字节;UDP的首部开销小，只有<span class="number">8</span>个字节</span><br><span class="line"><span class="number">6</span>、TCP的逻辑通信信道是全双工的可靠信道，UDP则是不可靠信道</span><br><span class="line"><span class="number">7</span>、基于连接与无连接；</span><br><span class="line"><span class="number">8</span>、对系统资源的要求（TCP较多，UDP少）；</span><br><span class="line"><span class="number">9</span>、UDP程序结构较简单；</span><br><span class="line"><span class="number">10</span>、流模式与数据报模式 ；</span><br><span class="line"><span class="number">11</span>、TCP保证数据正确性，UDP可能丢包，TCP保证数据顺序，UDP不保证。</span><br></pre></td></tr></table></figure>
+
+<h6 id="2-浏览器输入URL后发生了什么"><a href="#2-浏览器输入URL后发生了什么" class="headerlink" title="2.浏览器输入URL后发生了什么"></a>2.浏览器输入URL后发生了什么</h6><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1. </span>DNS域名解析</span><br><span class="line"><span class="bullet">2. </span>建立TCP连接</span><br><span class="line"><span class="bullet">3. </span>发起HTTP请求</span><br><span class="line"><span class="bullet">4. </span>接受响应结果</span><br><span class="line"><span class="bullet">5. </span>浏览器解析html</span><br><span class="line"><span class="bullet">6. </span>浏览器布局渲染</span><br></pre></td></tr></table></figure>
+
+<h6 id="3-OSI-ISO七层模型"><a href="#3-OSI-ISO七层模型" class="headerlink" title="3.OSI/ISO七层模型"></a>3.OSI/ISO七层模型</h6><figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">物理层：设备之间的比特流的传输、物理接口、电气特性等 </span></span><br><span class="line"><span class="attr">数据链路层： 成帧、用MAC地址访问媒介、错误检测与修正 </span></span><br><span class="line"><span class="attr">网络层：提供逻辑地址、选路 </span></span><br><span class="line"><span class="attr">传输层：可靠与不可靠的传输、传输钱的错误检测、流控。 </span></span><br><span class="line"><span class="attr">会话层：对应用会话的管理、同步 </span></span><br><span class="line"><span class="attr">表示层：数据的表现形式、特定功能的实现如</span>=<span class="string">》加密 </span></span><br><span class="line"><span class="string">应用层：用户接口</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="4-TCP三次握手和四次挥手的全过程"><a href="#4-TCP三次握手和四次挥手的全过程" class="headerlink" title="4.TCP三次握手和四次挥手的全过程"></a>4.TCP三次握手和四次挥手的全过程</h6><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">三次握手的过程</span><br><span class="line">step1:第一次握手</span><br><span class="line">建立连接时，客户端发送SYN包到服务器，其中包含客户端的初始序号seq=<span class="keyword">x</span>，并进入SYN_SENT状态，等待服务器确认。（其中，SYN=<span class="number">1</span>，ACK=<span class="number">0</span>，表示这是一个TCP连接请求数据报文；序号seq=<span class="keyword">x</span>，表明传输数据时的第一个数据字节的序号是<span class="keyword">x</span>）。</span><br><span class="line"></span><br><span class="line">step2:第二次握手</span><br><span class="line">服务器收到请求后，必须确认客户的数据包。同时自己也发送一个SYN包，即SYN+ACK包，此时服务器进入SYN_RECV状态。（其中确认报文段中，标识位SYN=<span class="number">1</span>，ACK=<span class="number">1</span>，表示这是一个TCP连接响应数据报文，并含服务端的初始序号se<span class="string">q(服务器)</span>=<span class="keyword">y</span>，以及服务器对客户端初始序号的确认号ack(服务器)=se<span class="string">q(客户端)</span>+<span class="number">1</span>=<span class="keyword">x</span>+<span class="number">1</span>）。</span><br><span class="line"></span><br><span class="line">step3:第三次握手</span><br><span class="line">客户端收到服务器的SYN+ACK包，向服务器发送一个序列号(seq=<span class="keyword">x</span>+<span class="number">1</span>)，确认号为ack(客户端)=<span class="keyword">y</span>+<span class="number">1</span>，此包发送完毕，客户端和服务器进入ESTAB_LISHED(TCP连接成功)状态，完成三次握手。</span><br><span class="line"></span><br><span class="line">未连接队列</span><br><span class="line">在三次握手协议中，服务器维护一个未连接队列，该队列为每个客户端的SYN包(syn=j)开设一个条目，该条目表明服务器已收到SYN包，并向客户发出确认，正在等待客户的确认包时，删除该条目，服务器进入ESTAB_LISHED状态。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">四次挥手过程（关闭客户端到服务器的连接）</span><br><span class="line">step1：第一次挥手</span><br><span class="line">首先，客户端发送一个FIN，用来关闭客户端到服务器的数据传送，然后等待服务器的确认。其中终止标志位FIN=<span class="number">1</span>，序列号seq=u。</span><br><span class="line"></span><br><span class="line">step2：第二次挥手</span><br><span class="line">服务器收到这个FIN，它发送一个ACK，确认ack为收到的序号加一。</span><br><span class="line"></span><br><span class="line">step3：第三次挥手</span><br><span class="line">关闭服务器到客户端的连接，发送一个FIN给客户端。</span><br><span class="line"></span><br><span class="line">step4：第四次挥手</span><br><span class="line">客户端收到FIN后，并发回一个ACK报文确认，并将确认序号seq设置为收到序号加一。首先进行关闭的一方将执行主动关闭，而另一方执行被动关闭。</span><br></pre></td></tr></table></figure>
+
+<h6 id="5-http协议"><a href="#5-http协议" class="headerlink" title="5.http协议"></a>5.http协议</h6><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HTTP 协议是以 ASCII 码传输，建立在 TCP<span class="built_in">/IP </span>协议之上的应用层规范。规范把 HTTP 请求分为三个部分：状态行、请求头、消息主体。类似于下面这样：</span><br><span class="line"></span><br><span class="line">HTTP定义了与服务器交互的不同方法，最基本的方法有4种，分别是GET，POST，PUT，DELETE。URL全称是资源描述符，我们可以这样认为：一个URL地址，它用于描述一个网络上的资源，而 HTTP 中的GET，POST，PUT，DELETE就对应着对这个资源的查，增，改，删4个操作。</span><br></pre></td></tr></table></figure>
+
+<h6 id="6-IP划分"><a href="#6-IP划分" class="headerlink" title="6.IP划分"></a>6.IP划分</h6><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">A</span>类：0<span class="selector-class">.0</span><span class="selector-class">.0</span><span class="selector-class">.0</span>~127<span class="selector-class">.255</span><span class="selector-class">.255</span><span class="selector-class">.255</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">B</span>类：128<span class="selector-class">.0</span><span class="selector-class">.0</span><span class="selector-class">.0</span>~191<span class="selector-class">.255</span><span class="selector-class">.255</span><span class="selector-class">.255</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">C</span>类：192<span class="selector-class">.0</span><span class="selector-class">.0</span><span class="selector-class">.0</span>~223<span class="selector-class">.255</span><span class="selector-class">.255</span><span class="selector-class">.255</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">D</span>类：224<span class="selector-class">.0</span><span class="selector-class">.0</span><span class="selector-class">.0</span>~239<span class="selector-class">.255</span><span class="selector-class">.255</span><span class="selector-class">.255</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">E</span>类：240<span class="selector-class">.0</span><span class="selector-class">.0</span><span class="selector-class">.0</span>~247<span class="selector-class">.255</span><span class="selector-class">.255</span><span class="selector-class">.255</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="7-Ngnix代理跨域"><a href="#7-Ngnix代理跨域" class="headerlink" title="7.Ngnix代理跨域"></a>7.Ngnix代理跨域</h6><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       <span class="number">80</span>; <span class="comment">#监听80端口，可以改成其他端口</span></span><br><span class="line">    server_name  localhost; <span class="comment"># 当前服务的域名</span></span><br><span class="line">    <span class="comment">#charset koi8-r;</span></span><br><span class="line">    <span class="comment">#access_log  logs/host.access.log  main;</span></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http:<span class="regexp">//</span>localhost:<span class="number">81</span>;</span><br><span class="line">        proxy_redirect <span class="keyword">default</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    location /apis &#123; <span class="comment">#添加访问目录为/apis的代理配置</span></span><br><span class="line">        rewrite  ^<span class="regexp">/apis/</span>(.*)$ /$<span class="number">1</span> <span class="keyword">break</span>;</span><br><span class="line">        proxy_pass   http:<span class="regexp">//</span>localhost:<span class="number">82</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">配置解释：</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span>由配置信息可知，我们让nginx监听localhost的<span class="number">80</span>端口，网站A与网站B的访问都是经过localhost的<span class="number">80</span>端口进行访问。</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>我们特殊配置了一个“<span class="regexp">/apis”目录的访问，并且对url执行了重写，最后使以“/apis”开头的地址都转到“http:/</span>/localhost:<span class="number">82</span>”进行处理。</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>rewrite  ^<span class="regexp">/apis/</span>(.*)$ /$<span class="number">1</span> <span class="keyword">break</span>; </span><br><span class="line"></span><br><span class="line">代表重写拦截进来的请求，并且只能对域名后边以“/apis”开头的起作用，例如www.a.com/apis/msg?x=<span class="number">1</span>重写。只对/apis重写。</span><br><span class="line">　　rewrite后面的参数是一个简单的正则 ^<span class="regexp">/apis/</span>(.*)$ ,$<span class="number">1</span>代表正则中的第一个(),$<span class="number">2</span>代表第二个()的值,以此类推。</span><br><span class="line">　　<span class="keyword">break</span>代表匹配一个之后停止匹配。</span><br><span class="line">  </span><br><span class="line"><span class="number">5.</span>总结</span><br><span class="line">浏览器跨域的解决方式有很多种：</span><br><span class="line"><span class="number">1.</span>jsonp 需要目标服务器配合一个callback函数。</span><br><span class="line"><span class="number">2.</span><span class="built_in">window</span>.name+iframe 需要目标服务器响应<span class="built_in">window</span>.name。</span><br><span class="line"><span class="number">3.</span><span class="built_in">window</span>.location.hash+iframe 同样需要目标服务器作处理。</span><br><span class="line"><span class="number">4.</span>html5的 postMessage+ifrme 这个也是需要目标服务器或者说是目标页面写一个postMessage，主要侧重于前端通讯。</span><br><span class="line"><span class="number">5.</span>CORS  需要服务器设置header ：Access-Control-Allow-Origin。</span><br><span class="line"><span class="number">6.</span>nginx反向代理 这个方法一般很少有人提及，但是他可以不用目标服务器配合，不过需要你搭建一个中转nginx服务器，用于转发请求。</span><br></pre></td></tr></table></figure>
+
+<h6 id="8-交换机与路由器有什么区别"><a href="#8-交换机与路由器有什么区别" class="headerlink" title="8.交换机与路由器有什么区别"></a>8.交换机与路由器有什么区别</h6><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">什么是路由器？</span><br><span class="line">路由器就像是出租车，上车后司机司机需要知道你的目的地（<span class="built_in">IP</span> 地址），然后司机来负责选择线路到达目的地。到达目的地的线路可能根据实际的交通情况有所变化。</span><br><span class="line"></span><br><span class="line">什么是交换机？</span><br><span class="line">交换机就像地铁，从A到<span class="keyword">B的线路是固定的，只要你选择了到达地址（MAC),你就只能乘坐某条固定的线路，地铁司机也不会司机也不问你去哪里</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="9-TCP-IP的流量控制"><a href="#9-TCP-IP的流量控制" class="headerlink" title="9.TCP/IP的流量控制"></a>9.TCP/IP的流量控制</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">所谓的流量控制就是让发送方的发送速率不要太快，让接收方来得及接受。利用滑动窗口机制可以很方便的在TCP连接上实现对发送方的流量控制。TCP的窗口单位是字节，不是报文段，发送方的发送窗口不能超过接收方给出的接收窗口的数值。</span><br></pre></td></tr></table></figure>
+
+<h6 id="10-ICMP协议和DHCP协议"><a href="#10-ICMP协议和DHCP协议" class="headerlink" title="10.ICMP协议和DHCP协议"></a>10.ICMP协议和DHCP协议</h6><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">DHCP</span>简介</span><br><span class="line"><span class="symbol">DHCP</span>(Dynamic Host Configuration Protocol),动态主机配置协议，是一个应用层协议。当我们将客户主机<span class="built_in">ip</span>地址设置为动态获取方式时，DHCP服务器就会根据DHCP协议给客户端分配<span class="built_in">IP</span>，使得客户机能够利用这个<span class="built_in">IP</span>上网。</span><br><span class="line"><span class="symbol">DHCP</span>的实现分为<span class="number">4</span>步，分别是： </span><br><span class="line">第一步：Client端在局域网内发起一个DHCP　Discover包，目的是想发现能够给它提供<span class="built_in">IP</span>的DHCP Server。 </span><br><span class="line">第二步：可用的DHCP Server接收到Discover包之后，通过发送DHCP Offer包给予Client端应答，意在告诉Client端它可以提供<span class="built_in">IP</span>地址。 </span><br><span class="line">第三步：Client端接收到Offer包之后，发送DHCP Request包请求分配<span class="built_in">IP</span>。 </span><br><span class="line">第四步：DHCP Server发送ACK数据包，确认信息。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="symbol">ICMP</span>协议详解</span><br><span class="line"><span class="symbol">ICMP</span>协议是一个网络层协议。 </span><br><span class="line">一个新搭建好的网络，往往需要先进行一个简单的测试，来验证网络是否畅通；但是<span class="built_in">IP</span>协议并不提供可靠传输。如果丢包了，<span class="built_in">IP</span>协议并不能通知传输层是否丢包以及丢包的原因。 </span><br><span class="line">所以我们就需要一种协议来完成这样的功能–ICMP协议。</span><br><span class="line"></span><br><span class="line"><span class="symbol">ICMP</span>协议的功能</span><br><span class="line"><span class="symbol">ICMP</span>协议的功能主要有： </span><br><span class="line"><span class="number">1</span>. 确认<span class="built_in">IP</span>包是否成功到达目标地址 </span><br><span class="line"><span class="number">2</span>. 通知在发送过程中<span class="built_in">IP</span>包被丢弃的原因</span><br></pre></td></tr></table></figure>
+
+<h6 id="11-传输层协议与网络层协议的区别？"><a href="#11-传输层协议与网络层协议的区别？" class="headerlink" title="11.传输层协议与网络层协议的区别？"></a>11.传输层协议与网络层协议的区别？</h6><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">网络层负责<span class="built_in">ip</span>数据报的产生以及<span class="built_in">ip</span>数据包在逻辑网络上的路由转发。</span><br><span class="line"></span><br><span class="line">传输层提供端到端通信服务层次,提供可靠及非可靠连接。</span><br><span class="line"></span><br><span class="line">网络层只是根据网络地址将源结点发出的数据包传送到目的结点（点到点），其主要任务是：通过路由选择算法，为报文或分组通过通信子网选择最适当的路径。该层控制数据链路层与传输层之间的信息转发，建立、维持和终止网络的连接。具体地说，数据链路层的数据在这一层被转换为数据包，然后通过路径选择、分段组合、顺序、进/出路由等控制，将信息从一个网络设备传送到另一个网络设备。</span><br><span class="line"></span><br><span class="line">而传输层则负责将数据可靠地传送到相应的端口（端到端），传输层提供了主机应用程序进程之间的端到端的服务。传输层利用网络层提供的服务，并通过传输层地址提供给高层用户传输数据的通信端口，使高层用户看到的只是在两个传输实体间的一条端到端的、可由用户控制和设定的、可靠的数据通路。</span><br></pre></td></tr></table></figure>
+
+<h6 id="12-说说静态路由和动态路由有什么区别"><a href="#12-说说静态路由和动态路由有什么区别" class="headerlink" title="12.说说静态路由和动态路由有什么区别"></a>12.说说静态路由和动态路由有什么区别</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">静态路由</span><br><span class="line">　　是在路由器中设置的固定的路由表。除非网络管理员干预，否则静态路由不会发生变化由于静态路由不能对网络的改变作出反映，一般用于网络规模不大、拓扑结构固定的网络中。静态路由的优点是简单、高效、可靠。在所有的路由中，静态路由优先级最高。当动态路由与静态路由发生冲突时，以静态路由为准</span><br><span class="line"></span><br><span class="line">动态路由</span><br><span class="line">　　是网络中的路由器之间相互通信，传递路由信息，利用收到的路由信息更新路由器表的过程。它能实时地适应网络结构的变化。如果路由更新信息表明发生了网络变化，路由选择软件就会重新计算路由，并发出新的路由更新信息。这些信息通过各个网络，引起各路由器重新启动其路由算法，并更新各自的路由表以动态地反映网络拓扑变化。动态路由适用于网络规模大、网络拓扑复杂的网络。</span><br></pre></td></tr></table></figure>
+
+<h6 id="13-跨站脚本攻击-XSS攻击"><a href="#13-跨站脚本攻击-XSS攻击" class="headerlink" title="13.跨站脚本攻击(XSS攻击)"></a>13.跨站脚本攻击(XSS攻击)</h6><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">跨站脚本攻击(<span class="keyword">Cross</span> Site Script为了区别于CSS简称为XSS)指的是恶意攻击者往Web页面里插入恶意html代码，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行，从而达到恶意用户的特殊目的。</span><br><span class="line"></span><br><span class="line">怎么预防</span><br><span class="line">上面演示的是一个非常简单的XSS攻击，还有很多隐蔽的方式，但是其核心都是利用了脚本注入，因此我们解决办法其实很简单，不信赖用户输入，对特殊字符如”&lt;”,”&gt;”转义，就可以从根本上防止这一问题，当然很多解决方案都对XSS做了特定限制，如上面这中做法在ASP.<span class="keyword">NET</span>中不幸不同，微软validateRequest对表单提交自动做了XSS验证。但防不胜防，总有些聪明的恶意用户会到我们的网站搞破坏，对自己站点不放心可以看看这个XSS跨站测试代码大全试试站点是否安全。</span><br></pre></td></tr></table></figure>
+
+<h6 id="14-跨站请求伪造-CSRF攻击"><a href="#14-跨站请求伪造-CSRF攻击" class="headerlink" title="14.跨站请求伪造(CSRF攻击)"></a>14.跨站请求伪造(CSRF攻击)</h6><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CSRF原理很简单，当用户登录以站点时用浏览器打开一恶意网址，就有可能遭受攻击。有同学会奇怪了这个很难实现吧，必须同时满足两个条件才行。其实很简单，比如我们使用QQ，看看QQ zone，突然蹦出个包含中奖或者问卷调查链接的聊天窗口（或者是。。。），这个腾讯做了防范，但是我们收到封邮件包含此内容，很多用户会选择去点击</span><br><span class="line"></span><br><span class="line">如何防范</span><br><span class="line"> </span><br><span class="line"><span class="bullet">1. </span>使用post，不使用get修改信息</span><br><span class="line"><span class="bullet">2. </span>验证码，所有表单的提交需要验证码，但是貌似用起来很麻烦，所以一些关键的操作可以</span><br><span class="line"><span class="bullet">3. </span>在表单中预先植入一些加密信息，验证请求是此表单发送</span><br></pre></td></tr></table></figure>
+
+<h6 id="15-SQL注入攻击"><a href="#15-SQL注入攻击" class="headerlink" title="15.SQL注入攻击"></a>15.SQL注入攻击</h6><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">SQL注入是一种将SQL代码插入或添加到应用（用户）的输入参数中的攻击，之后再将这些参数传递给后台的SQL服务器加以解析并执行。</span><br><span class="line">原理：对构造成SQL语句的变量，过滤不严格，造成可以构造任意的SQL语句，传递到数据库执行。</span><br><span class="line"></span><br><span class="line">哪里能够引发SQL注入</span><br><span class="line"><span class="builtin-name">get</span> query string</span><br><span class="line">port string</span><br><span class="line">http header</span><br><span class="line"></span><br><span class="line">1.在程序中进行过滤</span><br><span class="line">首先，针对SQL注入漏洞产生的原因，我们首先想到的，应该是严格限制用户提交的字符串。也就是URL之后的QueryString，当然，也包括Form、Cookie等。因此，我们需要在接受这些用户传值的页面对参数进行过滤。</span><br><span class="line">2.使用存储过程</span><br><span class="line">3.对用户密码进行加密</span><br></pre></td></tr></table></figure>
+
+<h6 id="16-文件上传漏洞"><a href="#16-文件上传漏洞" class="headerlink" title="16.文件上传漏洞"></a>16.文件上传漏洞</h6><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">什么是文件上传漏洞？</span><br><span class="line">文件上传漏洞是指由于程序员在对用户文件上传部分的控制不足或者处理缺陷，而导致的用户可以越过其本身权限向服务器上上传可执行的动态脚本文件。这里上传的文件可以是木马，病毒，恶意脚本或者WebShell等。这种攻击方式是最为直接和有效的，“文件上传”本身没有问题，有问题的是文件上传后，服务器怎么处理、解释文件。如果服务器的处理逻辑做的不够安全，则会导致严重的后果。</span><br><span class="line"></span><br><span class="line">造成文件上传漏洞的原因以及原理</span><br><span class="line">原因：</span><br><span class="line"><span class="number">1</span> 对于上传文件的后缀名（扩展名）没有做较为严格的限制</span><br><span class="line"><span class="number">2</span> 对于上传文件的MIMETYPE(用于描述文件的类型的一种表述方法) 没有做检查</span><br><span class="line"><span class="number">3</span> 权限上没有对于上传的文件目录设置不可执行权限，（尤其是对于shebang类型的文件）</span><br><span class="line"><span class="number">4</span> 对于web server对于上传文件或者指定目录的行为没有做限制</span><br><span class="line"></span><br><span class="line">原理：</span><br><span class="line">在 WEB 中进行文件上传的原理是通过将表单设为 multipart/form-data，同时加入文件域，而后通过 HTTP 协议将文件内容发送到服务器，服务器端读取这个分段 (multipart) 的数据信息，并将其中的文件内容提取出来并保存的。通常，在进行文件保存的时候，服务器端会读取文件的原始文件名，并从这个原始文件名中得出文件的扩展名，而后随机为文件起一个文件名 ( 为了防止重复 )，并且加上原始文件的扩展名来保存到服务器上。</span><br><span class="line"></span><br><span class="line">文件上传漏洞的攻击与防御方式</span><br><span class="line"><span class="number">1.</span>前端限制</span><br><span class="line"><span class="number">2.</span>检查扩展名</span><br><span class="line"><span class="number">3.</span>检查HTTP Header中的Content-Type</span><br><span class="line"><span class="number">4.</span>分析文件头内容来检查文件类型</span><br><span class="line"><span class="number">5.</span>限制Web Server对于特定类型文件的行为</span><br><span class="line"><span class="number">6.</span>文件系统<span class="number">00</span>截断</span><br><span class="line"><span class="number">7.</span>其它方式—绕过</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-01-17T06:55:17.132Z" itemprop="dateUpdated">2020-01-17 14:55:17</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/12/25/端网络相关基础.html&title=《前端网络相关基础以及安全》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/12/25/端网络相关基础.html&title=《前端网络相关基础以及安全》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2018/12/25/端网络相关基础.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端网络相关基础以及安全》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2018/12/25/端网络相关基础.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2018/12/25/端网络相关基础.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/01/03/Git操作（图）.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Git操作（图）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/25/Vue响应式原理.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Vue响应式原理</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/12/25/端网络相关基础.html&title=《前端网络相关基础以及安全》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/12/25/端网络相关基础.html&title=《前端网络相关基础以及安全》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2018/12/25/端网络相关基础.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端网络相关基础以及安全》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2018/12/25/端网络相关基础.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2018/12/25/端网络相关基础.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACK0lEQVR42u3aQW7DIBAF0Nz/0u62lWr3f3CiGh6rKMF4XhajgeH1isfxbZx9czb/7Nmzz2dr3jAwMDAeyzgux/wLzoJO5iSxYWBg7MNol76eORb62LMYGBgY13Pa0Mf+FAwMDIx7y7Uk+bbzMTAwMPKAZgrBJPl+aC+OgYHxQMbMkdm7P7+lv4GBgfEoxlGOvOBrG59t6fljHQwMjKUZeYLLi7PkKC1fIT/gw8DAWJUxdqkr38qOFYXX7/rlGwwMjKUZ1w+PbWLzdkISaLHRxcDA2ICRLzfW5mxbAvXRGwYGxqKMdpPZglvkYOrHwMDYjNG+/q7Emgf90XttGBgY/4CRpL8EkK85U+P9kfQxMDAWZcyky7FDt7FR3xnBwMBYjpG8rL0WNp+Iiw02BgbG0ox8D5iUj3lSbje0xTYYAwNjOUYeXFsgzh/eFWAMDIylGWMH8W1B2V7guGFgYGAsxBi77pCkzjy95oXp6R+HgYGxNCMJPafmweW/FtFiYGBswGjLwbYNkIfYJnEMDIx9GHlajBadOJjL43m1+RsDA+PhjLFjsra1WW9N88sWGBgYizKOcuTImfLxhqIQAwNjIcZMlzDK5eWmN7mcMdUExcDAeCwjT7J5iPmzdSV7tgIGBsYGjDbxJa2CscO49pIHBgYGxvWRXPJrm2oHa1gMDAyMMtCZme1VDwwMjH0YeTOgTYttezIHYGBg7MMY2zq24ORArW1eYmBgbMD4AhwXvCpG5szeAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

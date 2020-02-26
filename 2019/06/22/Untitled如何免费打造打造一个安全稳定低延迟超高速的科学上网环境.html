@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>如何免费打造打造一个安全稳定低延迟超高速的科学上网环境 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="技术分享,Hyperapp,科学上网,日常挖坑">
+    <meta name="description" content="这是原作者 @waylybaye 一开始发布在少数派上的文章搬运过来，文章所有权归 原作者 @waylybaye 所有这篇文章将会介绍如何获取由 Google 提供的一年 $300 美金的试用金，然后使用 HyperApp 搭建一个低延迟超高速的科学上网环境。网络延迟基本在50ms左右，并且可以流畅观看 Youtube 4K 视频。本文不需要读者有较深的技术背景，全部过程都可视化、自动化完成。 下">
+<meta name="keywords" content="技术分享,Hyperapp,科学上网,日常挖坑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何免费打造打造一个安全稳定低延迟超高速的科学上网环境">
+<meta property="og:url" content="https://toc.lieme.cn/2019/06/22/Untitled如何免费打造打造一个安全稳定低延迟超高速的科学上网环境.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="这是原作者 @waylybaye 一开始发布在少数派上的文章搬运过来，文章所有权归 原作者 @waylybaye 所有这篇文章将会介绍如何获取由 Google 提供的一年 $300 美金的试用金，然后使用 HyperApp 搭建一个低延迟超高速的科学上网环境。网络延迟基本在50ms左右，并且可以流畅观看 Youtube 4K 视频。本文不需要读者有较深的技术背景，全部过程都可视化、自动化完成。 下">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/FilfC_cvRUxOMRo5ht1e96vZmia2">
+<meta property="og:image" content="http://blogimg.lieme.cn/FsjWaQ2cFQwkKuBGDUts0BcjRS_5">
+<meta property="og:image" content="http://blogimg.lieme.cn/Fp44m1cSneQOp3NK3R5yTzw0J-fR">
+<meta property="og:image" content="http://blogimg.lieme.cn/FnoXuJiXyuA7DR4rITLUO1fhch_n">
+<meta property="og:image" content="http://blogimg.lieme.cn/FnbBU5Ougp49dYuNnAxXmNkfgQzu">
+<meta property="og:image" content="http://blogimg.lieme.cn/FnLJVU6Z_ZFYxSGvTHWrjKhybKR2">
+<meta property="og:image" content="http://blogimg.lieme.cn/FgrRrsShvjFfuTKsC_YBcC2YHEg3">
+<meta property="og:image" content="http://blogimg.lieme.cn/FoKp1MF__x-zfVM9KxML5t3IxMRy">
+<meta property="og:image" content="http://blogimg.lieme.cn/Fj64B0r_gPhpgUA2-6Nzo6t2Saar">
+<meta property="og:image" content="http://blogimg.lieme.cn/Fs6bLGDS0UIfMoczl8WmdvgHR-y_">
+<meta property="og:image" content="http://blogimg.lieme.cn/FleQI-zGq9V__X8E82xj0o7xgFkh">
+<meta property="og:image" content="http://blogimg.lieme.cn/FgwoKNAjup6cWE2Yk3VfAZWmOsia">
+<meta property="og:image" content="http://blogimg.lieme.cn/FgmnXMHDMG4DtM5L2h4FW63s4VEa">
+<meta property="og:updated_time" content="2020-02-03T07:29:18.169Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何免费打造打造一个安全稳定低延迟超高速的科学上网环境">
+<meta name="twitter:description" content="这是原作者 @waylybaye 一开始发布在少数派上的文章搬运过来，文章所有权归 原作者 @waylybaye 所有这篇文章将会介绍如何获取由 Google 提供的一年 $300 美金的试用金，然后使用 HyperApp 搭建一个低延迟超高速的科学上网环境。网络延迟基本在50ms左右，并且可以流畅观看 Youtube 4K 视频。本文不需要读者有较深的技术背景，全部过程都可视化、自动化完成。 下">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/FilfC_cvRUxOMRo5ht1e96vZmia2">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">如何免费打造打造一个安全稳定低延迟超高速的科学上网环境</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">如何免费打造打造一个安全稳定低延迟超高速的科学上网环境</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-06-22T01:33:00.000Z" itemprop="datePublished" class="page-time">
+  2019-06-22
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Life/">Life</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#这是原作者-waylybaye-一开始发布在少数派上的文章搬运过来，文章所有权归-原作者-waylybaye-所有"><span class="post-toc-number">1.</span> <span class="post-toc-text">这是原作者 @waylybaye 一开始发布在少数派上的文章搬运过来，文章所有权归 原作者 @waylybaye 所有</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#本文前提条件"><span class="post-toc-number"></span> <span class="post-toc-text">本文前提条件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#GCP-注册以及创建服务器"><span class="post-toc-number"></span> <span class="post-toc-text">GCP 注册以及创建服务器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#注册-GCP-免费试用"><span class="post-toc-number">1.</span> <span class="post-toc-text">注册 GCP 免费试用</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#新建主机"><span class="post-toc-number"></span> <span class="post-toc-text">新建主机</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HyperApp"><span class="post-toc-number"></span> <span class="post-toc-text">HyperApp</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#添加服务器到-HyperApp"><span class="post-toc-number">1.</span> <span class="post-toc-text">添加服务器到 HyperApp</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#永久添加公钥"><span class="post-toc-number"></span> <span class="post-toc-text">永久添加公钥</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#部署科学上网应用"><span class="post-toc-number"></span> <span class="post-toc-text">部署科学上网应用</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#客户端设置"><span class="post-toc-number"></span> <span class="post-toc-text">客户端设置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ios"><span class="post-toc-number"></span> <span class="post-toc-text">ios</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Mac-Windows"><span class="post-toc-number"></span> <span class="post-toc-text">Mac/Windows</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常见问题："><span class="post-toc-number"></span> <span class="post-toc-text">常见问题：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#如何建多个账号？"><span class="post-toc-number"></span> <span class="post-toc-text">如何建多个账号？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#信用卡被扣一美元？"><span class="post-toc-number"></span> <span class="post-toc-text">信用卡被扣一美元？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#结算账号被关闭怎么办？"><span class="post-toc-number"></span> <span class="post-toc-text">结算账号被关闭怎么办？</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其它玩法"><span class="post-toc-number"></span> <span class="post-toc-text">其它玩法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置-GCE-防火墙"><span class="post-toc-number"></span> <span class="post-toc-text">设置 GCE 防火墙</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#自建和购买商业服务对比有什么优势？"><span class="post-toc-number"></span> <span class="post-toc-text">自建和购买商业服务对比有什么优势？</span></a>
+        </nav>
+    </aside>
+
+
+<article id="post-Untitled如何免费打造打造一个安全稳定低延迟超高速的科学上网环境"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">如何免费打造打造一个安全稳定低延迟超高速的科学上网环境</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-06-22 09:33:00" datetime="2019-06-22T01:33:00.000Z"  itemprop="datePublished">2019-06-22</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Life/">Life</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        2,498
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        9 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h5 id="这是原作者-waylybaye-一开始发布在少数派上的文章搬运过来，文章所有权归-原作者-waylybaye-所有"><a href="#这是原作者-waylybaye-一开始发布在少数派上的文章搬运过来，文章所有权归-原作者-waylybaye-所有" class="headerlink" title="这是原作者 @waylybaye 一开始发布在少数派上的文章搬运过来，文章所有权归 原作者 @waylybaye 所有"></a>这是原作者 <a href="http://weibo.com/waylybaye?profile_ftype=1&is_all=1#_rnd1502088401009" target="_blank" rel="noopener">@waylybaye</a> 一开始发布在<a href="http://sspai.com" target="_blank" rel="noopener">少数派</a>上的文章搬运过来，文章所有权归 原作者 <a href="http://weibo.com/waylybaye?profile_ftype=1&is_all=1#_rnd1502088401009" target="_blank" rel="noopener">@waylybaye</a> 所有</h5><p><strong>这篇文章将会介绍如何获取由 Google 提供的一年 $300 美金的试用金，然后使用 HyperApp 搭建一个低延迟超高速的科学上网环境。网络延迟基本在50ms左右，并且可以流畅观看 Youtube 4K 视频。本文不需要读者有较深的技术背景，全部过程都可视化、自动化完成。</strong></p>
+<p>下文用 GCP 代表 Google Cloud Platform，指 Google 的整个云平台。GCE 是指 Google Cloud Engine，是 GCP 产品线里的一个主机产品。</p>
+<h4 id="本文前提条件"><a href="#本文前提条件" class="headerlink" title="本文前提条件"></a>本文前提条件</h4><p>1、有一个 Google 账号，没有的话可以注册一个。</p>
+<p>2、注册 GCP 免费试用需要用信用卡进行身份验证（只做验证，不会收费），所以你必须有一个 Visa/MasterCard 的信用卡才行。</p>
+<h4 id="GCP-注册以及创建服务器"><a href="#GCP-注册以及创建服务器" class="headerlink" title="GCP 注册以及创建服务器"></a>GCP 注册以及创建服务器</h4><blockquote>
+<p>要访问 Google 首先需要你能科学上网，但是这篇文章又是介绍如何科学上网的，好像有点?生蛋蛋生?的矛盾… 其实你可以去App Store搜索 V屁恩，找一个免费的下载后，通过签到等方式暂时领取一天或者几个小时的免费低速试用来完成下面的教程。</p>
+</blockquote>
+<h5 id="注册-GCP-免费试用"><a href="#注册-GCP-免费试用" class="headerlink" title="注册 GCP 免费试用"></a>注册 GCP 免费试用</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FilfC_cvRUxOMRo5ht1e96vZmia2" alt="1intro.png" title>
+                </div>
+                <div class="image-caption" style="display:none;">1intro.png</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FsjWaQ2cFQwkKuBGDUts0BcjRS_5" alt="1freetier.png" title>
+                </div>
+                <div class="image-caption" style="display:none;">1freetier.png</div>
+            </figure>
+
+<p>1、登录Google账号后使用这个链接来注册 <a href="https://cloud.google.com/free/" target="_blank" rel="noopener">https://cloud.google.com/free/</a> ，在打开的页面中点击“Try it Free”。</p>
+<p>2、接受条款，并点击”同意并继续“</p>
+<p>3、在页面中填入你的信息：</p>
+<ul>
+<li>账号类型：个人</li>
+<li>名称和地址：填写你的地址、电话等</li>
+<li>付款方式：添加一个信用卡。这个信用卡将会用来验证身份，防止GCP被滥用。</li>
+<li>点击 ”开始免费使用“ 完成注册</li>
+</ul>
+<p><strong>在后面的页面中，如果你能看到页面顶部有一个“礼物 ? ” 的小图标，说明已经获取了试用金。</strong></p>
+<h4 id="新建主机"><a href="#新建主机" class="headerlink" title="新建主机"></a>新建主机</h4><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/Fp44m1cSneQOp3NK3R5yTzw0J-fR" alt="2vmsnav.png" title>
+                </div>
+                <div class="image-caption" style="display:none;">2vmsnav.png</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FnoXuJiXyuA7DR4rITLUO1fhch_n" alt="2vms.png" title>
+                </div>
+                <div class="image-caption" style="display:none;">2vms.png</div>
+            </figure>
+
+
+<p>1、按照上图所示，在左侧菜单中导航到 计算引擎 → VM 实例</p>
+<p>2、 点击加号按钮，创建一个 VM 实例。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FnbBU5Ougp49dYuNnAxXmNkfgQzu" alt="2createvm.png" title>
+                </div>
+                <div class="image-caption" style="display:none;">2createvm.png</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FnLJVU6Z_ZFYxSGvTHWrjKhybKR2" alt="2createvmfirewall.png" title>
+                </div>
+                <div class="image-caption" style="display:none;">2createvmfirewall.png</div>
+            </figure>
+
+<ul>
+<li>名称：随意填入一个易记得名字</li>
+<li>地区：建议选择 asia-east1-* 三个中的任意一个，这个机房是在台湾，国内的延迟只有 50~70ms，简直快到飞起。</li>
+<li>机器类型：选择 “小型” (1.7G 内存) 就可以了。默认选中的 3.75G 的内存其实用不完。（只用SS的话建议选最低配置的，这样每月大约可以留出来80G流量）</li>
+<li>启动磁盘：默认的Debian 8就可以，推荐 Ubuntu 16.04 或者 CentOs 7，但是为了防止将来磁盘不够用，你可以点击右下角的更改，大小里使用 20G 或者 30G。</li>
+<li>防火墙：选中 “允许HTTP流量” 和 “允许HTTPS流量”</li>
+</ul>
+<p><strong>注意：GCE 的 CentOS 有各种小问题，如果你执意要用 CentOS 遇到问题请自行 Google</strong></p>
+<p>点击”创建“，稍等几分钟就会创建完毕，现在打开 HyperApp 开始配置这台服务器吧。</p>
+<hr>
+<h4 id="HyperApp"><a href="#HyperApp" class="headerlink" title="HyperApp"></a>HyperApp</h4><p>HyperApp 是一个部署自动化以及服务器监控管理的App，致力于让普通用户也可以使用云服务。HyperApp 可以监控服务器/路由器的运行状态，还可以可视化的一键部署各种应用。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FgrRrsShvjFfuTKsC_YBcC2YHEg3" alt="微信截图_20190622091913.png" title>
+                </div>
+                <div class="image-caption" style="display:none;">微信截图_20190622091913.png</div>
+            </figure>
+
+
+<h5 id="添加服务器到-HyperApp"><a href="#添加服务器到-HyperApp" class="headerlink" title="添加服务器到 HyperApp"></a>添加服务器到 HyperApp</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FoKp1MF__x-zfVM9KxML5t3IxMRy" alt="3autoconfigstart.png" title>
+                </div>
+                <div class="image-caption" style="display:none;">3autoconfigstart.png</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/Fj64B0r_gPhpgUA2-6Nzo6t2Saar" alt="3servers.png" title>
+                </div>
+                <div class="image-caption" style="display:none;">3servers.png</div>
+            </figure>
+
+
+<ol>
+<li>在 “服务器” 页面点击右下角的加号，然后选择第二个”自动配置“</li>
+<li>点击“开始”，应用会自动生成一对密钥，请耐心等到几秒~十几秒。</li>
+<li>等到出现“一切就绪”时，点击“复制“将代码复制到剪贴板里，如果你用电脑操作的话可以点击”发送“将代码通过任意一种方式发送到电脑上。</li>
+</ol>
+<p><img src="http://blogimg.lieme.cn/Fs6bLGDS0UIfMoczl8WmdvgHR-y_" alt="3autoconfigdone.png"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FleQI-zGq9V__X8E82xj0o7xgFkh" alt="3vmssh.jpg" title>
+                </div>
+                <div class="image-caption" style="display:none;">3vmssh.jpg</div>
+            </figure>
+
+
+<p>在 GCE 计算引擎 → VM 实例 页面，选择刚刚创建的实例的 <strong>SSH ▽ 在浏览器窗口中打开</strong> 打开一个基于 Web 的 SSH 终端。</p>
+<p>在浏览器的SSH中粘贴并运行刚刚复制的代码。等到二维码出现时，使用 <strong>HyperApp</strong> 扫描该二维码便会自动添加该服务器。添加后 <strong>HyperApp</strong> 会检测刚刚添加的服务器的基本运行状况。</p>
+<h4 id="永久添加公钥"><a href="#永久添加公钥" class="headerlink" title="永久添加公钥"></a>永久添加公钥</h4><p>注意：你可以暂时跳过本小段，进行后续的操作，如果 HyperApp 出现了<strong>密钥认证错误</strong>的提示，可以回到这段进行操作。</p>
+<blockquote>
+<p>刚刚的自动配置的功能在几乎所有主机上都可以用，但是 GCE 是个例外，它会清空用户自行添加的公钥，所以几分钟后可能就会出现密钥认证失败的错误。你可以通过以下步骤永久性的设置密钥。</p>
+</blockquote>
+<ol>
+<li>打开 HyperApp → 更多 → SSH Keys → 点击唯一的一个 Key → 复制公钥。</li>
+<li>打开 GCP → 计算引擎 → 元数据 → SSH 密钥 点击修改后，复制并添加刚刚的公钥。</li>
+<li>添加后页面会出现一行新记录，主要有两列：用户名 和 密钥。然后确保 HyperApp → 服务器 → 点击服务器下面的齿轮按钮 → 用户名 和这儿显示的用户名一致，保存后就可以了。（如果你按照上面的步骤操作，HyperApp 自动修改用户名所以这两个用户名应该默认是一致的）</li>
+<li>添加以后同一账号下所有新建的主机都可以不用再次操作了。</li>
+</ol>
+<h4 id="部署科学上网应用"><a href="#部署科学上网应用" class="headerlink" title="部署科学上网应用"></a>部署科学上网应用</h4><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FgwoKNAjup6cWE2Yk3VfAZWmOsia" alt="4configapp.png" title>
+                </div>
+                <div class="image-caption" style="display:none;">4configapp.png</div>
+            </figure>
+
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FgmnXMHDMG4DtM5L2h4FW63s4VEa" alt="4createapp.png" title>
+                </div>
+                <div class="image-caption" style="display:none;">4createapp.png</div>
+            </figure>
+
+
+<p>在 <em>HyperApp</em> → 商店 页面 网络 分组下选择任意一个应用，这里我们选择占用资源最少的 <em>**<em>-libev，（下文用SS代替）点击该应用。在弹出的对话框中选择刚刚添加的服务器，点击</em>创建应用</em></p>
+<p>在此页面中输入简单的一些配置：</p>
+<ul>
+<li>Port: 端口，可以填入 80 或者 443（因为用其它端口需要设置防火墙）</li>
+<li>Password：随便填入一个密码</li>
+<li>Encrypt：选择一种加密方式，推荐针对移动访问优化的 chacha20</li>
+<li>OBFS: 使用 OBFS 可以将 SS 流量伪装成正常的网页访问从而达到欺骗效果，可以防止被墙或者运营商干扰。</li>
+</ul>
+<p>如果你使用其它端口，请参考文末的 设置GCE防火墙 如何开启防火墙。</p>
+<p>如果安装的过程中出现错误，可以截图后进群寻求帮助，但最快的方式依然是：建一个新的vm重来一遍！真的，很神奇的！</p>
+<hr>
+<h3 id="客户端设置"><a href="#客户端设置" class="headerlink" title="客户端设置"></a>客户端设置</h3><h4 id="ios"><a href="#ios" class="headerlink" title="ios"></a>ios</h4><p>iOS 上有很多 SS 的客户端可供选择，收费的有 小火箭、土豆丝、Surge等。免费的可以使用 Wingy。</p>
+<p>配置很简单，只需要点击应用卡片里的服务器栏，然后选择顶部的QR，截图后用其它客户端扫码即可。</p>
+<p>如果你想手动配置，请按指示填写参数即可，下面和配置和上面 【部署科学上网应用】段落里第2步的配置一一对应：</p>
+<ul>
+<li>服务器：填入你的服务器外部 IP（GCP后台 VM列表页面有一列外部IP，就是那个）。</li>
+<li>端口：上面配置界面里面的端口（80，或者443）</li>
+<li>密码：上面配置界面里面的密码</li>
+<li>加密方式：上面配置界面里面的加密方式</li>
+</ul>
+<h4 id="Mac-Windows"><a href="#Mac-Windows" class="headerlink" title="Mac/Windows"></a>Mac/Windows</h4><p>Mac 和 Windows 上都有免费的 SS 客户端可以使用，配置方法也是只要输入你的IP、端口、密码和加密方式即可。</p>
+<hr>
+<h3 id="常见问题："><a href="#常见问题：" class="headerlink" title="常见问题："></a>常见问题：</h3><h4 id="如何建多个账号？"><a href="#如何建多个账号？" class="headerlink" title="如何建多个账号？"></a>如何建多个账号？</h4><blockquote>
+<p>你可以创建多个应用给不同的人使用，一个应用只占 1~2M 内存（但注意每个应用的端口必须不同）</p>
+</blockquote>
+<h4 id="信用卡被扣一美元？"><a href="#信用卡被扣一美元？" class="headerlink" title="信用卡被扣一美元？"></a>信用卡被扣一美元？</h4><blockquote>
+<p>这是验证信用卡信息是否正确的，快则几分钟慢则几小时就会退款。</p>
+</blockquote>
+<h4 id="结算账号被关闭怎么办？"><a href="#结算账号被关闭怎么办？" class="headerlink" title="结算账号被关闭怎么办？"></a>结算账号被关闭怎么办？</h4><blockquote>
+<p>你可能没仔细填信用卡信息，查看你的邮箱应该会有一封谷歌的通知邮件，按照提示传下资料，几个小时左右就会被解封了。</p>
+</blockquote>
+<h3 id="其它玩法"><a href="#其它玩法" class="headerlink" title="其它玩法"></a>其它玩法</h3><p>现在你有了一台 1.75G 内存的服务器了，只用来做SS好像有点浪费（SS只占用几M内存），其实使用 HyperApp 还有很多其它玩法，商店里面有很多其它应用，都可以自动安装配置。</p>
+<p>比如你可以自己搭建一个博客、网站、论坛，个人网盘，聊天服务，并且可以自动配置HTTPS。如果你玩游戏可以创建一个 Minecraft 服务器。或者部署一个接收微信消息转发到Telegram的机器人。更多信息可以参阅? 的 HyperApp 文档和教程。</p>
+<h3 id="设置-GCE-防火墙"><a href="#设置-GCE-防火墙" class="headerlink" title="设置 GCE 防火墙"></a>设置 GCE 防火墙</h3><ol>
+<li>在GCP后台点击 网络 → 防火墙规则</li>
+<li>点击 创建防火墙规则<ul>
+<li>名称：随便输入一个名称</li>
+<li>目标：选择 网络中的所有示例</li>
+<li>来源过滤：0.0.0.0/0</li>
+<li>协议和端口：指定的协议和端口 下面输入 tcp;udp:端口号</li>
+</ul>
+</li>
+</ol>
+<h4 id="自建和购买商业服务对比有什么优势？"><a href="#自建和购买商业服务对比有什么优势？" class="headerlink" title="自建和购买商业服务对比有什么优势？"></a>自建和购买商业服务对比有什么优势？</h4><ol>
+<li>最主要的优势是隐私和安全，如果你看下上面SS的日志，你就知道服务商可以知道你的所有浏览历史的，如果你访问了不支持HTTPS的网站，那么请求内容也可能被监控（比如密码信息）。</li>
+<li>另外是质量和成本，很多商家是使用和上面同样的机器但是卖给几百个人，你应该能明白了。成本方面没有免费试用的话1个人用可能会有点贵，但如果和朋友家人一起用就超值了，比如使用$2.5/月的 Vultr，每月500G 流量够很多人用的。</li>
+</ol>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-02-03T07:29:18.169Z" itemprop="dateUpdated">2020-02-03 15:29:18</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hyperapp/">Hyperapp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术分享/">技术分享</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日常挖坑/">日常挖坑</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/科学上网/">科学上网</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/06/22/Untitled如何免费打造打造一个安全稳定低延迟超高速的科学上网环境.html&title=《如何免费打造打造一个安全稳定低延迟超高速的科学上网环境》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/06/22/Untitled如何免费打造打造一个安全稳定低延迟超高速的科学上网环境.html&title=《如何免费打造打造一个安全稳定低延迟超高速的科学上网环境》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/06/22/Untitled如何免费打造打造一个安全稳定低延迟超高速的科学上网环境.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《如何免费打造打造一个安全稳定低延迟超高速的科学上网环境》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/06/22/Untitled如何免费打造打造一个安全稳定低延迟超高速的科学上网环境.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/06/22/Untitled如何免费打造打造一个安全稳定低延迟超高速的科学上网环境.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/06/23/超简单！只需简单几步即可为TA定制天气小助理！！.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">超简单！只需简单几步即可为TA定制天气小助理！！</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/06/18/重学JavaScript之基本概念-中-操作符.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">重学JavaScript之基本概念(中) =&gt; 操作符</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/06/22/Untitled如何免费打造打造一个安全稳定低延迟超高速的科学上网环境.html&title=《如何免费打造打造一个安全稳定低延迟超高速的科学上网环境》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/06/22/Untitled如何免费打造打造一个安全稳定低延迟超高速的科学上网环境.html&title=《如何免费打造打造一个安全稳定低延迟超高速的科学上网环境》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/06/22/Untitled如何免费打造打造一个安全稳定低延迟超高速的科学上网环境.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《如何免费打造打造一个安全稳定低延迟超高速的科学上网环境》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/06/22/Untitled如何免费打造打造一个安全稳定低延迟超高速的科学上网环境.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/06/22/Untitled如何免费打造打造一个安全稳定低延迟超高速的科学上网环境.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEjUlEQVR42u3ayY7bSBAFwP7/n5avBqzlvUxqRqUOnhqyVGQFDVRuPz/xdfvr2nz+/Du34Pp3hX//Tu7y844LEyZMmDB9JFPyWO0Gnm/m+V0SgtmT5M9zZx1MmDBhwnQ4U7LcLFx4vnKymRzx2jACEyZMmDD9ZqbkUH8fQZ7cPl8BEyZMmDBhajfW1khnJeY2hW5fKiZMmDBh+j6m2XLJNmbbnq28Wf+yWjgmTJgwYfowpvxI/r6/3zLfhAkTJkyYPobpVl55CzNPRPOScduqbNPmh+tjwoQJE6Zjmd5Rop0lq/sAJU/a2/1iwoQJE6ZzmfJSaUKzSaE3zct8nCgBfRg3YcKECROmw5lmt58d0rN0t32qtjn68GVjwoQJE6ZjmZJDfXM8J2Xfq8hmJd26wYkJEyZMmI5iel4Abb1n29gUavNEug1uMGHChAnTdzAlt9w80FWfzzaWvPJip5gwYcKE6UCmvOg5G5S5arboqmZqEpQM82lMmDBhwvSRTO2Pr8Jqw47Zfd8RrGDChAkTprOY2pSyLoyOyrs55SzpzcvQd1JfTJgwYcJ0FFN79G6+kz/QZgxoPySECRMmTJi+m6lNTfNUOU9iZ8ND7dPWd8SECRMmTMcytRtok+ThAXxR2pzvItodJkyYMGE6iqlNC2fNyFkxd1a6nZVxXzw/JkyYMGE6nGkTCtzi66rt7QOa/EXe6fpiwoQJE6ZjmfK0th2XaTe8Hx7a7OXOLjBhwoQJ07FM7SBLW1pNjt5kzbxROkt9i0YmJkyYMGE6imk/NHPtqE07+rMvQEf7woQJEyZMX8GUlErb9LXdfN7s3KTr9agQJkyYMGH6Cqb2lklCmyS6s43l7dW2rBzVBjBhwoQJ0yFMbSqbf9L+Ni8u5yHCZmDoBRYmTJgwYTqcaZYGt83Ithy8CSlmBd+H62PChAkTpkOYZsftJm3Oj+32VbXhSB40YMKECROmc5naxmTS/MsT0TZ93TQp961ZTJgwYcJ0IlNbwJ0lt+0xvBnomVG+KD1jwoQJE6bDmeqfleHCLIVu+fK2aPvMmDBhwoTpO5jahHZTGm5LwLOAoH21D7+PCRMmTJiOZWrTyJasTX3bKmsbEOTcL/5nYcKECROmo5ja0m2+pTaAmAUW+1J11EDFhAkTJkyHM80O4FkBN99MO2y0LxM/vAsmTJgwYfo6pjxNbb9z1WhOvdVy2AgTJkyYMJ3OVKd/ZUK7X6FtOia7qMMXTJgwYcL0FUz7gKANF9rk9qoXmQcrl+XZmDBhwoTpf2KaHajJA+WDNT+ja3bHyy5MmDBhwnQI0628kqM6T27zxDsn2AwDPfxXTJgwYcJ0LNPsTJylple1LffJ7aY8jQkTJkyYTmRqg4DZwbwJCGbJdnuvF2SYMGHChOlwpk0bMsFKGp+z43wWZKzqypgwYcKE6Rcwbcqss8bkc/prW6R3PsGECRMmTL+MaUY5485T7n279C1xEyZMmDBh+gCmd5RK85dxVYk5CQhmYQcmTJgwYTqX6aoK52YsZjas874xozcWgjFhwoQJ03/H9Af6XYFy9vbsHQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

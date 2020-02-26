@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>ES6入门之函数的扩展 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="ECMAScript6">
+    <meta name="description" content="1. 函数参数的默认值 1.1 用法 在ES6之前是不能为函数的参数指定默认值的，要想实现默认值只能通过判断赋值的方式来实现，在ES6中允许函数为参数设置默认值，主要是为了提高代码的可阅读性，有利于代码的优化。另外注意的是在参数赋值的时候，该参数不能重复使用，不能使用let const 进行定义。  // ES6 之前实现 function log(x, y) {   y = y || &amp;apos">
+<meta name="keywords" content="ECMAScript6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6入门之函数的扩展">
+<meta property="og:url" content="https://toc.lieme.cn/2019/04/18/ES6入门之函数的扩展.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1. 函数参数的默认值 1.1 用法 在ES6之前是不能为函数的参数指定默认值的，要想实现默认值只能通过判断赋值的方式来实现，在ES6中允许函数为参数设置默认值，主要是为了提高代码的可阅读性，有利于代码的优化。另外注意的是在参数赋值的时候，该参数不能重复使用，不能使用let const 进行定义。  // ES6 之前实现 function log(x, y) {   y = y || &amp;apos">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2020-02-03T08:14:20.574Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6入门之函数的扩展">
+<meta name="twitter:description" content="1. 函数参数的默认值 1.1 用法 在ES6之前是不能为函数的参数指定默认值的，要想实现默认值只能通过判断赋值的方式来实现，在ES6中允许函数为参数设置默认值，主要是为了提高代码的可阅读性，有利于代码的优化。另外注意的是在参数赋值的时候，该参数不能重复使用，不能使用let const 进行定义。  // ES6 之前实现 function log(x, y) {   y = y || &amp;apos">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">ES6入门之函数的扩展</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">ES6入门之函数的扩展</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-18T13:35:00.000Z" itemprop="datePublished" class="page-time">
+  2019-04-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-函数参数的默认值"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 函数参数的默认值</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-1-用法"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">1.1 用法</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-2-与解构赋值一起使用"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">1.2 与解构赋值一起使用</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-3-参数默认值的位置"><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">1.3 参数默认值的位置</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-4-函数的-length-属性"><span class="post-toc-number">1.0.4.</span> <span class="post-toc-text">1.4 函数的 length 属性</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-5-作用域"><span class="post-toc-number">1.0.5.</span> <span class="post-toc-text">1.5 作用域</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-6-应用"><span class="post-toc-number">1.0.6.</span> <span class="post-toc-text">1.6 应用</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-rest-参数"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. rest 参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-严格模式"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 严格模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-name属性"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. name属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-箭头函数"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. 箭头函数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#注意点"><span class="post-toc-number">5.0.1.</span> <span class="post-toc-text">注意点</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#不适用场景"><span class="post-toc-number">5.0.2.</span> <span class="post-toc-text">不适用场景</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#嵌套的箭头函数"><span class="post-toc-number">5.0.3.</span> <span class="post-toc-text">嵌套的箭头函数</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-尾调用优化"><span class="post-toc-number">6.</span> <span class="post-toc-text">6. 尾调用优化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#什么是尾调用"><span class="post-toc-number">6.0.1.</span> <span class="post-toc-text">什么是尾调用</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#尾调用优化"><span class="post-toc-number">6.0.2.</span> <span class="post-toc-text">尾调用优化</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#尾递归"><span class="post-toc-number">6.0.3.</span> <span class="post-toc-text">尾递归</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#ES6-的尾调用优化只在严格模式下开启，正常模式是无效的。"><span class="post-toc-number">6.0.4.</span> <span class="post-toc-text">ES6 的尾调用优化只在严格模式下开启，正常模式是无效的。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#尾递归优化的实现"><span class="post-toc-number">6.0.5.</span> <span class="post-toc-text">尾递归优化的实现</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-ES6入门之函数的扩展"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">ES6入门之函数的扩展</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-18 21:35:00" datetime="2019-04-18T13:35:00.000Z"  itemprop="datePublished">2019-04-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ES6入门系列/">ES6入门系列</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        1,864
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        8 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h3 id="1-函数参数的默认值"><a href="#1-函数参数的默认值" class="headerlink" title="1. 函数参数的默认值"></a>1. 函数参数的默认值</h3><hr>
+<h5 id="1-1-用法"><a href="#1-1-用法" class="headerlink" title="1.1 用法"></a>1.1 用法</h5><blockquote>
+<p>在ES6之前是不能为函数的参数指定默认值的，要想实现默认值只能通过判断赋值的方式来实现，在ES6中允许函数为参数设置默认值，主要是为了提高代码的可阅读性，有利于代码的优化。另外注意的是在参数赋值的时候，该参数不能重复使用，不能使用let const 进行定义。</p>
+</blockquote>
+<pre><code>// ES6 之前实现
+function log(x, y) {
+  y = y || &apos;World&apos;;
+  if (typeof y === &apos;undefined&apos;) {
+      y = &apos;World&apos;;
+  }
+  console.log(x, y);
+}
+
+log(&apos;Hello&apos;) // Hello World
+log(&apos;Hello&apos;, &apos;China&apos;) // Hello China
+log(&apos;Hello&apos;, &apos;&apos;) // Hello World
+
+
+// ES6 中实现
+function log(x, y = &apos;World&apos;) {
+  console.log(x, y);
+}
+
+log(&apos;Hello&apos;) // Hello World
+log(&apos;Hello&apos;, &apos;China&apos;) // Hello China
+log(&apos;Hello&apos;, &apos;&apos;) // Hello
+
+function Point(x = 0, y = 0) {
+  this.x = x;
+  this.y = y;
+}
+
+const p = new Point();
+p // { x: 0, y: 0 }
+
+function foo(x = 5,x) { 
+  let x = 1; // 报错，不能同名参数，不能对参数进行let const 定义
+  const x = 2;
+}</code></pre><h5 id="1-2-与解构赋值一起使用"><a href="#1-2-与解构赋值一起使用" class="headerlink" title="1.2 与解构赋值一起使用"></a>1.2 与解构赋值一起使用</h5><blockquote>
+<p>如果函数在调用的时候没有提供参数，内部变量就不会产生，就会产生错误，通过提供函数的默认值可以解决这种问题，如下：</p>
+</blockquote>
+<pre><code>function foo({x, y = 5}) {
+  console.log(x, y);
+}
+foo() // 报错
+foo({x:1}) // 1 5
+foo({x:2,y:3) // 2 3
+foo({}) // undefined 5
+
+function foo ({x,y = 5} = {}){
+    console.log(x,y)
+}
+foo() // undefined 5 
+这样就是如果没有在调用的时候传值 就默认赋空对象。</code></pre><blockquote>
+<p>如下例子：</p>
+</blockquote>
+<pre><code>function post(url, {b = &apos;&apos;,type=&apos;get&apos;,h={}}){
+    console.log(type)
+}
+
+post(&apos;w.b.c&apos;,{}) // get
+post(&apos;w.b.c&apos;)    // 报错
+
+// 改成这样就可以了
+
+function post(url, {b = &apos;&apos;,type=&apos;get&apos;,h={}} = {}){
+    console.log(type)
+}
+
+post(&apos;w.b.c&apos;,{}) // get
+post(&apos;w.b.c&apos;)    // get</code></pre><blockquote>
+<p>下面例子的区别</p>
+</blockquote>
+<pre><code>// 写法一
+function m1({x = 0, y = 0} = {}) {
+  return [x, y];
+}
+
+// 写法二
+function m2({x, y} = { x: 0, y: 0 }) {
+  return [x, y];
+}
+
+两个都是有默认值在调用的时候都传值或者都不传值的时候情况是一样的。
+但是如果传空值，或者不传值的情况会有差异如下：
+
+m1({}) // 因为本身有默认值 所以为 [0,0]
+m2({}) // 默认值为空 解构赋值没有传值 所以 [undefined,undefined]
+
+// 其他情况同上
+m1({x: 3}) // [3, 0]
+m2({x: 3}) // [3, undefined]
+m1({z: 3}) // [0, 0]
+m2({z: 3}) // [undefined, undefined]</code></pre><h5 id="1-3-参数默认值的位置"><a href="#1-3-参数默认值的位置" class="headerlink" title="1.3 参数默认值的位置"></a>1.3 参数默认值的位置</h5><blockquote>
+<p>如果定义了默认值的参数，应该是函数的尾参数。而且这个参数是无法省略的，除非输入undefined</p>
+</blockquote>
+<h5 id="1-4-函数的-length-属性"><a href="#1-4-函数的-length-属性" class="headerlink" title="1.4 函数的 length 属性"></a>1.4 函数的 length 属性</h5><blockquote>
+<p>函数参数指定了默认值之后，函数的length属性将会减去指定了默认值的参数个数。因为该属性认为，指定了默认值的参数将不包含在预期参数个数中。如下：</p>
+</blockquote>
+<pre><code>(function (a) {}).length // 1
+(function (a = 5) {}).length // 0
+(function (a, b, c = 5) {}).length // 2</code></pre><h5 id="1-5-作用域"><a href="#1-5-作用域" class="headerlink" title="1.5 作用域"></a>1.5 作用域</h5><blockquote>
+<p>如果函数中的参数设置了默认值，那么函数在声明初始化的时候，参数会形成一个单独的作用域，初始化完成后这个作用域就会消失，这种情况只在参数设置了默认值的情况下。如下：</p>
+</blockquote>
+<pre><code>var x = 1;
+
+function f(x, y = x) {
+  console.log(y);
+}
+
+f(2) // 2
+// 因为 设置了默认值 所以在调用 f 的时候就形成了作用域，这时候因为将x赋值给y 
+传入的x 为 2  所以y是2，如果这时候 调用的时候不传值，
+那么x将指向全局，所以y = 1</code></pre><h5 id="1-6-应用"><a href="#1-6-应用" class="headerlink" title="1.6 应用"></a>1.6 应用</h5><blockquote>
+<p>利用参数默认值，可以指定某一个参数不得省略，如果省略就报错，如下</p>
+</blockquote>
+<pre><code>function throwIfMissing() {
+  throw new Error(&apos;Missing parameter&apos;);
+}
+
+function foo(mustBeProvided = throwIfMissing()) {
+  return mustBeProvided;
+}
+
+foo()
+// Error: Missing parameter
+foo(2) // 2</code></pre><h3 id="2-rest-参数"><a href="#2-rest-参数" class="headerlink" title="2. rest 参数"></a>2. rest 参数</h3><blockquote>
+<p>ES6 中 增加了 rest 参数（…变量名），用于获取函数多余的参数，rest参数搭配的变量是一个数组，该变量将多余的参数放入数组中。</p>
+</blockquote>
+<pre><code>function add(...values) {
+  let sum = 0;
+
+  for (var val of values) {
+    sum += val;
+  }
+
+  return sum;
+}
+
+add(2, 5, 3) // 10
+
+// 注意：rest 参数之后不能再有其他参数，另外rest参数也不计算在
+函数的length属性中。</code></pre><h3 id="3-严格模式"><a href="#3-严格模式" class="headerlink" title="3. 严格模式"></a>3. 严格模式</h3><blockquote>
+<p>ES6 中，如果函数参数使用了默认值，解构赋值，或者扩展运算符，那么函数内部将不能显式设定为严格模式，否则会报错。因为函数执行的时候 先执行函数参数，在执行函数体，但是因为只有在函数体中才能知道参数是否以严格模式执行，但是参数却应该先于函数执行。有两种方法可以规避：一、 设置全局严格模式，二、把函数包在一个无参数的立即执行函数里面。</p>
+</blockquote>
+<h3 id="4-name属性"><a href="#4-name属性" class="headerlink" title="4. name属性"></a>4. name属性</h3><blockquote>
+<p>返回函数的函数名，如下：</p>
+</blockquote>
+<pre><code>function foo(){}
+foo.name // foo
+
+var f = function(){}
+// ES5
+f.name // &apos;&apos;
+// ES6
+f.name // f
+
+var f = function c(){}
+
+f.name // c</code></pre><h3 id="5-箭头函数"><a href="#5-箭头函数" class="headerlink" title="5. 箭头函数"></a>5. 箭头函数</h3><blockquote>
+<p>ES6 允许使用 “箭头” （=&gt;）定义函数</p>
+</blockquote>
+<pre><code>var f = v =&gt; v;
+
+// 等同于
+var f = function (v) {
+  return v;
+};
+
+var f = () =&gt; 5;
+// 等同于
+var f = function () { return 5 };
+
+var sum = (num1, num2) =&gt; num1 + num2;
+// 等同于
+var sum = function(num1, num2) {
+  return num1 + num2;
+};
+
+// 如果箭头函数后面的语句较多就要用大括号包裹起来 并return返回
+var sum = (num1, num2) =&gt; { return num1 + num2; 
+
+//rest 参数与箭头函数结合的例子。
+
+const numbers = (...nums) =&gt; nums;
+
+numbers(1, 2, 3, 4, 5)
+// [1,2,3,4,5]
+
+const headAndTail = (head, ...tail) =&gt; [head, tail];
+
+headAndTail(1, 2, 3, 4, 5)
+// [1,[2,3,4,5]]</code></pre><h5 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h5><pre><code>1. 函数体内的this对象，就是在定义时所在的对象，而不是使用时所在的对象。
+2. 不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。
+3. 不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。
+4. 不可以使用yield命令，因此箭头函数不能用作 Generator 函数。
+5. 由于箭头函数没有自己的this，所以当然也就不能用call()、apply()、bind()这些方法去改变this的指向。</code></pre><h5 id="不适用场景"><a href="#不适用场景" class="headerlink" title="不适用场景"></a>不适用场景</h5><pre><code>1. 定义对象的方法，且该方法内部包括this
+2. 动态定义this 的场合，如点击事件中this 的指向</code></pre><h5 id="嵌套的箭头函数"><a href="#嵌套的箭头函数" class="headerlink" title="嵌套的箭头函数"></a>嵌套的箭头函数</h5><blockquote>
+<p>箭头函数内部可以在嵌套使用箭头函数。</p>
+</blockquote>
+<h3 id="6-尾调用优化"><a href="#6-尾调用优化" class="headerlink" title="6. 尾调用优化"></a>6. 尾调用优化</h3><h5 id="什么是尾调用"><a href="#什么是尾调用" class="headerlink" title="什么是尾调用"></a>什么是尾调用</h5><blockquote>
+<p>函数式编程的一个重要概念，指某个函数的最后一步是调用另一个函数</p>
+</blockquote>
+<pre><code>function f(x){
+  return g(x);
+}
+
+// 一下都不属于
+// 情况一
+function f(x){
+  let y = g(x);
+  return y;
+}
+
+// 情况二
+function f(x){
+  return g(x) + 1;
+}
+
+// 情况三
+function f(x){
+  g(x);
+}</code></pre><h5 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h5><blockquote>
+<p>只保留内层函数的调用帧。如果所有函数都是尾调用，那么完全可以做到每次执行时，调用帧只有一项，这将大大节省内存。这就是“尾调用优化”的意义。</p>
+</blockquote>
+<pre><code>function f() {
+  let m = 1;
+  let n = 2;
+  return g(m + n);
+}
+f();
+
+// 等同于
+function f() {
+  return g(3);
+}
+f();
+
+// 等同于
+g(3);</code></pre><p>注意，只有不再用到外层函数的内部变量，内层函数的调用帧才会取代外层函数的调用帧，否则就无法进行“尾调用优化”。</p>
+<h5 id="尾递归"><a href="#尾递归" class="headerlink" title="尾递归"></a>尾递归</h5><blockquote>
+<p>函数调用自身，称为递归。如果尾调用自身，就称为尾递归。</p>
+</blockquote>
+<h5 id="ES6-的尾调用优化只在严格模式下开启，正常模式是无效的。"><a href="#ES6-的尾调用优化只在严格模式下开启，正常模式是无效的。" class="headerlink" title="ES6 的尾调用优化只在严格模式下开启，正常模式是无效的。"></a>ES6 的尾调用优化只在严格模式下开启，正常模式是无效的。</h5><h5 id="尾递归优化的实现"><a href="#尾递归优化的实现" class="headerlink" title="尾递归优化的实现"></a>尾递归优化的实现</h5><blockquote>
+<p>在正常模式下，可以使用减少调用栈，采用循环换掉递归的方法</p>
+</blockquote>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-02-03T08:14:20.574Z" itemprop="dateUpdated">2020-02-03 16:14:20</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/04/18/ES6入门之函数的扩展.html&title=《ES6入门之函数的扩展》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/04/18/ES6入门之函数的扩展.html&title=《ES6入门之函数的扩展》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/04/18/ES6入门之函数的扩展.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之函数的扩展》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/04/18/ES6入门之函数的扩展.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/04/18/ES6入门之函数的扩展.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/04/19/Python基础教程之list和tuple.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Python基础教程之list和tuple</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/04/09/CSS函数.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">CSS函数</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/04/18/ES6入门之函数的扩展.html&title=《ES6入门之函数的扩展》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/04/18/ES6入门之函数的扩展.html&title=《ES6入门之函数的扩展》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/04/18/ES6入门之函数的扩展.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之函数的扩展》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/04/18/ES6入门之函数的扩展.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/04/18/ES6入门之函数的扩展.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACpklEQVR42u3aQXKDMAwF0Nz/0um2nRb4kmxCZx4rhiaOnxbIlfR6xdf72/X7eXKfX/mvL7vw8PDwBls/+rFkE9VwJE96IcPDw8O7h3e0xXxb59+dJICjcJ//Lh4eHt5zeNXjcsJOdoKHh4f3f3nnT5JA5OskIcbDw8P7FC8pRqx9ufcO3BtrLXh4eHi1HlPURXrO/Zb+Hh4eHt64q540w6rtsd7xvblbPDw8vA28/IWbIHN8Eppqy+1wV3h4eHgbeHlZdlKQnTfVRo00PDw8vEW85GvVZli1CFtNDwuSAR4eHt5S3mTUqbe5yVjAxRM8PDy8W3h5A37VwMFkxOoiC+Dh4eHdwps0nHrISeE46u/h4eHhbeAljf+8nJofspcVHY5Ww8PDw9vAy8sEVfY5MglBPtQ1KYLg4eHhVXlrB55yWFRKGJQt8PDw8HbzkpLuvCmVpIHypFiSGPDw8PA28OaMvLRaTTnVYL16H8XDw8OLeZOxgOq4VfVAXP1M4eiPh4eHN+BVG/mrNtoLSjUt4eHh4d3P622l2ubvDV0lxQs8PDy8Hbx8aGleYugNCvTC8cfn8fDw8G7k5fd5OTg5vud1lKiYi4eHh7eIV23k947L89WaR3k8PDy8Dbz8hZv/8987HPcGEfDw8PCewJuXAKqJoZdOogIEHh4e3mZetejQ++skQM3Eg4eHh3c7r1puSNLJJGEka+Lh4eHt472LV3UYKzlkJ4fp/Fs/7vHw8PA28Kov3F65oTd8MF8HDw8Pbx+v12TKh7fWppxqOsHDw8Pbx5u083thWnVdrImHh4f3GN6kwd9LP9Vw4+Hh4T2Td45cVfDNhwwWJwY8PDy8uEQ7aXr1xgvm60eTEXh4eHiLeNV/+KuF2iR5TEa7mj09PDw8vA7vCzAYQQVmjfqpAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

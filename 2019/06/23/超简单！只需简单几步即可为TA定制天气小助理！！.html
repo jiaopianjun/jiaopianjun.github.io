@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>超简单！只需简单几步即可为TA定制天气小助理！！ | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="微信机器人,天气小助理">
+    <meta name="description" content="微信图片_20190623161158.jpg                 前提虽然我们每天都会查看天气，但是如果你能够用限制微信每天早上七点定时为TA推送天气预报，生活指数。直接为TA提供过滤好的天气信息，让">
+<meta name="keywords" content="微信机器人,天气小助理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="超简单！只需简单几步即可为TA定制天气小助理！！">
+<meta property="og:url" content="https://toc.lieme.cn/2019/06/23/超简单！只需简单几步即可为TA定制天气小助理！！.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="微信图片_20190623161158.jpg                 前提虽然我们每天都会查看天气，但是如果你能够用限制微信每天早上七点定时为TA推送天气预报，生活指数。直接为TA提供过滤好的天气信息，让">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/Fri7Vn-grh3-MfhjHT74Ve5ztWIO">
+<meta property="og:updated_time" content="2020-02-03T07:29:21.371Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="超简单！只需简单几步即可为TA定制天气小助理！！">
+<meta name="twitter:description" content="微信图片_20190623161158.jpg                 前提虽然我们每天都会查看天气，但是如果你能够用限制微信每天早上七点定时为TA推送天气预报，生活指数。直接为TA提供过滤好的天气信息，让">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/Fri7Vn-grh3-MfhjHT74Ve5ztWIO">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">超简单！只需简单几步即可为TA定制天气小助理！！</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">超简单！只需简单几步即可为TA定制天气小助理！！</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-06-23T08:52:00.000Z" itemprop="datePublished" class="page-time">
+  2019-06-23
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/weipython/">weipython</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前提"><span class="post-toc-number">1.</span> <span class="post-toc-text">前提</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#效果如图"><span class="post-toc-number">2.</span> <span class="post-toc-text">效果如图</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#准备"><span class="post-toc-number">3.</span> <span class="post-toc-text">准备</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#主要代码"><span class="post-toc-number">4.</span> <span class="post-toc-text">主要代码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-安装-python-3-7-版本"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">1. 安装 python 3.7 版本</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-为项目安装相关模块"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">2. 为项目安装相关模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#wxpy"><span class="post-toc-number">4.2.1.</span> <span class="post-toc-text">wxpy</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-初始化机器人"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">3. 初始化机器人</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-设置模拟请求接口相关"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">4. 设置模拟请求接口相关</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-设置相关请求，以及需要的信息字段拼接"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">5. 设置相关请求，以及需要的信息字段拼接</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-获取发送对象"><span class="post-toc-number">4.6.</span> <span class="post-toc-text">6. 获取发送对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-设置定时发送事件"><span class="post-toc-number">4.7.</span> <span class="post-toc-text">7. 设置定时发送事件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-为程序设置持续运行保证项目一直在线"><span class="post-toc-number">4.8.</span> <span class="post-toc-text">8. 为程序设置持续运行保证项目一直在线</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-至此，一个简单的天气小助理就完成了，可以按照以上步骤来实验一下。"><span class="post-toc-number">4.9.</span> <span class="post-toc-text">9. 至此，一个简单的天气小助理就完成了，可以按照以上步骤来实验一下。</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-扩展"><span class="post-toc-number">4.10.</span> <span class="post-toc-text">10. 扩展</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#git"><span class="post-toc-number">5.</span> <span class="post-toc-text">git</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#注意事项"><span class="post-toc-number">6.</span> <span class="post-toc-text">注意事项</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#下期预告"><span class="post-toc-number">7.</span> <span class="post-toc-text">下期预告</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于我"><span class="post-toc-number">8.</span> <span class="post-toc-text">关于我</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-超简单！只需简单几步即可为TA定制天气小助理！！"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">超简单！只需简单几步即可为TA定制天气小助理！！</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-06-23 16:52:00" datetime="2019-06-23T08:52:00.000Z"  itemprop="datePublished">2019-06-23</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/weipython/">weipython</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        1,573
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        7 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FscX9fDIbxiH0meBmsW7CAQ5AKH_" alt="微信图片_20190623161158.jpg" title>
+                </div>
+                <div class="image-caption" style="display:none;">微信图片_20190623161158.jpg</div>
+            </figure>
+
+
+
+<h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>虽然我们每天都会查看天气，但是如果你能够用限制微信每天早上七点定时为TA推送天气预报，生活指数。直接为TA提供过滤好的天气信息，让TA一目了然。而且操作简单上手，任何人都可以零基础搭建，为你的TA带来一丝小惊喜。</p>
+<h2 id="效果如图"><a href="#效果如图" class="headerlink" title="效果如图"></a>效果如图</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/Fh3nNBsQsxl1kK-DYQpTOSF77YkS" alt="微信图片_20190623160937.jpg" title>
+                </div>
+                <div class="image-caption" style="display:none;">微信图片_20190623160937.jpg</div>
+            </figure>
+
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
+<li>运行环境  win10  Linux</li>
+<li>python 3.4 版本</li>
+<li>一个微信小号</li>
+<li>和风天气api</li>
+<li>一个编辑器，就是文本编辑器也可以</li>
+</ol>
+<h2 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h2><h3 id="1-安装-python-3-7-版本"><a href="#1-安装-python-3-7-版本" class="headerlink" title="1. 安装 python 3.7 版本"></a>1. 安装 python 3.7 版本</h3><p>小伙伴如果是 window 电脑可以直接在 <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">Python官网</a> 选择 *<em>download *</em>直接下载</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/Fhv1UUIFvtdmhW-9saIIsLXRiSWs" alt="微信截图_20190623145509.png" title>
+                </div>
+                <div class="image-caption" style="display:none;">微信截图_20190623145509.png</div>
+            </figure>
+
+<p>直接点击下载好的exe文件进行安装，记得将环境变量配置选项勾选上。如下图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FkFm2XNG5b7OhdE_WHQBvUByU-Qk" alt="微信图片_20190623145702.png" title>
+                </div>
+                <div class="image-caption" style="display:none;">微信图片_20190623145702.png</div>
+            </figure>
+
+
+<p>安装完成之后，我们可以新建文件夹，从git 上将代码clone 下来。我们直接在文件夹中摁住 <strong>shift + 鼠标右键</strong> 唤出 powerShell 查看 Python 版本。</p>
+<p>如果大家还有不明白的可以参考 <a href="https://www.runoob.com/python/python-install.html" target="_blank" rel="noopener">Python安装教程</a></p>
+<h3 id="2-为项目安装相关模块"><a href="#2-为项目安装相关模块" class="headerlink" title="2. 为项目安装相关模块"></a>2. 为项目安装相关模块</h3><blockquote>
+<p>可通过 pip install 直接安装相关模块，如运行时还有因模块报错，也可以直接pip install 模块名直接安装即可。本项目以及后续相关都依赖于以下模块。</p>
+</blockquote>
+<pre><code>#coding=utf8
+import requests
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+from urllib.parse import urlencode
+from threading import Timer
+import re
+from wxpy import *
+import  schedule
+import  time
+import http
+import  json 
+import datetime
+import random</code></pre><p><strong>重要：</strong> 其中 <a href="https://wxpy.readthedocs.io/zh/latest/index.html" target="_blank" rel="noopener">wxpy</a> 模块是本项目以及后续项目中很重要的模块，就是因为这个开源项目，我们才能使其与微信产生交互。</p>
+<h4 id="wxpy"><a href="#wxpy" class="headerlink" title="wxpy"></a>wxpy</h4><pre><code>控制路由器、智能家居等具有开放接口的玩意儿
+运行脚本时自动把日志发送到你的微信
+加群主为好友，自动拉进群中
+跨号或跨群转发消息
+自动陪人聊天
+逗人玩
+...</code></pre><p>项目介绍以及安装方法，大家可以去主页想看<a href="https://wxpy.readthedocs.io/zh/latest/index.html" target="_blank" rel="noopener">wxpy</a></p>
+<h3 id="3-初始化机器人"><a href="#3-初始化机器人" class="headerlink" title="3. 初始化机器人"></a>3. 初始化机器人</h3><p>参考 <a href="https://wxpy.readthedocs.io/zh/latest/bot.html" target="_blank" rel="noopener">登录文档</a></p>
+<pre><code>bot = Bot(cache_path=True,console_qr = 1)
+// 初始化机器人，扫码登录 console_qr 是用于登录的二维码展示默认为1
+bot.enable_puid(&apos;wxpy_puid.pkl&apos;)
+// 机器人启用 puid 属性，并指定 puid 所需的映射数据保存/载入路径</code></pre><h3 id="4-设置模拟请求接口相关"><a href="#4-设置模拟请求接口相关" class="headerlink" title="4. 设置模拟请求接口相关"></a>4. 设置模拟请求接口相关</h3><pre><code>def api(url):
+    header = {
+        &apos;Accept&apos;: &apos;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&apos;,
+        &apos;Accept-Encoding&apos;: &apos;gzip, deflate&apos;,
+        &apos;Accept-Language&apos;: &apos;zh-CN,zh;q=0.8&apos;,
+        &apos;Connection&apos;: &apos;keep-alive&apos;,
+        &apos;User-Agent&apos;: &apos;Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.235&apos;
+    }
+    timeout = random.choice(range(80, 180))
+    data = requests.get(url, headers=header, timeout=timeout)
+
+    return data.json()</code></pre><p><strong>header 中用来设置模拟请求接口的浏览器相关参数防止api 以为我们是爬虫抓取。并设定随机请求时间。</strong></p>
+<h3 id="5-设置相关请求，以及需要的信息字段拼接"><a href="#5-设置相关请求，以及需要的信息字段拼接" class="headerlink" title="5. 设置相关请求，以及需要的信息字段拼接"></a>5. 设置相关请求，以及需要的信息字段拼接</h3><pre><code>def sendweather(city, xx):
+    url = &apos;https://free-api.heweather.com/s6/weather/forecast?location=&apos;+city+&apos;&amp;key=和风key&apos;
+    PMurl = &apos;https://free-api.heweather.com/s6/air/now?parameters&amp;location=&apos;+city+&apos;&amp;key=和风key&apos;
+    lifeurl = &apos;https://free-api.heweather.com/s6/weather/lifestyle?location=&apos;+city+&apos;&amp;key=和风key&apos;
+
+    temp = api(url)
+    temp = temp[&apos;HeWeather6&apos;][0]
+    update = temp[&apos;update&apos;]
+    now = temp[&apos;daily_forecast&apos;][0]
+    nowTime = datetime.datetime.now().strftime(&apos;%Y-%m-%d %H:%M:%S&apos;)
+
+    pm = api(PMurl)
+    pm = pm[&apos;HeWeather6&apos;][0]
+    airnow = pm[&apos;air_now_city&apos;]
+
+    life = api(lifeurl)
+
+    life = life[&apos;HeWeather6&apos;][0]
+    life = life[&apos;lifestyle&apos;]
+    result =  xx + city +&apos; ---&apos; + &apos;\n&apos;+ &apos;\n&apos;\
+    + &apos;          今天天气：&apos;+ now[&apos;cond_txt_d&apos;] + &apos; 转 &apos; + now[&apos;cond_txt_n&apos;] + &apos;\n&apos;\
+    + &apos;          今天温度：&apos;+ now[&apos;tmp_min&apos;] + &apos;°C ~ &apos; + now[&apos;tmp_max&apos;] + &apos;°C&apos; + &apos;\n&apos;\
+    + &apos;          风向：&apos;+ now[&apos;wind_dir&apos;] + &apos; &apos; + now[&apos;wind_sc&apos;] + &apos;级 &apos;+ now[&apos;wind_spd&apos;] + &apos;公里/小时&apos;+ &apos;\n&apos;\
+    + &apos;          相对湿度：&apos;+ now[&apos;hum&apos;] + &apos;%&apos; + &apos;\n&apos;\
+    + &apos;          降水量：&apos;+ now[&apos;pcpn&apos;] + &apos;ml&apos; + &apos;，降水概率：&apos;+ now[&apos;pop&apos;] + &apos;%&apos; + &apos;\n&apos;\
+    + &apos;          能见度：&apos;+ now[&apos;vis&apos;] + &apos;公里&apos; + &apos;\n&apos;\
+    + &apos;------------------------------------------&apos; + &apos;\n&apos;\
+    + &apos;今天空气质量：&apos;+&apos;\n&apos;\
+    + &apos;          空气质量指数：&apos;+ airnow[&apos;aqi&apos;]+&apos;\n&apos;\
+    + &apos;          主要污染物：&apos;+ airnow[&apos;main&apos;]+&apos;\n&apos;\
+    + &apos;          空气质量：&apos;+ airnow[&apos;qlty&apos;]+&apos;\n&apos;\
+    + &apos;          二氧化氮指数：&apos;+ airnow[&apos;no2&apos;]+&apos;\n&apos;\
+    + &apos;          二氧化硫指数：&apos;+ airnow[&apos;so2&apos;]+&apos;\n&apos;\
+    + &apos;          一氧化碳指数：&apos;+ airnow[&apos;co&apos;]+&apos;\n&apos;\
+    + &apos;          pm10指数：&apos;+ airnow[&apos;pm10&apos;]+&apos;\n&apos;\
+    + &apos;          pm25指数：&apos;+ airnow[&apos;pm25&apos;]+&apos;\n&apos;\
+    + &apos;          臭氧指数：&apos;+ airnow[&apos;o3&apos;] +&apos;\n&apos;\
+    + &apos;------------------------------------------&apos; + &apos;\n&apos;\
+    + &apos;1、&apos;+ life[0][&apos;txt&apos;]+&apos;\n\n&apos;\
+    + &apos;2、&apos;+ life[1][&apos;txt&apos;]+&apos;\n\n&apos;\
+    + &apos;3、&apos;+ life[2][&apos;txt&apos;]+&apos;\n\n&apos;\
+    + &apos;😄😊😉😍😘😚😜😝😳😁&apos;+&apos;\n\n&apos;\
+
+    result =  result + &apos;发送时间：&apos; +  nowTime + &apos;\n&apos;
+
+    return result</code></pre><p>小伙伴可以在<a href="https://dev.heweather.com/" target="_blank" rel="noopener">和风官网</a>注册账户，其中有免费的天气、生活指数api可以使用。免费的已经可以满足我们的需求。</p>
+<h3 id="6-获取发送对象"><a href="#6-获取发送对象" class="headerlink" title="6. 获取发送对象"></a>6. 获取发送对象</h3><pre><code>def auto_send(msg):
+    weather = sendweather(&apos;苏州&apos;, msg) 
+    // 用来请求刚刚封装的请求天气
+
+    Lie = bot.friends().search(u&apos;Lie&apos;)[0]
+    // 查找你要发送的对象，必须在你的好友列表里也可以为群
+    后面是好友的昵称，记得不是备注名哦！
+
+    WxpyChat = bot.groups().search(&apos;🍋 (๑• . •๑) &apos;)
+    // 获取要发送的群
+
+    Lie.send(weather)
+    // 发送
+
+    WxpyChat.send(weather)
+    // 可以设置多个发送对象</code></pre><h3 id="7-设置定时发送事件"><a href="#7-设置定时发送事件" class="headerlink" title="7. 设置定时发送事件"></a>7. 设置定时发送事件</h3><pre><code>schedule.every().day.at(&quot;13:56&quot;).do(auto_send, &apos;早上好，&apos;)
+schedule.every().day.at(&quot;13:57&quot;).do(auto_send, &apos;晚上好，&apos;)</code></pre><h3 id="8-为程序设置持续运行保证项目一直在线"><a href="#8-为程序设置持续运行保证项目一直在线" class="headerlink" title="8. 为程序设置持续运行保证项目一直在线"></a>8. 为程序设置持续运行保证项目一直在线</h3><pre><code>while True:
+    schedule.run_pending()
+    time.sleep(1)</code></pre><h3 id="9-至此，一个简单的天气小助理就完成了，可以按照以上步骤来实验一下。"><a href="#9-至此，一个简单的天气小助理就完成了，可以按照以上步骤来实验一下。" class="headerlink" title="9. 至此，一个简单的天气小助理就完成了，可以按照以上步骤来实验一下。"></a>9. 至此，一个简单的天气小助理就完成了，可以按照以上步骤来实验一下。</h3><h3 id="10-扩展"><a href="#10-扩展" class="headerlink" title="10. 扩展"></a>10. 扩展</h3><blockquote>
+<p>我们还可以为其添加主动询问操作，比如发送城市，直接获得当前城市的天气，只需要在第6步添加如下代码即可。</p>
+</blockquote>
+<pre><code>Lie = bot.friends().search(u&apos;Lie&apos;)
+@bot.register(Lie)
+// 注册对哪个好友的回复生效
+def auto_reply_all(msg):
+if &apos;苏州&apos; in msg.text:
+    nowWeather = sendweather(msg.text, msg) 
+    msg.sender.send(nowWeather)</code></pre><h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><blockquote>
+<p>本项目的代码以上传我的github，如有需要大家可以clone下载</p>
+</blockquote>
+<p><a href="https://github.com/jiaopianjun/wepython" target="_blank" rel="noopener">wepython</a></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>在window 下 可以用 powerShell 来运行python 程序。</li>
+<li>微信号要用2017年之前注册的微信号，新注册的微信号不能在web网页登录无法使用。</li>
+<li>大家如果没有小号，需要购买的请注意对方诚信度。不要为了这个上当受骗。</li>
+</ol>
+<h2 id="下期预告"><a href="#下期预告" class="headerlink" title="下期预告"></a>下期预告</h2><p>用python + wxpy 为TA定制贴心喝水小助理。</p>
+<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>小夭同学，页面切图仔。</p>
+<p>想体验机器人的小伙伴可以加下面二维码，验证信息 <strong>【py】</strong> 自动通过拉你入群体验机器人其他功能。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FnMDJWmjdvZSkkrTGaJ1uuYyh67I" alt="微信截图_20190623160539.png" title>
+                </div>
+                <div class="image-caption" style="display:none;">微信截图_20190623160539.png</div>
+            </figure>
+
+<p>欢迎小伙伴关注我的微信 <strong>【小夭同学】</strong> 一起学习前端相关知识。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blogimg.lieme.cn/FoPofvEhcKXmXZWrIv1TGO3GjffD" alt="微信图片_20190623160555.jpg" title>
+                </div>
+                <div class="image-caption" style="display:none;">微信图片_20190623160555.jpg</div>
+            </figure>
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-02-03T07:29:21.371Z" itemprop="dateUpdated">2020-02-03 15:29:21</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/天气小助理/">天气小助理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信机器人/">微信机器人</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/06/23/超简单！只需简单几步即可为TA定制天气小助理！！.html&title=《超简单！只需简单几步即可为TA定制天气小助理！！》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/Fri7Vn-grh3-MfhjHT74Ve5ztWIO" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/06/23/超简单！只需简单几步即可为TA定制天气小助理！！.html&title=《超简单！只需简单几步即可为TA定制天气小助理！！》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/06/23/超简单！只需简单几步即可为TA定制天气小助理！！.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《超简单！只需简单几步即可为TA定制天气小助理！！》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/06/23/超简单！只需简单几步即可为TA定制天气小助理！！.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/06/23/超简单！只需简单几步即可为TA定制天气小助理！！.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/07/05/重学JavaScript之基本概念（下）-逻辑运算.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">重学JavaScript之基本概念（下）=&gt;运算符</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/06/22/Untitled如何免费打造打造一个安全稳定低延迟超高速的科学上网环境.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">如何免费打造打造一个安全稳定低延迟超高速的科学上网环境</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/06/23/超简单！只需简单几步即可为TA定制天气小助理！！.html&title=《超简单！只需简单几步即可为TA定制天气小助理！！》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/Fri7Vn-grh3-MfhjHT74Ve5ztWIO" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/06/23/超简单！只需简单几步即可为TA定制天气小助理！！.html&title=《超简单！只需简单几步即可为TA定制天气小助理！！》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/06/23/超简单！只需简单几步即可为TA定制天气小助理！！.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《超简单！只需简单几步即可为TA定制天气小助理！！》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/06/23/超简单！只需简单几步即可为TA定制天气小助理！！.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/06/23/超简单！只需简单几步即可为TA定制天气小助理！！.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADLElEQVR42u3a0U7rQAwE0P7/T/e+InHbzthFarYnTwiabM4iMdje2y2+7j+un9/5/Zn8ObPr0TNvf3FhY2NjX4SdLPNo4UefSe5NXn3/Dg9Xx8bGxj6OnSzZRlq+He1GP1q3CDlsbGzsL2bngbSPt+QdsLGxsbH3AZbHUrJB7UZjY2NjY+dNpbbR0/70Lxpbb+ilYWNjY388O5+Kfv7XfzLfxsbGxv5g9uy4TDIGSFbJA69tML1QYGNjYx/EzgNg9lpJ2dBuZf5rePErwcbGxj6CvW/rPIdthr573sPPY2NjYx/EbguGWd+mJbVD33xbsbGxsb+NnRcJs1dJwi86fLM4eISNjY19BnvW6GnHw7NiI2ljtUeIsLGxsU9itzdsAmYTSJvV/7Ot2NjY2Aexn4fKrPWfhGLbTnrXmDmqpbCxsbEvy25vLmqduLO1v6toY2FjY2Mfwc7LjHt8bQqb2RbXw2BsbGzsg9htQTJMyHJg3A4qVq0ubGxs7Iuz20Mz7YGevJG0GSrXhQo2Njb2cexZLLWFwWYY3Pb2X6yLjY2NfRB7Fk7vWn4zSMhLkRfPwcbGxr44O2mjt5GQj4fboUI7Zo76Z9jY2NgXZ7eBsR8k5C+9OaBTbAQ2Njb2cexNA+h5IG2obTQWP8XGxsY+gp28XDLEnTWk9iu2B32wsbGxz2a3sP2hyXe1/ushBzY2NvZB7Ly11EZOEjyzoW/bTsLGxsY+ld221N+10zm7LWmisMTGxsY+iD0LiTyWktHspqhIAi8KM2xsbOwj2JsjMnkh0ZYZbVGUj6WxsbGxT2LP/t1/1zhhNqhog+pFYmNjY2MfwR4efInZbfC0T6i3CRsbG/tr2Hk7Pi9jkmJm1k4qqg9sbGzsI9j38pqNCnLqrNGfrxjNmbGxsbEvxW7/9A+PxcRjgHYY3EZdjcfGxsa+CHt27GZWQrSFzfO4mm06NjY29qnsNhjaLcsbQ/utjO7CxsbGxh41epJtmuHrbcLGxsb+YnYeUZsAa9tP9XOwsbGxj2O35UR7dHJ2KDNvG9UHfbCxsbEPYm8aNMnr5lvTHtxpwwwbGxv7OPY/NZFdyRUccXgAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

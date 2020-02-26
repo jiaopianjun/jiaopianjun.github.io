@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>重学JavaScript之匿名函数 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="匿名函数,闭包">
+    <meta name="description" content="1. 什么是匿名函数？匿名函数就是没有名字的函数，有时候也称为《 拉姆达函数》。匿名函数是一种强大的令人难以置信的工具。如下： 123function a(a1, a2, a3) &amp;#123;    // 函数体&amp;#125;  ==其他函数表达式== 123var a = function(a1, a2, a3) &amp;#123;    // 函数体&amp;#125;  以上两个例子在逻辑上等价，其主要的区">
+<meta name="keywords" content="匿名函数,闭包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重学JavaScript之匿名函数">
+<meta property="og:url" content="https://toc.lieme.cn/2019/10/25/重学JavaScript之匿名函数.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1. 什么是匿名函数？匿名函数就是没有名字的函数，有时候也称为《 拉姆达函数》。匿名函数是一种强大的令人难以置信的工具。如下： 123function a(a1, a2, a3) &amp;#123;    // 函数体&amp;#125;  ==其他函数表达式== 123var a = function(a1, a2, a3) &amp;#123;    // 函数体&amp;#125;  以上两个例子在逻辑上等价，其主要的区">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/Flze3BetDBf8xiuB5FJkv2lFQvg_">
+<meta property="og:updated_time" content="2019-10-25T05:34:55.122Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重学JavaScript之匿名函数">
+<meta name="twitter:description" content="1. 什么是匿名函数？匿名函数就是没有名字的函数，有时候也称为《 拉姆达函数》。匿名函数是一种强大的令人难以置信的工具。如下： 123function a(a1, a2, a3) &amp;#123;    // 函数体&amp;#125;  ==其他函数表达式== 123var a = function(a1, a2, a3) &amp;#123;    // 函数体&amp;#125;  以上两个例子在逻辑上等价，其主要的区">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/Flze3BetDBf8xiuB5FJkv2lFQvg_">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">重学JavaScript之匿名函数</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">重学JavaScript之匿名函数</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2019-10-25T05:32:36.000Z" itemprop="datePublished" class="page-time">
+  2019-10-25
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/重学JavaScript/">重学JavaScript</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-什么是匿名函数？"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 什么是匿名函数？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-递归"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 递归</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-闭包"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 闭包</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-闭包与变量"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">3.1 闭包与变量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-关于-this-对象"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">3.2 关于 this 对象</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-3-内存泄露"><span class="post-toc-number">4.</span> <span class="post-toc-text">3.3 内存泄露</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4、-模仿块级作用域"><span class="post-toc-number">5.</span> <span class="post-toc-text">4、 模仿块级作用域</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5、私有变量"><span class="post-toc-number">6.</span> <span class="post-toc-text">5、私有变量</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#第一种：在构造函数中定义"><span class="post-toc-number">6.0.0.1.</span> <span class="post-toc-text">第一种：在构造函数中定义</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#第二种：静态私有变量"><span class="post-toc-number">6.0.0.2.</span> <span class="post-toc-text">第二种：静态私有变量</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-1-模块模式"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">5.1 模块模式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6、总结"><span class="post-toc-number">7.</span> <span class="post-toc-text">6、总结</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#当函数内部定义了其他函数时，就创建s了闭包，闭包有权访问包含函数内部的所有变量。"><span class="post-toc-number">7.0.1.</span> <span class="post-toc-text">当函数内部定义了其他函数时，就创建s了闭包，闭包有权访问包含函数内部的所有变量。</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#使用闭包可以在JS中模仿块级作用域"><span class="post-toc-number">7.0.2.</span> <span class="post-toc-text">使用闭包可以在JS中模仿块级作用域</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#闭包可以用于对象中创建私有变量"><span class="post-toc-number">7.0.3.</span> <span class="post-toc-text">闭包可以用于对象中创建私有变量</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-重学JavaScript之匿名函数"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">重学JavaScript之匿名函数</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-10-25 13:32:36" datetime="2019-10-25T05:32:36.000Z"  itemprop="datePublished">2019-10-25</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/重学JavaScript/">重学JavaScript</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        3,055
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        11 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h2 id="1-什么是匿名函数？"><a href="#1-什么是匿名函数？" class="headerlink" title="1. 什么是匿名函数？"></a>1. 什么是匿名函数？</h2><p>匿名函数就是没有名字的函数，有时候也称为《 <strong>拉姆达函数</strong>》。匿名函数是一种强大的令人难以置信的工具。如下：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span><span class="params">(a1, a2, a3)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 函数体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>==其他函数表达式==</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="function"><span class="keyword">function</span><span class="params">(a1, a2, a3)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 函数体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上两个例子在逻辑上等价，其主要的区别是： 前者会在代码执行前被加载到作用域中，而后者则是在代码执行到那一行的时候才会有定义。另一个重要的区别就是：<em>函数声明会给函数一个指定的名字<em>，而函数表达式则是：</em>创建一个匿名函数，然后将这个匿名函数赋给一个变量。</em></p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span><span class="params">(a1, a2, a3)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 函数体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上面例子也是完全可以的，但是却无法调用这个函数，因为没有指向这个函数的指针，但是可以将这个函数作为参数传入另外一个函数，或者从一个函数中返回另一个函数时就可以使用这种形式来定义匿名函数。</p>
+</blockquote>
+<h2 id="2-递归"><a href="#2-递归" class="headerlink" title="2. 递归"></a>2. 递归</h2><blockquote>
+<p>递归函数是在一个函数通过名字调用自身的情况下构成的</p>
+</blockquote>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function f(<span class="built_in">num</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">num</span> &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">        retrun <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">num</span> * f(<span class="built_in">num</span> - <span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上，这是一个经典的递归阶乘函数，表面上没有任何问题，但是却会被以下代码导致出错：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var <span class="keyword">a</span> = f</span><br><span class="line">f = <span class="literal">null</span></span><br><span class="line">console.<span class="built_in">log</span>(<span class="keyword">a</span>(<span class="number">4</span>)<span class="comment"> // 报错</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>以上代码先把 f() 函数保存在变量 a 中，然后将f变量设置为 null ,结果指向原始函数的引用只剩下一个。但在接下来调用 a() 时，由于必须执行 f(),但 f 已经不是函数，所有就会报错。这个时候可以使用 arguments.callee</p>
+</blockquote>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function f(<span class="built_in">num</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">num</span> &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">num</span> * arguments.callee(<span class="built_in">num</span> - <span class="number">1</span>)</span><br><span class="line">        <span class="comment">// 通过 arguments.callee 代替函数名，可以保证不会出问题</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = f</span><br><span class="line">a = <span class="keyword">null</span></span><br><span class="line">a(<span class="number">4</span>)    <span class="comment">// 24</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-闭包"><a href="#3-闭包" class="headerlink" title="3. 闭包"></a>3. 闭包</h2><blockquote>
+<p>闭包是指有权访问另一个函数作用域中的变量的函数。创建闭包的方式：在一个函数内部创建另一个函数。</p>
+</blockquote>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">c</span><span class="params">(p)</span> </span>&#123;</span><br><span class="line">    retrun <span class="function"><span class="keyword">function</span><span class="params">(o1,o2)</span></span>&#123;</span><br><span class="line">        <span class="comment">// var v1 = o1[p]</span></span><br><span class="line">        <span class="comment">// var v2 = o2[p]</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (v1 &lt; v2) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (v1 &gt; v2) &#123;</span><br><span class="line">            retrun <span class="number">1</span></span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            retrun <span class="number">0</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在上面代码中，有标记的两行是匿名函数中的代码。这两行代码访问了外部函数中的变量 p。即使这个内部函数被返回了，而且被其他地方调用了，但它仍然可以访问变量 p。之所以还能够访问这个变量，是因为函数的作用域链中包含了c()的作用域。</p>
+</blockquote>
+<p>当某个函数第一次被调用时，会创建一个执行环境及相应的作用域链，并把作用域链赋值给一个特殊的内部属性（[Scope]）。然后，使用 <strong>this、arguments</strong>和其他命名参数的值来初始化函数的活动对象。<strong>但在作用域链中，外部函数的活动对象始终处于第二位，外部函数的外部活动对象处于第三位。直到作为作用域链重点的全局执行环境。</strong></p>
+<ul>
+<li>在函数执行过程中，为读取和写入变量的值，就需要在作用域链中查找变量。后台的每个执行环境都有一个表示变量的对象–<strong>变量对象</strong>。</li>
+<li>全局环境的变量对象始终存在，而局部环境的变量对象，则只在函数执行的过程中存在。我们在创建函数的时候会创建一个预先包含全局变量对象的作用域链，这个作用域链被保存在内部的[Scope]属性中，当调用函数时，会为函数创建一个执行环境，然后通过赋值函数的[Scope]属性中的对象构建起执行环境的作用域链。</li>
+<li>如果这时候有一个变量对象被创建并被推入执行环境作用域链的前端，对于一开始创建的函数的执行环境而言，其作用域链中包含两个变量：==<strong>本地活动对象和全局变量对象</strong>==。所以，作用域链本质上是一个指向变量对象的指针列表，它只引用但不实际包含变量对象。</li>
+</ul>
+<p><strong>无论什么时候函数在访问一个变量时，就会从作用域链中搜索具有相同名字的变量，函数执行完成后，局部活动对象将被销毁，内存中仅保存全局作用域。但是由于闭包会携带包含它的函数的作用域，因此会比其他函数占用更多的内存。过度使用闭包可能会导致内存占用过多。</strong></p>
+<blockquote>
+<p>在一个函数内部定义的函数会将外部函数的活动对象添加到它的作用域链中。内部函数在外部函数中被返回后，它的作用域链被初始化为包含外部函数的==活动对象和全局变量对象==，这样内部函数就可以访问外部函数中定义的所有的变量。所以在外部函数执行结束后，它并不会被销毁，因为内部函数的作用域链还在引用这个活动对象。也就是说外部函数执行结束后，它的作用域链会被销毁，但是活动对象还在内存中，直到内部函数被销毁后。  </p>
+</blockquote>
+<h3 id="3-1-闭包与变量"><a href="#3-1-闭包与变量" class="headerlink" title="3.1 闭包与变量"></a>3.1 闭包与变量</h3><p>作用域链的这种配置引出了一个副作用，闭包只能取得包含函数中任何变量的最后一个值。</p>
+<h3 id="3-2-关于-this-对象"><a href="#3-2-关于-this-对象" class="headerlink" title="3.2 关于 this 对象"></a>3.2 关于 this 对象</h3><p>在闭包中使用this 也可能会导致一些问题。因为this对象是在运行时基于函数的执行环境绑定的。在全局函数中 this === window，函数被作为某个对象的方法调用时，this就等于那个对象。匿名函数的执行环境具有全局性，因此其this 对象通常指向window。==但是这并不是绝对的。==</p>
+<blockquote>
+<p>在函数被调用的时候，其活动对象都会自动获得两个特殊变量：==this 和 arguments。== 内部函数在搜索这两个变量时，只会搜索到其活动对象为止，因此永远不可能直接访问外部函数中的这两个变量。<strong>如果把外部作用域中的this对象保存在一个闭包能够访问的变量里，就可以让闭包访问该对象了。</strong></p>
+</blockquote>
+<h2 id="3-3-内存泄露"><a href="#3-3-内存泄露" class="headerlink" title="3.3 内存泄露"></a>3.3 内存泄露</h2><p>由于IE对JS对象和 COM对象使用不同的垃圾收集例程，因此闭包在IE中会导致一些特殊的问题。也就是说，如果闭包的作用域链中保存着一个HTML元素，那么就意味着该元素将无法被销毁。</p>
+<p>==注意==：<strong>闭包会引用包含函数的整个活动对象，而其中包含着变量，即使闭包不直接引用变量，包含函数的活动对象中也仍然会保存一个引用。因此把变量设置为 null ，这样就能够解除对DOM对象的引用，减少其引用数，确保正常回收其占用的内存。</strong></p>
+<h2 id="4、-模仿块级作用域"><a href="#4、-模仿块级作用域" class="headerlink" title="4、 模仿块级作用域"></a>4、 模仿块级作用域</h2><blockquote>
+<p>vJS没有块级作用域的概念，这意味着在块语句中定义的变量，实际上是在包含函数中而非语句中创建的。JS从来不会告诉你是否多次声明了同一个变量，它总是对后续的声明视而不见。我们可以通过==匿名函数来模仿块级作用域==从而避免这个问题。</p>
+</blockquote>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">function</span> () &#123;</span><br><span class="line">    // 块级作用域</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、私有变量"><a href="#5、私有变量" class="headerlink" title="5、私有变量"></a>5、私有变量</h2><blockquote>
+<p>严格来说在JS中并没有私有成员的概念：==所有对象属性都是公有的==。不过倒是有一个私有变量的概念。任何在函数中定义的变量都可以认为是私有变量，因为不能在函数的外部访问这些变量。私有变量包括函数的参数、局部变量和在函数内部定义的其他函数。</p>
+</blockquote>
+<p>在函数内部如果有私有变量，那么在函数内部可以访问这个变量，但在函数外部则不能访问它们。如果==在这个函数内部创建一个闭包，那么闭包通过自己的作用域链也可以访问这些变量==。</p>
+<p>我们把有权访问私有变量和私有函数的公有方法称为==<strong>特权方法</strong>==。有两种在对象上创建特权方法的方式，</p>
+<h5 id="第一种：在构造函数中定义"><a href="#第一种：在构造函数中定义" class="headerlink" title="第一种：在构造函数中定义"></a>第一种：在构造函数中定义</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">m</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> p = <span class="number">10</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">p</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">        retrun <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 特权方法</span></span><br><span class="line">    <span class="keyword">this</span>.pb = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        p++</span><br><span class="line">        retrun p()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="第二种：静态私有变量"><a href="#第二种：静态私有变量" class="headerlink" title="第二种：静态私有变量"></a>第二种：静态私有变量</h5><p>通过在私有作用域中定义私有变量或函数，同样也可以创建特权方法。和在构造函数中定义特权方法的区别在于私有变量和函数是由实例共享的，由于特权方法是在<strong>原型上定义的，因此所有实例都使用同一个函数。</strong></p>
+<p>多查找作用域链中的一个层次，就会在一定程度上影响查找速度。这正是闭包和私有变量一个不足之处。</p>
+<h3 id="5-1-模块模式"><a href="#5-1-模块模式" class="headerlink" title="5.1 模块模式"></a>5.1 模块模式</h3><p>指的是为单例创建私有变量和特权方法。所谓单例，指的就是只有一个实例对象，按照惯例，JS是以对象字面量的方式来创建单例对象的：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = &#123;</span><br><span class="line">    name : v,</span><br><span class="line">    method: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// 方法的代码</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、总结"><a href="#6、总结" class="headerlink" title="6、总结"></a>6、总结</h2><blockquote>
+<p>匿名函数，也称为拉姆达函数，是一种使用JS函数的强大方式。有如下特点：</p>
+</blockquote>
+<ol>
+<li>任何函数表达式从技术上说都是匿名函数，因为没有引用它们的确定的方式</li>
+<li>在无法确定如何引用函数的情况下，递归函数就会变得比较复杂</li>
+<li>递归函数应该始终使用 argument.callee来递归地调用自身，不要使用函数名，因为函数名可能会发生变化。</li>
+</ol>
+<h4 id="当函数内部定义了其他函数时，就创建s了闭包，闭包有权访问包含函数内部的所有变量。"><a href="#当函数内部定义了其他函数时，就创建s了闭包，闭包有权访问包含函数内部的所有变量。" class="headerlink" title="当函数内部定义了其他函数时，就创建s了闭包，闭包有权访问包含函数内部的所有变量。"></a>当函数内部定义了其他函数时，就创建s了闭包，闭包有权访问包含函数内部的所有变量。</h4><ol>
+<li>在后台执行环境汇总，闭包的作用域链包含着它自己的作用域、包含函数的作用域和全局作用域；</li>
+<li>通常，函数的作用域及所有变量都会在函数执行结束后被销毁</li>
+<li>但是，如果函数返回了一个闭包时， 这个函数的作用域将会一直在内存中保存到闭包不存在为止</li>
+</ol>
+<h4 id="使用闭包可以在JS中模仿块级作用域"><a href="#使用闭包可以在JS中模仿块级作用域" class="headerlink" title="使用闭包可以在JS中模仿块级作用域"></a>使用闭包可以在JS中模仿块级作用域</h4><ol>
+<li>创建并立即调用一个函数，这样即可以执行其中的代码，又不会在内存中留下对该函数的引用</li>
+<li>结果就是函数内部的所有变量都会被立即销毁–除非将某些变量赋值给了包含作用域中的变量</li>
+</ol>
+<h4 id="闭包可以用于对象中创建私有变量"><a href="#闭包可以用于对象中创建私有变量" class="headerlink" title="闭包可以用于对象中创建私有变量"></a>闭包可以用于对象中创建私有变量</h4><ol>
+<li>即使JS中没有正式的私有对象属性概念，但可以使用闭包来实现公有方法，而通过公有方法可以访问在包含作用域中定义的变量。</li>
+<li>有权访问私有变量的公有方法叫做 特权方法</li>
+<li>可以使用构造函数、原型模式来实现自定义类型的特权方法，也可以使用模块模式、增强的模块模式来实现单例的特权方法。</li>
+</ol>
+<p>JS中的匿名函数和闭包都是非常的特性，但是要注意使用场景和方法。</p>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-10-25T05:34:55.122Z" itemprop="dateUpdated">2019-10-25 13:34:55</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/匿名函数/">匿名函数</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/闭包/">闭包</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/10/25/重学JavaScript之匿名函数.html&title=《重学JavaScript之匿名函数》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/Flze3BetDBf8xiuB5FJkv2lFQvg_" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/10/25/重学JavaScript之匿名函数.html&title=《重学JavaScript之匿名函数》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/10/25/重学JavaScript之匿名函数.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学JavaScript之匿名函数》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/10/25/重学JavaScript之匿名函数.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/10/25/重学JavaScript之匿名函数.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/11/03/前端常用git命令.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">前端常用Git命令</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/10/18/前端两三问-201901018.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">前端两三问(201901018)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/10/25/重学JavaScript之匿名函数.html&title=《重学JavaScript之匿名函数》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/Flze3BetDBf8xiuB5FJkv2lFQvg_" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/10/25/重学JavaScript之匿名函数.html&title=《重学JavaScript之匿名函数》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2019/10/25/重学JavaScript之匿名函数.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学JavaScript之匿名函数》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/10/25/重学JavaScript之匿名函数.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2019/10/25/重学JavaScript之匿名函数.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsElEQVR42u3awW7bQAwEUP//T7dATwVSOTOkVnGBp5OR2Na+PYj0cF+v+Pr15/r6l6srf+ff73//+us333bh4eHhjZa+v/Hs/e+342qL883Fw8PDO8d7XwzyW26e1ck78zXj4eHhfQKv/e/VsmaLxsPDw/sfeZtYoY0q2u3Gw8PDe56XLHfD2AQZeYHBw8PDe4bXDsA+4fXB+R4eHh7eYqreDrdmBwXy4wL1avHw8PAO8JKINo9Tc8CsRc63JjovhoeHhzfibQb27YN+/w11yIuHh4d3gDf78b8ZYrXpQVKWvtkCPDw8vFt5+694v5TZAGyzcXh4eHinecmCNsee8gMBeWxxwwQPDw8P7wAvH3HlGzT7zlk7joeHh3ealyw3v3H7iL8rgLjcaDw8PLxbeZumNo8nZrC25FzO9/Dw8PCO8aIPjOLX9hBA3oJ/81k8PDy8Y7x8hJ8Xj7ZRnt19OPTCw8PDW/DyUVY7XUpGXC11VqLw8PDw7uXlMcFmfLUZrbUlqv7FgIeHh7fg5Tdum912nDaLIf6xBjw8PLxHeLOgYRPRzsKIaLV4eHh4j/BmTXNeZvJmvQ0y8PDw8J7hzaLS9qjBJnrI4+D6/CweHh7eiFcHo2VoO2vB74o88PDw8E7zZgOwWbM7K0VtucLDw8M7zUsGVMlD+XQ0XJQKPDw8vAO8EwOtzZbN7hWVBzw8PLybeHkk2ka39zblr/i6nO/h4eHhHeDtg4NZk91OrIphGx4eHt4BXvvALSKAxXCrbdBrDB4eHt6aNysGbTCRH/nKjyDUkQQeHh7erbxNMUjAs7KR1zQ8PDy8z+Qlr5MH+gaQRB7FyTI8PDy8H+W1UeymHT/SUuPh4eEdCCPy4GAWHxSP+7alxsPDw7uV17az7W02WzaLP1bzPTw8PLx312/88XUJMNcHxgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>

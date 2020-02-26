@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>Vue响应式原理 | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="vue">
+    <meta name="description" content="1、vue响应式原理就是对你数据的变化，vue会有一个响应，去完成某件事。2、vue的响应式原理就是基于vue知道了数据发生了变化，那么vue是如何知道数据发生了变化呢？3、数据劫持 vue.js 采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter,getter，在数据变动时发布消息给订阅者，触发相应的监听回调1Object.d">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue响应式原理">
+<meta property="og:url" content="https://toc.lieme.cn/2018/12/25/Vue响应式原理.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1、vue响应式原理就是对你数据的变化，vue会有一个响应，去完成某件事。2、vue的响应式原理就是基于vue知道了数据发生了变化，那么vue是如何知道数据发生了变化呢？3、数据劫持 vue.js 采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter,getter，在数据变动时发布消息给订阅者，触发相应的监听回调1Object.d">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-10-21T00:17:19.836Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue响应式原理">
+<meta name="twitter:description" content="1、vue响应式原理就是对你数据的变化，vue会有一个响应，去完成某件事。2、vue的响应式原理就是基于vue知道了数据发生了变化，那么vue是如何知道数据发生了变化呢？3、数据劫持 vue.js 采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter,getter，在数据变动时发布消息给订阅者，触发相应的监听回调1Object.d">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">Vue响应式原理</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">Vue响应式原理</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-25T06:16:00.000Z" itemprop="datePublished" class="page-time">
+  2018-12-25
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1、vue响应式原理就是对你数据的变化，vue会有一个响应，去完成某件事。"><span class="post-toc-number">1.</span> <span class="post-toc-text">1、vue响应式原理就是对你数据的变化，vue会有一个响应，去完成某件事。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2、vue的响应式原理就是基于vue知道了数据发生了变化，那么vue是如何知道数据发生了变化呢？"><span class="post-toc-number">2.</span> <span class="post-toc-text">2、vue的响应式原理就是基于vue知道了数据发生了变化，那么vue是如何知道数据发生了变化呢？</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3、数据劫持-vue-js-采用数据劫持结合发布者-订阅者模式的方式，通过Object-defineProperty-来劫持各个属性的setter-getter，在数据变动时发布消息给订阅者，触发相应的监听回调"><span class="post-toc-number">3.</span> <span class="post-toc-text">3、数据劫持 vue.js 采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter,getter，在数据变动时发布消息给订阅者，触发相应的监听回调</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#4、数据劫持盲区"><span class="post-toc-number">4.</span> <span class="post-toc-text">4、数据劫持盲区</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#5-数组Array的特殊性"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. 数组Array的特殊性</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Vue响应式原理"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Vue响应式原理</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-25 14:16:00" datetime="2018-12-25T06:16:00.000Z"  itemprop="datePublished">2018-12-25</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        529
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        2 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h5 id="1、vue响应式原理就是对你数据的变化，vue会有一个响应，去完成某件事。"><a href="#1、vue响应式原理就是对你数据的变化，vue会有一个响应，去完成某件事。" class="headerlink" title="1、vue响应式原理就是对你数据的变化，vue会有一个响应，去完成某件事。"></a>1、vue响应式原理就是对你数据的变化，vue会有一个响应，去完成某件事。</h5><h5 id="2、vue的响应式原理就是基于vue知道了数据发生了变化，那么vue是如何知道数据发生了变化呢？"><a href="#2、vue的响应式原理就是基于vue知道了数据发生了变化，那么vue是如何知道数据发生了变化呢？" class="headerlink" title="2、vue的响应式原理就是基于vue知道了数据发生了变化，那么vue是如何知道数据发生了变化呢？"></a>2、vue的响应式原理就是基于vue知道了数据发生了变化，那么vue是如何知道数据发生了变化呢？</h5><h5 id="3、数据劫持-vue-js-采用数据劫持结合发布者-订阅者模式的方式，通过Object-defineProperty-来劫持各个属性的setter-getter，在数据变动时发布消息给订阅者，触发相应的监听回调"><a href="#3、数据劫持-vue-js-采用数据劫持结合发布者-订阅者模式的方式，通过Object-defineProperty-来劫持各个属性的setter-getter，在数据变动时发布消息给订阅者，触发相应的监听回调" class="headerlink" title="3、数据劫持 vue.js 采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter,getter，在数据变动时发布消息给订阅者，触发相应的监听回调"></a>3、数据劫持 vue.js 采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter,getter，在数据变动时发布消息给订阅者，触发相应的监听回调</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">Object</span><span class="selector-class">.defineProperty</span>()方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回这个值</span><br></pre></td></tr></table></figure>
+
+<h5 id="4、数据劫持盲区"><a href="#4、数据劫持盲区" class="headerlink" title="4、数据劫持盲区"></a>4、数据劫持盲区</h5><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> vue 在实例化的时候会将data数据中的属性全部做数据劫持</span><br><span class="line"><span class="number">2.</span> 如果时对象，也会迭代本身属性将全部属性都实现数据劫持</span><br><span class="line"><span class="number">3.</span> 当赋值的时候，如果时<span class="keyword">new</span><span class="type">Val</span>是对象，也会迭代<span class="keyword">new</span><span class="type">Val</span>的属性实现全部属性的数据劫持</span><br><span class="line"></span><br><span class="line">什么时候会发生盲区：</span><br><span class="line">    比如说，data中现有一个obj 的值 list，但是现有list中没有name 这个属性。现在主动 list.name = <span class="number">1</span>，因为list.name的属性不是 Getter/Setter，所以赋值后不会去发布消息给订阅者，订阅者也没有办法更新。这就是数据劫持盲区 但是有一个有趣的现象：就是虽然obj.<span class="keyword">new</span><span class="type">param</span>不会发布消息，但是如果别的发布者触发的时候，页面局部渲染时如果包括obj.<span class="keyword">new</span><span class="type">param</span>的值，渲染效果也是会显示obj.<span class="keyword">new</span><span class="type">param</span>的最新值。这是由于页面更新时是直接读取的obj.<span class="keyword">new</span><span class="type">param</span>的值。</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-数组Array的特殊性"><a href="#5-数组Array的特殊性" class="headerlink" title="5. 数组Array的特殊性"></a>5. 数组Array的特殊性</h5><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vue中实现的方法实际是对数组的属性重写，重写过后的方法不仅能实现原有的功能，还能发布消息给订阅者。</span><br><span class="line"></span><br><span class="line">当然<span class="built_in">Array</span>也有特殊现象：如果要更新 <span class="built_in">Array</span> 某个索引对应的值得时候，要用Vue.<span class="built_in">set</span>方式实现</span><br><span class="line"><span class="string">``</span></span><br></pre></td></tr></table></figure>
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-10-21T00:17:19.836Z" itemprop="dateUpdated">2019-10-21 08:17:19</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/12/25/Vue响应式原理.html&title=《Vue响应式原理》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/12/25/Vue响应式原理.html&title=《Vue响应式原理》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2018/12/25/Vue响应式原理.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue响应式原理》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2018/12/25/Vue响应式原理.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2018/12/25/Vue响应式原理.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/12/25/端网络相关基础.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">前端网络相关基础以及安全</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/24/JS快速排序记录.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">JS快速排序记录</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/12/25/Vue响应式原理.html&title=《Vue响应式原理》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/12/25/Vue响应式原理.html&title=《Vue响应式原理》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2018/12/25/Vue响应式原理.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue响应式原理》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2018/12/25/Vue响应式原理.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2018/12/25/Vue响应式原理.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMElEQVR42u3aQZKDMAwF0dz/0sw2G0x/iUyV5fYqFYjxY6FIlj8fPK6vQa5eN+P76t3nu6e8MGTIkLEt41qOu3vWM/CrHPYwjwwZMg5gpFOTgJvOv57nYc0yZMiQARI4ng6uny5DhgwZ7wbc4iNB6StDhgwZtSKWh0sSlEko/0ktLkOGjA0ZfNf9/z//pL8hQ4aMrRhXODp9w7QVGqxKhgwZoxk8wPGmZornRe/DDDJkyDiGkS40ZddmRsmiDBkyDmDwLbY0dNa28/g9MmTIOIGxDr5pesfL4H65G/yHyJAhY1sGmTo9PNFpLRTnkSFDxgGMNCyS8MpfSufVoEXIkCFjKINMWjs6lh7qQuuRIUPGaEatmORlbRpweZp428KUIUPGUEZtl67WSOiUyuQvQYYMGfMY7x5R7TcpiyWuDBkyRjP4plsxUVvGw9qxVxkyZJzJ4IUobySQ0rTVDEhzTxkyZGzOSNsDaUglgTV9NTJkyDiNsb61tpT+/l/taJoMGTKmMtJispObdQ5zoO02GTJkHMDgByB4G4AviM8Wdw9kyJAxgpGWrJ3N/dpBjYdfyZAhYyjjCgcvRPlC0yI56MHKkCFjBKNfoNbCZVrK1tJNGTJkTGKkRelbBybS9BFtt8mQIWM0gwc+8g1pgr5bQsuQIUNGbRGdMB3nsDJkyJCx3A7rhGbeNH24U4YMGQcw+HGuflLIGwn89cmQIWM2o1Y6dkJt+rI6m3oyZMjYnPEHqGW8KnlE/BkAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>
