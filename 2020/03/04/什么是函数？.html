@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+<!-- Tencent Speed -->
+<script>var _speedMark = new Date()</script>
+<!-- End Tencent Speed -->
+<!-- Tencent Analysis -->
+<script async src="//tajs.qq.com/stats?sId=65975979"></script>
+<!-- End Tencent Analysis -->
+
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
+    
+    <title>什么是函数？ | 卖坚果的怪叔叔</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="js,函数,构造函数,原型">
+    <meta name="description" content="1、什么是函数？1、函数是一个可以多次使用的功能代码块，一个封闭的（空间），它可以在代码里随意调用。利用函数的封装可以减少重复代码的开发，提高代码的利用率。函数可以传参，利用函数内预先定义的内容对传入的不同数据参数进行处理。 2、函数也是对象，也可以为值，它可以存在于变量，数组和对象之中。 3、函数可以当参传递给函数，并且由函数返回，另外函数拥有属性。 4、函数总会有返回值（除了构造函数之外，构造">
+<meta name="keywords" content="js,函数,构造函数,原型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="什么是函数？">
+<meta property="og:url" content="https://toc.lieme.cn/2020/03/04/什么是函数？.html">
+<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:description" content="1、什么是函数？1、函数是一个可以多次使用的功能代码块，一个封闭的（空间），它可以在代码里随意调用。利用函数的封装可以减少重复代码的开发，提高代码的利用率。函数可以传参，利用函数内预先定义的内容对传入的不同数据参数进行处理。 2、函数也是对象，也可以为值，它可以存在于变量，数组和对象之中。 3、函数可以当参传递给函数，并且由函数返回，另外函数拥有属性。 4、函数总会有返回值（除了构造函数之外，构造">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://blogimg.lieme.cn/Fl-TFGYBjLIu956k0wTE807G0Gwh">
+<meta property="og:updated_time" content="2020-03-04T13:15:57.207Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="什么是函数？">
+<meta name="twitter:description" content="1、什么是函数？1、函数是一个可以多次使用的功能代码块，一个封闭的（空间），它可以在代码里随意调用。利用函数的封装可以减少重复代码的开发，提高代码的利用率。函数可以传参，利用函数内预先定义的内容对传入的不同数据参数进行处理。 2、函数也是对象，也可以为值，它可以存在于变量，数组和对象之中。 3、函数可以当参传递给函数，并且由函数返回，另外函数拥有属性。 4、函数总会有返回值（除了构造函数之外，构造">
+<meta name="twitter:image" content="http://blogimg.lieme.cn/Fl-TFGYBjLIu956k0wTE807G0Gwh">
+    
+        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/js/matery.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/libs/aos/aos.js"></script>
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+    <!-- <div class="brand-wrap" style="background-image:url(/img/brand.jpg)"> -->
+      <div class="starsBox">
+          <div id="stars" class="starts"></div>
+          <div id="stars2" class="starts"></div>
+          <div id="stars3" class="starts"></div>
+      </div>
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Lieme</h5>
+          <a href="mailto:pianjiao@gmail.com" title="pianjiao@gmail.com" class="mail">pianjiao@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photos"  >
+                <i class="icon icon-lg icon-camera"></i>
+                照片
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://note.lieme.cn" target="_blank" >
+                <i class="icon icon-lg icon-book"></i>
+                笔记
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-unlink"></i>
+                友链
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jiaopianjun" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于我
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
+                <i class="icon icon-lg icon-feed"></i>
+                小夭同学
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+            <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <span id="jinrishici-sentence">正在加载今日诗词....</span>
+        <div class="flex-col header-title ellipsis">什么是函数？</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare" style="display: none;"> 
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <div class="starsBox">
+        <div id="stars" class="starts"></div>
+        <div id="stars2" class="starts"></div>
+        <div id="stars3" class="starts"></div>
+    </div>
+    <div class="container fade-scale">
+        
+            <h1 class="title">什么是函数？</h1>
+        
+        <h5 class="subtitle">
+            
+                <time datetime="2020-03-04T13:12:53.000Z" itemprop="datePublished" class="page-time">
+  2020-03-04
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    <!-- 
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1、什么是函数？"><span class="post-toc-number">1.</span> <span class="post-toc-text">1、什么是函数？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#函数的方法："><span class="post-toc-number">1.0.0.0.1.</span> <span class="post-toc-text">函数的方法：</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#函数的调用："><span class="post-toc-number">1.0.0.0.2.</span> <span class="post-toc-text">函数的调用：</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#函数可以作为参数进行传递并可以作为返回值进行返回"><span class="post-toc-number">1.0.0.0.3.</span> <span class="post-toc-text">函数可以作为参数进行传递并可以作为返回值进行返回</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#函数也是对象，也就是说函数也拥有属性"><span class="post-toc-number">1.0.0.0.4.</span> <span class="post-toc-text">函数也是对象，也就是说函数也拥有属性</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2、什么是构造函数"><span class="post-toc-number">2.</span> <span class="post-toc-text">2、什么是构造函数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#普通函数和构造函数的区别"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">普通函数和构造函数的区别</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3、原型对象"><span class="post-toc-number">3.</span> <span class="post-toc-text">3、原型对象</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结："><span class="post-toc-number">4.</span> <span class="post-toc-text">总结：</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-什么是函数？"
+  class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">什么是函数？</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-03-04 21:12:53" datetime="2020-03-04T13:12:53.000Z"  itemprop="datePublished">2020-03-04</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Coding/">Coding</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+    
+    <span class="info-break-policy">
+        <i class="fa fa-pencil fa-fw"></i>
+        1,669
+    </span>
+    
+    
+    <span class="info-break-policy">
+        <i class="fa fa-clock-o fa-fw"></i>
+        7 min
+    </span>
+    
+
+
+
+        </div>
+        <div class="post-content clearfix" id="post-content" itemprop="postContent">
+            <h2 id="1、什么是函数？"><a href="#1、什么是函数？" class="headerlink" title="1、什么是函数？"></a>1、什么是函数？</h2><p>1、函数是一个可以多次使用的功能代码块，一个封闭的（空间），它可以在代码里随意调用。利用函数的封装可以减少重复代码的开发，提高代码的利用率。函数可以传参，利用函数内预先定义的内容对传入的不同数据参数进行处理。</p>
+<p>2、函数也是对象，也可以为值，它可以存在于变量，数组和对象之中。</p>
+<p>3、函数可以当参传递给函数，并且由函数返回，另外函数拥有属性。</p>
+<p>4、函数总会有返回值（除了构造函数之外，构造函数默认返回构造器函数调用，当构造函数调用执行时，会显示返回）</p>
+<h6 id="函数的方法："><a href="#函数的方法：" class="headerlink" title="函数的方法："></a>函数的方法：</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> functionA = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'这是一个匿名函数，赋值给变量functionA'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> functionB = []</span><br><span class="line">functionB.push(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'这是一个匿名函数，存放在数组functionB中'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> functionC = &#123;</span><br><span class="line">    mh: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'这是一个匿名函数，粗放在对象functionC中'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="函数的调用："><a href="#函数的调用：" class="headerlink" title="函数的调用："></a>函数的调用：</h6><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">functionA()     // 普通函数的调用</span><br><span class="line">functionB[<span class="string">0</span>](<span class="link"></span>)  // 函数在数组中的调用</span><br><span class="line">functionC.mh()  // 函数在对象中的调用</span><br></pre></td></tr></table></figure>
+
+<h6 id="函数可以作为参数进行传递并可以作为返回值进行返回"><a href="#函数可以作为参数进行传递并可以作为返回值进行返回" class="headerlink" title="函数可以作为参数进行传递并可以作为返回值进行返回"></a>函数可以作为参数进行传递并可以作为返回值进行返回</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> functionD = <span class="function"><span class="keyword">function</span>(<span class="params">funParms</span>) </span>&#123;</span><br><span class="line">    retrun funParms</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> returnFunParms = functionD(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'这是一个将函数当做参数传递的例子'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">returnFunParms()    <span class="comment">// 这是一个将函数当做参数传递的例子</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="函数也是对象，也就是说函数也拥有属性"><a href="#函数也是对象，也就是说函数也拥有属性" class="headerlink" title="函数也是对象，也就是说函数也拥有属性"></a>函数也是对象，也就是说函数也拥有属性</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> funNative = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">funNative.property = <span class="string">'小夭同学'</span></span><br><span class="line"></span><br><span class="line">funNative.property  <span class="comment">// 小夭同学</span></span><br><span class="line"><span class="keyword">typeof</span> funNative    <span class="comment">// "function"</span></span><br><span class="line">funNative <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">// true</span></span><br><span class="line">funNative.constructor   <span class="comment">// ƒ Function() &#123; [native code] &#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2、什么是构造函数"><a href="#2、什么是构造函数" class="headerlink" title="2、什么是构造函数"></a>2、什么是构造函数</h2><blockquote>
+<p>构造函数就是用【new】关键字来实例化对象的函数，或者是new关键字调用的普通函数，任何函数都可以作为构造函数存在。构造函数定义时首字母大写。</p>
+</blockquote>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">作用：用来初始化对象并为其添加属性和方法，以方便创建大量相同类型的对象，利于使用继承等高级特性。</span><br><span class="line"></span><br><span class="line">缺点：实例化多个对象的时候会重复的创建对象，造成内存空间浪费，增大<span class="meta">CPU</span>消耗。</span><br></pre></td></tr></table></figure>
+
+<p><strong>Demo</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bcx</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.text = <span class="string">'公众号：小夭同学'</span></span><br><span class="line">    <span class="keyword">this</span>.method = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.text)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> oo = <span class="keyword">new</span> Bcx()</span><br><span class="line"></span><br><span class="line">用<span class="keyword">new</span>操作符调用一个构造函数的时候发生以下：</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123;&#125;</span><br><span class="line">obj._proto_ = Bcx.prototype</span><br><span class="line">Bcx.call(obj)</span><br><span class="line"><span class="keyword">return</span> obj</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>、创建一个空对象 obj</span><br><span class="line"><span class="number">2</span>、将这个空对象的_proto_成员指向了构造函数对象的prototype成员对象</span><br><span class="line"><span class="number">3</span>、将构造函数的作用域赋给新对象，因此Bcx函数中的<span class="keyword">this</span>指向新对象obj，然后再调用Bcx函数。</span><br><span class="line"><span class="number">4</span>、返回新对象obj。</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<blockquote>
+<p>当构造函数中没有返回对象时候，最终new出来的对象会是构造函数的返回值，而不是new过程中生成的对象。仅当构造函数返回值是对象时有效，当不是对象时依旧返回new过程中形成的对象（无论如何new构造函数之后都会返回一个对象值）</p>
+</blockquote>
+<blockquote>
+<p>构造函数也可以当做普通函数来调用</p>
+</blockquote>
+<p><strong>其他：</strong></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">当任意一个普通函数用于创建一类对象时，它就被称作构造函数或构造器。一个函数要作为真正的构造函数有如下条件：</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>、在函数内部对新对象(<span class="keyword">this</span>)的属性进行设置，通常是添加属性和方法。</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、构造函数可以包含返回语句(不推荐)，但返回值必须是<span class="keyword">this</span>，或者其他非对象类型的值。</span><br></pre></td></tr></table></figure>
+
+<h4 id="普通函数和构造函数的区别"><a href="#普通函数和构造函数的区别" class="headerlink" title="普通函数和构造函数的区别"></a>普通函数和构造函数的区别</h4><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、普通函数没有<span class="keyword">new</span><span class="type"></span>，构造函数有</span><br><span class="line"><span class="number">2</span>、构造函数首字母大写（区分普通函数和构造函数）</span><br><span class="line"><span class="number">3</span>、当函数没有被<span class="keyword">new</span><span class="type"></span>调用时，构造函数中的<span class="built_in">this</span>就指向全局对象的window</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、原型对象"><a href="#3、原型对象" class="headerlink" title="3、原型对象"></a>3、原型对象</h2><p><strong>prototype</strong></p>
+<p>1、改下对象下面公用的方法或者属性，让公用方法或者属性在内存中存在一份，可以被其他对象调用</p>
+<p>2、在原有对象的基础上，通过prototype进行额外的封装、拓展</p>
+<p>示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 普通写法</span></span><br><span class="line"><span class="keyword">let</span> a1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="keyword">let</span> a2 = [<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]</span><br><span class="line"></span><br><span class="line">a1.sum = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> temp = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt; a1.length;i++) &#123;</span><br><span class="line">        temp += <span class="keyword">this</span>[i]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> temp</span><br><span class="line">&#125;</span><br><span class="line">a2.sum = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> temp = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt; a2.length;i++) &#123;</span><br><span class="line">        temp += <span class="keyword">this</span>[i]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> temp</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a1.sum(),a2.sum()) <span class="comment">// 15 24</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 原型写法</span></span><br><span class="line"><span class="keyword">let</span> a1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="keyword">let</span> a2 = [<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]</span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.prototype.sum = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> temp = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt; <span class="keyword">this</span>.length;i++) &#123;</span><br><span class="line">        temp += <span class="keyword">this</span>[i]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> temp</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a1.sum(),a2.sum())  <span class="comment">// 15 24</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 闭包写法</span></span><br><span class="line"><span class="keyword">let</span> a1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="keyword">let</span> a2 = [<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> temp = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt; arr.length;i++) &#123;</span><br><span class="line">        temp += arr[i]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> temp</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(sum(a1),sum(a2))  <span class="comment">// 15 24</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<blockquote>
+<p>当构造函数自定义属性名与该构造函数下原型属性名相同时，构造函数的自定义属性优先于原型属性（可以把构造函数理解为内联样式），而原型属性或原型方法可以看做class.</p>
+</blockquote>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><blockquote>
+<p>构造函数就是用new关键字调用的普通函数，可以随时定义自己的构造函数来创建多个具有同样属性的对象，我们可以用instanceof来鉴别对象是被哪个构造函数创建的。每一个函数都具有prototype属性，它定义了构造函数所有对象的共享属性。</p>
+</blockquote>
+<p>1、自定义的属性和方法放在构造函数里面</p>
+<p>2、共享的属性和方法挂载在该构造函数的原型下面</p>
+<p>3、js查找变量的机制，是沿着作用域链逐级向上查找，在原型里–&gt;是原型链,构造函数与原型之间的连接就是原型链。当访问对象的属性时，js首先在自定义的属性的作用域内查找改变量是否存在，如果不存在，则会沿着原型链向原型下的属性中查找该属性，直至顶层Object的原型对象，若是找到则返回，找不到则返回undefined。</p>
+
+        </div>
+        <blockquote class="post-copyright">
+    
+    <div class="upcontent">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-03-04T13:15:57.207Z" itemprop="dateUpdated">2020-03-04 21:15:57</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="https://toc.lieme.cn">
+            <img src="http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" alt="Lieme">
+            Lieme
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/函数/">函数</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原型/">原型</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/构造函数/">构造函数</a></li></ul>
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2020/03/04/什么是函数？.html&title=《什么是函数？》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/Fl-TFGYBjLIu956k0wTE807G0Gwh" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2020/03/04/什么是函数？.html&title=《什么是函数？》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2020/03/04/什么是函数？.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《什么是函数？》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2020/03/04/什么是函数？.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2020/03/04/什么是函数？.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+        </div>
+        
+<div class="footer-wxQrcode">
+    <img src="http://blogimg.lieme.cn/FsaWonzTLc3IJVZgYDrjHdVEj3HR" alt="">
+</div>
+
+<style>
+    .footer-wxQrcode{
+        padding-top: 30px;
+    }
+</style>
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/02/21/CSS实现居中显示.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">CSS实现居中显示</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'pianjiao@gmail.com' == 'true',
+            verify: 'true' == 'true',
+            appId: "TWn7ScRql8E7o3XSclzuzqHv-gzGzoHsz",
+            appKey: "YwgPLTEdtePf3yTQx4iXewoF",
+            avatar: "mm/identicon/monsterid/wavatar/retro/robohash",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的赏识是我前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" data-alipay="http://blogimg.lieme.cn/FgFrd4NsF3CEdqqaiiCMXhuUkUeK">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信公众号</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+            <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        
+            <p>
+
+                
+            </p>
+        
+    </div>
+    <div class="bottom">
+        <p><span>Lieme &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备18048410号-1</a><br>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2020/03/04/什么是函数？.html&title=《什么是函数？》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/Fl-TFGYBjLIu956k0wTE807G0Gwh" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2020/03/04/什么是函数？.html&title=《什么是函数？》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://toc.lieme.cn/2020/03/04/什么是函数？.html" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《什么是函数？》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2020/03/04/什么是函数？.html&via=https://toc.lieme.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://toc.lieme.cn/2020/03/04/什么是函数？.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLUlEQVR42u3aQXLDIBAEQP//08o1VY6lGSCpCDWnlGwLtQ4T2OX1isfxNr5f//TN5Pr5/RcPDAyM2zKO0/H+uJ8+Pf9twjif6+I+GBgYD2C0t171/fz1XTwzBgYGRhCg50u688hO5sXAwMBoJ54Kx3gDjIGBgdEu0eYjeGyWxXtxDAyMGzLyqvvf//0r/Q0MDIxbMY5ytA3ONprHBgYGxt6MtS3MtmGZBGtemMPAwNiVMdOYTBaRSXEt3+JiYGBgjEVh3rzMl495rBc/xsDA2IKx6pBWu0xcsGTEwMB4JGPsQfP0W3sfDAyM5zDauJw/GBFtUJM4xsDA2JrRbkrb0JyJ9faoBwYGxq6MseMRRck+bgC0837swWJgYGzHyG/aRmdbVstbBRf/MTAwMLZj5IGbRGrRdIxfRNTyxMDA2Joxc4SibVLOt0KLV4CBgbEdIyn9jzUjxwK9PaKBgYHxBEZesk+OR+RX2ngtFoUYGBibMpZtIIdCs21FFHGMgYGxBSMJvt9YFI5hLmqHGBgYWzPaytxYoW3+SMdFpRADA2NTRj59u9TLA3pVPQ0DA2M/xlGO5BHzItqykhwGBsbWjFXV9bEInjlysbjBiYGB8e8ZM/2EsXbj/GGLH65jYGA8gJGXw9qNbn7srN1af+xvYGBgPJ6RNwPyDeqCbSoGBgbGafFr/kpyfwwMDIy2GZAflVhVBbwIfQwMjK0ZY1vHtuk4E7LLGpkYGBj3Y3wBlc7+9f+T0ckAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '404 --- (。>︿<)_θ';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</html>
