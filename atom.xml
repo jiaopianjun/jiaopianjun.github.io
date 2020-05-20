@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://toc.lieme.cn/"/>
-  <updated>2020-03-06T06:42:24.575Z</updated>
+  <updated>2020-05-20T02:39:49.989Z</updated>
   <id>https://toc.lieme.cn/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>博客迁移拉~</title>
+    <link href="https://toc.lieme.cn/2020/05/20/%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB%E6%8B%89.html"/>
+    <id>https://toc.lieme.cn/2020/05/20/博客迁移拉.html</id>
+    <published>2020-05-20T02:38:33.000Z</published>
+    <updated>2020-05-20T02:39:49.989Z</updated>
+    
+    <content type="html"><![CDATA[<p>博客已经迁移，这边可能，大概不会在更新了~</p><p>但是，说不定，偶尔诈尸会同步一下</p><p>新的地址 <a href="lieme.cn">lieme.cn</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;博客已经迁移，这边可能，大概不会在更新了~&lt;/p&gt;
+&lt;p&gt;但是，说不定，偶尔诈尸会同步一下&lt;/p&gt;
+&lt;p&gt;新的地址 &lt;a href=&quot;lieme.cn&quot;&gt;lieme.cn&lt;/a&gt;&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>用Python爬取微信好友昵称和头像</title>
@@ -541,35 +565,6 @@
       <category term="前端问题" scheme="https://toc.lieme.cn/tags/%E5%89%8D%E7%AB%AF%E9%97%AE%E9%A2%98/"/>
     
       <category term="前端日常问题" scheme="https://toc.lieme.cn/tags/%E5%89%8D%E7%AB%AF%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>简单三步，让你玩转微信自动邀请加群！！！</title>
-    <link href="https://toc.lieme.cn/2019/10/14/%E7%AE%80%E5%8D%95%E4%B8%89%E6%AD%A5%EF%BC%8C%E8%AE%A9%E4%BD%A0%E7%8E%A9%E8%BD%AC%E5%BE%AE%E4%BF%A1%E8%87%AA%E5%8A%A8%E9%82%80%E8%AF%B7%E5%8A%A0%E7%BE%A4%EF%BC%81%EF%BC%81%EF%BC%81.html"/>
-    <id>https://toc.lieme.cn/2019/10/14/简单三步，让你玩转微信自动邀请加群！！！.html</id>
-    <published>2019-10-14T14:50:45.000Z</published>
-    <updated>2019-12-10T06:39:06.265Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="1、需求场景"><a href="#1、需求场景" class="headerlink" title="1、需求场景"></a>1、需求场景</h2><p>很多管理大量微信社群的小伙伴都有这样的场景，当微信群的人数达到100人之后，将不能在通过分享的群二维码加入群里，必须自主添加好友后，手动去邀请才能加用户拉入群众，如果有大量的用户加群，就只能一个一个手动的拉，想想心情就很美丽，手动哭泣。。。。</p><h2 id="2、准备工作"><a href="#2、准备工作" class="headerlink" title="2、准备工作"></a>2、准备工作</h2><p>1、一台不关机的电脑 OR 一台服务器</p><p>2、 安装以下相关依赖（有的不需要）</p><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#coding=utf8</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="title">from</span> requests <span class="keyword">import</span> exceptions</span><br><span class="line"><span class="title">from</span> urllib.request <span class="keyword">import</span> urlopen</span><br><span class="line"><span class="title">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="title">from</span> urllib.parse <span class="keyword">import</span> urlencode</span><br><span class="line"><span class="title">from</span> threading <span class="keyword">import</span> Timer</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="title">from</span> wxpy <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span>  schedule</span><br><span class="line"><span class="keyword">import</span>  time</span><br><span class="line"><span class="keyword">import</span> http</span><br><span class="line"><span class="keyword">import</span>  json </span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> ctypes</span><br></pre></td></tr></table></figure><p>3、一个能够在网页版微信登录的账号（重要）</p><p>4、该微信创建群聊，并保存通讯录中（重要）</p><h2 id="3、代码部分"><a href="#3、代码部分" class="headerlink" title="3、代码部分"></a>3、代码部分</h2><h3 id="3-1、注册机器人"><a href="#3-1、注册机器人" class="headerlink" title="3.1、注册机器人"></a>3.1、注册机器人</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bot </span>= <span class="keyword">Bot(cache_path=True,console_qr </span>= <span class="number">2</span>)</span><br><span class="line"><span class="keyword">bot.enable_puid('wxpy_puid.pkl')</span></span><br><span class="line"><span class="keyword">rebot </span>= <span class="keyword">bot.groups().search('Goodog') </span>// 需要加入的群</span><br></pre></td></tr></table></figure><h3 id="3-2、自动通过好友后发送的加群提示"><a href="#3-2、自动通过好友后发送的加群提示" class="headerlink" title="3.2、自动通过好友后发送的加群提示"></a>3.2、自动通过好友后发送的加群提示</h3><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">allText = '回复关键词加群： <span class="symbol">\n</span><span class="symbol">\n</span>1、羊毛（加入羊毛优惠群）<span class="symbol">\n</span>2、py（加入机器人体验群）<span class="symbol">\n</span>3、互粉（加入公众号互粉群）<span class="symbol">\n</span>4、更多群敬请期待<span class="symbol">\n</span><span class="symbol">\n</span> -PS: 如果回复关键字无效，请耐心等待手工拉入。'</span><br></pre></td></tr></table></figure><h3 id="3-3、自动通过好友请求"><a href="#3-3、自动通过好友请求" class="headerlink" title="3.3、自动通过好友请求"></a>3.3、自动通过好友请求</h3><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@bot.register(msg_types=FRIENDS)</span><br><span class="line">def auto_audit_msg(msg):<span class="type"></span></span><br><span class="line"><span class="type">    new_friend </span>= bot.accept_friend(msg.card)</span><br><span class="line">    <span class="keyword">new</span><span class="type">_friend</span>.send(<span class="string">'我是Goodog小助手，如果你也想拥有一个跟我一样功能的机器人请添加公众号【小夭同学】留言获取！'</span>)</span><br><span class="line">    <span class="keyword">new</span><span class="type">_friend</span>.send_raw_msg(</span><br><span class="line">        raw_type=<span class="number">42</span>,</span><br><span class="line">        raw_content=<span class="string">'&lt;msg username="infopush" nickname="小夭同学"/&gt;'</span></span><br><span class="line">    ) </span><br><span class="line">    <span class="keyword">new</span><span class="type">_friend</span>.send(allText)</span><br></pre></td></tr></table></figure><h3 id="3-4、关键字回复发送加群邀请链接"><a href="#3-4、关键字回复发送加群邀请链接" class="headerlink" title="3.4、关键字回复发送加群邀请链接"></a>3.4、关键字回复发送加群邀请链接</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@bot.register(Friend, msg_types=TEXT)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">auto_add_msg</span><span class="params">(msg)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">'py'</span> <span class="keyword">in</span> msg.text.lower():</span><br><span class="line">        rebot[<span class="number">0</span>].add_members(msg.sender, use_invitation=<span class="keyword">True</span>)</span><br><span class="line">        msg.sender.send(<span class="string">'如果加入py群失败，请等待人工邀请加入！！'</span>)</span><br></pre></td></tr></table></figure><h3 id="3-5、邀请用户入群后发送群公告"><a href="#3-5、邀请用户入群后发送群公告" class="headerlink" title="3.5、邀请用户入群后发送群公告"></a>3.5、邀请用户入群后发送群公告</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">invite_compile = re.compile(<span class="string">r'邀请"(.*?)"加入了群聊\s*$'</span>) <span class="regexp">//</span> 判断是否为新用户入群</span><br></pre></td></tr></table></figure><h4 id="3-5-1、新用户入群发送的公告"><a href="#3-5-1、新用户入群发送的公告" class="headerlink" title="3.5.1、新用户入群发送的公告"></a>3.5.1、新用户入群发送的公告</h4><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">rebot_msg</span> = <span class="string">'''@&#123;atname&#125;\u2005\u2005\u2005🌹🌹🌹欢迎加入群🌹🌹🌹\n</span></span><br><span class="line"><span class="string">⚡⚡⚡⚡ 此群禁止发广告，不然踢！！！\n</span></span><br><span class="line"><span class="string">💣💣💣 无法登录网页微信的问题，无有效解决办法。\n</span></span><br><span class="line"><span class="string">🙋🙋🙋 怎样提问：\n</span></span><br><span class="line"><span class="string">1. 不要问无意义的问题 🌡 </span></span><br><span class="line"><span class="string">2. 问问题前最好贴出截图。🧸 </span></span><br><span class="line"><span class="string">3. 描述清晰，信息充足。💎</span></span><br><span class="line"><span class="string">4. 如果想要源码请关注💡 【小夭同学】💡 回复【帮助】获取'''</span></span><br></pre></td></tr></table></figure><h4 id="3-5-2、为加入的群进行注册，以用来抓取群消息"><a href="#3-5-2、为加入的群进行注册，以用来抓取群消息" class="headerlink" title="3.5.2、为加入的群进行注册，以用来抓取群消息"></a>3.5.2、为加入的群进行注册，以用来抓取群消息</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@bot.register(rebot, NOTE)  // NOTE 为系统通知</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">invite_group</span><span class="params">(msg)</span>:</span></span><br><span class="line">    <span class="string">""" 群通知处理 """</span></span><br><span class="line">    text = msg.text <span class="comment"># 通知的内容</span></span><br><span class="line">    member = msg.member.name <span class="comment"># 消息发送者昵称</span></span><br><span class="line">    invite_names = invite_compile.findall(text)  <span class="comment"># 判断是否是加入了新用户</span></span><br><span class="line">    <span class="keyword">if</span> invite_names:  <span class="comment"># 用于邀请</span></span><br><span class="line">        invite_name = invite_names[<span class="number">0</span>]  <span class="comment"># 加入者的昵称</span></span><br><span class="line">        <span class="keyword">if</span> rebot_msg:</span><br><span class="line">            note = rebot_msg.format(atname=invite_name)</span><br><span class="line">            msg.sender.send(note)  <span class="comment"># 向群里发送欢迎语句</span></span><br><span class="line">        <span class="keyword">return</span></span><br></pre></td></tr></table></figure><h2 id="4、运行机器人"><a href="#4、运行机器人" class="headerlink" title="4、运行机器人"></a>4、运行机器人</h2><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    schedule.run_pending()</span><br><span class="line">    <span class="built_in">time</span>.<span class="built_in">sleep</span>(<span class="number">1</span>)</span><br></pre></td></tr></table></figure><h2 id="5、Git"><a href="#5、Git" class="headerlink" title="5、Git"></a>5、Git</h2><blockquote><p>代码已上传 <a href="https://github.com/jiaopianjun/wepython/blob/master/invite.py" target="_blank" rel="noopener">Github</a></p></blockquote><h2 id="6、如有想体验机器人可以添加微信【wex-5201314】或直接扫描下面二维码"><a href="#6、如有想体验机器人可以添加微信【wex-5201314】或直接扫描下面二维码" class="headerlink" title="6、如有想体验机器人可以添加微信【wex_5201314】或直接扫描下面二维码"></a>6、如有想体验机器人可以添加微信【wex_5201314】或直接扫描下面二维码</h2><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://blogimg.lieme.cn/FsES-6dRyjSQGrfKNwmqjo7WzLEM" alt="WechatIMG303.jpeg" title>                </div>                <div class="image-caption" style="display:none;">WechatIMG303.jpeg</div>            </figure><h2 id="7、欢迎关注我的公众号【小夭同学】"><a href="#7、欢迎关注我的公众号【小夭同学】" class="headerlink" title="7、欢迎关注我的公众号【小夭同学】"></a>7、欢迎关注我的公众号【小夭同学】</h2><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://blogimg.lieme.cn/FnL2iqqpKvYhITw_TZl6j8kOcrv-" alt="qrcode_for_gh_06f1f85b0c04_258 1.jpg" title>                </div>                <div class="image-caption" style="display:none;">qrcode_for_gh_06f1f85b0c04_258 1.jpg</div>            </figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;1、需求场景&quot;&gt;&lt;a href=&quot;#1、需求场景&quot; class=&quot;headerlink&quot; title=&quot;1、需求场景&quot;&gt;&lt;/a&gt;1、需求场景&lt;/h2&gt;&lt;p&gt;很多管理大量微信社群的小伙伴都有这样的场景，当微信群的人数达到100人之后，将不能在通过分享的群二维码加入群
-      
-    
-    </summary>
-    
-      <category term="微信" scheme="https://toc.lieme.cn/categories/%E5%BE%AE%E4%BF%A1/"/>
-    
-    
-      <category term="微信" scheme="https://toc.lieme.cn/tags/%E5%BE%AE%E4%BF%A1/"/>
-    
-      <category term="python" scheme="https://toc.lieme.cn/tags/python/"/>
-    
-      <category term="wxpy" scheme="https://toc.lieme.cn/tags/wxpy/"/>
     
   </entry>
   
