@@ -24,7 +24,7 @@
     
     <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
     
-    <title>重学JavaScript之基本概念(中) =&gt; 操作符 | 卖坚果的怪叔叔</title>
+    <title>重学JavaScript之基本概念(中) =&gt; 操作符 | 执行上下文</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -36,7 +36,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="重学JavaScript之基本概念(中) =&gt; 操作符">
 <meta property="og:url" content="https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html">
-<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:site_name" content="执行上下文">
 <meta property="og:description" content="注意： 本文章为 《重学js之JavaScript高级程序设计》系列第三章第二部分【操作符】。关于《重学js之JavaScript高级程序设计》是重新回顾js基础的学习。 1. 操作符 用于描述一组可以操作数据值的概念叫做操作符。包括 算术操作符（加号和减号）、位操作符、关系操作符和相等操作符。ES的操作符和其他不同的在于它能够适用于很多值，如：字符串、数字值、布尔值、甚至对象。在应用于对象的时候">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/6/18/16b695f1f56afc15?w=1280&h=720&f=jpeg&s=136054">
@@ -47,7 +47,7 @@
 <meta name="twitter:description" content="注意： 本文章为 《重学js之JavaScript高级程序设计》系列第三章第二部分【操作符】。关于《重学js之JavaScript高级程序设计》是重新回顾js基础的学习。 1. 操作符 用于描述一组可以操作数据值的概念叫做操作符。包括 算术操作符（加号和减号）、位操作符、关系操作符和相等操作符。ES的操作符和其他不同的在于它能够适用于很多值，如：字符串、数字值、布尔值、甚至对象。在应用于对象的时候">
 <meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/6/18/16b695f1f56afc15?w=1280&h=720&f=jpeg&s=136054">
     
-        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+        <link rel="alternate" type="application/atom+xml" title="执行上下文" href="/atom.xml">
     
     <link rel="shortcut icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="/css/style.css?v=1.7.2">
@@ -158,7 +158,7 @@
             <li class="waves-block waves-effect">
               <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
                 <i class="icon icon-lg icon-feed"></i>
-                小夭同学
+                执行上下文
               </a>
             </li>
         
@@ -593,7 +593,7 @@ var newnum = oldnum &gt;&gt;&gt; 5   // 十进制 134217726</code></pre><p><img 
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html&title=《重学JavaScript之基本概念(中) => 操作符》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html&title=《重学JavaScript之基本概念(中) => 操作符》 — 执行上下文&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -603,7 +603,7 @@ var newnum = oldnum &gt;&gt;&gt; 5   // 十进制 134217726</code></pre><p><img 
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html&title=《重学JavaScript之基本概念(中) => 操作符》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html&title=《重学JavaScript之基本概念(中) => 操作符》 — 执行上下文&source=用心记录美好的瞬间" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -613,7 +613,7 @@ var newnum = oldnum &gt;&gt;&gt; 5   // 十进制 134217726</code></pre><p><img 
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学JavaScript之基本概念(中) => 操作符》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html&via=https://toc.lieme.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学JavaScript之基本概念(中) => 操作符》 — 执行上下文&url=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html&via=https://toc.lieme.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -781,7 +781,7 @@ var newnum = oldnum &gt;&gt;&gt; 5   // 十进制 134217726</code></pre><p><img 
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html&title=《重学JavaScript之基本概念(中) => 操作符》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html&title=《重学JavaScript之基本概念(中) => 操作符》 — 执行上下文&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -791,7 +791,7 @@ var newnum = oldnum &gt;&gt;&gt; 5   // 十进制 134217726</code></pre><p><img 
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html&title=《重学JavaScript之基本概念(中) => 操作符》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html&title=《重学JavaScript之基本概念(中) => 操作符》 — 执行上下文&source=用心记录美好的瞬间" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -801,7 +801,7 @@ var newnum = oldnum &gt;&gt;&gt; 5   // 十进制 134217726</code></pre><p><img 
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学JavaScript之基本概念(中) => 操作符》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html&via=https://toc.lieme.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《重学JavaScript之基本概念(中) => 操作符》 — 执行上下文&url=https://toc.lieme.cn/2019/06/18/重学JavaScript之基本概念-中-操作符.html&via=https://toc.lieme.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>

@@ -24,7 +24,7 @@
     
     <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
     
-    <title>JavaScript之继承（未完待续） | 卖坚果的怪叔叔</title>
+    <title>JavaScript之继承（未完待续） | 执行上下文</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -36,7 +36,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript之继承（未完待续）">
 <meta property="og:url" content="https://toc.lieme.cn/2019/06/11/JavaScript之继承（未完待续）.html">
-<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:site_name" content="执行上下文">
 <meta property="og:description" content="微信图片_20190611223220.jpg               # 1. 原型链继承 从父级上继承，但是有个问题，如果有多个子类同时继承一个父类，如果改变其中一个子类，其余子类也会跟着改变，这种情况就和">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="http://blogimg.lieme.cn/FlB0H5AuWXIQ86Wt5iWNY5wICbsJ">
@@ -46,7 +46,7 @@
 <meta name="twitter:description" content="微信图片_20190611223220.jpg               # 1. 原型链继承 从父级上继承，但是有个问题，如果有多个子类同时继承一个父类，如果改变其中一个子类，其余子类也会跟着改变，这种情况就和">
 <meta name="twitter:image" content="http://blogimg.lieme.cn/FlB0H5AuWXIQ86Wt5iWNY5wICbsJ">
     
-        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+        <link rel="alternate" type="application/atom+xml" title="执行上下文" href="/atom.xml">
     
     <link rel="shortcut icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="/css/style.css?v=1.7.2">
@@ -157,7 +157,7 @@
             <li class="waves-block waves-effect">
               <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
                 <i class="icon icon-lg icon-feed"></i>
-                小夭同学
+                执行上下文
               </a>
             </li>
         
@@ -394,7 +394,7 @@ child2.name // =&gt; &apos;hh,我是2&apos;</code></pre>
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/06/11/JavaScript之继承（未完待续）.html&title=《JavaScript之继承（未完待续）》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FlB0H5AuWXIQ86Wt5iWNY5wICbsJ" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/06/11/JavaScript之继承（未完待续）.html&title=《JavaScript之继承（未完待续）》 — 执行上下文&pic=http://blogimg.lieme.cn/FlB0H5AuWXIQ86Wt5iWNY5wICbsJ" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -404,7 +404,7 @@ child2.name // =&gt; &apos;hh,我是2&apos;</code></pre>
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/06/11/JavaScript之继承（未完待续）.html&title=《JavaScript之继承（未完待续）》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/06/11/JavaScript之继承（未完待续）.html&title=《JavaScript之继承（未完待续）》 — 执行上下文&source=用心记录美好的瞬间" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -414,7 +414,7 @@ child2.name // =&gt; &apos;hh,我是2&apos;</code></pre>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript之继承（未完待续）》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/06/11/JavaScript之继承（未完待续）.html&via=https://toc.lieme.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript之继承（未完待续）》 — 执行上下文&url=https://toc.lieme.cn/2019/06/11/JavaScript之继承（未完待续）.html&via=https://toc.lieme.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -582,7 +582,7 @@ child2.name // =&gt; &apos;hh,我是2&apos;</code></pre>
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/06/11/JavaScript之继承（未完待续）.html&title=《JavaScript之继承（未完待续）》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FlB0H5AuWXIQ86Wt5iWNY5wICbsJ" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/06/11/JavaScript之继承（未完待续）.html&title=《JavaScript之继承（未完待续）》 — 执行上下文&pic=http://blogimg.lieme.cn/FlB0H5AuWXIQ86Wt5iWNY5wICbsJ" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -592,7 +592,7 @@ child2.name // =&gt; &apos;hh,我是2&apos;</code></pre>
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/06/11/JavaScript之继承（未完待续）.html&title=《JavaScript之继承（未完待续）》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/06/11/JavaScript之继承（未完待续）.html&title=《JavaScript之继承（未完待续）》 — 执行上下文&source=用心记录美好的瞬间" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -602,7 +602,7 @@ child2.name // =&gt; &apos;hh,我是2&apos;</code></pre>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript之继承（未完待续）》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/06/11/JavaScript之继承（未完待续）.html&via=https://toc.lieme.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript之继承（未完待续）》 — 执行上下文&url=https://toc.lieme.cn/2019/06/11/JavaScript之继承（未完待续）.html&via=https://toc.lieme.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>

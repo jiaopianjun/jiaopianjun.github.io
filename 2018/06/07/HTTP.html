@@ -24,7 +24,7 @@
     
     <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
     
-    <title>Http基础知识 | 卖坚果的怪叔叔</title>
+    <title>Http基础知识 | 执行上下文</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -36,15 +36,15 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Http基础知识">
 <meta property="og:url" content="https://toc.lieme.cn/2018/06/07/HTTP.html">
-<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:site_name" content="执行上下文">
 <meta property="og:description" content="http状态码有那些？分别代表是什么意思？ 12345678910111213141516171819简单版   [       100  Continue   继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息       200  OK         正常返回信息       201  Created    请求成功并且服务器">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2020-01-20T03:40:20.501Z">
+<meta property="og:updated_time" content="2020-09-15T07:40:28.688Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Http基础知识">
 <meta name="twitter:description" content="http状态码有那些？分别代表是什么意思？ 12345678910111213141516171819简单版   [       100  Continue   继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息       200  OK         正常返回信息       201  Created    请求成功并且服务器">
     
-        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+        <link rel="alternate" type="application/atom+xml" title="执行上下文" href="/atom.xml">
     
     <link rel="shortcut icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="/css/style.css?v=1.7.2">
@@ -155,7 +155,7 @@
             <li class="waves-block waves-effect">
               <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
                 <i class="icon icon-lg icon-feed"></i>
-                小夭同学
+                执行上下文
               </a>
             </li>
         
@@ -432,7 +432,7 @@
     <div class="upcontent">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-01-20T03:40:20.501Z" itemprop="dateUpdated">2020-01-20 11:40:20</time>
+    最后更新时间：<time datetime="2020-09-15T07:40:28.688Z" itemprop="dateUpdated">2020-09-15 15:40:28</time>
 </span><br>
 
 
@@ -464,7 +464,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/06/07/HTTP.html&title=《Http基础知识》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/06/07/HTTP.html&title=《Http基础知识》 — 执行上下文&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -474,7 +474,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/06/07/HTTP.html&title=《Http基础知识》 — 卖坚果的怪叔叔&source=http状态码有那些？分别代表是什么意思？
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/06/07/HTTP.html&title=《Http基础知识》 — 执行上下文&source=http状态码有那些？分别代表是什么意思？
 12345678910111213141516171819简单版   [       100  Continu..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
@@ -485,7 +485,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Http基础知识》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2018/06/07/HTTP.html&via=https://toc.lieme.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Http基础知识》 — 执行上下文&url=https://toc.lieme.cn/2018/06/07/HTTP.html&via=https://toc.lieme.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -653,7 +653,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/06/07/HTTP.html&title=《Http基础知识》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/06/07/HTTP.html&title=《Http基础知识》 — 执行上下文&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -663,7 +663,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/06/07/HTTP.html&title=《Http基础知识》 — 卖坚果的怪叔叔&source=http状态码有那些？分别代表是什么意思？
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/06/07/HTTP.html&title=《Http基础知识》 — 执行上下文&source=http状态码有那些？分别代表是什么意思？
 12345678910111213141516171819简单版   [       100  Continu..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
@@ -674,7 +674,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Http基础知识》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2018/06/07/HTTP.html&via=https://toc.lieme.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Http基础知识》 — 执行上下文&url=https://toc.lieme.cn/2018/06/07/HTTP.html&via=https://toc.lieme.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>

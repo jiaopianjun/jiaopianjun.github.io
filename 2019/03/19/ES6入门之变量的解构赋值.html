@@ -24,7 +24,7 @@
     
     <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
     
-    <title>ES6入门之变量的解构赋值 | 卖坚果的怪叔叔</title>
+    <title>ES6入门之变量的解构赋值 | 执行上下文</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -36,7 +36,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="ES6入门之变量的解构赋值">
 <meta property="og:url" content="https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html">
-<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:site_name" content="执行上下文">
 <meta property="og:description" content="1.数组的解构赋值 基本用法 ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构。  在ES6之前想要为变量赋值，只能指定其值，如下： let a = 1; let b = 2而在ES6中可以写成这样，如下： let [a,b] = [1,2] // a = 1, b = 2值得注意的是，等式两边的值要对等，这样左边的变量才会被赋上右边对应的值，如果不对等左边的值将会出现">
 <meta property="og:locale" content="zh">
 <meta property="og:updated_time" content="2020-02-03T08:47:50.012Z">
@@ -44,7 +44,7 @@
 <meta name="twitter:title" content="ES6入门之变量的解构赋值">
 <meta name="twitter:description" content="1.数组的解构赋值 基本用法 ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构。  在ES6之前想要为变量赋值，只能指定其值，如下： let a = 1; let b = 2而在ES6中可以写成这样，如下： let [a,b] = [1,2] // a = 1, b = 2值得注意的是，等式两边的值要对等，这样左边的变量才会被赋上右边对应的值，如果不对等左边的值将会出现">
     
-        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+        <link rel="alternate" type="application/atom+xml" title="执行上下文" href="/atom.xml">
     
     <link rel="shortcut icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="/css/style.css?v=1.7.2">
@@ -155,7 +155,7 @@
             <li class="waves-block waves-effect">
               <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
                 <i class="icon icon-lg icon-feed"></i>
-                小夭同学
+                执行上下文
               </a>
             </li>
         
@@ -514,7 +514,7 @@ m()               // [0,0]
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html&title=《ES6入门之变量的解构赋值》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html&title=《ES6入门之变量的解构赋值》 — 执行上下文&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -524,7 +524,7 @@ m()               // [0,0]
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html&title=《ES6入门之变量的解构赋值》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html&title=《ES6入门之变量的解构赋值》 — 执行上下文&source=用心记录美好的瞬间" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -534,7 +534,7 @@ m()               // [0,0]
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之变量的解构赋值》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html&via=https://toc.lieme.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之变量的解构赋值》 — 执行上下文&url=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html&via=https://toc.lieme.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -702,7 +702,7 @@ m()               // [0,0]
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html&title=《ES6入门之变量的解构赋值》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html&title=《ES6入门之变量的解构赋值》 — 执行上下文&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -712,7 +712,7 @@ m()               // [0,0]
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html&title=《ES6入门之变量的解构赋值》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html&title=《ES6入门之变量的解构赋值》 — 执行上下文&source=用心记录美好的瞬间" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -722,7 +722,7 @@ m()               // [0,0]
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之变量的解构赋值》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html&via=https://toc.lieme.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ES6入门之变量的解构赋值》 — 执行上下文&url=https://toc.lieme.cn/2019/03/19/ES6入门之变量的解构赋值.html&via=https://toc.lieme.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>

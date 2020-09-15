@@ -24,7 +24,7 @@
     
     <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
     
-    <title>Node.js 回调函数和事件循环 | 卖坚果的怪叔叔</title>
+    <title>Node.js 回调函数和事件循环 | 执行上下文</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -36,7 +36,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Node.js 回调函数和事件循环">
 <meta property="og:url" content="https://toc.lieme.cn/2019/05/14/Node.js 回调函数和事件循环.html">
-<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:site_name" content="执行上下文">
 <meta property="og:description" content="1. node.js 回调函数 node.js 的异步编程思想最直接的体现就是回调，在node中大量使用了回调函数，所有的API都支持回调函数，回调函数一般作为最后一个参数出现，正因为这样node在执行代码的时候就没有阻塞或者等待的操作，提高了node的性能，可以处理大量的并发请求。  function f1(name, age, callback){}  function f2(name, ca">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/5/14/16ab5cd2e93c2663?w=769&h=231&f=png&s=66390">
@@ -46,7 +46,7 @@
 <meta name="twitter:description" content="1. node.js 回调函数 node.js 的异步编程思想最直接的体现就是回调，在node中大量使用了回调函数，所有的API都支持回调函数，回调函数一般作为最后一个参数出现，正因为这样node在执行代码的时候就没有阻塞或者等待的操作，提高了node的性能，可以处理大量的并发请求。  function f1(name, age, callback){}  function f2(name, ca">
 <meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/5/14/16ab5cd2e93c2663?w=769&h=231&f=png&s=66390">
     
-        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+        <link rel="alternate" type="application/atom+xml" title="执行上下文" href="/atom.xml">
     
     <link rel="shortcut icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="/css/style.css?v=1.7.2">
@@ -157,7 +157,7 @@
             <li class="waves-block waves-effect">
               <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
                 <i class="icon icon-lg icon-feed"></i>
-                小夭同学
+                执行上下文
               </a>
             </li>
         
@@ -421,7 +421,7 @@ Error: ENOENT, open &apos;input.txt&apos;</code></pre>
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/05/14/Node.js 回调函数和事件循环.html&title=《Node.js 回调函数和事件循环》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/05/14/Node.js 回调函数和事件循环.html&title=《Node.js 回调函数和事件循环》 — 执行上下文&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -431,7 +431,7 @@ Error: ENOENT, open &apos;input.txt&apos;</code></pre>
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/05/14/Node.js 回调函数和事件循环.html&title=《Node.js 回调函数和事件循环》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/05/14/Node.js 回调函数和事件循环.html&title=《Node.js 回调函数和事件循环》 — 执行上下文&source=用心记录美好的瞬间" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -441,7 +441,7 @@ Error: ENOENT, open &apos;input.txt&apos;</code></pre>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Node.js 回调函数和事件循环》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/05/14/Node.js 回调函数和事件循环.html&via=https://toc.lieme.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Node.js 回调函数和事件循环》 — 执行上下文&url=https://toc.lieme.cn/2019/05/14/Node.js 回调函数和事件循环.html&via=https://toc.lieme.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -609,7 +609,7 @@ Error: ENOENT, open &apos;input.txt&apos;</code></pre>
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/05/14/Node.js 回调函数和事件循环.html&title=《Node.js 回调函数和事件循环》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2019/05/14/Node.js 回调函数和事件循环.html&title=《Node.js 回调函数和事件循环》 — 执行上下文&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -619,7 +619,7 @@ Error: ENOENT, open &apos;input.txt&apos;</code></pre>
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/05/14/Node.js 回调函数和事件循环.html&title=《Node.js 回调函数和事件循环》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2019/05/14/Node.js 回调函数和事件循环.html&title=《Node.js 回调函数和事件循环》 — 执行上下文&source=用心记录美好的瞬间" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -629,7 +629,7 @@ Error: ENOENT, open &apos;input.txt&apos;</code></pre>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Node.js 回调函数和事件循环》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2019/05/14/Node.js 回调函数和事件循环.html&via=https://toc.lieme.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Node.js 回调函数和事件循环》 — 执行上下文&url=https://toc.lieme.cn/2019/05/14/Node.js 回调函数和事件循环.html&via=https://toc.lieme.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>

@@ -24,7 +24,7 @@
     
     <meta name="google-site-verification" content="JlTZ59Yi1jt_DCjDtIp1uJbX_ilLr122BLomvGlZwuU">
     
-    <title>map,filter,forEach的区别和用法 | 卖坚果的怪叔叔</title>
+    <title>map,filter,forEach的区别和用法 | 执行上下文</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -36,7 +36,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="map,filter,forEach的区别和用法">
 <meta property="og:url" content="https://toc.lieme.cn/2018/12/03/map-filter-forEach的区别和用法.html">
-<meta property="og:site_name" content="卖坚果的怪叔叔">
+<meta property="og:site_name" content="执行上下文">
 <meta property="og:description" content="map map() 方法创建一个新数组，其结果是该数组都执行一次函数，原函数保持不变。  12345var a = [1,2,3,5,4,8,6,3,2]var newa = a.map(x =&amp;gt;&amp;#123;  return x + 1&amp;#125;)newa // [2,3,4,5,9,7,4,3] 对新数组进行加1赋值  forEach forEach() 方法对数组的每一个元素执行一次提">
 <meta property="og:locale" content="zh">
 <meta property="og:updated_time" content="2020-01-17T06:59:13.161Z">
@@ -44,7 +44,7 @@
 <meta name="twitter:title" content="map,filter,forEach的区别和用法">
 <meta name="twitter:description" content="map map() 方法创建一个新数组，其结果是该数组都执行一次函数，原函数保持不变。  12345var a = [1,2,3,5,4,8,6,3,2]var newa = a.map(x =&amp;gt;&amp;#123;  return x + 1&amp;#125;)newa // [2,3,4,5,9,7,4,3] 对新数组进行加1赋值  forEach forEach() 方法对数组的每一个元素执行一次提">
     
-        <link rel="alternate" type="application/atom+xml" title="卖坚果的怪叔叔" href="/atom.xml">
+        <link rel="alternate" type="application/atom+xml" title="执行上下文" href="/atom.xml">
     
     <link rel="shortcut icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="/css/style.css?v=1.7.2">
@@ -155,7 +155,7 @@
             <li class="waves-block waves-effect">
               <a href="https://mp.weixin.qq.com/s/9gVMEr5H6PlU5BAvbtREzA" target="_blank" >
                 <i class="icon icon-lg icon-feed"></i>
-                小夭同学
+                执行上下文
               </a>
             </li>
         
@@ -347,7 +347,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/12/03/map-filter-forEach的区别和用法.html&title=《map,filter,forEach的区别和用法》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/12/03/map-filter-forEach的区别和用法.html&title=《map,filter,forEach的区别和用法》 — 执行上下文&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -357,7 +357,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/12/03/map-filter-forEach的区别和用法.html&title=《map,filter,forEach的区别和用法》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/12/03/map-filter-forEach的区别和用法.html&title=《map,filter,forEach的区别和用法》 — 执行上下文&source=用心记录美好的瞬间" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -367,7 +367,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《map,filter,forEach的区别和用法》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2018/12/03/map-filter-forEach的区别和用法.html&via=https://toc.lieme.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《map,filter,forEach的区别和用法》 — 执行上下文&url=https://toc.lieme.cn/2018/12/03/map-filter-forEach的区别和用法.html&via=https://toc.lieme.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -535,7 +535,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/12/03/map-filter-forEach的区别和用法.html&title=《map,filter,forEach的区别和用法》 — 卖坚果的怪叔叔&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://toc.lieme.cn/2018/12/03/map-filter-forEach的区别和用法.html&title=《map,filter,forEach的区别和用法》 — 执行上下文&pic=http://blogimg.lieme.cn/FoGoTkLS4XxoK_VpaOqBFfBNjlEP" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -545,7 +545,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/12/03/map-filter-forEach的区别和用法.html&title=《map,filter,forEach的区别和用法》 — 卖坚果的怪叔叔&source=用心记录美好的瞬间" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://toc.lieme.cn/2018/12/03/map-filter-forEach的区别和用法.html&title=《map,filter,forEach的区别和用法》 — 执行上下文&source=用心记录美好的瞬间" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -555,7 +555,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《map,filter,forEach的区别和用法》 — 卖坚果的怪叔叔&url=https://toc.lieme.cn/2018/12/03/map-filter-forEach的区别和用法.html&via=https://toc.lieme.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《map,filter,forEach的区别和用法》 — 执行上下文&url=https://toc.lieme.cn/2018/12/03/map-filter-forEach的区别和用法.html&via=https://toc.lieme.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
