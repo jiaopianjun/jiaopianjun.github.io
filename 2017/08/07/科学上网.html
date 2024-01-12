@@ -1,0 +1,479 @@
+<!DOCTYPE html><html lang="zh" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>使用 HyperApp，打造一个安全稳定超高速的科学上网环境 | 卖坚果的怪叔叔</title><meta name="keywords" content="技术分享,Hyperapp,科学上网,日常挖坑"><meta name="author" content="Lieme"><meta name="copyright" content="Lieme"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="使用 HyperApp，打造一个安全稳定超高速的科学上网环境"><meta name="application-name" content="使用 HyperApp，打造一个安全稳定超高速的科学上网环境"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="使用 HyperApp，打造一个安全稳定超高速的科学上网环境"><meta property="og:url" content="https://toc.lieme.cn/2017/08/07/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91.html"><meta property="og:site_name" content="卖坚果的怪叔叔"><meta property="og:description" content="##### 这是原作者 [@waylybaye](http:&amp;#x2F;&amp;#x2F;weibo.com&amp;#x2F;waylybaye?profile_ftype&amp;#x3D;1&amp;amp;is_all&amp;#x3D;1#_rnd1502088401009) 一开始发布在[少数派](http:&amp;#x2F;&amp;#x2F;sspai.com)上的文章搬运过来，文章所有权归 原作者 [@wa"><meta property="og:locale" content="zh"><meta property="og:image" content="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg"><meta property="article:author" content="Lieme"><meta property="article:tag" content="卖坚果的怪叔叔 前端 vue python 微信"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg"><meta name="description" content="##### 这是原作者 [@waylybaye](http:&amp;#x2F;&amp;#x2F;weibo.com&amp;#x2F;waylybaye?profile_ftype&amp;#x3D;1&amp;amp;is_all&amp;#x3D;1#_rnd1502088401009) 一开始发布在[少数派](http:&amp;#x2F;&amp;#x2F;sspai.com)上的文章搬运过来，文章所有权归 原作者 [@wa"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://toc.lieme.cn/2017/08/07/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: {"enable":true,"img":"https://upload-bbs.miyoushe.com/upload/2023/09/03/125766904/ee23df8517f3c3e3efc4145658269c06_5714860933110284659.png"},
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: undefined,
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: undefined,
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: Lieme","link":"链接: ","source":"来源: 卖坚果的怪叔叔","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '卖坚果的怪叔叔',
+  title: '使用 HyperApp，打造一个安全稳定超高速的科学上网环境',
+  postAI: '',
+  pageFillDescription: '本文前提条件, GCP 注册以及创建服务器, 新建主机, HyperApp, 添加服务器, 永久添加公钥, 开启 BBR 加速跑满带宽, 部署科学上网应用, 客户端设置, iOS, Macx2FWindows, 其它玩法, HyperApp 支持, 自建和购买商业服务对比有什么优势？, 学生优惠计划, 设置 GCE 防火墙这是原作者一开始发布在少数派上的文章搬运过来文章所有权归原作者所有这篇文章将会介绍如何获取由提供的一年美金的试用金然后使用搭建一个低延迟超高速的科学上网环境网络延迟基本在左右并且可以流畅观看视频本文不需要读者有较深的技术背景全部过程都可视化自动化完成下文用代表指的整个云平台是指是产品线里的一个主机产品现状啊本文前提条件有一个账号没有的话可以注册一个注册免费试用需要用信用卡进行身份验证只做验证不会收费所以你必须有一个的信用卡才行如果你是一位学生还没有信用卡可以查看文末的学生优惠计划注册以及创建服务器要访问首先需要你能科学上网但是这篇文章又是介绍如何科学上网的好像有点生蛋蛋生的矛盾其实你可以去搜索屁恩找一个免费的下载后通过签到等方式暂时领取一天或者几个小时的免费低速试用来完成下面的教程注册免费试用登录账号后使用这个链接来注册在打开的页面中点击接受条款并点击同意并继续在页面中填入你的信息账号类型个人名称和地址填写你的地址电话等付款方式添加一个信用卡这个信用卡将会用来验证身份防止被滥用点击开始免费使用完成注册在后面的页面中如果你能看到页面顶部有一个礼物的小图标说明已经获取了试用金新建主机创建服务器在左侧菜单中导航到计算引擎实例点击加号按钮创建一个实例名称随意填入一个易记得名字地区建议选择三个中的任意一个这个机房是在台湾国内的延迟只有简直快到飞起机器类型选择小型内存就可以了默认选中的的内存其实用不完启动磁盘默认的就可以推荐另外为了防止将来磁盘不够用你可以点击右下角的更改大小里使用或者防火墙选中允许流量和允许流量点击创建稍等几分钟就会创建完毕现在打开开始配置这台服务器吧是一个部署自动化以及服务器监控管理的致力于让普通用户也可以使用云服务本段介绍如何使用管理刚刚创建的服务器开启加速安装科学上网应用添加服务器自动配置服务器在服务器页面点击右下角的加号然后选择第二个自动配置点击开始应用会自动生成一对密钥但这个过程在某些手机上会耗时较长请耐心等到十几秒几分钟左右等到出现一切就绪时点击复制将代码复制到剪贴板里如果你用电脑操作的话可以点击发送将代码通过任意一种方式发送到电脑上在里面运行命令在计算引擎实例页面选择刚刚创建的实例的在浏览器窗口中打开打开一个基于的终端在浏览器的中粘贴并运行刚刚复制的代码等到二维码出现时使用扫描该二维码便会自动添加该服务器添加后会检测刚刚添加的服务器的基本运行状况永久添加公钥注意你可以暂时跳过本小段进行后续的操作如果出现了认证错误的提示可以回到这段进行操作刚刚的自动配置的功能在几乎所有主机上都可以用但是是个例外它会清空用户自行添加的公钥所以几分钟后可能就会出现密钥认证失败的错误你可以通过以下步骤永久性的设置密钥打开更多点击唯一的一个复制公钥在中打开计算引擎元数据密钥点击修改后复制并添加刚刚的公钥添加后页面会出现一行新记录主要有两列用户名和密钥这个用户名应该是然后打开服务器点击服务器下面的螺丝按钮修改用户名为刚刚显示的用户名保存后就可以了开发者注抱歉最新的版本中第步有个用户名没有设置对复制公钥后需要手动改下最后一串空格后面个字符的改成用户名的格式用户名可以随便写然后将修改后的公钥添加后按照第三步中的做就行了不改也可以用只要确保服务器的用户名和第三步时显示的用户名一致即可开启加速跑满带宽这一步并不影响科学上网但是会极大的提高上网质量是开发的拥塞控制技术并且已经合并到较新的内核中它的主要作用是可以让你跑满服务器的带宽比如说没有开启的情况下你观看的视频都可能会卡但是开启了后的视频完全无卡顿就连视频也可以流畅观看有些网络特别卡的除外要开启需要升级内核不过不用急在中开启非常简单在服务器卡片中点击右上角的图标就是那个长的像个表情的按钮进入终端选择最下面的一行工具栏的第一个图标然后点击一键脚本的链接点击后会让你确认是否下载并执行外部脚本点击确认后会自动下载并执行执行过程中需要点击键盘上回车键确认继续如果想中断执行那么点击后按终止执行稍等几分钟等待系统内核升级到最新版后会自动重启注这是系统层面的升级执行完毕后不必对其它应用做任何配置客户端也不需要做任何配置部署科学上网应用创建配置应用在商店页面网络分组下选择任意一个应用这里我们选择占用资源最少的下文用代替点击该应用在弹出的对话框中选择刚刚添加的服务器点击创建应用在出现的配置页面中输入简单的一些配置端口可以填入或者因为用其它端口需要设置防火墙随便填入一个密码选择一种加密方式推荐针对移动访问优化的使用可以将流量伪装成正常的网页访问从而达到欺骗效果可以防止被墙或者运营商干扰另外还有人利用此功能实现免流效果运营商会对一些域名免收流量费于是可以将所有流量伪装成对某个域名的访问从而达到免流效果具体此处不表可以暂时忽略这个选项保存后在应用卡片中点击选中的服务器然后选择安装就可以了应用创建配置安装的动画如果你使用其它端口请参考文末的设置防火墙如何开启防火墙客户端设置嗯服务端这就安装好了不过在手机及上想要使用还需要有个客户端上有很多的客户端可供选择收费的有小火箭土豆丝等免费的可以使用基本上所有的应用配置方法都是一样的只要添加服务器填入你的服务器端口密码和加密方式即可这里不再详述和上都有免费的客户端可以使用配置方法也是只要输入你的端口密码和加密方式即可其它玩法现在你有了一台内存的服务器了只用来做好像有点浪费只占用几内存其实使用还有很多其它玩法商店里面有很多其它应用都可以自动安装配置比如你可以自己搭建一个博客网站论坛个人网盘聊天服务并且可以自动配置如果你玩游戏可以创建一个服务器或者部署一个接收微信消息转发到的机器人更多信息可以参阅的文档和教程支持官方文档和教程群作者微博如果你遇到了各种各样的技术问题比如无法安装无法连接等可以在群里召唤机器人或者开发者进行解答或者在里面点击发送反馈邮件获取帮助这两种是最快的获取帮助的方式自建和购买商业服务对比有什么优势最主要的优势是隐私和安全如果你看下上面的日志你就知道服务商可以知道你的所有浏览历史的如果你访问了不支持的网站那么请求内容也可能被监控比如密码信息另外是质量和成本很多商家是使用和上面同样的机器但是卖给几百个人你应该能明白了成本方面没有免费试用的话个人用可能会有点贵但如果和朋友家人一起用就超值了比如使用月的每月流量够很多人用的学生优惠计划腾讯云学生优惠套餐月需抢购阿里云云翼计划月不过好像不能创建海外的主机所以无法搭建科学上网环境设置防火墙在后台点击网络防火墙规则点击创建防火墙规则名称随便输入一个名称目标选择网络中的所有示例来源过滤协议和端口指定的协议和端口下面输入端口号',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-01-04 14:20:10',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">卖坚果的怪叔叔</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/travel/"><span> 旅行</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/photos/"><span> 定格时光</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/life/"><span> 生活</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><span> 关于</span></a></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Array/" style="font-size: 1.05rem;">Array<sup>1</sup></a><a href="/tags/ECMAScript6/" style="font-size: 1.05rem;">ECMAScript6<sup>14</sup></a><a href="/tags/Git/" style="font-size: 1.05rem;">Git<sup>4</sup></a><a href="/tags/Hyperapp/" style="font-size: 1.05rem;">Hyperapp<sup>2</sup></a><a href="/tags/JavaScript/" style="font-size: 1.05rem;">JavaScript<sup>2</sup></a><a href="/tags/Map/" style="font-size: 1.05rem;">Map<sup>1</sup></a><a href="/tags/Python/" style="font-size: 1.05rem;">Python<sup>7</sup></a><a href="/tags/Set/" style="font-size: 1.05rem;">Set<sup>1</sup></a><a href="/tags/css/" style="font-size: 1.05rem;">css<sup>21</sup></a><a href="/tags/es6/" style="font-size: 1.05rem;">es6<sup>1</sup></a><a href="/tags/hexo/" style="font-size: 1.05rem;">hexo<sup>2</sup></a><a href="/tags/history/" style="font-size: 1.05rem;">history<sup>1</sup></a><a href="/tags/html/" style="font-size: 1.05rem;">html<sup>4</sup></a><a href="/tags/http/" style="font-size: 1.05rem;">http<sup>1</sup></a><a href="/tags/javascript/" style="font-size: 1.05rem;">javascript<sup>17</sup></a><a href="/tags/jquery/" style="font-size: 1.05rem;">jquery<sup>1</sup></a><a href="/tags/js/" style="font-size: 1.05rem;">js<sup>2</sup></a><a href="/tags/node/" style="font-size: 1.05rem;">node<sup>1</sup></a><a href="/tags/node%E5%AD%A6%E4%B9%A0/" style="font-size: 1.05rem;">node学习<sup>4</sup></a><a href="/tags/python/" style="font-size: 1.05rem;">python<sup>2</sup></a><a href="/tags/sass/" style="font-size: 1.05rem;">sass<sup>1</sup></a><a href="/tags/vue/" style="font-size: 1.05rem;">vue<sup>7</sup></a><a href="/tags/vuepress/" style="font-size: 1.05rem;">vuepress<sup>1</sup></a><a href="/tags/wxpy/" style="font-size: 1.05rem;">wxpy<sup>2</sup></a><a href="/tags/%E5%88%86%E4%BA%AB/" style="font-size: 1.05rem;">分享<sup>3</sup></a><a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 1.05rem;">小程序<sup>1</sup></a><a href="/tags/%E5%B1%85%E4%B8%AD%E6%98%BE%E7%A4%BA/" style="font-size: 1.05rem;">居中显示<sup>1</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 1.05rem;">微信<sup>4</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1%E6%9C%BA%E5%99%A8%E4%BA%BA/" style="font-size: 1.05rem;">微信机器人<sup>3</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" style="font-size: 1.05rem;">技术分享<sup>2</sup></a><a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 1.05rem;">数组<sup>2</sup></a><a href="/tags/%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C/" style="font-size: 1.05rem;">数组操作<sup>2</sup></a><a href="/tags/%E6%97%A5%E5%B8%B8%E6%8C%96%E5%9D%91/" style="font-size: 1.05rem;">日常挖坑<sup>2</sup></a><a href="/tags/%E6%9B%B4%E6%96%B0/" style="font-size: 1.05rem;">更新<sup>1</sup></a><a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 1.05rem;">科学上网<sup>2</sup></a><a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 1.05rem;">移动端<sup>5</sup></a><a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 1.05rem;">笔记<sup>4</sup></a><a href="/tags/%E9%98%B2%E6%92%A4%E5%9B%9E/" style="font-size: 1.05rem;">防撤回<sup>1</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 1.05rem;">面试<sup>8</sup></a><a href="/tags/%E9%A2%84%E8%A7%88%E5%9B%BE/" style="font-size: 1.05rem;">预览图<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="anzhiyufont anzhiyu-icon-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/05/"><span class="card-archive-list-date">May 2020</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/03/"><span class="card-archive-list-date">March 2020</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/02/"><span class="card-archive-list-date">February 2020</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/01/"><span class="card-archive-list-date">January 2020</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/12/"><span class="card-archive-list-date">December 2019</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/11/"><span class="card-archive-list-date">November 2019</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">6</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/10/"><span class="card-archive-list-date">October 2019</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/09/"><span class="card-archive-list-date">September 2019</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">7</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/Life/" itemprop="url">Life</a></span><span class="article-meta tags"></span></div></div><h1 class="post-title" itemprop="name headline">使用 HyperApp，打造一个安全稳定超高速的科学上网环境</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2017-08-07T06:30:43.000Z" title="发表于 2017-08-07 14:30:43">2017-08-07</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-01-04T06:20:10.721Z" title="更新于 2024-01-04 14:20:10">2024-01-04</time></span></div><div class="meta-secondline"><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为姑苏城"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>姑苏城</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src=""></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://toc.lieme.cn/2017/08/07/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91.html"><header><a class="post-meta-categories" href="/categories/Life/" itemprop="url">Life</a><h1 id="CrawlerTitle" itemprop="name headline">使用 HyperApp，打造一个安全稳定超高速的科学上网环境</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">Lieme</span><time itemprop="dateCreated datePublished" datetime="2017-08-07T06:30:43.000Z" title="发表于 2017-08-07 14:30:43">2017-08-07</time><time itemprop="dateCreated datePublished" datetime="2024-01-04T06:20:10.721Z" title="更新于 2024-01-04 14:20:10">2024-01-04</time></header><br/>
+##### 这是原作者 [@waylybaye](http://weibo.com/waylybaye?profile_ftype=1&is_all=1#_rnd1502088401009) 一开始发布在[少数派](http://sspai.com)上的文章搬运过来，文章所有权归 原作者 [@waylybaye](http://weibo.com/waylybaye?profile_ftype=1&is_all=1#_rnd1502088401009) 所有
+ <br/>
+
+<p>这篇文章将会介绍如何获取由 Google 提供的一年 $300 美金的试用金，然后使用 HyperApp 搭建一个低延迟超高速的科学上网环境。网络延迟基本在50ms左右，并且可以流畅观看 Youtube 4K 视频。本文不需要读者有较深的技术背景，全部过程都可视化、自动化完成。</p>
+<p>下文用 GCP 代表 Google Cloud Platform，指 Google 的整个云平台。GCE 是指 Google Cloud Engine，是 GCP 产品线里的一个主机产品。<br>现状啊 ！！</p>
+<span id="more"></span>
+
+<h3 id="本文前提条件"><a href="#本文前提条件" class="headerlink" title="本文前提条件"></a>本文前提条件</h3><p> 1.有一个 Google 账号，没有的话可以注册一个.</p>
+<p> 2.注册 GCP 免费试用需要用信用卡进行身份验证（只做验证，不会收费），所以你必须有一个 Visa&#x2F;MasterCard 的信用卡才行。如果你是一位学生还没有信用卡，可以查看文末的学生优惠计划。</p>
+<h3 id="GCP-注册以及创建服务器"><a href="#GCP-注册以及创建服务器" class="headerlink" title="GCP 注册以及创建服务器"></a>GCP 注册以及创建服务器</h3><p>1.要访问 Google 首先需要你能科学上网，但是这篇文章又是介绍如何科学上网的，好像有点🐔生蛋蛋生🐔的矛盾… 其实你可以去App Store搜索 V屁恩，找一个免费的下载后，通过签到等方式暂时领取一天或者几个小时的免费低速试用来完成下面的教程。</p>
+<p>2.注册 GCP 免费试用</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="http://blogimg.lieme.cn/FsjWaQ2cFQwkKuBGDUts0BcjRS_5" alt="1freetier.png"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="http://blogimg.lieme.cn/FilfC_cvRUxOMRo5ht1e96vZmia2" alt="1intro.png"></p>
+<p>GCP Free Tier</p>
+<p>3.登录Google账号后使用这个链接来注册 <a target="_blank" rel="noopener" href="https://cloud.google.com/free/">https://cloud.google.com/free/</a> ，在打开的页面中点击<code>Try it Free</code>.</p>
+<p>4.接受条款，并点击<code>同意并继续</code></p>
+<p>5.在页面中填入你的信息：</p>
+<p>6.账号类型：个人</p>
+<p>7.名称和地址：填写你的地址、电话等</p>
+<p>8.付款方式：添加一个信用卡。这个信用卡将会用来验证身份，防止GCP被滥用。</p>
+<p>9.点击 开始<code>免费使用</code> 完成注册</p>
+<p>10.在后面的页面中，如果你能看到页面顶部有一个“礼物 🎁 ” 的小图标，说明已经获取了试用金。</p>
+<h5 id="新建主机"><a href="#新建主机" class="headerlink" title="新建主机"></a>新建主机</h5><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="http://blogimg.lieme.cn/Fp44m1cSneQOp3NK3R5yTzw0J-fR" alt="2vmsnav.png"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="http://blogimg.lieme.cn/FnoXuJiXyuA7DR4rITLUO1fhch_n" alt="2vms.png"></p>
+<p>创建服务器</p>
+<ul>
+<li>在左侧菜单中导航到 <a target="_blank" rel="noopener" href="https://console.cloud.google.com/compute/instances">计算引擎 → VM 实例</a></li>
+</ul>
+<p>1.点击加号按钮，创建一个 VM 实例。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="http://blogimg.lieme.cn/FnbBU5Ougp49dYuNnAxXmNkfgQzu" alt="2createvm.png"></p>
+<p>2.名称：随意填入一个易记得名字</p>
+<p>3.地区：建议选择<code> asia-east1-*</code> 三个中的任意一个，这个机房是在台湾，国内的延迟只有 50~70ms，简直快到飞起。</p>
+<ul>
+<li><p>机器类型：选择 “小型” (1.7G 内存) 就可以了。默认选中的 3.75G 的内存其实用不完。</p>
+</li>
+<li><p>启动磁盘：默认的Debian 8就可以，推荐 Ubuntu 16.04 LTS。另外为了防止将来磁盘不够用，你可以点击右下角的更改，大小里使用 20G 或者 30G。</p>
+</li>
+<li><p>防火墙：选中 “允许HTTP流量” 和 ”允许HTTPS流量“</p>
+</li>
+<li><p>点击<code>创建</code>，稍等几分钟就会创建完毕，现在打开 HyperApp 开始配置这台服务器吧。</p>
+</li>
+</ul>
+<h2 id="HyperApp"><a href="#HyperApp" class="headerlink" title="HyperApp"></a>HyperApp</h2><ul>
+<li><p>HyperApp 是一个部署自动化以及服务器监控管理的App，致力于让普通用户也可以使用云服务</p>
+</li>
+<li><p>本段介绍如何使用 HyperApp 管理刚刚创建的服务器，开启 BBR 加速，安装科学上网应用。</p>
+</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="http://blogimg.lieme.cn/Fj64B0r_gPhpgUA2-6Nzo6t2Saar" alt="3servers.png"></p>
+<h5 id="添加服务器"><a href="#添加服务器" class="headerlink" title="添加服务器"></a>添加服务器</h5><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="http://upload-images.jianshu.io/upload_images/1251988-824178f24d3f8db4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/620"><br>自动配置服务器</p>
+<p>1.在<code>服务器</code>页面点击右下角的加号，然后选择第二个<code>自动配置</code></p>
+<p>2.点击<code>开始</code>，应用会自动生成一对密钥，但这个过程在某些手机上会耗时较长，请耐心等到 十几秒~几分钟 左右。</p>
+<p>3.等到出现“一切就绪”时，点击复制将代码<code>复制</code>到剪贴板里，如果你用电脑操作的话可以点击<code>发送</code>将代码通过任意一种方式发送到电脑上</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="http://upload-images.jianshu.io/upload_images/1251988-05732579a262568c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/620"><br>在Web SSH里面运行命令</p>
+<p>1.在 GCE 计算引擎 → VM 实例 页面，选择刚刚创建的实例的 SSH ▽ 在浏览器窗口中打开 打开一个基于 Web 的 SSH 终端。</p>
+<p>2.在浏览器的SSH中粘贴并运行刚刚复制的代码。等到二维码出现时，使用 HyperApp 扫描该二维码便会自动添加该服务器。添加后 HyperApp 会检测刚刚添加的服务器的基本运行状况。</p>
+<h5 id="永久添加公钥"><a href="#永久添加公钥" class="headerlink" title="永久添加公钥"></a>永久添加公钥</h5><p>1.注意：你可以暂时跳过本小段，进行后续的操作，如果 HyperApp 出现了认证错误的提示，可以回到这段进行操作。</p>
+<p>2.刚刚的自动配置的功能在几乎所有主机上都可以用，但是 GCE 是个例外，它会清空用户自行添加的公钥，所以几分钟后可能就会出现密钥认证失败的错误。你可以通过以下步骤永久性的设置密钥。</p>
+<p>3.打开 <code>更多</code> → <code>SSH Keys</code> → <code>点击唯一的一个 Key</code> → <code>复制公钥</code>。</p>
+<p>4.在GCP 中打开<a target="_blank" rel="noopener" href="https://console.cloud.google.com/compute/metadata/sshKeys">计算引擎→元数据 → SSH 密钥</a> 点击修改后，复制并添加刚刚的公钥。</p>
+<p>5.添加后页面会出现一行新记录，主要有两列： <code>用户名</code> 和 <code>密钥</code>。这个用户名应该是 HyperApp，然后打开 HyperApp → 服务器 → 点击服务器下面的螺丝按钮 → 修改 用户名 为刚刚显示的用户名，保存后就可以了。</p>
+<p>6.开发者注：抱歉，最新的版本(2.5.90) 中第2步有个bug，<code>用户名</code>没有设置对，复制公钥后，需要手动改下最后一串<code> [空格] 后面36个字符的 xx-xx-xx-xx</code> 改成 <code>用户名@iPhone</code> 的格式，用户名可以随便写，然后将修改后的公钥添加后按照第三步中的做就行了。不改也可以用，只要确保服务器的用户名和第三步时显示的用户名一致即可</p>
+<h6 id="开启-BBR-加速，跑满带宽"><a href="#开启-BBR-加速，跑满带宽" class="headerlink" title="开启 BBR 加速，跑满带宽"></a>开启 BBR 加速，跑满带宽</h6><ul>
+<li><p>这一步并不影响科学上网，但是会极大的提高上网质量。BBR是 Google 开发的TCP拥塞控制技术，并且已经合并到较新的Linux内核中。它的主要作用是可以让你跑满服务器的带宽。</p>
+</li>
+<li><p>比如说没有开启的情况下你观看 Youtube 720P的视频都可能会卡，但是开启了BBR后 1080P 的视频完全无卡顿，就连 4K 视频也可以流畅观看（有些网络特别卡的除外）。</p>
+</li>
+<li><p>要开启 BBR 需要升级 Linux 内核，不过不用急，在 HyperApp 中开启非常简单：</p>
+</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="http://upload-images.jianshu.io/upload_images/1251988-bf13a5cf7128333b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/620"><br>BBR</p>
+<p>1.在服务器卡片中点击右上角的 Terminal 图标（就是那个长的像个表情 [ &gt;_ ] 的按钮），进入 SSH 终端。</p>
+<p>2.选择最下面的一行工具栏的第一个图标，然后点击 “teddyun&#x2F;BBR” 一键脚本的链接，点击后会让你确认是否下载并执行外部脚本。</p>
+<p>3.点击确认后会自动下载并执行，执行过程中需要点击键盘上回车键确认继续。如果想中断执行，那么点击 ctrl 后按 c 终止执行。</p>
+<p>4.稍等几分钟，等待系统内核升级到最新版后会自动重启。</p>
+<p>5.注：这是系统层面的升级，执行完毕后不必对其它应用做任何配置。客户端也不需要做任何配置。</p>
+<h6 id="部署科学上网应用"><a href="#部署科学上网应用" class="headerlink" title="部署科学上网应用"></a>部署科学上网应用</h6><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="http://upload-images.jianshu.io/upload_images/1251988-9595aaf45f6b9d45.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br>  创建、配置应用</p>
+<p>1.在 <code>商店</code> 页面 <code>网络</code> 分组下选择任意一个应用，这里我们选择占用资源最少的 <code>****-libev</code>，（下文用SS代替）点击该应用。在弹出的对话框中选择刚刚添加的服务器，点击<code>创建应用</code></p>
+<p>2.在出现的配置页面中输入简单的一些配置：</p>
+<p>3.Port: 端口，可以填入 80 或者 443（因为用其它端口需要设置防火墙）</p>
+<p>4.Password：随便填入一个密码</p>
+<p>5.Encrypt：选择一种加密方式，推荐针对移动访问优化的 <code>chacha20</code></p>
+<p>6.OBFS: 使用 OBFS 可以将 SS 流量伪装成正常的网页访问从而达到欺骗效果，可以防止被墙或者运营商干扰。另外还有人利用此功能实现“免流”效果：运营商会对一些域名免收流量费，于是可以将所有SS流量伪装成对某个域名的访问从而达到免流效果，具体此处不表。可以暂时忽略这个选项。</p>
+<p>7.保存后在应用卡片中点击选中的服务器，然后选择安装就可以了。<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="http://upload-images.jianshu.io/upload_images/1251988-1f2e128c67b179b6.gif?imageMogr2/auto-orient/strip" alt="安装"><br>应用创建、配置、安装的动画</p>
+<ul>
+<li>如果你使用其它端口，请参考文末的 <a target="_blank" rel="noopener" href="https://sspai.com/feed#%E8%AE%BE%E7%BD%AE-gce-%E9%98%B2%E7%81%AB%E5%A2%99">设置GCE防火墙</a> 如何开启防火墙。</li>
+</ul>
+<h5 id="客户端设置"><a href="#客户端设置" class="headerlink" title="客户端设置"></a>客户端设置</h5><ul>
+<li>嗯，服务端这就安装好了，不过在手机及Mac&#x2F;PC上想要使用还需要有个客户端。</li>
+</ul>
+<h5 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h5><ul>
+<li>iOS 上有很多 SS 的客户端可供选择，收费的有 小火箭、土豆丝、Xxxxx、Xxxxx 等。免费的可以使用 Wingy。基本上所有的应用配置方法都是一样的，只要添加服务器，填入你的服务器IP、端口、密码和加密方式即可，这里不再详述。</li>
+</ul>
+<h5 id="Mac-Windows"><a href="#Mac-Windows" class="headerlink" title="Mac&#x2F;Windows"></a>Mac&#x2F;Windows</h5><ul>
+<li>Mac 和 Windows 上都有免费的 SS 客户端可以使用，配置方法也是只要输入你的IP、端口、密码和加密方式即可。</li>
+</ul>
+<h5 id="其它玩法"><a href="#其它玩法" class="headerlink" title="其它玩法"></a>其它玩法</h5><ul>
+<li><p>现在你有了一台 1.75G 内存的服务器了，只用来做SS好像有点浪费（SS只占用几M内存），其实使用 HyperApp 还有很多其它玩法，商店里面有很多其它应用，都可以自动安装配置。</p>
+</li>
+<li><p>比如你可以自己搭建一个博客、网站、论坛，个人网盘，聊天服务，并且可以自动配置HTTPS。如果你玩游戏可以创建一个 Minecraft 服务器。或者部署一个接收微信消息转发到Telegram的机器人。更多信息可以参阅👇 的 HyperApp 文档和教程。</p>
+</li>
+</ul>
+<h2 id="HyperApp-支持"><a href="#HyperApp-支持" class="headerlink" title="HyperApp 支持"></a>HyperApp 支持</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/waylybaye/HyperApp-Guide">官方文档和教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://t.me/hyperapp">Telegram 群</a></li>
+<li><a target="_blank" rel="noopener" href="https://twitter.com/HyperAppCloud">Twitter @HyperApp</a></li>
+<li><a target="_blank" rel="noopener" href="http://weibo.com/waylybaye">作者微博 @waylybaye</a></li>
+</ul>
+<p>如果你遇到了各种各样的技术问题，比如无法安装、无法连接等，可以在群里召唤机器人或者开发者进行解答。或者在App里面点击 <code>发送反馈邮件 </code>获取帮助，这两种是最快的获取帮助的方式。</p>
+<h3 id="自建和购买商业服务对比有什么优势？"><a href="#自建和购买商业服务对比有什么优势？" class="headerlink" title="自建和购买商业服务对比有什么优势？"></a>自建和购买商业服务对比有什么优势？</h3><ul>
+<li><p>最主要的优势是隐私和安全，如果你看下上面SS的日志，你就知道服务商可以知道你的所有浏览历史的，如果你访问了不支持HTTPS的网站，那么请求内容也可能被监控（比如密码信息）。</p>
+</li>
+<li><p>另外是质量和成本，很多商家是使用和上面同样的机器但是卖给几百个人，你应该能明白了。成本方面没有免费试用的话1个人用可能会有点贵，但如果和朋友家人一起用就超值了，比如使用$2.5&#x2F;月的 Vultr，每月500G 流量够很多人用的。</p>
+</li>
+</ul>
+<h3 id="学生优惠计划"><a href="#学生优惠计划" class="headerlink" title="学生优惠计划"></a>学生优惠计划</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.qcloud.com/act/campus">腾讯云：学生优惠套餐 ￥10&#x2F;月，需抢购</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://promotion.aliyun.com/ntms/campus2017.html"> 阿里云：云翼计划 ￥9.9&#x2F;月 </a>不过好像不能创建海外的主机所以无法搭建科学上网环境。</p>
+</li>
+</ul>
+<h3 id="设置-GCE-防火墙"><a href="#设置-GCE-防火墙" class="headerlink" title="设置 GCE 防火墙"></a>设置 GCE 防火墙</h3><ul>
+<li>在GCP后台点击<a target="_blank" rel="noopener" href="https://console.cloud.google.com/networking/firewalls/list"> 网络 → 防火墙规则</a></li>
+<li>点击 <code>创建防火墙规则</code></li>
+<li>名称：随便输入一个名称</li>
+<li>目标：选择 <code>网络中的所有示例</code></li>
+<li>来源过滤：<code>0.0.0.0/0</code></li>
+<li>协议和端口：<code>指定的协议和端口</code> 下面输入<code>tcp;udp:端口号</code></li>
+</ul>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg" title="头像" alt="头像"></a><div class="post-copyright__author_name">Lieme</div><div class="post-copyright__author_desc"></div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://toc.lieme.cn/2017/08/07/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91.html">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://toc.lieme.cn/2017/08/07/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91.html')">使用 HyperApp，打造一个安全稳定超高速的科学上网环境</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://toc.lieme.cn/2017/08/07/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91.html"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=使用 HyperApp，打造一个安全稳定超高速的科学上网环境&amp;url=https://toc.lieme.cn/2017/08/07/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91.html&amp;pic=" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://toc.lieme.cn" target="_blank">卖坚果的怪叔叔</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"></div></div><div class="post_share"><div class="social-share" data-image="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2017/07/25/%E5%A2%9E%E5%8A%A0%E6%96%87%E7%AB%A0%E5%88%97%E8%A1%A8%E6%88%AA%E6%96%AD.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">增加文章列表截断</div></div></a></div><div class="next-post pull-right"><a href="/2017/09/22/CSS%E6%95%B4%E7%90%86.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">css 笔记整理</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/2019/06/22/Untitled%E5%A6%82%E4%BD%95%E5%85%8D%E8%B4%B9%E6%89%93%E9%80%A0%E6%89%93%E9%80%A0%E4%B8%80%E4%B8%AA%E5%AE%89%E5%85%A8%E7%A8%B3%E5%AE%9A%E4%BD%8E%E5%BB%B6%E8%BF%9F%E8%B6%85%E9%AB%98%E9%80%9F%E7%9A%84%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E7%8E%AF%E5%A2%83.html" title="如何免费打造打造一个安全稳定低延迟超高速的科学上网环境"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2019-06-22</div><div class="title">如何免费打造打造一个安全稳定低延迟超高速的科学上网环境</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__description">用心记录美好的瞬间</div></div></div><div class="card-widget anzhiyu-right-widget" id="card-wechat" onclick="null"><div id="flip-wrapper"><div id="flip-content"><div class="face" style="background: url(https://bu.dusays.com/2023/01/13/63c02edf44033.png) center center / 100% no-repeat"></div><div class="back face" style="background: url(https://bu.dusays.com/2023/05/13/645fa415e8694.png) center center / 100% no-repeat"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E6%96%87%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">本文前提条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GCP-%E6%B3%A8%E5%86%8C%E4%BB%A5%E5%8F%8A%E5%88%9B%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text">GCP 注册以及创建服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E4%B8%BB%E6%9C%BA"><span class="toc-number">2.0.1.</span> <span class="toc-text">新建主机</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HyperApp"><span class="toc-number"></span> <span class="toc-text">HyperApp</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">0.0.1.</span> <span class="toc-text">添加服务器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E5%85%AC%E9%92%A5"><span class="toc-number">0.0.2.</span> <span class="toc-text">永久添加公钥</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%BC%80%E5%90%AF-BBR-%E5%8A%A0%E9%80%9F%EF%BC%8C%E8%B7%91%E6%BB%A1%E5%B8%A6%E5%AE%BD"><span class="toc-number">0.0.2.1.</span> <span class="toc-text">开启 BBR 加速，跑满带宽</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%BA%94%E7%94%A8"><span class="toc-number">0.0.2.2.</span> <span class="toc-text">部署科学上网应用</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BE%E7%BD%AE"><span class="toc-number">0.0.3.</span> <span class="toc-text">客户端设置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#iOS"><span class="toc-number">0.0.4.</span> <span class="toc-text">iOS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Mac-Windows"><span class="toc-number">0.0.5.</span> <span class="toc-text">Mac&#x2F;Windows</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B6%E5%AE%83%E7%8E%A9%E6%B3%95"><span class="toc-number">0.0.6.</span> <span class="toc-text">其它玩法</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HyperApp-%E6%94%AF%E6%8C%81"><span class="toc-number"></span> <span class="toc-text">HyperApp 支持</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%BB%BA%E5%92%8C%E8%B4%AD%E4%B9%B0%E5%95%86%E4%B8%9A%E6%9C%8D%E5%8A%A1%E5%AF%B9%E6%AF%94%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E5%8A%BF%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">自建和购买商业服务对比有什么优势？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%A6%E7%94%9F%E4%BC%98%E6%83%A0%E8%AE%A1%E5%88%92"><span class="toc-number">2.</span> <span class="toc-text">学生优惠计划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-GCE-%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-number">3.</span> <span class="toc-text">设置 GCE 防火墙</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/05/20/%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB%E6%8B%89.html" title="博客迁移拉~">博客迁移拉~</a><time datetime="2020-05-20T02:38:33.000Z" title="发表于 2020-05-20 10:38:33">2020-05-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/03/06/%E7%94%A8Python%E7%88%AC%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%A5%BD%E5%8F%8B%E6%98%B5%E7%A7%B0%E5%92%8C%E5%A4%B4%E5%83%8F.html" title="用Python爬取微信好友昵称和头像">用Python爬取微信好友昵称和头像</a><time datetime="2020-03-06T06:41:00.000Z" title="发表于 2020-03-06 14:41:00">2020-03-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/03/04/%E4%BB%80%E4%B9%88%E6%98%AF%E5%87%BD%E6%95%B0%EF%BC%9F.html" title="什么是函数？">什么是函数？</a><time datetime="2020-03-04T13:12:53.000Z" title="发表于 2020-03-04 21:12:53">2020-03-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/02/21/CSS%E5%AE%9E%E7%8E%B0%E5%B1%85%E4%B8%AD%E6%98%BE%E7%A4%BA.html" title="CSS实现居中显示">CSS实现居中显示</a><time datetime="2020-02-21T13:13:33.000Z" title="发表于 2020-02-21 21:13:33">2020-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/02/13/%E6%AD%A6%E6%B1%89%E6%96%B0%E5%86%A0%E8%82%BA%E7%82%8E%E6%97%B6%E9%97%B4%E7%BA%BFTIMELINE.html" title="武汉新冠肺炎时间线TIMELINE">武汉新冠肺炎时间线TIMELINE</a><time datetime="2020-02-13T13:34:00.000Z" title="发表于 2020-02-13 21:34:00">2020-02-13</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2020 - 2024 By <a class="footer-bar-link" href="/" title="Lieme" target="_blank">Lieme</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://cuixinxin.cn" title="博客">博客</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">103</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">14</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://cuixinxin.cn/" title="卖坚果的怪叔叔"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="卖坚果的怪叔叔"/><span class="back-menu-item-text">卖坚果的怪叔叔</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/travel/"><span> 旅行</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/photos/"><span> 定格时光</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/life/"><span> 生活</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><span> 关于</span></a></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Array/" style="font-size: 0.88rem;">Array<sup>1</sup></a><a href="/tags/ECMAScript6/" style="font-size: 0.88rem;">ECMAScript6<sup>14</sup></a><a href="/tags/Git/" style="font-size: 0.88rem;">Git<sup>4</sup></a><a href="/tags/Hyperapp/" style="font-size: 0.88rem;">Hyperapp<sup>2</sup></a><a href="/tags/JavaScript/" style="font-size: 0.88rem;">JavaScript<sup>2</sup></a><a href="/tags/Map/" style="font-size: 0.88rem;">Map<sup>1</sup></a><a href="/tags/Python/" style="font-size: 0.88rem;">Python<sup>7</sup></a><a href="/tags/Set/" style="font-size: 0.88rem;">Set<sup>1</sup></a><a href="/tags/css/" style="font-size: 0.88rem;">css<sup>21</sup></a><a href="/tags/es6/" style="font-size: 0.88rem;">es6<sup>1</sup></a><a href="/tags/hexo/" style="font-size: 0.88rem;">hexo<sup>2</sup></a><a href="/tags/history/" style="font-size: 0.88rem;">history<sup>1</sup></a><a href="/tags/html/" style="font-size: 0.88rem;">html<sup>4</sup></a><a href="/tags/http/" style="font-size: 0.88rem;">http<sup>1</sup></a><a href="/tags/javascript/" style="font-size: 0.88rem;">javascript<sup>17</sup></a><a href="/tags/jquery/" style="font-size: 0.88rem;">jquery<sup>1</sup></a><a href="/tags/js/" style="font-size: 0.88rem;">js<sup>2</sup></a><a href="/tags/node/" style="font-size: 0.88rem;">node<sup>1</sup></a><a href="/tags/node%E5%AD%A6%E4%B9%A0/" style="font-size: 0.88rem;">node学习<sup>4</sup></a><a href="/tags/python/" style="font-size: 0.88rem;">python<sup>2</sup></a><a href="/tags/sass/" style="font-size: 0.88rem;">sass<sup>1</sup></a><a href="/tags/vue/" style="font-size: 0.88rem;">vue<sup>7</sup></a><a href="/tags/vuepress/" style="font-size: 0.88rem;">vuepress<sup>1</sup></a><a href="/tags/wxpy/" style="font-size: 0.88rem;">wxpy<sup>2</sup></a><a href="/tags/%E5%88%86%E4%BA%AB/" style="font-size: 0.88rem;">分享<sup>3</sup></a><a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 0.88rem;">小程序<sup>1</sup></a><a href="/tags/%E5%B1%85%E4%B8%AD%E6%98%BE%E7%A4%BA/" style="font-size: 0.88rem;">居中显示<sup>1</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 0.88rem;">微信<sup>4</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1%E6%9C%BA%E5%99%A8%E4%BA%BA/" style="font-size: 0.88rem;">微信机器人<sup>3</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" style="font-size: 0.88rem;">技术分享<sup>2</sup></a><a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 0.88rem;">数组<sup>2</sup></a><a href="/tags/%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C/" style="font-size: 0.88rem;">数组操作<sup>2</sup></a><a href="/tags/%E6%97%A5%E5%B8%B8%E6%8C%96%E5%9D%91/" style="font-size: 0.88rem;">日常挖坑<sup>2</sup></a><a href="/tags/%E6%9B%B4%E6%96%B0/" style="font-size: 0.88rem;">更新<sup>1</sup></a><a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 0.88rem;">科学上网<sup>2</sup></a><a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 0.88rem;">移动端<sup>5</sup></a><a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 0.88rem;">笔记<sup>4</sup></a><a href="/tags/%E9%98%B2%E6%92%A4%E5%9B%9E/" style="font-size: 0.88rem;">防撤回<sup>1</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 0.88rem;">面试<sup>8</sup></a><a href="/tags/%E9%A2%84%E8%A7%88%E5%9B%BE/" style="font-size: 0.88rem;">预览图<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2017 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2020 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 Lieme 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
