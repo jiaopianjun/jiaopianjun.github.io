@@ -1,0 +1,540 @@
+<!DOCTYPE html><html lang="zh" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>5000字！带你零距离接触websocket！ | 卖坚果的怪叔叔</title><meta name="keywords" content="技术"><meta name="author" content="Lieme"><meta name="copyright" content="Lieme"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="5000字！带你零距离接触websocket！"><meta name="application-name" content="5000字！带你零距离接触websocket！"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="5000字！带你零距离接触websocket！"><meta property="og:url" content="https://toc.lieme.cn/2020/09/28/5000%E5%AD%97%EF%BC%81%E5%B8%A6%E4%BD%A0%E9%9B%B6%E8%B7%9D%E7%A6%BB%E6%8E%A5%E8%A7%A6websocket%EF%BC%81.html"><meta property="og:site_name" content="卖坚果的怪叔叔"><meta property="og:description" content="本文转载掘金作者 @johnYu  ☞☞☞点击跳转原文~ 1、什么是WebSocket?1.1、定义 Websocket是一个持久化的网络通信协议，可以在单个 TCP 连接上进行全双工通讯，没有了Request和Response的概念，两者地位完全平等，连接一旦建立，客户端和服务端之间实时可以进行双"><meta property="og:locale" content="zh"><meta property="og:image" content="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg"><meta property="article:author" content="Lieme"><meta property="article:tag" content="卖坚果的怪叔叔 前端 vue python 微信"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg"><meta name="description" content="本文转载掘金作者 @johnYu  ☞☞☞点击跳转原文~ 1、什么是WebSocket?1.1、定义 Websocket是一个持久化的网络通信协议，可以在单个 TCP 连接上进行全双工通讯，没有了Request和Response的概念，两者地位完全平等，连接一旦建立，客户端和服务端之间实时可以进行双"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://toc.lieme.cn/2020/09/28/5000%E5%AD%97%EF%BC%81%E5%B8%A6%E4%BD%A0%E9%9B%B6%E8%B7%9D%E7%A6%BB%E6%8E%A5%E8%A7%A6websocket%EF%BC%81"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: {"enable":true,"img":"https://upload-bbs.miyoushe.com/upload/2023/09/03/125766904/ee23df8517f3c3e3efc4145658269c06_5714860933110284659.png"},
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: undefined,
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":1},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: undefined,
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: Lieme","link":"链接: ","source":"来源: 卖坚果的怪叔叔","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '卖坚果的怪叔叔',
+  title: '5000字！带你零距离接触websocket！',
+  postAI: '',
+  pageFillDescription: '1、什么是WebSocket?, 1.1、定义, 1.2、关联和区别, 1.2.1、HTTP, 1.2.2、socket, 1.3、应用场景, 1.3.1、Websocket握手, 2、关于Websocket, 2.1、WebSocket心跳, 2.2、WebSocket状态, 2.3、WebSocket实践, 2.3.1、服务端接收发送消息, 安装成功后的package.json, 接着在根目录创建server.js文件, 执行node server.js启动服务端口打开后会执行监听时间打印提示说明服务启动成功。, 在开启WebSocket后服务端会在message中监听接收参数data捕获客户端发送的消息然后使用send发送消息。, 2.3.2、客户端接收发送消息, 分别在根目录创建index.html和index.js文件, 打印了open connection说明连接成功客户端会使用onmessage处理接收。, 其中event参数包含这次沟通的详细信息从服务端回传的消息会在event的data属性中。, 手动在控制台调用send发送消息打印event回传信息, 2.3.3、服务端定时发送, 上面是从客户端发送消息服务端回传。我们也可以通过setInterval让服务端在固定时间发送消息给客户端, 客户端连接后就会定时接收直至我们关闭websocket服务。, 2.3.4、多人聊天, 如果多个客户端连接按照上面的方式只会返回各自发送的消息先注释服务端定时发送开启两个窗口模拟：, 修改server.js如下, 这样一来不论在哪个客户端发送消息服务端都能将消息回传到每个客户端：, 可以观察下连接信息, 3、总结本文转载掘金作者点击跳转原文什么是定义是一个持久化的网络通信协议可以在单个连接上进行全双工通讯没有了和的概念两者地位完全平等连接一旦建立客户端和服务端之间实时可以进行双向数据传输关联和区别是非持久的协议客户端想知道服务端的处理进度只能通过不停地使用进行轮询或者采用的方式来但是前者对服务器压力大后者则会因为一直等待造成阻塞虽然默认开启了长连接保持了这个通道使得在一个连接中可以发送多个接收多个但是一个只能有一个而且这个也是被动的不能主动发起虽然是独立于的一种协议但是必须依赖协议进行一次握手在握手阶段是一样的握手成功后数据就直接从通道传输与无关了可以用一张图理解两者有交集但是并不是全部也被称为套接字与和不一样不是协议它是在程序层面上对传输层协议可以主要理解为的接口封装可以理解为一个能够提供端对端的通信的调用接口对于程序员而言其需要在端创建一个实例并为这个实例提供其所要连接的端的地址和端口号而在端创建另一个实例并且绑定本地端口号来进行监听当和建立连接后双方就建立了一个端对端的连接从而可以进行双向通信借鉴了的思想为和之间提供了类似的双向通信机制应用场景可以做弹幕消息订阅多玩家游戏协同编辑股票基金实时报价视频会议在线教育聊天室等应用实时监听服务端变化握手握手请求报文下面是与传统报文不同的地方表示发起的是协议是由浏览器随机生成的验证是否可以进行通信防止恶意或者无意的连接是用户自定义的字符串用来标识服务所需要的协议表示支持的版本服务器响应响应码表示要转换协议表示升级新协议请求表示升级为协议是经过服务器确认并且加密过后的用来证明客户端和服务器之间能进行通信了表示最终使用的协议至此客户端和服务器握手成功建立了连接已经完成它所有工作了接下来就是完全按照协议进行通信了关于心跳可能会有一些未知情况导致断开而客户端和服务端却不知道需要客户端定时发送一个心跳让服务端知道自己在线而服务端也要回复一个心跳告诉客户端自己可用否则视为断开状态对象中的属性有四种状态表示正在连接表示连接成功可以通信了表示连接正在关闭表示连接已经关闭或者打开连接失败实践服务端接收发送消息的服务端部分本文会以搭建安装和负责处理协议的安装成功后的接着在根目录创建文件引入和指定开启的端口号创建绑定监听端口且设定开启后在中提示将交给开启的服务当从外部连接时执行连接时执行此提示对设置监听接收从客户端发送的消息为客户端发送的消息将消息原封不动返回回去当的连接关闭时执行执行启动服务端口打开后会执行监听时间打印提示说明服务启动成功在开启后服务端会在中监听接收参数捕获客户端发送的消息然后使用发送消息客户端接收发送消息分别在根目录创建和文件使用的地址向服务端开启连接开启后的动作指定在连接后执行的事件接收服务端发送的消息指定在关闭后执行的事件上面的就是本机开启的服务地址分别指定连接关闭和消息接收的执行事件访问打印信息打印了说明连接成功客户端会使用处理接收其中参数包含这次沟通的详细信息从服务端回传的消息会在的属性中手动在控制台调用发送消息打印回传信息服务端定时发送上面是从客户端发送消息服务端回传我们也可以通过让服务端在固定时间发送消息给客户端修改如下当从外部连接时执行连接时执行此提示固定发送最新消息给客户端对设置监听接收从客户端发送的消息为客户端发送的消息将消息原封不动返回回去当的连接关闭时执行客户端连接后就会定时接收直至我们关闭服务多人聊天如果多个客户端连接按照上面的方式只会返回各自发送的消息先注释服务端定时发送开启两个窗口模拟如果我们要让客户端间消息共享也同时接收到服务端回传的消息呢我们可以使用找出当前所有连接中的客户端并通过回传消息发送到每一个客户端中修改如下当从外部连接时执行连接时执行此提示固定发送最新消息给客户端对设置监听接收从客户端发送的消息取得所有连接中的客户端循环发送消息至每个客户端当的连接关闭时执行这样一来不论在哪个客户端发送消息服务端都能将消息回传到每个客户端可以观察下连接信息总结纸上得来终觉浅绝知此事要躬行希望大家可以把理论配合上面的实例进行消化搭好服务端也可以直接使用测试工具好好玩耍一波',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-13 15:25:56',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">卖坚果的怪叔叔</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/travel/"><span> 旅行</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/photos/"><span> 定格时光</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/life/"><span> 生活</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><span> 关于</span></a></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://blogimg.lieme.cn/2022/05/2022051011515173.png" target="_blank"><img class="post-qr-code-img" alt="微信" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2022/05/2022051011515173.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://blogimg.lieme.cn/2022/05/2022051011515173.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2022/05/2022051011515173.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Array/" style="font-size: 1.05rem;">Array<sup>1</sup></a><a href="/tags/CSS/" style="font-size: 1.05rem;">CSS<sup>6</sup></a><a href="/tags/ECMAScript6/" style="font-size: 1.05rem;">ECMAScript6<sup>14</sup></a><a href="/tags/Git/" style="font-size: 1.05rem;">Git<sup>4</sup></a><a href="/tags/Hyperapp/" style="font-size: 1.05rem;">Hyperapp<sup>2</sup></a><a href="/tags/JavaScript/" style="font-size: 1.05rem;">JavaScript<sup>4</sup></a><a href="/tags/Map/" style="font-size: 1.05rem;">Map<sup>1</sup></a><a href="/tags/Python/" style="font-size: 1.05rem;">Python<sup>7</sup></a><a href="/tags/Set/" style="font-size: 1.05rem;">Set<sup>1</sup></a><a href="/tags/css/" style="font-size: 1.05rem;">css<sup>21</sup></a><a href="/tags/es6/" style="font-size: 1.05rem;">es6<sup>1</sup></a><a href="/tags/html/" style="font-size: 1.05rem;">html<sup>4</sup></a><a href="/tags/http/" style="font-size: 1.05rem;">http<sup>1</sup></a><a href="/tags/javascript/" style="font-size: 1.05rem;">javascript<sup>17</sup></a><a href="/tags/js/" style="font-size: 1.05rem;">js<sup>2</sup></a><a href="/tags/node%E5%AD%A6%E4%B9%A0/" style="font-size: 1.05rem;">node学习<sup>4</sup></a><a href="/tags/python/" style="font-size: 1.05rem;">python<sup>2</sup></a><a href="/tags/vue/" style="font-size: 1.05rem;">vue<sup>8</sup></a><a href="/tags/wxpy/" style="font-size: 1.05rem;">wxpy<sup>2</sup></a><a href="/tags/%E5%85%B6%E4%BB%96%E5%88%86%E4%BA%AB/" style="font-size: 1.05rem;">其他分享<sup>3</sup></a><a href="/tags/%E5%88%86%E4%BA%AB/" style="font-size: 1.05rem;">分享<sup>16</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E4%B8%A4%E4%B8%89%E9%97%AE/" style="font-size: 1.05rem;">前端两三问<sup>7</sup></a><a href="/tags/%E5%9B%BE%E7%89%87/" style="font-size: 1.05rem;">图片<sup>26</sup></a><a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 1.05rem;">小程序<sup>6</sup></a><a href="/tags/%E5%B1%85%E4%B8%AD%E6%98%BE%E7%A4%BA/" style="font-size: 1.05rem;">居中显示<sup>1</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 1.05rem;">微信<sup>4</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1%E6%9C%BA%E5%99%A8%E4%BA%BA/" style="font-size: 1.05rem;">微信机器人<sup>3</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1%E7%9B%B8%E5%85%B3%E6%8A%80%E5%B7%A7/" style="font-size: 1.05rem;">微信相关技巧<sup>1</sup></a><a href="/tags/%E6%89%93%E5%AD%97%E6%9C%BA/" style="font-size: 1.05rem;">打字机<sup>1</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 1.05rem;">技术<sup>68</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" style="font-size: 1.05rem;">技术分享<sup>2</sup></a><a href="/tags/%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C/" style="font-size: 1.05rem;">数组操作<sup>2</sup></a><a href="/tags/%E6%97%A5%E5%B8%B8%E6%8C%96%E5%9D%91/" style="font-size: 1.05rem;">日常挖坑<sup>2</sup></a><a href="/tags/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/" style="font-size: 1.05rem;">日常问题<sup>6</sup></a><a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 1.05rem;">生活<sup>54</sup></a><a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 1.05rem;">科学上网<sup>2</sup></a><a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 1.05rem;">移动端<sup>5</sup></a><a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 1.05rem;">笔记<sup>4</sup></a><a href="/tags/%E9%98%B2%E6%92%A4%E5%9B%9E/" style="font-size: 1.05rem;">防撤回<sup>1</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 1.05rem;">面试<sup>8</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="anzhiyufont anzhiyu-icon-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">March 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">February 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">7</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">December 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">November 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">October 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">August 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="article-meta tags"></span></div></div><h1 class="post-title" itemprop="name headline">5000字！带你零距离接触websocket！</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2020-09-27T16:00:00.000Z" title="发表于 2020-09-28 00:00:00">2020-09-28</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-03-13T07:25:56.424Z" title="更新于 2024-03-13 15:25:56">2024-03-13</time></span></div><div class="meta-secondline"><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为姑苏城"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>姑苏城</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src=""></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://toc.lieme.cn/2020/09/28/5000%E5%AD%97%EF%BC%81%E5%B8%A6%E4%BD%A0%E9%9B%B6%E8%B7%9D%E7%A6%BB%E6%8E%A5%E8%A7%A6websocket%EF%BC%81.html"><header><h1 id="CrawlerTitle" itemprop="name headline">5000字！带你零距离接触websocket！</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">Lieme</span><time itemprop="dateCreated datePublished" datetime="2020-09-27T16:00:00.000Z" title="发表于 2020-09-28 00:00:00">2020-09-28</time><time itemprop="dateCreated datePublished" datetime="2024-03-13T07:25:56.424Z" title="更新于 2024-03-13 15:25:56">2024-03-13</time></header><p><a target="_blank" rel="noopener" href="https://juejin.im/post/6876301731966713869">本文转载掘金作者 @johnYu  ☞☞☞点击跳转原文~</a></p>
+<h2 id="1、什么是WebSocket"><a href="#1、什么是WebSocket" class="headerlink" title="1、什么是WebSocket?"></a>1、什么是WebSocket?</h2><h3 id="1-1、定义"><a href="#1-1、定义" class="headerlink" title="1.1、定义"></a>1.1、定义</h3><blockquote>
+<p>Websocket是一个持久化的网络通信协议，可以在单个 TCP 连接上进行全双工通讯，没有了Request和Response的概念，两者地位完全平等，连接一旦建立，客户端和服务端之间实时可以进行双向数据传输。</p>
+<h3 id="1-2、关联和区别"><a href="#1-2、关联和区别" class="headerlink" title="1.2、关联和区别"></a>1.2、关联和区别</h3><h4 id="1-2-1、HTTP"><a href="#1-2-1、HTTP" class="headerlink" title="1.2.1、HTTP"></a>1.2.1、HTTP</h4></blockquote>
+<p>1、HTTP是非持久的协议，客户端想知道服务端的处理进度只能通过不停地使用 Ajax进行轮询或者采用 <strong>long poll</strong> 的方式来，但是前者对服务器压力大，后者则会因为一直等待Response造成阻塞。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/FtJzka9GLmdWEIi-9hr45e62nIBX" alt="1.png"></p>
+<p>2、虽然http1.1默认开启了<strong>keep-alive</strong>长连接保持了这个<strong>TCP通道</strong>使得在一个HTTP连接中，可以发送多个Request，接收多个Response，但是一个request只能有一个response。而且这个response也是被动的，不能主动发起。</p>
+<p>3、websocket虽然是独立于HTTP的一种协议，但是websocket必须依赖 HTTP 协议进行一次<strong>握手</strong>(在握手阶段是一样的)，握手成功后，数据就直接从 TCP通道传输，与 HTTP 无关了，可以用一张图理解两者有交集，但是并不是全部。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/Fp3_XkNW7mXhiq_fxmorHqWcBsQ8" alt="2.png"></p>
+<h4 id="1-2-2、socket"><a href="#1-2-2、socket" class="headerlink" title="1.2.2、socket"></a>1.2.2、socket</h4><p>1、socket也被称为<strong>套接字</strong>，与HTTP和WebSocket不一样，socket不是协议，它是在程序层面上对传输层协议（可以主要理解为TCP&#x2F;IP）的接口封装。可以理解为一个能够提供<strong>端对端</strong>的通信的调用接口（API）</p>
+<p>2、对于程序员而言，其需要在 A 端创建一个 socket 实例，并为这个实例提供其所要连接的 B 端的 IP 地址和端口号，而在 B 端创建另一个 socket 实例，并且绑定本地端口号来进行监听。当 A 和 B 建立连接后，双方就建立了一个端对端的 TCP 连接，从而可以进行双向通信。WebSocekt借鉴了 socket 的思想，为 client 和 server 之间提供了类似的双向通信机制。</p>
+<h3 id="1-3、应用场景"><a href="#1-3、应用场景" class="headerlink" title="1.3、应用场景"></a>1.3、应用场景</h3><blockquote>
+<p>WebSocket可以做弹幕、消息订阅、多玩家游戏、协同编辑、股票基金实时报价、视频会议、在线教育、聊天室等应用实时监听服务端变化。</p>
+</blockquote>
+<h4 id="1-3-1、Websocket握手"><a href="#1-3-1、Websocket握手" class="headerlink" title="1.3.1、Websocket握手"></a>1.3.1、Websocket握手</h4><pre><code>// Websocket握手请求报文 ☟ ☟ ☟
+
+GET /chat HTTP/1.1
+Host: server.example.com
+Upgrade:websocket
+Connection: Upgrade
+Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==
+Sec-WebSocket-Protocol: chat, superchat
+Sec-WebSocket-Version: 13
+Origin: http://example.com
+</code></pre>
+<p>下面是与传统 HTTP 报文不同的地方：</p>
+<pre><code>Upgrade: websocket
+Connection: Upgrade
+</code></pre>
+<p>表示发起的是 WebSocket 协议</p>
+<pre><code>Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==
+Sec-WebSocket-Protocol: chat, superchat
+Sec-WebSocket-Version: 13
+</code></pre>
+<p><strong>Sec-WebSocket-Key</strong> 是由浏览器随机生成的，验证是否可以进行Websocket通信，防止恶意或者无意的连接。</p>
+<p><strong>Sec_WebSocket-Protocol</strong> 是用户自定义的字符串，用来标识服务所需要的协议</p>
+<p><strong>Sec-WebSocket-Version</strong> 表示支持的 WebSocket 版本。</p>
+<pre><code>// 服务器响应：☟ ☟ ☟
+
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk=
+Sec-WebSocket-Protocol: chat
+</code></pre>
+<p><strong>101 响应码</strong> 表示要转换协议。</p>
+<p><strong>Connection: Upgrade</strong> 表示升级新协议请求。</p>
+<p><strong>Upgrade: websocket</strong> 表示升级为 WebSocket 协议。</p>
+<p><strong>Sec-WebSocket-Accept</strong> 是经过服务器确认，并且加密过后的 </p>
+<p><strong>Sec-WebSocket-Key</strong> 用来证明客户端和服务器之间能进行通信了。</p>
+<p><strong>Sec-WebSocket-Protocol</strong> 表示最终使用的协议<br>。</p>
+<blockquote>
+<p>至此，客户端和服务器握手成功建立了Websocket连接，HTTP已经完成它所有工作了，接下来就是完全按照Websocket协议进行通信了。</p>
+</blockquote>
+<h2 id="2、关于Websocket"><a href="#2、关于Websocket" class="headerlink" title="2、关于Websocket"></a>2、关于Websocket</h2><h3 id="2-1、WebSocket心跳"><a href="#2-1、WebSocket心跳" class="headerlink" title="2.1、WebSocket心跳"></a>2.1、WebSocket心跳</h3><p>可能会有一些未知情况导致SOCKET断开，而客户端和服务端却不知道，需要客户端定时发送一个<strong>心跳 Ping</strong> 让服务端知道自己在线，而服务端也要回复一个<strong>心跳 Pong</strong>告诉客户端自己可用，否则视为断开。</p>
+<h3 id="2-2、WebSocket状态"><a href="#2-2、WebSocket状态" class="headerlink" title="2.2、WebSocket状态"></a>2.2、WebSocket状态</h3><pre><code>WebSocket 对象中的readyState属性有四种状态：
+
+0: 表示正在连接
+1: 表示连接成功，可以通信了
+2: 表示连接正在关闭
+3: 表示连接已经关闭，或者打开连接失败
+</code></pre>
+<h3 id="2-3、WebSocket实践"><a href="#2-3、WebSocket实践" class="headerlink" title="2.3、WebSocket实践"></a>2.3、WebSocket实践</h3><h4 id="2-3-1、服务端接收发送消息"><a href="#2-3-1、服务端接收发送消息" class="headerlink" title="2.3.1、服务端接收发送消息"></a>2.3.1、服务端接收发送消息</h4><p>WebSocket的服务端部分，本文会以Node.js搭建。</p>
+<p>安装<strong>express</strong>和负责处理WebSocket协议的<strong>ws</strong>：</p>
+<pre><code>npm install express ws
+</code></pre>
+<h6 id="安装成功后的package-json"><a href="#安装成功后的package-json" class="headerlink" title="安装成功后的package.json:"></a>安装成功后的package.json:</h6><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/Ft1a3sdak3i5XJc3bIja4yz4nIRW" alt="3.png"></p>
+<h6 id="接着在根目录创建server-js文件"><a href="#接着在根目录创建server-js文件" class="headerlink" title="接着在根目录创建server.js文件:"></a>接着在根目录创建server.js文件:</h6><pre><code>// 引入express 和 ws
+const express = require(&#39;express&#39;);
+const SocketServer = require(&#39;ws&#39;).Server;
+
+// 指定开启的端口号const PORT = 3000;
+// 创建express，绑定监听3000端口，且设定开启后在consol中提示
+const server = express().listen(PORT, () =&gt; console.log(`Listening on $&#123;PORT&#125;`));
+
+// 将express交给SocketServer开启WebSocket的服务
+const wss = new SocketServer(&#123; server &#125;);
+
+// 当 WebSocket 从外部连接时执行
+wss.on(&#39;connection&#39;, (ws) =&gt; &#123;
+
+    // 连接时执行此 console 提示 console.log(&#39;Client connected&#39;);
+    // 对message设置监听，接收从客户端发送的消息 
+    ws.on(&#39;message&#39;, (data) =&gt; &#123;
+
+        // data为客户端发送的消息，将消息原封不动返回回去
+        ws.send(data);
+    &#125;);
+
+    // 当WebSocket的连接关闭时执行
+    ws.on(&#39;close&#39;, () =&gt; &#123;
+        console.log(&#39;Closeconnected&#39;);
+    &#125;);
+&#125;);
+</code></pre>
+<h6 id="执行node-server-js启动服务，端口打开后会执行监听时间打印提示，说明服务启动成功。"><a href="#执行node-server-js启动服务，端口打开后会执行监听时间打印提示，说明服务启动成功。" class="headerlink" title="执行node server.js启动服务，端口打开后会执行监听时间打印提示，说明服务启动成功。"></a>执行node server.js启动服务，端口打开后会执行监听时间打印提示，说明服务启动成功。</h6><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/FqKNW2JuPpzkz6KqTjGpAxPbOs9X" alt="4.png"></p>
+<h6 id="在开启WebSocket后，服务端会在message中监听，接收参数data捕获客户端发送的消息，然后使用send发送消息。"><a href="#在开启WebSocket后，服务端会在message中监听，接收参数data捕获客户端发送的消息，然后使用send发送消息。" class="headerlink" title="在开启WebSocket后，服务端会在message中监听，接收参数data捕获客户端发送的消息，然后使用send发送消息。"></a>在开启WebSocket后，服务端会在message中监听，接收参数data捕获客户端发送的消息，然后使用send发送消息。</h6><h4 id="2-3-2、客户端接收发送消息"><a href="#2-3-2、客户端接收发送消息" class="headerlink" title="2.3.2、客户端接收发送消息"></a>2.3.2、客户端接收发送消息</h4><h6 id="分别在根目录创建index-html和index-js文件"><a href="#分别在根目录创建index-html和index-js文件" class="headerlink" title="分别在根目录创建index.html和index.js文件"></a>分别在根目录创建index.html和index.js文件</h6><pre><code>// index.html
+
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;script src=&quot;./index.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+// index.js
+
+// 使用WebSocket的地址向服务端开启连接
+let ws = new WebSocket(&#39;ws://localhost:3000&#39;);
+
+// 开启后的动作，指定在连接后执行的事件
+ws.onopen = () =&gt; &#123;
+    console.log(&#39;open connection&#39;);
+&#125;;
+
+// 接收服务端发送的消息
+ws.onmessage = (event) =&gt; &#123;
+    console.log(event);
+&#125;;
+
+// 指定在关闭后执行的事件
+ws.onclose = () =&gt; &#123;
+    console.log(&#39;close connection&#39;);
+&#125;;
+</code></pre>
+<p>上面的<strong>url</strong>就是本机node开启的服务地址，分别指定连接 <strong>（onopen）</strong>，关闭 <strong>（onclose）</strong> 和消息接收 <strong>（onmessage）</strong> 的执行事件，访问html，打印ws信息。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/FrZ3GtSxlSYwkNgh4jFXJG6UVKyO" alt="5.png"></p>
+<h6 id="打印了open-connection说明连接成功，客户端会使用onmessage处理接收。"><a href="#打印了open-connection说明连接成功，客户端会使用onmessage处理接收。" class="headerlink" title="打印了open connection说明连接成功，客户端会使用onmessage处理接收。"></a>打印了<strong>open connection</strong>说明连接成功，客户端会使用<strong>onmessage</strong>处理接收。</h6><h6 id="其中event参数包含这次沟通的详细信息，从服务端回传的消息会在event的data属性中。"><a href="#其中event参数包含这次沟通的详细信息，从服务端回传的消息会在event的data属性中。" class="headerlink" title="其中event参数包含这次沟通的详细信息，从服务端回传的消息会在event的data属性中。"></a>其中<strong>event</strong>参数包含这次沟通的详细信息，从服务端回传的消息会在event的data属性中。</h6><h6 id="手动在控制台调用send发送消息，打印event回传信息"><a href="#手动在控制台调用send发送消息，打印event回传信息" class="headerlink" title="手动在控制台调用send发送消息，打印event回传信息:"></a>手动在控制台调用<strong>send</strong>发送消息，打印event回传信息:</h6><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/FkSbRDcN-PacaGyKU22hq0CnuKBC" alt="6.png"></p>
+<h4 id="2-3-3、服务端定时发送"><a href="#2-3-3、服务端定时发送" class="headerlink" title="2.3.3、服务端定时发送"></a>2.3.3、服务端定时发送</h4><h6 id="上面是从客户端发送消息，服务端回传。我们也可以通过setInterval让服务端在固定时间发送消息给客户端"><a href="#上面是从客户端发送消息，服务端回传。我们也可以通过setInterval让服务端在固定时间发送消息给客户端" class="headerlink" title="上面是从客户端发送消息，服务端回传。我们也可以通过setInterval让服务端在固定时间发送消息给客户端:"></a>上面是从客户端发送消息，服务端回传。我们也可以通过<strong>setInterval</strong>让服务端在固定时间发送消息给客户端:</h6><pre><code>// server.js修改如下:
+
+// 当WebSocket从外部连接时执行
+wss.on(&#39;connection&#39;, (ws) =&gt; &#123;
+
+    // 连接时执行此 console 提示
+    console.log(&#39;Client connected&#39;);
+
+    // 固定发送最新消息给客户端
+    const = sendNowTime = setInterval(() =&gt; &#123;
+        ws.send(String(new Date()));
+    &#125;, 1000);
+
+    // 对message设置监听，接收从客户端发送的消息
+    ws.on(&#39;message&#39;, (data) =&gt; &#123;
+
+        // data为客户端发送的消息，将消息原封不动返回回去
+        ws.send(data);
+    &#125;);
+
+    // 当WebSocket的连接关闭时执行
+    ws.on(&#39;close&#39;,() =&gt; &#123;
+        console.log(&#39;Close connected&#39;);
+    &#125;);
+&#125;);
+</code></pre>
+<h6 id="客户端连接后就会定时接收，直至我们关闭websocket服务。"><a href="#客户端连接后就会定时接收，直至我们关闭websocket服务。" class="headerlink" title="客户端连接后就会定时接收，直至我们关闭websocket服务。"></a>客户端连接后就会定时接收，直至我们关闭websocket服务。</h6><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/FupcEchCVX3zwdBcaj6cCmLQgJcR" alt="7.png"></p>
+<h4 id="2-3-4、多人聊天"><a href="#2-3-4、多人聊天" class="headerlink" title="2.3.4、多人聊天"></a>2.3.4、多人聊天</h4><h6 id="如果多个客户端连接按照上面的方式只会返回各自发送的消息，先注释服务端定时发送，开启两个窗口模拟："><a href="#如果多个客户端连接按照上面的方式只会返回各自发送的消息，先注释服务端定时发送，开启两个窗口模拟：" class="headerlink" title="如果多个客户端连接按照上面的方式只会返回各自发送的消息，先注释服务端定时发送，开启两个窗口模拟："></a>如果多个客户端连接按照上面的方式只会返回各自发送的消息，先注释服务端定时发送，开启两个窗口模拟：</h6><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/FnkqnJMSvzT4B5OBXt8G8NNUi19K" alt="8.gif"></p>
+<p>如果我们要让客户端间消息共享，也同时接收到服务端回传的消息呢？</p>
+<p>我们可以使用<strong>clients</strong>找出当前所有连接中的客户端 ，并通过回传消息发送到每一个客户端中：</p>
+<h6 id="修改server-js如下"><a href="#修改server-js如下" class="headerlink" title="修改server.js如下:"></a>修改server.js如下:</h6><pre><code>//当WebSocket从外部连接时执行
+wss.on(&#39;connection&#39;, (ws) =&gt; &#123;
+
+    //连接时执行此 console 提示
+    console.log(&#39;Client connected&#39;);
+
+    //固定发送最新消息给客户端
+    const sendNowTime = setInterval(() =&gt; &#123;
+        ws.send(String(new Date()));
+    &#125;, 1000);
+
+    //对message设置监听，接收从客户端发送的消息
+    ws.on(&#39;message&#39;, (data) =&gt; &#123;
+
+        //取得所有连接中的 客户端
+        let clients = wss.clients;
+
+        //循环，发送消息至每个客户端
+        clients.forEach((client) =&gt; &#123;
+            client.send(data);
+        &#125;);
+    &#125;);
+
+    //当WebSocket的连接关闭时执行
+    ws.on(&#39;close&#39;, () =&gt; &#123;
+        console.log(&#39;Close connected&#39;);
+    &#125;);
+&#125;);
+</code></pre>
+<h6 id="这样一来，不论在哪个客户端发送消息，服务端都能将消息回传到每个客户端："><a href="#这样一来，不论在哪个客户端发送消息，服务端都能将消息回传到每个客户端：" class="headerlink" title="这样一来，不论在哪个客户端发送消息，服务端都能将消息回传到每个客户端："></a>这样一来，不论在哪个客户端发送消息，服务端都能将消息回传到每个客户端：</h6><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/FhqW8G6Zn8BZ77kWavWbwz9RKAYI" alt="9.gif"></p>
+<h6 id="可以观察下连接信息"><a href="#可以观察下连接信息" class="headerlink" title="可以观察下连接信息:"></a>可以观察下连接信息:</h6><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/FrIhUHbBFkCptgocnZnJSNnUZZGf" alt="10.png"></p>
+<h2 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h2><p><strong>纸上得来终觉浅，绝知此事要躬行</strong>，希望大家可以把理论配合上面的实例进行消化，搭好服务端也可以直接使用<a target="_blank" rel="noopener" href="http://www.easyswoole.com/wstool.html">测试工具</a>好好玩耍一波。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/FiCNIQnvBhdqBZidQvr914BPunNa" alt="11.png"></p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg" title="头像" alt="头像"></a><div class="post-copyright__author_name">Lieme</div><div class="post-copyright__author_desc"></div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://toc.lieme.cn/2020/09/28/5000%E5%AD%97%EF%BC%81%E5%B8%A6%E4%BD%A0%E9%9B%B6%E8%B7%9D%E7%A6%BB%E6%8E%A5%E8%A7%A6websocket%EF%BC%81.html">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://toc.lieme.cn/2020/09/28/5000%E5%AD%97%EF%BC%81%E5%B8%A6%E4%BD%A0%E9%9B%B6%E8%B7%9D%E7%A6%BB%E6%8E%A5%E8%A7%A6websocket%EF%BC%81.html')">5000字！带你零距离接触websocket！</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://blogimg.lieme.cn/2022/05/2022051011515173.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2022/05/2022051011515173.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://blogimg.lieme.cn/2022/05/2022051011515173.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2022/05/2022051011515173.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://toc.lieme.cn/2020/09/28/5000%E5%AD%97%EF%BC%81%E5%B8%A6%E4%BD%A0%E9%9B%B6%E8%B7%9D%E7%A6%BB%E6%8E%A5%E8%A7%A6websocket%EF%BC%81.html"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=5000字！带你零距离接触websocket！&amp;url=https://toc.lieme.cn/2020/09/28/5000%E5%AD%97%EF%BC%81%E5%B8%A6%E4%BD%A0%E9%9B%B6%E8%B7%9D%E7%A6%BB%E6%8E%A5%E8%A7%A6websocket%EF%BC%81.html&amp;pic=" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://toc.lieme.cn" target="_blank">卖坚果的怪叔叔</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"></div></div><div class="post_share"><div class="social-share" data-image="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/09/23/%E4%B8%8D%E7%9C%8B%E5%90%8E%E6%82%94%E7%B3%BB%E5%88%97%EF%BC%81%E5%8E%9F%E6%9D%A5%E4%BB%A3%E7%A0%81%E8%BF%98%E5%8F%AF%E4%BB%A5%E8%BF%99%E4%B9%88%E5%86%99%EF%BC%81.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">不看后悔系列！原来代码还可以这么写！</div></div></a></div><div class="next-post pull-right"><a href="/2020/10/06/10000%E5%AD%97%EF%BC%8132%E4%B8%AA%E6%89%8B%E5%86%99JS%EF%BC%8C%E8%AE%A9%E4%BD%A0Level%E2%88%9E%20+%EF%BC%81.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">10000字！32个手写JS，让你Level∞ +！</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/2023/06/26/%20JS%E7%94%9F%E6%88%90Van-Picker%20%E6%8C%87%E5%AE%9A%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F.html" title="JS生成Van-Picker 指定日期格式"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2023-06-26</div><div class="title">JS生成Van-Picker 指定日期格式</div></div></a></div><div><a href="/2022/05/27/%20element-ui%E4%B8%AD%E7%9A%84Select%E9%80%89%E6%8B%A9%E5%99%A8%E4%B8%ADremote-method%E6%96%B9%E6%B3%95%E5%B8%A6%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%82%E6%95%B0.html" title="element-ui中的Select选择器中remote-method方法带自定义参数"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2022-05-27</div><div class="title">element-ui中的Select选择器中remote-method方法带自定义参数</div></div></a></div><div><a href="/2020/04/17/%20%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E6%96%87%E7%AB%A0%E5%B0%81%E9%9D%A2%E5%92%8C%E6%96%87%E7%AB%A0%E6%A0%87%E9%A2%98%EF%BC%81.html" title="如何获取微信文章封面和文章标题！"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2020-04-17</div><div class="title">如何获取微信文章封面和文章标题！</div></div></a></div><div><a href="/2020/10/06/10000%E5%AD%97%EF%BC%8132%E4%B8%AA%E6%89%8B%E5%86%99JS%EF%BC%8C%E8%AE%A9%E4%BD%A0Level%E2%88%9E%20+%EF%BC%81.html" title="10000字！32个手写JS，让你Level∞ +！"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2020-10-06</div><div class="title">10000字！32个手写JS，让你Level∞ +！</div></div></a></div><div><a href="/2022/12/31/2022%EF%BC%81%E5%85%85%E6%BB%A1%E9%AD%94%E5%B9%BB%E7%9A%84%E4%B8%80%E5%B9%B4%EF%BC%81.html" title="2022！充满魔幻的一年！"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2022-12-31</div><div class="title">2022！充满魔幻的一年！</div></div></a></div><div><a href="/2023/05/13/Ant-design-vue%20a-checkbox-group%20%E8%BF%BD%E5%8A%A0%E6%95%B0%E6%8D%AE%E5%90%8E%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%97%A0%E6%B3%95%E9%80%89%E4%B8%AD.html" title="Ant-design-vue a-checkbox-group 追加数据后第一个无法选中"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2023-05-13</div><div class="title">Ant-design-vue a-checkbox-group 追加数据后第一个无法选中</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__description">用心记录美好的瞬间</div></div></div><div class="card-widget anzhiyu-right-widget" id="card-wechat" onclick="null"><div id="flip-wrapper"><div id="flip-content"><div class="face" style="background: url(https://bu.dusays.com/2023/01/13/63c02edf44033.png) center center / 100% no-repeat"></div><div class="back face" style="background: url(https://bu.dusays.com/2023/05/13/645fa415e8694.png) center center / 100% no-repeat"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFWebSocket"><span class="toc-number">1.</span> <span class="toc-text">1、什么是WebSocket?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1%E3%80%81%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">1.1、定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2%E3%80%81%E5%85%B3%E8%81%94%E5%92%8C%E5%8C%BA%E5%88%AB"><span class="toc-number">1.2.</span> <span class="toc-text">1.2、关联和区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1%E3%80%81HTTP"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1、HTTP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2%E3%80%81socket"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2.2、socket</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3%E3%80%81%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.3.</span> <span class="toc-text">1.3、应用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1%E3%80%81Websocket%E6%8F%A1%E6%89%8B"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.3.1、Websocket握手</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%85%B3%E4%BA%8EWebsocket"><span class="toc-number">2.</span> <span class="toc-text">2、关于Websocket</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1%E3%80%81WebSocket%E5%BF%83%E8%B7%B3"><span class="toc-number">2.1.</span> <span class="toc-text">2.1、WebSocket心跳</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2%E3%80%81WebSocket%E7%8A%B6%E6%80%81"><span class="toc-number">2.2.</span> <span class="toc-text">2.2、WebSocket状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3%E3%80%81WebSocket%E5%AE%9E%E8%B7%B5"><span class="toc-number">2.3.</span> <span class="toc-text">2.3、WebSocket实践</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1%E3%80%81%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%8E%A5%E6%94%B6%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF"><span class="toc-number">2.3.1.</span> <span class="toc-text">2.3.1、服务端接收发送消息</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F%E5%90%8E%E7%9A%84package-json"><span class="toc-number">2.3.1.0.1.</span> <span class="toc-text">安装成功后的package.json:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%8E%A5%E7%9D%80%E5%9C%A8%E6%A0%B9%E7%9B%AE%E5%BD%95%E5%88%9B%E5%BB%BAserver-js%E6%96%87%E4%BB%B6"><span class="toc-number">2.3.1.0.2.</span> <span class="toc-text">接着在根目录创建server.js文件:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%89%A7%E8%A1%8Cnode-server-js%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1%EF%BC%8C%E7%AB%AF%E5%8F%A3%E6%89%93%E5%BC%80%E5%90%8E%E4%BC%9A%E6%89%A7%E8%A1%8C%E7%9B%91%E5%90%AC%E6%97%B6%E9%97%B4%E6%89%93%E5%8D%B0%E6%8F%90%E7%A4%BA%EF%BC%8C%E8%AF%B4%E6%98%8E%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F%E3%80%82"><span class="toc-number">2.3.1.0.3.</span> <span class="toc-text">执行node server.js启动服务，端口打开后会执行监听时间打印提示，说明服务启动成功。</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%9C%A8%E5%BC%80%E5%90%AFWebSocket%E5%90%8E%EF%BC%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%BC%9A%E5%9C%A8message%E4%B8%AD%E7%9B%91%E5%90%AC%EF%BC%8C%E6%8E%A5%E6%94%B6%E5%8F%82%E6%95%B0data%E6%8D%95%E8%8E%B7%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%91%E9%80%81%E7%9A%84%E6%B6%88%E6%81%AF%EF%BC%8C%E7%84%B6%E5%90%8E%E4%BD%BF%E7%94%A8send%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%E3%80%82"><span class="toc-number">2.3.1.0.4.</span> <span class="toc-text">在开启WebSocket后，服务端会在message中监听，接收参数data捕获客户端发送的消息，然后使用send发送消息。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-2%E3%80%81%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E6%94%B6%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF"><span class="toc-number">2.3.2.</span> <span class="toc-text">2.3.2、客户端接收发送消息</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%88%86%E5%88%AB%E5%9C%A8%E6%A0%B9%E7%9B%AE%E5%BD%95%E5%88%9B%E5%BB%BAindex-html%E5%92%8Cindex-js%E6%96%87%E4%BB%B6"><span class="toc-number">2.3.2.0.1.</span> <span class="toc-text">分别在根目录创建index.html和index.js文件</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%89%93%E5%8D%B0%E4%BA%86open-connection%E8%AF%B4%E6%98%8E%E8%BF%9E%E6%8E%A5%E6%88%90%E5%8A%9F%EF%BC%8C%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BC%9A%E4%BD%BF%E7%94%A8onmessage%E5%A4%84%E7%90%86%E6%8E%A5%E6%94%B6%E3%80%82"><span class="toc-number">2.3.2.0.2.</span> <span class="toc-text">打印了open connection说明连接成功，客户端会使用onmessage处理接收。</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%85%B6%E4%B8%ADevent%E5%8F%82%E6%95%B0%E5%8C%85%E5%90%AB%E8%BF%99%E6%AC%A1%E6%B2%9F%E9%80%9A%E7%9A%84%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF%EF%BC%8C%E4%BB%8E%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%9B%9E%E4%BC%A0%E7%9A%84%E6%B6%88%E6%81%AF%E4%BC%9A%E5%9C%A8event%E7%9A%84data%E5%B1%9E%E6%80%A7%E4%B8%AD%E3%80%82"><span class="toc-number">2.3.2.0.3.</span> <span class="toc-text">其中event参数包含这次沟通的详细信息，从服务端回传的消息会在event的data属性中。</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%89%8B%E5%8A%A8%E5%9C%A8%E6%8E%A7%E5%88%B6%E5%8F%B0%E8%B0%83%E7%94%A8send%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%EF%BC%8C%E6%89%93%E5%8D%B0event%E5%9B%9E%E4%BC%A0%E4%BF%A1%E6%81%AF"><span class="toc-number">2.3.2.0.4.</span> <span class="toc-text">手动在控制台调用send发送消息，打印event回传信息:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-3%E3%80%81%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AE%9A%E6%97%B6%E5%8F%91%E9%80%81"><span class="toc-number">2.3.3.</span> <span class="toc-text">2.3.3、服务端定时发送</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%B8%8A%E9%9D%A2%E6%98%AF%E4%BB%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%EF%BC%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%9B%9E%E4%BC%A0%E3%80%82%E6%88%91%E4%BB%AC%E4%B9%9F%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87setInterval%E8%AE%A9%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%9C%A8%E5%9B%BA%E5%AE%9A%E6%97%B6%E9%97%B4%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%E7%BB%99%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">2.3.3.0.1.</span> <span class="toc-text">上面是从客户端发送消息，服务端回传。我们也可以通过setInterval让服务端在固定时间发送消息给客户端:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9E%E6%8E%A5%E5%90%8E%E5%B0%B1%E4%BC%9A%E5%AE%9A%E6%97%B6%E6%8E%A5%E6%94%B6%EF%BC%8C%E7%9B%B4%E8%87%B3%E6%88%91%E4%BB%AC%E5%85%B3%E9%97%ADwebsocket%E6%9C%8D%E5%8A%A1%E3%80%82"><span class="toc-number">2.3.3.0.2.</span> <span class="toc-text">客户端连接后就会定时接收，直至我们关闭websocket服务。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-4%E3%80%81%E5%A4%9A%E4%BA%BA%E8%81%8A%E5%A4%A9"><span class="toc-number">2.3.4.</span> <span class="toc-text">2.3.4、多人聊天</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E5%A4%9A%E4%B8%AA%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9E%E6%8E%A5%E6%8C%89%E7%85%A7%E4%B8%8A%E9%9D%A2%E7%9A%84%E6%96%B9%E5%BC%8F%E5%8F%AA%E4%BC%9A%E8%BF%94%E5%9B%9E%E5%90%84%E8%87%AA%E5%8F%91%E9%80%81%E7%9A%84%E6%B6%88%E6%81%AF%EF%BC%8C%E5%85%88%E6%B3%A8%E9%87%8A%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AE%9A%E6%97%B6%E5%8F%91%E9%80%81%EF%BC%8C%E5%BC%80%E5%90%AF%E4%B8%A4%E4%B8%AA%E7%AA%97%E5%8F%A3%E6%A8%A1%E6%8B%9F%EF%BC%9A"><span class="toc-number">2.3.4.0.1.</span> <span class="toc-text">如果多个客户端连接按照上面的方式只会返回各自发送的消息，先注释服务端定时发送，开启两个窗口模拟：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9server-js%E5%A6%82%E4%B8%8B"><span class="toc-number">2.3.4.0.2.</span> <span class="toc-text">修改server.js如下:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%BF%99%E6%A0%B7%E4%B8%80%E6%9D%A5%EF%BC%8C%E4%B8%8D%E8%AE%BA%E5%9C%A8%E5%93%AA%E4%B8%AA%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%EF%BC%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%83%BD%E8%83%BD%E5%B0%86%E6%B6%88%E6%81%AF%E5%9B%9E%E4%BC%A0%E5%88%B0%E6%AF%8F%E4%B8%AA%E5%AE%A2%E6%88%B7%E7%AB%AF%EF%BC%9A"><span class="toc-number">2.3.4.0.3.</span> <span class="toc-text">这样一来，不论在哪个客户端发送消息，服务端都能将消息回传到每个客户端：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%8F%AF%E4%BB%A5%E8%A7%82%E5%AF%9F%E4%B8%8B%E8%BF%9E%E6%8E%A5%E4%BF%A1%E6%81%AF"><span class="toc-number">2.3.4.0.4.</span> <span class="toc-text">可以观察下连接信息:</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">3、总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/11/%E5%88%9D%E6%98%A5%E9%87%8C%E7%9A%84%F0%9F%8C%B8.html" title="初春里的🌸">初春里的🌸</a><time datetime="2024-03-10T16:00:00.000Z" title="发表于 2024-03-11 00:00:00">2024-03-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/03/%E9%82%A3%E5%A4%A9%E8%80%81%E5%AE%B6%E4%B8%8B%E9%9B%AA%E2%9D%84%EF%B8%8F.html" title="那天老家下雪❄️">那天老家下雪❄️</a><time datetime="2024-03-02T16:00:00.000Z" title="发表于 2024-03-03 00:00:00">2024-03-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/28/%E8%A7%86%E9%A2%91.html" title="视频">视频</a><time datetime="2024-02-27T16:00:00.000Z" title="发表于 2024-02-28 00:00:00">2024-02-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/26/%E8%BF%87%E5%B9%B4.html" title="过年">过年</a><time datetime="2024-02-25T16:00:00.000Z" title="发表于 2024-02-26 00:00:00">2024-02-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/21/%E5%81%9A%E6%A2%A6.html" title="做梦">做梦</a><time datetime="2024-02-20T16:00:00.000Z" title="发表于 2024-02-21 00:00:00">2024-02-21</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2016 - 2024 By <a class="footer-bar-link" href="/" title="Lieme" target="_blank">Lieme</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://cuixinxin.cn" title="坚果大叔">坚果大叔</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">288</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">120</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">14</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://cuixinxin.cn/" title="卖坚果的怪叔叔"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="卖坚果的怪叔叔"/><span class="back-menu-item-text">卖坚果的怪叔叔</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/travel/"><span> 旅行</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/photos/"><span> 定格时光</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/life/"><span> 生活</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><span> 关于</span></a></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Array/" style="font-size: 0.88rem;">Array<sup>1</sup></a><a href="/tags/CSS/" style="font-size: 0.88rem;">CSS<sup>6</sup></a><a href="/tags/ECMAScript6/" style="font-size: 0.88rem;">ECMAScript6<sup>14</sup></a><a href="/tags/Git/" style="font-size: 0.88rem;">Git<sup>4</sup></a><a href="/tags/Hyperapp/" style="font-size: 0.88rem;">Hyperapp<sup>2</sup></a><a href="/tags/JavaScript/" style="font-size: 0.88rem;">JavaScript<sup>4</sup></a><a href="/tags/Map/" style="font-size: 0.88rem;">Map<sup>1</sup></a><a href="/tags/Python/" style="font-size: 0.88rem;">Python<sup>7</sup></a><a href="/tags/Set/" style="font-size: 0.88rem;">Set<sup>1</sup></a><a href="/tags/css/" style="font-size: 0.88rem;">css<sup>21</sup></a><a href="/tags/es6/" style="font-size: 0.88rem;">es6<sup>1</sup></a><a href="/tags/html/" style="font-size: 0.88rem;">html<sup>4</sup></a><a href="/tags/http/" style="font-size: 0.88rem;">http<sup>1</sup></a><a href="/tags/javascript/" style="font-size: 0.88rem;">javascript<sup>17</sup></a><a href="/tags/js/" style="font-size: 0.88rem;">js<sup>2</sup></a><a href="/tags/node%E5%AD%A6%E4%B9%A0/" style="font-size: 0.88rem;">node学习<sup>4</sup></a><a href="/tags/python/" style="font-size: 0.88rem;">python<sup>2</sup></a><a href="/tags/vue/" style="font-size: 0.88rem;">vue<sup>8</sup></a><a href="/tags/wxpy/" style="font-size: 0.88rem;">wxpy<sup>2</sup></a><a href="/tags/%E5%85%B6%E4%BB%96%E5%88%86%E4%BA%AB/" style="font-size: 0.88rem;">其他分享<sup>3</sup></a><a href="/tags/%E5%88%86%E4%BA%AB/" style="font-size: 0.88rem;">分享<sup>16</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E4%B8%A4%E4%B8%89%E9%97%AE/" style="font-size: 0.88rem;">前端两三问<sup>7</sup></a><a href="/tags/%E5%9B%BE%E7%89%87/" style="font-size: 0.88rem;">图片<sup>26</sup></a><a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 0.88rem;">小程序<sup>6</sup></a><a href="/tags/%E5%B1%85%E4%B8%AD%E6%98%BE%E7%A4%BA/" style="font-size: 0.88rem;">居中显示<sup>1</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 0.88rem;">微信<sup>4</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1%E6%9C%BA%E5%99%A8%E4%BA%BA/" style="font-size: 0.88rem;">微信机器人<sup>3</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1%E7%9B%B8%E5%85%B3%E6%8A%80%E5%B7%A7/" style="font-size: 0.88rem;">微信相关技巧<sup>1</sup></a><a href="/tags/%E6%89%93%E5%AD%97%E6%9C%BA/" style="font-size: 0.88rem;">打字机<sup>1</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 0.88rem;">技术<sup>68</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" style="font-size: 0.88rem;">技术分享<sup>2</sup></a><a href="/tags/%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C/" style="font-size: 0.88rem;">数组操作<sup>2</sup></a><a href="/tags/%E6%97%A5%E5%B8%B8%E6%8C%96%E5%9D%91/" style="font-size: 0.88rem;">日常挖坑<sup>2</sup></a><a href="/tags/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/" style="font-size: 0.88rem;">日常问题<sup>6</sup></a><a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 0.88rem;">生活<sup>54</sup></a><a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 0.88rem;">科学上网<sup>2</sup></a><a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 0.88rem;">移动端<sup>5</sup></a><a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 0.88rem;">笔记<sup>4</sup></a><a href="/tags/%E9%98%B2%E6%92%A4%E5%9B%9E/" style="font-size: 0.88rem;">防撤回<sup>1</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 0.88rem;">面试<sup>8</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2017 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2016 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 Lieme 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>

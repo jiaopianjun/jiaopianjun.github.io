@@ -1,0 +1,639 @@
+<!DOCTYPE html><html lang="zh" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>二维码扫码登录是什么原理 | 卖坚果的怪叔叔</title><meta name="keywords" content="技术"><meta name="author" content="Lieme"><meta name="copyright" content="Lieme"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="二维码扫码登录是什么原理"><meta name="application-name" content="二维码扫码登录是什么原理"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="二维码扫码登录是什么原理"><meta property="og:url" content="https://toc.lieme.cn/2021/04/07/%E4%BA%8C%E7%BB%B4%E7%A0%81%E6%89%AB%E7%A0%81%E7%99%BB%E5%BD%95%E6%98%AF%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86.html"><meta property="og:site_name" content="卖坚果的怪叔叔"><meta property="og:description" content="本文转载掘金 @大古同学    在日常生活中，二维码出现在很多场景，比如超市支付、系统登录、应用下载等等。了解二维码的原理，可以为技术人员在技术选型时提供新的思路。对于非技术人员呢，除了解惑，还可以引导他更好地辨别生活中遇到的各种二维码，防止上当受骗。    二维码，大家再熟悉不过了    购物"><meta property="og:locale" content="zh"><meta property="og:image" content="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg"><meta property="article:author" content="Lieme"><meta property="article:tag" content="卖坚果的怪叔叔 前端 vue python 微信"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg"><meta name="description" content="本文转载掘金 @大古同学    在日常生活中，二维码出现在很多场景，比如超市支付、系统登录、应用下载等等。了解二维码的原理，可以为技术人员在技术选型时提供新的思路。对于非技术人员呢，除了解惑，还可以引导他更好地辨别生活中遇到的各种二维码，防止上当受骗。    二维码，大家再熟悉不过了    购物"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://toc.lieme.cn/2021/04/07/%E4%BA%8C%E7%BB%B4%E7%A0%81%E6%89%AB%E7%A0%81%E7%99%BB%E5%BD%95%E6%98%AF%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: {"enable":true,"img":"https://upload-bbs.miyoushe.com/upload/2023/09/03/125766904/ee23df8517f3c3e3efc4145658269c06_5714860933110284659.png"},
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: undefined,
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":1},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: undefined,
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: Lieme","link":"链接: ","source":"来源: 卖坚果的怪叔叔","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '卖坚果的怪叔叔',
+  title: '二维码扫码登录是什么原理',
+  postAI: '',
+  pageFillDescription: '二维码登录的本质, 认识二维码, 系统认证机制, 扫描二维码登录的一般步骤, 大概流程, 二维码准备, 扫描状态切换, 状态确认, 总结本文转载掘金大古同学在日常生活中二维码出现在很多场景比如超市支付系统登录应用下载等等了解二维码的原理可以为技术人员在技术选型时提供新的思路对于非技术人员呢除了解惑还可以引导他更好地辨别生活中遇到的各种二维码防止上当受骗二维码大家再熟悉不过了购物扫个码吃饭扫个码坐公交也扫个码在扫码的过程中大家可能会有疑问这二维码安全吗会不会泄漏我的个人信息更深度的用户还会考虑我的系统是不是也可以搞一个二维码来推广呢这时候就需要了解一下二维码背后的技术和逻辑了二维码最常用的场景之一就是通过手机端应用扫描或者端的二维码来登录同一个系统比如手机微信扫码登录端微信手机淘宝扫码登录端淘宝那么就让我们来看一下二维码登录是怎么操作的二维码登录的本质二维码登录本质上也是一种登录认证方式既然是登录认证要做的也就两件事情告诉系统我是谁向系统证明我是谁比如账号密码登录账号就是告诉系统我是谁密码就是向系统证明我是谁比如手机验证码登录手机号就是告诉系统我是谁验证码就是向系统证明我是谁那么扫码登录是怎么做到这两件事情的呢我们一起来考虑一下手机端应用扫端二维码手机端确认后账号就在端登录成功了这里端登录的账号肯定与手机端是同一个账号不可能手机端登录的是账号而扫码登录以后端登录的是账号所以第一件事情告诉系统我是谁是比较清楚的通过扫描二维码把手机端的账号信息传递到端至于是怎么传的我们后面再说第二件事情向系统证明我是谁扫码登录过程中用户并没有去输入密码也没有输入验证码或者其他什么码那是怎么证明的呢有些同学会想到是不是扫码过程中把密码传到了端呢但这是不可能的因为那样太不安全的客户端也根本不会去存储密码我们仔细想一下其实手机端它是已经登录过的就是说手机端是已经通过登录认证所说只要扫码确认是这个手机且是这个账号操作的其实就能间接证明我谁认识二维码所谓一维码也就是条形码超市里的条形码这个相信大家都非常熟悉条形码实际上就是一串数字它上面存储了商品的序列号二维码其实与条形码类似只不过它存储的不一定是数字还可以是任何的字符串你可以认为它就是字符串的另外一种表现形式在搜索引擎中搜索二维码你可以找到很多在线生成二维码的工具网站这些网站可以提供字符串与二维码之间相互转换的功能比如草料二维码网站在左边的输入框就可以输入你的内容它可以是文本网址文件然后就可以生成代表它们的二维码你也可以把二维码上传进行解码然后就可以解析出二维码代表的含义系统认证机制认识了二维码我们了解一下移动互联网下的系统认证机制前面我们说过为了安全手机端它是不会存储你的登录密码的但是在日常使用过程中我们应该会注意到只有在你的应用下载下来后第一次登录的时候才需要进行一个账号密码的登录那之后呢即使这个应用进程被杀掉或者手机重启都是不需要再次输入账号密码的它可以自动登录其实这背后就是一套基于的认证机制我们来看一下这套机制是怎么运行的账号密码登录时客户端会将设备信息一起传递给服务端如果账号密码校验通过服务端会把账号与设备进行一个绑定存在一个数据结构中这个数据结构中包含了账号设备设备类型等等账号登录的设备设备类型如然后服务端会生成一个用它来映射数据结构这个其实就是一串有着特殊意义的字符串它的意义就在于通过它可以找到对应的账号与设备信息客户端得到这个后需要进行一个本地保存每次访问系统都携带上与设备信息服务端就可以通过找到与它绑定的账号与设备信息然后把绑定的设备信息与客户端每次传来的设备信息进行比较如果相同那么校验通过返回接口响应数据如果不同那就是校验不通过拒绝访问从前面这个流程我们可以看到客户端不会也没必要保存你的密码相反它是保存了可能有些同学会想这个这么重要万一被别人知道了怎么办实际上知道了也没有影响因为设备信息是唯一的只要你的设备信息别人不知道别人拿其他设备来访问验证也是不通过的可以说客户端登录的目的就是获得属于自己的那么在扫码登录过程中端是怎么获得属于自己的呢不可能手机端直接把自己的给端用只能属于某个客户端私有其他人或者是其他客户端是用不了的在分析这个问题之前我们有必要先梳理一下扫描二维码登录的一般步骤是什么样的这可以帮助我们梳理清楚整个过程扫描二维码登录的一般步骤大概流程扫码前手机端应用是已登录状态端显示一个二维码等待扫描手机端打开应用扫描端的二维码扫描后会提示已扫描请在手机端点击确认用户在手机端点击确认确认后端登录就成功了可以看到二维码在中间有三个状态待扫描已扫描待确认已确认那么可以想象二维码的背后它一定存在一个唯一性的当二维码生成时这个也一起生成并且绑定了端的设备信息手机去扫描这个二维码二维码切换为已扫描待确认状态此时就会将账号信息与这个绑定当手机端确认登录时它就会生成端用于登录的并返回给端好了到这里基本思路就已经清晰了接下来我们把整个过程再具体化一下二维码准备端向服务端发起请求告诉服务端我要生成用户登录的二维码并且把端设备信息也传递给服务端服务端收到请求后它生成二维码并将二维码与端设备信息进行绑定然后把二维码返回给端端收到二维码后生成二维码二维码中肯定包含了为了及时知道二维码的状态客户端在展现二维码后端不断的轮询服务端比如每隔一秒就轮询一次请求服务端告诉当前二维码的状态及相关信息二维码已经准好了接下来就是扫描状态扫描状态切换用户用手机去扫描端的二维码通过二维码内容取到其中的二维码再调用服务端将移动端的身份信息与二维码一起发送给服务端服务端接收到后它可以将身份信息与二维码进行绑定生成临时然后返回给手机端因为端一直在轮询二维码状态所以这时候二维码状态发生了改变它就可以在界面上把二维码状态更新为已扫描那么为什么需要返回给手机端一个临时呢临时与一样它也是一种身份凭证不同的地方在于它只能用一次用过就失效在第三步骤中返回临时为的就是手机端在下一步操作时可以用它作为凭证以此确保扫码登录两步操作是同一部手机端发出的状态确认最后就是状态的确认了手机端在接收到临时后会弹出确认登录界面用户点击确认时手机端携带临时用来调用服务端的接口告诉服务端我已经确认服务端收到确认后根据二维码绑定的设备信息与账号信息生成用户端登录的这时候端的轮询接口它就可以得知二维码的状态已经变成了已确认并且从服务端可以获取到用户登录的到这里登录就成功了后端端就可以用去访问服务端的资源了扫码动作的基础流程都讲完了有些细节还没有深入介绍比如二维码的内容是什么可以是二维码可以是包含二维码的一个地址在扫码确认这一步用户取消了怎么处理这些细节都留给大家思考总结我们从登陆的本质触发探索二维码扫码登录是如何做到的告诉系统我是谁向系统证明我谁在这个过程中我们先简单讲了两个前提知识一个是二维码原理一个是基于的认证机制然后我们以二维码状态为轴分析了这背后的逻辑通过认证机制与二维码状态变化来实现扫码登录需要指出的是前面的讲的登录流程它适用于同一个系统的端端移动端',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-13 14:19:08',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">卖坚果的怪叔叔</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/travel/"><span> 旅行</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/photos/"><span> 定格时光</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/life/"><span> 生活</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><span> 关于</span></a></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://blogimg.lieme.cn/2022/05/2022051011515173.png" target="_blank"><img class="post-qr-code-img" alt="微信" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2022/05/2022051011515173.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://blogimg.lieme.cn/2022/05/2022051011515173.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2022/05/2022051011515173.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Array/" style="font-size: 1.05rem;">Array<sup>1</sup></a><a href="/tags/CSS/" style="font-size: 1.05rem;">CSS<sup>6</sup></a><a href="/tags/ECMAScript6/" style="font-size: 1.05rem;">ECMAScript6<sup>14</sup></a><a href="/tags/Git/" style="font-size: 1.05rem;">Git<sup>4</sup></a><a href="/tags/Hyperapp/" style="font-size: 1.05rem;">Hyperapp<sup>2</sup></a><a href="/tags/JavaScript/" style="font-size: 1.05rem;">JavaScript<sup>4</sup></a><a href="/tags/Map/" style="font-size: 1.05rem;">Map<sup>1</sup></a><a href="/tags/Python/" style="font-size: 1.05rem;">Python<sup>7</sup></a><a href="/tags/Set/" style="font-size: 1.05rem;">Set<sup>1</sup></a><a href="/tags/css/" style="font-size: 1.05rem;">css<sup>21</sup></a><a href="/tags/es6/" style="font-size: 1.05rem;">es6<sup>1</sup></a><a href="/tags/html/" style="font-size: 1.05rem;">html<sup>4</sup></a><a href="/tags/http/" style="font-size: 1.05rem;">http<sup>1</sup></a><a href="/tags/javascript/" style="font-size: 1.05rem;">javascript<sup>17</sup></a><a href="/tags/js/" style="font-size: 1.05rem;">js<sup>2</sup></a><a href="/tags/node%E5%AD%A6%E4%B9%A0/" style="font-size: 1.05rem;">node学习<sup>4</sup></a><a href="/tags/python/" style="font-size: 1.05rem;">python<sup>2</sup></a><a href="/tags/vue/" style="font-size: 1.05rem;">vue<sup>8</sup></a><a href="/tags/wxpy/" style="font-size: 1.05rem;">wxpy<sup>2</sup></a><a href="/tags/%E5%85%B6%E4%BB%96%E5%88%86%E4%BA%AB/" style="font-size: 1.05rem;">其他分享<sup>3</sup></a><a href="/tags/%E5%88%86%E4%BA%AB/" style="font-size: 1.05rem;">分享<sup>16</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E4%B8%A4%E4%B8%89%E9%97%AE/" style="font-size: 1.05rem;">前端两三问<sup>7</sup></a><a href="/tags/%E5%9B%BE%E7%89%87/" style="font-size: 1.05rem;">图片<sup>26</sup></a><a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 1.05rem;">小程序<sup>6</sup></a><a href="/tags/%E5%B1%85%E4%B8%AD%E6%98%BE%E7%A4%BA/" style="font-size: 1.05rem;">居中显示<sup>1</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 1.05rem;">微信<sup>4</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1%E6%9C%BA%E5%99%A8%E4%BA%BA/" style="font-size: 1.05rem;">微信机器人<sup>3</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1%E7%9B%B8%E5%85%B3%E6%8A%80%E5%B7%A7/" style="font-size: 1.05rem;">微信相关技巧<sup>1</sup></a><a href="/tags/%E6%89%93%E5%AD%97%E6%9C%BA/" style="font-size: 1.05rem;">打字机<sup>1</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 1.05rem;">技术<sup>68</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" style="font-size: 1.05rem;">技术分享<sup>2</sup></a><a href="/tags/%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C/" style="font-size: 1.05rem;">数组操作<sup>2</sup></a><a href="/tags/%E6%97%A5%E5%B8%B8%E6%8C%96%E5%9D%91/" style="font-size: 1.05rem;">日常挖坑<sup>2</sup></a><a href="/tags/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/" style="font-size: 1.05rem;">日常问题<sup>6</sup></a><a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 1.05rem;">生活<sup>54</sup></a><a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 1.05rem;">科学上网<sup>2</sup></a><a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 1.05rem;">移动端<sup>5</sup></a><a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 1.05rem;">笔记<sup>4</sup></a><a href="/tags/%E9%98%B2%E6%92%A4%E5%9B%9E/" style="font-size: 1.05rem;">防撤回<sup>1</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 1.05rem;">面试<sup>8</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="anzhiyufont anzhiyu-icon-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">March 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">February 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">7</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">December 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">November 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">October 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">August 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="article-meta tags"></span></div></div><h1 class="post-title" itemprop="name headline">二维码扫码登录是什么原理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2021-04-06T16:00:00.000Z" title="发表于 2021-04-07 00:00:00">2021-04-07</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-03-13T06:19:08.548Z" title="更新于 2024-03-13 14:19:08">2024-03-13</time></span></div><div class="meta-secondline"><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为姑苏城"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>姑苏城</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src=""></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://toc.lieme.cn/2021/04/07/%E4%BA%8C%E7%BB%B4%E7%A0%81%E6%89%AB%E7%A0%81%E7%99%BB%E5%BD%95%E6%98%AF%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86.html"><header><h1 id="CrawlerTitle" itemprop="name headline">二维码扫码登录是什么原理</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">Lieme</span><time itemprop="dateCreated datePublished" datetime="2021-04-06T16:00:00.000Z" title="发表于 2021-04-07 00:00:00">2021-04-07</time><time itemprop="dateCreated datePublished" datetime="2024-03-13T06:19:08.548Z" title="更新于 2024-03-13 14:19:08">2024-03-13</time></header><!-- wp:paragraph -->
+
+<p>本文转载掘金 <a target="_blank" rel="noopener" href="https://juejin.cn/post/6940976355097985032">@大古同学</a></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+
+<p>在日常生活中，二维码出现在很多场景，比如超市支付、系统登录、应用下载等等。了解二维码的原理，可以为技术人员在技术选型时提供新的思路。对于非技术人员呢，除了解惑，还可以引导他更好地辨别生活中遇到的各种二维码，防止上当受骗。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+
+<p>二维码，大家再熟悉不过了</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+
+<p>购物扫个码，吃饭扫个码，坐公交也扫个码</p>
+<!-- /wp:paragraph -->
+<!-- wp:image -->
+<figure class="wp-block-image">![](d6fc802874f84b0daf46a143b0bb0d92~tplv-k3u1fbpfcp-zoom-1.image?imageslim)</figure>
+<!-- /wp:image -->
+<!-- wp:image -->
+<figure class="wp-block-image">![](71e7a6e66bff4cd495859fd6d806b3d8~tplv-k3u1fbpfcp-zoom-1.image)</figure>
+<!-- /wp:image -->
+<!-- wp:paragraph -->
+
+<p>在扫码的过程中，大家可能会有疑问：这二维码安全吗？会不会泄漏我的个人信息？更深度的用户还会考虑：我的系统是不是也可以搞一个二维码来推广呢？</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+
+<p>这时候就需要了解一下二维码背后的技术和逻辑了！</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+
+<p>二维码最常用的场景之一就是通过手机端应用扫描PC或者WEB端的二维码，来登录同一个系统。 比如手机微信扫码登录PC端微信，手机淘宝扫码登录PC端淘宝。 那么就让我们来看一下，二维码登录是怎么操作的！</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+
+<h2 id="二维码登录的本质"><a href="#二维码登录的本质" class="headerlink" title="二维码登录的本质"></a>二维码登录的本质</h2><!-- /wp:heading -->
+<!-- wp:paragraph -->
+
+<p>二维码登录本质上也是一种登录认证方式。既然是登录认证，要做的也就两件事情！</p>
+<!-- /wp:paragraph -->
+<!-- wp:list {"ordered":true} -->
+
+<ol>
+<li>告诉系统我是谁</li>
+<li>向系统证明我是谁<!-- /wp:list -->
+<!-- wp:paragraph --></li>
+</ol>
+<p>比如账号密码登录，账号就是告诉系统我是谁， 密码就是向系统证明我是谁; 比如手机验证码登录，手机号就是告诉系统我是谁，验证码就是向系统证明我是谁;</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+
+<p>那么扫码登录是怎么做到这两件事情的呢？我们一起来考虑一下</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+
+<p>手机端应用扫PC端二维码，手机端确认后，账号就在PC端登录成功了！这里，PC端登录的账号肯定与手机端是同一个账号。不可能手机端登录的是账号A，而扫码登录以后，PC端登录的是账号B。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+
+<p>所以，第一件事情，告诉系统我是谁，是比较清楚的！</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+
+<p>通过扫描二维码，把手机端的账号信息传递到PC端，至于是怎么传的，我们后面再说</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+
+<p>第二件事情，向系统证明我是谁。扫码登录过程中，用户并没有去输入密码，也没有输入验证码，或者其他什么码。那是怎么证明的呢？</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+
+<p>有些同学会想到，是不是扫码过程中，把密码传到了PC端呢？ 但这是不可能的。因为那样太不安全的，客户端也根本不会去存储密码。我们仔细想一下，其实手机端APP它是已经登录过的，就是说手机端是已经通过登录认证。所说只要<strong>扫码确认是这个手机且是这个账号操作的，其实就能间接证明我谁。</strong></p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+
+<h2 id="认识二维码"><a href="#认识二维码" class="headerlink" title="认识二维码"></a>认识二维码</h2><!-- /wp:heading -->
+<!-- wp:image -->
+<figure class="wp-block-image">![](4e303f2bab33466c98590a7e69241979~tplv-k3u1fbpfcp-zoom-1.image)</figure>
+<!-- /wp:image -->
+<!-- wp:paragraph -->
+
+<p>所谓一维码，也就是条形码，超市里的条形码–这个相信大家都非常熟悉，条形码实际上就是一串数字，它上面存储了商品的序列号。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+
+<p>二维码其实与条形码类似，只不过它存储的不一定是数字，还可以是任何的字符串，你可以认为，它就是字符串的另外一种表现形式，</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+
+<p>在搜索引擎中搜索二维码，你可以找到很多在线生成二维码的工具网站，这些网站可以提供字符串与二维码之间相互转换的功能，比如 <strong>草料二维码网站</strong></p>
+<!-- /wp:paragraph -->
+<!-- wp:image -->
+<figure class="wp-block-image">![](8308ad662abe45e2a2ff6562147be620~tplv-k3u1fbpfcp-zoom-1.image)</figure>
+<!-- /wp:image -->
+<!-- wp:paragraph -->
+
+<p>在左边的输入框就可以输入你的内容，它可以是文本、网址，文件……..。然后就可以生成代表它们的二维码</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+
+<p>你也可以把二维码上传，进行”解码”，然后就可以解析出二维码代表的含义</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+
+<h2 id="系统认证机制"><a href="#系统认证机制" class="headerlink" title="系统认证机制"></a>系统认证机制</h2><!-- /wp:heading -->
+<!-- wp:paragraph -->
+
+<p>认识了二维码，我们了解一下移动互联网下的系统认证机制。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+
+<p>前面我们说过，为了安全，手机端它是不会存储你的登录密码的。 但是在日常使用过程中，我们应该会注意到，只有在你的应用下载下来后，第一次登录的时候，才需要进行一个账号密码的登录， 那之后呢 即使这个应用进程被杀掉，或者手机重启，都是不需要再次输入账号密码的，它可以自动登录。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+
+<p>其实这背后就是一套基于token的认证机制，我们来看一下这套机制是怎么运行的，</p>
+<!-- /wp:paragraph -->
+<!-- wp:image -->
+<figure class="wp-block-image">![](e39768fec0ab403998cd0ed4580b9817~tplv-k3u1fbpfcp-zoom-1.image)</figure>
+<!-- /wp:image -->
+<!-- wp:list {"ordered":true} -->
+
+<ol>
+<li>账号密码登录时，客户端会将设备信息一起传递给服务端，</li>
+<li>如果账号密码校验通过，服务端会把账号与设备进行一个绑定，存在一个数据结构中，这个数据结构中包含了账号ID，设备ID，设备类型等等<!-- /wp:list -->
+<!-- wp:code -->
+
+const token &#x3D; {<br>  acountid:’账号ID’,<br>  deviceid:’登录的设备ID’,<br>  deviceType:’设备类型，如 iso,android,pc……’,<br>}</li>
+</ol>
+<!-- /wp:code -->
+<!-- wp:paragraph -->
+
+<p>然后服务端会生成一个token，用它来映射数据结构，这个token其实就是一串有着特殊意义的字符串，它的意义就在于，通过它可以找到对应的账号与设备信息，</p>
+<!-- /wp:paragraph -->
+<!-- wp:list {"ordered":true} -->
+
+<ol>
+<li>客户端得到这个token后，需要进行一个本地保存，每次访问系统API都携带上token与设备信息。</li>
+<li>服务端就可以通过token找到与它绑定的账号与设备信息，然后把绑定的设备信息与客户端每次传来的设备信息进行比较， 如果相同，那么校验通过，返回AP接口响应数据， 如果不同，那就是校验不通过拒绝访问<!-- /wp:list -->
+<!-- wp:paragraph --></li>
+</ol>
+<p>从前面这个流程，我们可以看到，客户端不会也没必要保存你的密码，相反，它是保存了token。可能有些同学会想，这个token这么重要，万一被别人知道了怎么办。实际上，知道了也没有影响， 因为设备信息是唯一的，只要你的设备信息别人不知道， 别人拿其他设备来访问，验证也是不通过的。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+
+<p>可以说，客户端登录的目的，就是获得属于自己的token。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+
+<p>那么在扫码登录过程中，PC端是怎么获得属于自己的token呢？不可能手机端直接把自己的token给PC端用！token只能属于某个客户端私有，其他人或者是其他客户端是用不了的。在分析这个问题之前，我们有必要先梳理一下，扫描二维码登录的一般步骤是什么样的。这可以帮助我们梳理清楚整个过程，</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+
+<h2 id="扫描二维码登录的一般步骤"><a href="#扫描二维码登录的一般步骤" class="headerlink" title="扫描二维码登录的一般步骤"></a>扫描二维码登录的一般步骤</h2><!-- /wp:heading -->
+<!-- wp:heading {"level":3} -->
+
+<h3 id="大概流程"><a href="#大概流程" class="headerlink" title="大概流程"></a>大概流程</h3><!-- /wp:heading -->
+<!-- wp:image -->
+<figure class="wp-block-image">![](e1dfc077969e4607b172c0a396eb626b~tplv-k3u1fbpfcp-zoom-1.image)</figure>
+<!-- /wp:image -->
+<!-- wp:list {"ordered":true} -->
+
+<ol>
+<li>扫码前，手机端应用是已登录状态，PC端显示一个二维码，等待扫描</li>
+<li>手机端打开应用，扫描PC端的二维码，扫描后，会提示”已扫描，请在手机端点击确认”</li>
+<li>用户在手机端点击确认，确认后PC端登录就成功了<!-- /wp:list -->
+<!-- wp:paragraph --></li>
+</ol>
+<p>可以看到，二维码在中间有三个状态， 待扫描，已扫描待确认，已确认。 那么可以想象</p>
+<!-- /wp:paragraph -->
+<!-- wp:image -->
+<figure class="wp-block-image">![](92d8a413b7c540a2b8ad374e7e555452~tplv-k3u1fbpfcp-zoom-1.image)</figure>
+<!-- /wp:image -->
+<!-- wp:list {"ordered":true} -->
+
+<ol>
+<li>二维码的背后它一定存在一个唯一性的ID，当二维码生成时，这个ID也一起生成，并且绑定了PC端的设备信息</li>
+<li>手机去扫描这个二维码</li>
+<li>二维码切换为 已扫描待确认状态， 此时就会将账号信息与这个ID绑定</li>
+<li>当手机端确认登录时，它就会生成PC端用于登录的token，并返回给PC端<!-- /wp:list -->
+<!-- wp:paragraph --></li>
+</ol>
+<p>好了，到这里，基本思路就已经清晰了，接下来我们把整个过程再具体化一下</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"level":3} -->
+
+<h3 id="二维码准备"><a href="#二维码准备" class="headerlink" title="二维码准备"></a>二维码准备</h3><!-- /wp:heading -->
+<!-- wp:image -->
+<figure class="wp-block-image">![](74b521bcf35d4215a97a9bea4ae8146d~tplv-k3u1fbpfcp-zoom-1.image)</figure>
+<!-- /wp:image -->
+<!-- wp:list {"ordered":true} -->
+
+<ol>
+<li>PC端向服务端发起请求，告诉服务端，我要生成用户登录的二维码，并且把PC端设备信息也传递给服务端</li>
+<li>服务端收到请求后，它生成二维码ID，并将二维码ID与PC端设备信息进行绑定</li>
+<li>然后把二维码ID返回给PC端</li>
+<li>PC端收到二维码ID后，生成二维码(二维码中肯定包含了ID)</li>
+<li>为了及时知道二维码的状态，客户端在展现二维码后，PC端不断的轮询服务端，比如每隔一秒就轮询一次，请求服务端告诉当前二维码的状态及相关信息<!-- /wp:list -->
+<!-- wp:paragraph --></li>
+</ol>
+<p>二维码已经准好了，接下来就是扫描状态</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"level":3} -->
+
+<h3 id="扫描状态切换"><a href="#扫描状态切换" class="headerlink" title="扫描状态切换"></a>扫描状态切换</h3><!-- /wp:heading -->
+<!-- wp:image -->
+<figure class="wp-block-image">![](4226f007007743d8aaa8892c5270b82c~tplv-k3u1fbpfcp-zoom-1.image)</figure>
+<!-- /wp:image -->
+<!-- wp:list {"ordered":true} -->
+
+<ol>
+<li>用户用手机去扫描PC端的二维码，通过二维码内容取到其中的二维码ID</li>
+<li>再调用服务端API将移动端的身份信息与二维码ID一起发送给服务端</li>
+<li>服务端接收到后，它可以将身份信息与二维码ID进行绑定，生成临时token。然后返回给手机端</li>
+<li>因为PC端一直在轮询二维码状态，所以这时候二维码状态发生了改变，它就可以在界面上把二维码状态更新为已扫描<!-- /wp:list -->
+<!-- wp:paragraph --></li>
+</ol>
+<p>那么为什么需要返回给手机端一个临时token呢？临时token与token一样，它也是一种身份凭证，不同的地方在于它只能用一次，用过就失效。</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+
+<p>在第三步骤中返回临时token，为的就是手机端在下一步操作时，可以用它作为凭证。以此确保扫码，登录两步操作是同一部手机端发出的，</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"level":3} -->
+
+<h3 id="状态确认"><a href="#状态确认" class="headerlink" title="状态确认"></a>状态确认</h3><!-- /wp:heading -->
+<!-- wp:paragraph -->
+
+<p>最后就是状态的确认了。</p>
+<!-- /wp:paragraph -->
+<!-- wp:image -->
+<figure class="wp-block-image">![](bf8b719e2b3f4a90bc17ba497fbffb39~tplv-k3u1fbpfcp-zoom-1.image)</figure>
+<!-- /wp:image -->
+<!-- wp:list {"ordered":true} -->
+
+<ol>
+<li>手机端在接收到临时token后会弹出确认登录界面，用户点击确认时，手机端携带临时token用来调用服务端的接口，告诉服务端，我已经确认</li>
+<li>服务端收到确认后，根据二维码ID绑定的设备信息与账号信息，生成用户PC端登录的token</li>
+<li>这时候PC端的轮询接口，它就可以得知二维码的状态已经变成了”已确认”。并且从服务端可以获取到用户登录的token</li>
+<li>到这里，登录就成功了，后端PC端就可以用token去访问服务端的资源了<!-- /wp:list -->
+<!-- wp:paragraph --></li>
+</ol>
+<p>扫码动作的基础流程都讲完了，有些细节还没有深入介绍，</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+
+<p>比如二维码的内容是什么？</p>
+<!-- /wp:paragraph -->
+<!-- wp:list {"ordered":true} -->
+
+<ol>
+<li>可以是二维码ID</li>
+<li>可以是包含二维码ID的一个url地址<!-- /wp:list -->
+<!-- wp:paragraph --></li>
+</ol>
+<p>在扫码确认这一步，用户取消了怎么处理？ 这些细节都留给大家思考</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><!-- /wp:heading -->
+<!-- wp:image -->
+<figure class="wp-block-image">![](e5422358c7404ac689ffe65bae104a6f~tplv-k3u1fbpfcp-zoom-1.image)</figure>
+<!-- /wp:image -->
+<!-- wp:paragraph -->
+
+<p>我们从登陆的本质触发，探索二维码扫码登录是如何做到的</p>
+<!-- /wp:paragraph -->
+<!-- wp:list {"ordered":true} -->
+
+<ol>
+<li>告诉系统我是谁</li>
+<li>向系统证明我谁<!-- /wp:list -->
+<!-- wp:paragraph --></li>
+</ol>
+<p>在这个过程中，我们先简单讲了两个前提知识，</p>
+<!-- /wp:paragraph -->
+<!-- wp:list -->
+
+<ul>
+<li>一个是二维码原理，</li>
+<li>一个是基于token的认证机制。<!-- /wp:list -->
+<!-- wp:paragraph --></li>
+</ul>
+<p>然后我们以二维码状态为轴，分析了这背后的逻辑: 通过token认证机制与二维码状态变化来实现扫码登录.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+
+<p>需要指出的是，前面的讲的登录流程，它适用于同一个系统的PC端，WEB端，移动端。</p>
+<!-- /wp:paragraph --></article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg" title="头像" alt="头像"></a><div class="post-copyright__author_name">Lieme</div><div class="post-copyright__author_desc"></div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://toc.lieme.cn/2021/04/07/%E4%BA%8C%E7%BB%B4%E7%A0%81%E6%89%AB%E7%A0%81%E7%99%BB%E5%BD%95%E6%98%AF%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86.html">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://toc.lieme.cn/2021/04/07/%E4%BA%8C%E7%BB%B4%E7%A0%81%E6%89%AB%E7%A0%81%E7%99%BB%E5%BD%95%E6%98%AF%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86.html')">二维码扫码登录是什么原理</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://blogimg.lieme.cn/2022/05/2022051011515173.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2022/05/2022051011515173.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://blogimg.lieme.cn/2022/05/2022051011515173.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2022/05/2022051011515173.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://toc.lieme.cn/2021/04/07/%E4%BA%8C%E7%BB%B4%E7%A0%81%E6%89%AB%E7%A0%81%E7%99%BB%E5%BD%95%E6%98%AF%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86.html"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=二维码扫码登录是什么原理&amp;url=https://toc.lieme.cn/2021/04/07/%E4%BA%8C%E7%BB%B4%E7%A0%81%E6%89%AB%E7%A0%81%E7%99%BB%E5%BD%95%E6%98%AF%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86.html&amp;pic=" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://toc.lieme.cn" target="_blank">卖坚果的怪叔叔</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"></div></div><div class="post_share"><div class="social-share" data-image="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/02/24/Vite%202.0%20%E5%8F%91%E5%B8%83%E4%BA%86.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Vite 2.0 发布了</div></div></a></div><div class="next-post pull-right"><a href="/2021/04/26/%E5%9B%9B%E6%9C%88%E7%9A%84%E5%80%92%E6%95%B0%E5%87%A0%E5%A4%A9%E4%BA%86.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">四月的倒数几天了</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/2023/06/26/%20JS%E7%94%9F%E6%88%90Van-Picker%20%E6%8C%87%E5%AE%9A%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F.html" title="JS生成Van-Picker 指定日期格式"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2023-06-26</div><div class="title">JS生成Van-Picker 指定日期格式</div></div></a></div><div><a href="/2022/05/27/%20element-ui%E4%B8%AD%E7%9A%84Select%E9%80%89%E6%8B%A9%E5%99%A8%E4%B8%ADremote-method%E6%96%B9%E6%B3%95%E5%B8%A6%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%82%E6%95%B0.html" title="element-ui中的Select选择器中remote-method方法带自定义参数"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2022-05-27</div><div class="title">element-ui中的Select选择器中remote-method方法带自定义参数</div></div></a></div><div><a href="/2020/04/17/%20%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E6%96%87%E7%AB%A0%E5%B0%81%E9%9D%A2%E5%92%8C%E6%96%87%E7%AB%A0%E6%A0%87%E9%A2%98%EF%BC%81.html" title="如何获取微信文章封面和文章标题！"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2020-04-17</div><div class="title">如何获取微信文章封面和文章标题！</div></div></a></div><div><a href="/2020/10/06/10000%E5%AD%97%EF%BC%8132%E4%B8%AA%E6%89%8B%E5%86%99JS%EF%BC%8C%E8%AE%A9%E4%BD%A0Level%E2%88%9E%20+%EF%BC%81.html" title="10000字！32个手写JS，让你Level∞ +！"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2020-10-06</div><div class="title">10000字！32个手写JS，让你Level∞ +！</div></div></a></div><div><a href="/2020/09/28/5000%E5%AD%97%EF%BC%81%E5%B8%A6%E4%BD%A0%E9%9B%B6%E8%B7%9D%E7%A6%BB%E6%8E%A5%E8%A7%A6websocket%EF%BC%81.html" title="5000字！带你零距离接触websocket！"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2020-09-28</div><div class="title">5000字！带你零距离接触websocket！</div></div></a></div><div><a href="/2022/12/31/2022%EF%BC%81%E5%85%85%E6%BB%A1%E9%AD%94%E5%B9%BB%E7%9A%84%E4%B8%80%E5%B9%B4%EF%BC%81.html" title="2022！充满魔幻的一年！"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2022-12-31</div><div class="title">2022！充满魔幻的一年！</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__description">用心记录美好的瞬间</div></div></div><div class="card-widget anzhiyu-right-widget" id="card-wechat" onclick="null"><div id="flip-wrapper"><div id="flip-content"><div class="face" style="background: url(https://bu.dusays.com/2023/01/13/63c02edf44033.png) center center / 100% no-repeat"></div><div class="back face" style="background: url(https://bu.dusays.com/2023/05/13/645fa415e8694.png) center center / 100% no-repeat"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E7%A0%81%E7%99%BB%E5%BD%95%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="toc-number">1.</span> <span class="toc-text">二维码登录的本质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A4%E8%AF%86%E4%BA%8C%E7%BB%B4%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text">认识二维码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6"><span class="toc-number">3.</span> <span class="toc-text">系统认证机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E4%BA%8C%E7%BB%B4%E7%A0%81%E7%99%BB%E5%BD%95%E7%9A%84%E4%B8%80%E8%88%AC%E6%AD%A5%E9%AA%A4"><span class="toc-number">4.</span> <span class="toc-text">扫描二维码登录的一般步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E6%A6%82%E6%B5%81%E7%A8%8B"><span class="toc-number">4.1.</span> <span class="toc-text">大概流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%87%86%E5%A4%87"><span class="toc-number">4.2.</span> <span class="toc-text">二维码准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E7%8A%B6%E6%80%81%E5%88%87%E6%8D%A2"><span class="toc-number">4.3.</span> <span class="toc-text">扫描状态切换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E7%A1%AE%E8%AE%A4"><span class="toc-number">4.4.</span> <span class="toc-text">状态确认</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/11/%E5%88%9D%E6%98%A5%E9%87%8C%E7%9A%84%F0%9F%8C%B8.html" title="初春里的🌸">初春里的🌸</a><time datetime="2024-03-10T16:00:00.000Z" title="发表于 2024-03-11 00:00:00">2024-03-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/03/%E9%82%A3%E5%A4%A9%E8%80%81%E5%AE%B6%E4%B8%8B%E9%9B%AA%E2%9D%84%EF%B8%8F.html" title="那天老家下雪❄️">那天老家下雪❄️</a><time datetime="2024-03-02T16:00:00.000Z" title="发表于 2024-03-03 00:00:00">2024-03-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/28/%E8%A7%86%E9%A2%91.html" title="视频">视频</a><time datetime="2024-02-27T16:00:00.000Z" title="发表于 2024-02-28 00:00:00">2024-02-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/26/%E8%BF%87%E5%B9%B4.html" title="过年">过年</a><time datetime="2024-02-25T16:00:00.000Z" title="发表于 2024-02-26 00:00:00">2024-02-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/21/%E5%81%9A%E6%A2%A6.html" title="做梦">做梦</a><time datetime="2024-02-20T16:00:00.000Z" title="发表于 2024-02-21 00:00:00">2024-02-21</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2016 - 2024 By <a class="footer-bar-link" href="/" title="Lieme" target="_blank">Lieme</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://cuixinxin.cn" title="坚果大叔">坚果大叔</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">288</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">120</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">14</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://cuixinxin.cn/" title="卖坚果的怪叔叔"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="卖坚果的怪叔叔"/><span class="back-menu-item-text">卖坚果的怪叔叔</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/travel/"><span> 旅行</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/photos/"><span> 定格时光</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/life/"><span> 生活</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><span> 关于</span></a></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Array/" style="font-size: 0.88rem;">Array<sup>1</sup></a><a href="/tags/CSS/" style="font-size: 0.88rem;">CSS<sup>6</sup></a><a href="/tags/ECMAScript6/" style="font-size: 0.88rem;">ECMAScript6<sup>14</sup></a><a href="/tags/Git/" style="font-size: 0.88rem;">Git<sup>4</sup></a><a href="/tags/Hyperapp/" style="font-size: 0.88rem;">Hyperapp<sup>2</sup></a><a href="/tags/JavaScript/" style="font-size: 0.88rem;">JavaScript<sup>4</sup></a><a href="/tags/Map/" style="font-size: 0.88rem;">Map<sup>1</sup></a><a href="/tags/Python/" style="font-size: 0.88rem;">Python<sup>7</sup></a><a href="/tags/Set/" style="font-size: 0.88rem;">Set<sup>1</sup></a><a href="/tags/css/" style="font-size: 0.88rem;">css<sup>21</sup></a><a href="/tags/es6/" style="font-size: 0.88rem;">es6<sup>1</sup></a><a href="/tags/html/" style="font-size: 0.88rem;">html<sup>4</sup></a><a href="/tags/http/" style="font-size: 0.88rem;">http<sup>1</sup></a><a href="/tags/javascript/" style="font-size: 0.88rem;">javascript<sup>17</sup></a><a href="/tags/js/" style="font-size: 0.88rem;">js<sup>2</sup></a><a href="/tags/node%E5%AD%A6%E4%B9%A0/" style="font-size: 0.88rem;">node学习<sup>4</sup></a><a href="/tags/python/" style="font-size: 0.88rem;">python<sup>2</sup></a><a href="/tags/vue/" style="font-size: 0.88rem;">vue<sup>8</sup></a><a href="/tags/wxpy/" style="font-size: 0.88rem;">wxpy<sup>2</sup></a><a href="/tags/%E5%85%B6%E4%BB%96%E5%88%86%E4%BA%AB/" style="font-size: 0.88rem;">其他分享<sup>3</sup></a><a href="/tags/%E5%88%86%E4%BA%AB/" style="font-size: 0.88rem;">分享<sup>16</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E4%B8%A4%E4%B8%89%E9%97%AE/" style="font-size: 0.88rem;">前端两三问<sup>7</sup></a><a href="/tags/%E5%9B%BE%E7%89%87/" style="font-size: 0.88rem;">图片<sup>26</sup></a><a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 0.88rem;">小程序<sup>6</sup></a><a href="/tags/%E5%B1%85%E4%B8%AD%E6%98%BE%E7%A4%BA/" style="font-size: 0.88rem;">居中显示<sup>1</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 0.88rem;">微信<sup>4</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1%E6%9C%BA%E5%99%A8%E4%BA%BA/" style="font-size: 0.88rem;">微信机器人<sup>3</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1%E7%9B%B8%E5%85%B3%E6%8A%80%E5%B7%A7/" style="font-size: 0.88rem;">微信相关技巧<sup>1</sup></a><a href="/tags/%E6%89%93%E5%AD%97%E6%9C%BA/" style="font-size: 0.88rem;">打字机<sup>1</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 0.88rem;">技术<sup>68</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" style="font-size: 0.88rem;">技术分享<sup>2</sup></a><a href="/tags/%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C/" style="font-size: 0.88rem;">数组操作<sup>2</sup></a><a href="/tags/%E6%97%A5%E5%B8%B8%E6%8C%96%E5%9D%91/" style="font-size: 0.88rem;">日常挖坑<sup>2</sup></a><a href="/tags/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/" style="font-size: 0.88rem;">日常问题<sup>6</sup></a><a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 0.88rem;">生活<sup>54</sup></a><a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 0.88rem;">科学上网<sup>2</sup></a><a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 0.88rem;">移动端<sup>5</sup></a><a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 0.88rem;">笔记<sup>4</sup></a><a href="/tags/%E9%98%B2%E6%92%A4%E5%9B%9E/" style="font-size: 0.88rem;">防撤回<sup>1</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 0.88rem;">面试<sup>8</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2017 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2016 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 Lieme 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>

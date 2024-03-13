@@ -1,0 +1,2011 @@
+<!DOCTYPE html><html lang="zh" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>Clean-Code-Js | 卖坚果的怪叔叔</title><meta name="keywords" content="分享"><meta name="author" content="Lieme"><meta name="copyright" content="Lieme"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="Clean-Code-Js"><meta name="application-name" content="Clean-Code-Js"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="Clean-Code-Js"><meta property="og:url" content="https://toc.lieme.cn/2022/04/24/Clean-Code-Js.html"><meta property="og:site_name" content="卖坚果的怪叔叔"><meta property="og:description" content="Original Repository: ryanmcdermott&amp;#x2F;clean-code-javascript JavaScript 风格指南目录 介绍 变量 函数 对象和数据结构 类 测试 并发 错误处理 格式化 注释  介绍作者根据 Robert C. Martin 《代码整洁之道》"><meta property="og:locale" content="zh"><meta property="og:image" content="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg"><meta property="article:author" content="Lieme"><meta property="article:tag" content="卖坚果的怪叔叔 前端 vue python 微信"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg"><meta name="description" content="Original Repository: ryanmcdermott&amp;#x2F;clean-code-javascript JavaScript 风格指南目录 介绍 变量 函数 对象和数据结构 类 测试 并发 错误处理 格式化 注释  介绍作者根据 Robert C. Martin 《代码整洁之道》"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://toc.lieme.cn/2022/04/24/Clean-Code-Js"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: {"enable":true,"img":"https://upload-bbs.miyoushe.com/upload/2023/09/03/125766904/ee23df8517f3c3e3efc4145658269c06_5714860933110284659.png"},
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: undefined,
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":1},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: undefined,
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: Lieme","link":"链接: ","source":"来源: 卖坚果的怪叔叔","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '卖坚果的怪叔叔',
+  title: 'Clean-Code-Js',
+  postAI: '',
+  pageFillDescription: 'JavaScript 风格指南, 目录, 介绍, 变量, 使用有意义可读性好的变量名, 使用 ES6 的 const 定义常量, 对功能类似的变量名采用统一的命名风格, 使用易于检索名称, 使用说明变量(即有意义的变量名), 不要绕太多的弯子, 避免重复的描述, 避免无意义的条件判断, 函数, 函数参数 (理想情况下应不超过 2 个), 函数功能的单一性, 函数名应明确表明其功能, 函数应该只做一层抽象, 移除重复的代码, 采用默认参数精简代码, 使用 Object.assign 设置默认对象, 不要使用标记(Flag)作为函数参数, 避免副作用, 不要写全局函数, 采用函数式编程, 封装判断条件, 避免否定情况的判断, 避免条件判断, 避免类型判断(part 1), 避免类型判断(part 2), 避免过度优化, 删除无效的代码, 对象和数据结构, 使用 getters 和 setters, 让对象拥有私有成员, 类, 单一职责原则 (SRP), 开x2F闭原则 (OCP), 利斯科夫替代原则 (LSP), 接口隔离原则 (ISP), 依赖反转原则 (DIP), 使用 ES6 的 classes 而不是 ES5 的 Function, 使用方法链, 优先使用组合模式而非继承, 测试, 单一的测试每个概念, 并发, 用 Promises 替代回调, Asyncx2FAwait 是较 Promises 更好的选择, 错误处理, 别忘了捕获错误, 不要忽略被拒绝的 promises, 格式化, 大小写一致, 调用函数的函数和被调函数应放在较近的位置, 注释, 只对存在一定业务逻辑复杂性的代码进行注释, 不要在代码库中遗留被注释掉的代码, 不需要版本更新类型注释, 避免位置标记, 避免在源文件中写入法律评论风格指南目录介绍变量函数对象和数据结构类测试并发错误处理格式化注释介绍作者根据代码整洁之道总结了适用于的软件工程原则本文是对其的翻译不必严格遵守本文的所有原则有时少遵守一些效果可能会更好具体应根据实际情况决定这是根据代码整洁之道作者多年经验整理的代码优化建议但也仅仅只是一份建议软件工程已经发展了多年至今仍在不断前进现在把这些原则当作试金石尝试将他们作为团队代码质量考核的标准之一吧最后你需要知道的是这些东西不会让你立刻变成一个优秀的工程师长期奉行他们也并不意味着你能够高枕无忧不再犯错千里之行始于足下我们需要时常和同行们进行代码评审不断优化自己的代码不要惧怕改善代码质量所需付出的努力加油变量使用有意义可读性好的变量名反例正例回到目录使用的定义常量反例中使用定义的常量是可变的在声明一个常量时该常量在整个程序中都应该是不可变的反例正例回到目录对功能类似的变量名采用统一的命名风格反例正例回到目录使用易于检索名称我们需要阅读的代码远比自己写的要多使代码拥有良好的可读性且易于检索非常重要阅读变量名晦涩难懂的代码对读者来说是一种相当糟糕的体验让你的变量名易于检索反例是什么正例回到目录使用说明变量即有意义的变量名反例正例回到目录不要绕太多的弯子显式优于隐式反例是什么正例回到目录避免重复的描述当类对象名已经有意义时对其变量进行命名不需要再次重复反例正例回到目录避免无意义的条件判断反例正例回到目录函数函数参数理想情况下应不超过个限制函数参数数量很有必要这么做使得在测试函数时更加轻松过多的参数将导致难以采用有效的测试用例对函数的各个参数进行测试应避免三个以上参数的函数通常情况下参数超过两个意味着函数功能过于复杂这时需要重新优化你的函数当确实需要多个参数时大多情况下可以考虑这些参数封装成一个对象定义对象非常方便当需要多个参数时可以使用一个对象进行替代反例正例回到目录函数功能的单一性这是软件功能中最重要的原则之一功能不单一的函数将导致难以重构测试和理解功能单一的函数易于重构并使代码更加干净反例正例回到目录函数名应明确表明其功能反例很难理解是什么意思正例回到目录函数应该只做一层抽象当函数的需要的抽象多于一层时通常意味着函数功能过于复杂需将其进行分解以提高其可重用性和可测试性反例正例回到目录移除重复的代码永远永远永远不要在任何循环下有重复的代码这种做法毫无意义且潜在危险极大重复的代码意味着逻辑变化时需要对不止一处进行修改弱类型的特点使得函数拥有更强的普适性好好利用这一优点吧反例正例回到目录采用默认参数精简代码反例正例回到目录使用设置默认对象反例正例回到目录不要使用标记作为函数参数这通常意味着函数的功能的单一性已经被破坏此时应考虑对函数进行再次划分反例正例回到目录避免副作用当函数产生了除了接受一个值并返回一个结果之外的行为时称该函数产生了副作用比如写文件修改全局变量或将你的钱全转给了一个陌生人等程序在某些情况下确实需要副作用这一行为如先前例子中的写文件这时应该将这些功能集中在一起不要用多个函数类修改某个文件用且只用一个完成这一需求反例正例回到目录不要写全局函数在中污染全局是一个非常不好的实践这么做可能和其他库起冲突且调用你的的用户在实际环境中得到一个前对这一情况是一无所知的想象以下例子如果你想扩展中的为其添加一个函数显示两个数组间的差异此时应如何去做你可以将写入但这么做会和其他有类似需求的库造成冲突如果另一个库对的需求为比较一个数组中首尾元素间的差异呢使用中的对全局的做简单的扩展显然是一个更棒的选择反例正例回到目录采用函数式编程函数式的编程具有更干净且便于测试的特点尽可能的使用这种风格吧反例正例回到目录封装判断条件反例正例回到目录避免否定情况的判断反例正例回到目录避免条件判断这看起来似乎不太可能大多人听到这的第一反应是怎么可能不用完成其他功能呢许多情况下通过使用多态可以达到同样的目的第二个问题在于采用这种方式的原因是什么答案是我们之前提到过的保持函数功能的单一性反例正例回到目录避免类型判断是弱类型语言这意味着函数可接受任意类型的参数有时这会对你带来麻烦你会对参数做一些类型判断有许多方法可以避免这些情况反例正例回到目录避免类型判断如果需处理的数据为字符串整型数组等类型无法使用多态并仍有必要对其进行类型检测时可以考虑使用反例正例回到目录避免过度优化现代的浏览器在运行时会对代码自动进行优化有时人为对代码进行优化可能是在浪费时间这里可以找到许多真正需要优化的地方反例这里使用变量是因为在老式浏览器中直接使用正例中的方式会导致每次循环均重复计算的值而在现代浏览器中会自动完成优化这一行为是没有必要的正例回到目录删除无效的代码不再被调用的代码应及时删除反例正例回到目录对象和数据结构使用和没有接口或类型因此实现这一模式是很困难的因为我们并没有类似和的关键词然而使用和获取对象的数据远比直接使用点操作符具有优势为什么呢当需要对获取的对象属性执行额外操作时执行时可以增加规则对要变量的合法性进行判断封装了内部逻辑在存取时可以方便的增加日志和错误处理继承该类时可以重载默认行为从服务器获取数据时可以进行懒加载反例正例回到目录让对象拥有私有成员可以通过闭包完成反例正例回到目录类单一职责原则如代码整洁之道一书中所述修改一个类的理由不应该超过一个将多个功能塞进一个类的想法很诱人但这将导致你的类无法达到概念上的内聚并经常不得不进行修改最小化对一个类需要修改的次数是非常有必要的如果一个类具有太多太杂的功能当你对其中一小部分进行修改时将很难想象到这一修够对代码库中依赖该类的其他模块会带来什么样的影响反例正例回到目录开闭原则代码实体类模块函数等应该易于扩展难于修改这一原则指的是我们应允许用户方便的扩展我们代码模块的功能而不需要打开文件源码手动对其进行修改反例正例回到目录利斯科夫替代原则子类对象应该能够替换其超类对象被使用也就是说如果有一个父类和一个子类当采用子类替换父类时不应该产生错误的结果反例正例回到目录接口隔离原则客户端不应该依赖它不需要的接口一个类对另一个类的依赖应该建立在最小的接口上在中当一个类需要许多参数设置才能生成一个对象时或许大多时候不需要设置这么多的参数此时减少对配置参数数量的需求是有益的反例正例回到目录依赖反转原则该原则有两个核心点高层模块不应该依赖于低层模块他们都应该依赖于抽象接口抽象接口应该脱离具体实现具体实现应该依赖于抽象接口反例正例回到目录使用的而不是的典型的的类在继承构造和方法定义方面可读性较差当需要继承时优先选用但是当在需要更大更复杂的对象时最好优先选择更小的而非反例正例回到目录使用方法链这里我们的理解与代码整洁之道的建议有些不同有争论说方法链不够干净且违反了德米特法则也许这是对的但这种方法在及许多库如中显得非常实用因此我认为在中使用方法链是非常合适的在的函数中返回能够方便的将类需要执行的多个方法链接起来反例正例回到目录优先使用组合模式而非继承在著名的设计模式一书中提到应多使用组合模式而非继承这么做有许多优点在想要使用继承前多想想能否通过组合模式满足需求吧那么在什么时候继承具有更大的优势呢这取决于你的具体需求但大多情况下可以遵守以下三点继承关系表现为是一个而非有一个如动物人和用户用户细节可以复用基类的代码可以看成是的一种希望当基类改变时所有派生类都受到影响如修改移动时的卡路里消耗量反例正例回到目录测试一些好的覆盖工具一些好的测试框架单一的测试每个概念反例正例回到目录并发用替代回调回调不够整洁并会造成大量的嵌套内嵌了使用它吧反例正例回到目录是较更好的选择是较回调而言更好的一种选择但中的和更胜过在能使用特性的情况下可以尽量使用他们替代反例正例回到目录错误处理错误抛出是个好东西这使得你能够成功定位运行状态中的程序产生错误的位置别忘了捕获错误对捕获的错误不做任何处理是没有意义的代码中的意味着你认为这里可能出现一些错误你应该对这些可能的错误存在相应的处理方案反例正例不要忽略被拒绝的理由同反例正例回到目录格式化格式化是一件主观的事如同这里的许多规则一样这里并没有一定立刻需要遵守的规则可以在这里完成格式的自动化大小写一致是弱类型语言合理的采用大小写可以告诉你关于变量函数等的许多消息这些规则是主观定义的团队可以根据喜欢进行选择重点在于无论选择何种风格都需要注意保持一致性反例正例回到目录调用函数的函数和被调函数应放在较近的位置当函数间存在相互调用的情况时应将两者置于较近的位置理想情况下应将调用其他函数的函数写在被调用函数的上方反例正例回到目录注释只对存在一定业务逻辑复杂性的代码进行注释注释并不是必须的好的代码是能够让人一目了然不用过多无谓的注释反例正例回到目录不要在代码库中遗留被注释掉的代码版本控制的存在是有原因的让旧代码存在于你的里吧反例正例回到目录不需要版本更新类型注释记住我们可以使用版本控制废代码被注释的代码及用注释记录代码中的版本更新说明都是没有必要的需要时可以使用获取历史版本反例正例回到目录避免位置标记这些东西通常只能代码麻烦采用适当的缩进就可以了反例正例回到目录避免在源文件中写入法律评论将你的文件置于源码目录树的根目录反例正例回到目录',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-13 14:19:08',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.0.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">卖坚果的怪叔叔</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/travel/"><span> 旅行</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/photos/"><span> 定格时光</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/life/"><span> 生活</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><span> 关于</span></a></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://blogimg.lieme.cn/2022/05/2022051011515173.png" target="_blank"><img class="post-qr-code-img" alt="微信" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2022/05/2022051011515173.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://blogimg.lieme.cn/2022/05/2022051011515173.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2022/05/2022051011515173.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Array/" style="font-size: 1.05rem;">Array<sup>1</sup></a><a href="/tags/CSS/" style="font-size: 1.05rem;">CSS<sup>6</sup></a><a href="/tags/ECMAScript6/" style="font-size: 1.05rem;">ECMAScript6<sup>14</sup></a><a href="/tags/Git/" style="font-size: 1.05rem;">Git<sup>4</sup></a><a href="/tags/Hyperapp/" style="font-size: 1.05rem;">Hyperapp<sup>2</sup></a><a href="/tags/JavaScript/" style="font-size: 1.05rem;">JavaScript<sup>4</sup></a><a href="/tags/Map/" style="font-size: 1.05rem;">Map<sup>1</sup></a><a href="/tags/Python/" style="font-size: 1.05rem;">Python<sup>7</sup></a><a href="/tags/Set/" style="font-size: 1.05rem;">Set<sup>1</sup></a><a href="/tags/css/" style="font-size: 1.05rem;">css<sup>21</sup></a><a href="/tags/es6/" style="font-size: 1.05rem;">es6<sup>1</sup></a><a href="/tags/html/" style="font-size: 1.05rem;">html<sup>4</sup></a><a href="/tags/http/" style="font-size: 1.05rem;">http<sup>1</sup></a><a href="/tags/javascript/" style="font-size: 1.05rem;">javascript<sup>17</sup></a><a href="/tags/js/" style="font-size: 1.05rem;">js<sup>2</sup></a><a href="/tags/node%E5%AD%A6%E4%B9%A0/" style="font-size: 1.05rem;">node学习<sup>4</sup></a><a href="/tags/python/" style="font-size: 1.05rem;">python<sup>2</sup></a><a href="/tags/vue/" style="font-size: 1.05rem;">vue<sup>8</sup></a><a href="/tags/wxpy/" style="font-size: 1.05rem;">wxpy<sup>2</sup></a><a href="/tags/%E5%85%B6%E4%BB%96%E5%88%86%E4%BA%AB/" style="font-size: 1.05rem;">其他分享<sup>3</sup></a><a href="/tags/%E5%88%86%E4%BA%AB/" style="font-size: 1.05rem;">分享<sup>16</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E4%B8%A4%E4%B8%89%E9%97%AE/" style="font-size: 1.05rem;">前端两三问<sup>7</sup></a><a href="/tags/%E5%9B%BE%E7%89%87/" style="font-size: 1.05rem;">图片<sup>26</sup></a><a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 1.05rem;">小程序<sup>6</sup></a><a href="/tags/%E5%B1%85%E4%B8%AD%E6%98%BE%E7%A4%BA/" style="font-size: 1.05rem;">居中显示<sup>1</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 1.05rem;">微信<sup>4</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1%E6%9C%BA%E5%99%A8%E4%BA%BA/" style="font-size: 1.05rem;">微信机器人<sup>3</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1%E7%9B%B8%E5%85%B3%E6%8A%80%E5%B7%A7/" style="font-size: 1.05rem;">微信相关技巧<sup>1</sup></a><a href="/tags/%E6%89%93%E5%AD%97%E6%9C%BA/" style="font-size: 1.05rem;">打字机<sup>1</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 1.05rem;">技术<sup>68</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" style="font-size: 1.05rem;">技术分享<sup>2</sup></a><a href="/tags/%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C/" style="font-size: 1.05rem;">数组操作<sup>2</sup></a><a href="/tags/%E6%97%A5%E5%B8%B8%E6%8C%96%E5%9D%91/" style="font-size: 1.05rem;">日常挖坑<sup>2</sup></a><a href="/tags/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/" style="font-size: 1.05rem;">日常问题<sup>6</sup></a><a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 1.05rem;">生活<sup>54</sup></a><a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 1.05rem;">科学上网<sup>2</sup></a><a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 1.05rem;">移动端<sup>5</sup></a><a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 1.05rem;">笔记<sup>4</sup></a><a href="/tags/%E9%98%B2%E6%92%A4%E5%9B%9E/" style="font-size: 1.05rem;">防撤回<sup>1</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 1.05rem;">面试<sup>8</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="anzhiyufont anzhiyu-icon-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">March 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">February 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">7</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">January 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">December 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">November 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">October 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">August 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="article-meta tags"></span></div></div><h1 class="post-title" itemprop="name headline">Clean-Code-Js</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2022-04-23T16:00:00.000Z" title="发表于 2022-04-24 00:00:00">2022-04-24</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2024-03-13T06:19:08.548Z" title="更新于 2024-03-13 14:19:08">2024-03-13</time></span></div><div class="meta-secondline"><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为姑苏城"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>姑苏城</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src=""></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://toc.lieme.cn/2022/04/24/Clean-Code-Js.html"><header><h1 id="CrawlerTitle" itemprop="name headline">Clean-Code-Js</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">Lieme</span><time itemprop="dateCreated datePublished" datetime="2022-04-23T16:00:00.000Z" title="发表于 2022-04-24 00:00:00">2022-04-24</time><time itemprop="dateCreated datePublished" datetime="2024-03-13T06:19:08.548Z" title="更新于 2024-03-13 14:19:08">2024-03-13</time></header><p>Original Repository: <a target="_blank" rel="noopener" href="https://github.com/ryanmcdermott/clean-code-javascript">ryanmcdermott&#x2F;clean-code-javascript</a></p>
+<h1 id="JavaScript-风格指南"><a href="#JavaScript-风格指南" class="headerlink" title="JavaScript 风格指南"></a>JavaScript 风格指南</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li><a href="#%E4%BB%8B%E7%BB%8D">介绍</a></li>
+<li><a href="#%E5%8F%98%E9%87%8F">变量</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0">函数</a></li>
+<li><a href="#objects-and-data-structures">对象和数据结构</a></li>
+<li><a href="#%E7%B1%BB">类</a></li>
+<li><a href="#%E6%B5%8B%E8%AF%95">测试</a></li>
+<li><a href="#%E5%B9%B6%E5%8F%91">并发</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86">错误处理</a></li>
+<li><a href="#%E6%A0%BC%E5%BC%8F%E5%8C%96">格式化</a></li>
+<li><a href="#%E6%B3%A8%E9%87%8A">注释</a></li>
+</ol>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><a target="_blank" rel="noopener" href="https://github.com/ryanmcdermott">作者</a>根据 Robert C. Martin <a target="_blank" rel="noopener" href="https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882"><em>《代码整洁之道》</em></a>总结了适用于 JavaScript 的软件工程原则<a target="_blank" rel="noopener" href="https://github.com/ryanmcdermott/clean-code-javascript">《Clean Code JavaScript》</a>。</p>
+<p>本文是对其的翻译。</p>
+<p>不必严格遵守本文的所有原则，有时少遵守一些效果可能会更好，具体应根据实际情况决定。这是根据《代码整洁之道》作者多年经验整理的代码优化建议，但也仅仅只是一份建议。</p>
+<p>软件工程已经发展了 50 多年，至今仍在不断前进。现在，把这些原则当作试金石，尝试将他们作为团队代码质量考核的标准之一吧。</p>
+<p>最后你需要知道的是，这些东西不会让你立刻变成一个优秀的工程师，长期奉行他们也并不意味着你能够高枕无忧不再犯错。千里之行，始于足下。我们需要时常和同行们进行代码评审，不断优化自己的代码。不要惧怕改善代码质量所需付出的努力，加油。</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a><strong>变量</strong></h2><h3 id="使用有意义，可读性好的变量名"><a href="#使用有意义，可读性好的变量名" class="headerlink" title="使用有意义，可读性好的变量名"></a>使用有意义，可读性好的变量名</h3><p><strong>反例</strong>:</p>
+<pre><code>var yyyymmdstr = moment().format(&#39;YYYY/MM/DD&#39;);
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>var yearMonthDay = moment().format(&#39;YYYY/MM/DD&#39;);
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="使用-ES6-的-const-定义常量"><a href="#使用-ES6-的-const-定义常量" class="headerlink" title="使用 ES6 的 const 定义常量"></a>使用 ES6 的 const 定义常量</h3><p>反例中使用”var”定义的”常量”是可变的。</p>
+<p>在声明一个常量时，该常量在整个程序中都应该是不可变的。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>var FIRST_US_PRESIDENT = &quot;George Washington&quot;;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>const FIRST_US_PRESIDENT = &quot;George Washington&quot;;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="对功能类似的变量名采用统一的命名风格"><a href="#对功能类似的变量名采用统一的命名风格" class="headerlink" title="对功能类似的变量名采用统一的命名风格"></a>对功能类似的变量名采用统一的命名风格</h3><p><strong>反例</strong>:</p>
+<pre><code>getUserInfo();
+getClientData();
+getCustomerRecord();
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>getUser();
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="使用易于检索名称"><a href="#使用易于检索名称" class="headerlink" title="使用易于检索名称"></a>使用易于检索名称</h3><p>我们需要阅读的代码远比自己写的要多，使代码拥有良好的可读性且易于检索非常重要。阅读变量名晦涩难懂的代码对读者来说是一种相当糟糕的体验。<br>让你的变量名易于检索。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>// 525600 是什么?
+for (var i = 0; i &lt; 525600; i++) &#123;
+  runCronJob();
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>// Declare them as capitalized `var` globals.
+var MINUTES_IN_A_YEAR = 525600;
+for (var i = 0; i &lt; MINUTES_IN_A_YEAR; i++) &#123;
+  runCronJob();
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="使用说明变量-即有意义的变量名"><a href="#使用说明变量-即有意义的变量名" class="headerlink" title="使用说明变量(即有意义的变量名)"></a>使用说明变量(即有意义的变量名)</h3><p><strong>反例</strong>:</p>
+<pre><code>const cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d&#123;5&#125;)?$/;
+saveCityState(cityStateRegex.match(cityStateRegex)[1], cityStateRegex.match(cityStateRegex)[2]);
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>const ADDRESS = &#39;One Infinite Loop, Cupertino 95014&#39;;
+var cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d&#123;5&#125;)?$/;
+var match = ADDRESS.match(cityStateRegex)
+var city = match[1];
+var state = match[2];
+saveCityState(city, state);
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="不要绕太多的弯子"><a href="#不要绕太多的弯子" class="headerlink" title="不要绕太多的弯子"></a>不要绕太多的弯子</h3><p>显式优于隐式。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>var locations = [&#39;Austin&#39;, &#39;New York&#39;, &#39;San Francisco&#39;];
+locations.forEach((l) =&gt; &#123;
+  doStuff();
+  doSomeOtherStuff();
+  ...
+  ...
+  ...
+  // l是什么？
+  dispatch(l);
+&#125;);
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>var locations = [&#39;Austin&#39;, &#39;New York&#39;, &#39;San Francisco&#39;];
+locations.forEach((location) =&gt; &#123;
+  doStuff();
+  doSomeOtherStuff();
+  ...
+  ...
+  ...
+  dispatch(location);
+&#125;);
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="避免重复的描述"><a href="#避免重复的描述" class="headerlink" title="避免重复的描述"></a>避免重复的描述</h3><p>当类&#x2F;对象名已经有意义时，对其变量进行命名不需要再次重复。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>var Car = &#123;
+  carMake: &#39;Honda&#39;,
+  carModel: &#39;Accord&#39;,
+  carColor: &#39;Blue&#39;
+&#125;;
+
+function paintCar(car) &#123;
+  car.carColor = &#39;Red&#39;;
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>var Car = &#123;
+  make: &#39;Honda&#39;,
+  model: &#39;Accord&#39;,
+  color: &#39;Blue&#39;
+&#125;;
+
+function paintCar(car) &#123;
+  car.color = &#39;Red&#39;;
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="避免无意义的条件判断"><a href="#避免无意义的条件判断" class="headerlink" title="避免无意义的条件判断"></a>避免无意义的条件判断</h3><p><strong>反例</strong>:</p>
+<pre><code>function createMicrobrewery(name) &#123;
+  var breweryName;
+  if (name) &#123;
+    breweryName = name;
+  &#125; else &#123;
+    breweryName = &#39;Hipster Brew Co.&#39;;
+  &#125;
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>function createMicrobrewery(name) &#123;
+  var breweryName = name &#39;&#39; &#39;Hipster Brew Co.&#39;
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a><strong>函数</strong></h2><h3 id="函数参数-理想情况下应不超过-2-个"><a href="#函数参数-理想情况下应不超过-2-个" class="headerlink" title="函数参数 (理想情况下应不超过 2 个)"></a>函数参数 (理想情况下应不超过 2 个)</h3><p>限制函数参数数量很有必要，这么做使得在测试函数时更加轻松。过多的参数将导致难以采用有效的测试用例对函数的各个参数进行测试。</p>
+<p>应避免三个以上参数的函数。通常情况下，参数超过两个意味着函数功能过于复杂，这时需要重新优化你的函数。当确实需要多个参数时，大多情况下可以考虑这些参数封装成一个对象。</p>
+<p>JS 定义对象非常方便，当需要多个参数时，可以使用一个对象进行替代。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>function createMenu(title, body, buttonText, cancellable) &#123;
+  ...
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>var menuConfig = &#123;
+  title: &#39;Foo&#39;,
+  body: &#39;Bar&#39;,
+  buttonText: &#39;Baz&#39;,
+  cancellable: true
+&#125;
+
+function createMenu(menuConfig) &#123;
+  ...
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="函数功能的单一性"><a href="#函数功能的单一性" class="headerlink" title="函数功能的单一性"></a>函数功能的单一性</h3><p>这是软件功能中最重要的原则之一。</p>
+<p>功能不单一的函数将导致难以重构、测试和理解。功能单一的函数易于重构，并使代码更加干净。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>function emailClients(clients) &#123;
+  clients.forEach(client =&gt; &#123;
+    let clientRecord = database.lookup(client);
+    if (clientRecord.isActive()) &#123;
+      email(client);
+    &#125;
+  &#125;);
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>function emailClients(clients) &#123;
+  clients.forEach(client =&gt; &#123;
+    emailClientIfNeeded(client);
+  &#125;);
+&#125;
+
+function emailClientIfNeeded(client) &#123;
+  if (isClientActive(client)) &#123;
+    email(client);
+  &#125;
+&#125;
+
+function isClientActive(client) &#123;
+  let clientRecord = database.lookup(client);
+  return clientRecord.isActive();
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="函数名应明确表明其功能"><a href="#函数名应明确表明其功能" class="headerlink" title="函数名应明确表明其功能"></a>函数名应明确表明其功能</h3><p><strong>反例</strong>:</p>
+<pre><code>function dateAdd(date, month) &#123;
+  // ...
+&#125;
+
+let date = new Date();
+
+// 很难理解dateAdd(date, 1)是什么意思
+dateAdd(date, 1);
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>function dateAddMonth(date, month) &#123;
+  // ...
+&#125;
+
+let date = new Date();
+dateAddMonth(date, 1);
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="函数应该只做一层抽象"><a href="#函数应该只做一层抽象" class="headerlink" title="函数应该只做一层抽象"></a>函数应该只做一层抽象</h3><p>当函数的需要的抽象多于一层时通常意味着函数功能过于复杂，需将其进行分解以提高其可重用性和可测试性。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>function parseBetterJSAlternative(code) &#123;
+  let REGEXES = [
+    // ...
+  ];
+
+  let statements = code.split(&#39; &#39;);
+  let tokens;
+  REGEXES.forEach((REGEX) =&gt; &#123;
+    statements.forEach((statement) =&gt; &#123;
+      // ...
+    &#125;)
+  &#125;);
+
+  let ast;
+  tokens.forEach((token) =&gt; &#123;
+    // lex...
+  &#125;);
+
+  ast.forEach((node) =&gt; &#123;
+    // parse...
+  &#125;)
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>function tokenize(code) &#123;
+  let REGEXES = [
+    // ...
+  ];
+
+  let statements = code.split(&#39; &#39;);
+  let tokens;
+  REGEXES.forEach((REGEX) =&gt; &#123;
+    statements.forEach((statement) =&gt; &#123;
+      // ...
+    &#125;)
+  &#125;);
+
+  return tokens;
+&#125;
+
+function lexer(tokens) &#123;
+  let ast;
+  tokens.forEach((token) =&gt; &#123;
+    // lex...
+  &#125;);
+
+  return ast;
+&#125;
+
+function parseBetterJSAlternative(code) &#123;
+  let tokens = tokenize(code);
+  let ast = lexer(tokens);
+  ast.forEach((node) =&gt; &#123;
+    // parse...
+  &#125;)
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="移除重复的代码"><a href="#移除重复的代码" class="headerlink" title="移除重复的代码"></a>移除重复的代码</h3><p>永远、永远、永远不要在任何循环下有重复的代码。</p>
+<p>这种做法毫无意义且潜在危险极大。重复的代码意味着逻辑变化时需要对不止一处进行修改。JS 弱类型的特点使得函数拥有更强的普适性。好好利用这一优点吧。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>function showDeveloperList(developers) &#123;
+  developers.forEach(developer =&gt; &#123;
+    var expectedSalary = developer.calculateExpectedSalary();
+    var experience = developer.getExperience();
+    var githubLink = developer.getGithubLink();
+    var data = &#123;
+      expectedSalary: expectedSalary,
+      experience: experience,
+      githubLink: githubLink
+    &#125;;
+
+    render(data);
+  &#125;);
+&#125;
+
+function showManagerList(managers) &#123;
+  managers.forEach(manager =&gt; &#123;
+    var expectedSalary = manager.calculateExpectedSalary();
+    var experience = manager.getExperience();
+    var portfolio = manager.getMBAProjects();
+    var data = &#123;
+      expectedSalary: expectedSalary,
+      experience: experience,
+      portfolio: portfolio
+    &#125;;
+
+    render(data);
+  &#125;);
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>function showList(employees) &#123;
+  employees.forEach(employee =&gt; &#123;
+    var expectedSalary = employee.calculateExpectedSalary();
+    var experience = employee.getExperience();
+    var portfolio;
+
+    if (employee.type === &#39;manager&#39;) &#123;
+      portfolio = employee.getMBAProjects();
+    &#125; else &#123;
+      portfolio = employee.getGithubLink();
+    &#125;
+
+    var data = &#123;
+      expectedSalary: expectedSalary,
+      experience: experience,
+      portfolio: portfolio
+    &#125;;
+
+    render(data);
+  &#125;);
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="采用默认参数精简代码"><a href="#采用默认参数精简代码" class="headerlink" title="采用默认参数精简代码"></a>采用默认参数精简代码</h3><p><strong>反例</strong>:</p>
+<pre><code>function writeForumComment(subject, body) &#123;
+  subject = subject &#39;&#39; &#39;No Subject&#39;;
+  body = body &#39;&#39; &#39;No text&#39;;
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>function writeForumComment(subject = &#39;No subject&#39;, body = &#39;No text&#39;) &#123;
+  ...
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="使用-Object-assign-设置默认对象"><a href="#使用-Object-assign-设置默认对象" class="headerlink" title="使用 Object.assign 设置默认对象"></a>使用 Object.assign 设置默认对象</h3><p><strong>反例</strong>:</p>
+<pre><code>var menuConfig = &#123;
+  title: null,
+  body: &#39;Bar&#39;,
+  buttonText: null,
+  cancellable: true
+&#125;
+
+function createMenu(config) &#123;
+  config.title = config.title &#39;&#39; &#39;Foo&#39;
+  config.body = config.body &#39;&#39; &#39;Bar&#39;
+  config.buttonText = config.buttonText &#39;&#39; &#39;Baz&#39;
+  config.cancellable = config.cancellable === undefined ? config.cancellable : true;
+
+&#125;
+
+createMenu(menuConfig);
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>var menuConfig = &#123;
+  title: &#39;Order&#39;,
+  // User did not include &#39;body&#39; key
+  buttonText: &#39;Send&#39;,
+  cancellable: true
+&#125;
+
+function createMenu(config) &#123;
+  config = Object.assign(&#123;
+    title: &#39;Foo&#39;,
+    body: &#39;Bar&#39;,
+    buttonText: &#39;Baz&#39;,
+    cancellable: true
+  &#125;, config);
+
+  // config now equals: &#123;title: &quot;Order&quot;, body: &quot;Bar&quot;, buttonText: &quot;Send&quot;, cancellable: true&#125;
+  // ...
+&#125;
+
+createMenu(menuConfig);
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="不要使用标记-Flag-作为函数参数"><a href="#不要使用标记-Flag-作为函数参数" class="headerlink" title="不要使用标记(Flag)作为函数参数"></a>不要使用标记(Flag)作为函数参数</h3><p>这通常意味着函数的功能的单一性已经被破坏。此时应考虑对函数进行再次划分。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>function createFile(name, temp) &#123;
+  if (temp) &#123;
+    fs.create(&#39;./temp/&#39; + name);
+  &#125; else &#123;
+    fs.create(name);
+  &#125;
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>function createTempFile(name) &#123;
+  fs.create(&#39;./temp/&#39; + name);
+&#125;
+
+----------
+
+function createFile(name) &#123;
+  fs.create(name);
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="避免副作用"><a href="#避免副作用" class="headerlink" title="避免副作用"></a>避免副作用</h3><p>当函数产生了除了”接受一个值并返回一个结果”之外的行为时，称该函数产生了副作用。比如写文件、修改全局变量或将你的钱全转给了一个陌生人等。</p>
+<p>程序在某些情况下确实需要副作用这一行为，如先前例子中的写文件。这时应该将这些功能集中在一起，不要用多个函数&#x2F;类修改某个文件。用且只用一个 service 完成这一需求。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>// Global variable referenced by following function.
+// If we had another function that used this name, now it&#39;d be an array and it could break it.
+var name = &#39;Ryan McDermott&#39;;
+
+function splitIntoFirstAndLastName() &#123;
+  name = name.split(&#39; &#39;);
+&#125;
+
+splitIntoFirstAndLastName();
+
+console.log(name); // [&#39;Ryan&#39;, &#39;McDermott&#39;];
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>function splitIntoFirstAndLastName(name) &#123;
+  return name.split(&#39; &#39;);
+&#125;
+
+var name = &#39;Ryan McDermott&#39;
+var newName = splitIntoFirstAndLastName(name);
+
+console.log(name); // &#39;Ryan McDermott&#39;;
+console.log(newName); // [&#39;Ryan&#39;, &#39;McDermott&#39;];
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="不要写全局函数"><a href="#不要写全局函数" class="headerlink" title="不要写全局函数"></a>不要写全局函数</h3><p>在 JS 中污染全局是一个非常不好的实践，这么做可能和其他库起冲突，且调用你的 API 的用户在实际环境中得到一个 exception 前对这一情况是一无所知的。</p>
+<p>想象以下例子：如果你想扩展 JS 中的 Array，为其添加一个 <code>diff</code> 函数显示两个数组间的差异，此时应如何去做？你可以将 diff 写入 <code>Array.prototype</code>，但这么做会和其他有类似需求的库造成冲突。如果另一个库对 diff 的需求为比较一个数组中首尾元素间的差异呢？</p>
+<p>使用 ES6 中的 class 对全局的 Array 做简单的扩展显然是一个更棒的选择。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>Array.prototype.diff = function(comparisonArray) &#123;
+  var values = [];
+  var hash = &#123;&#125;;
+
+  for (var i of comparisonArray) &#123;
+    hash[i] = true;
+  &#125;
+
+  for (var i of this) &#123;
+    if (!hash[i]) &#123;
+      values.push(i);
+    &#125;
+  &#125;
+
+  return values;
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>class SuperArray extends Array &#123;
+  constructor(...args) &#123;
+    super(...args);
+  &#125;
+
+  diff(comparisonArray) &#123;
+    var values = [];
+    var hash = &#123;&#125;;
+
+    for (var i of comparisonArray) &#123;
+      hash[i] = true;
+    &#125;
+
+    for (var i of this) &#123;
+      if (!hash[i]) &#123;
+        values.push(i);
+      &#125;
+    &#125;
+
+    return values;
+  &#125;
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="采用函数式编程"><a href="#采用函数式编程" class="headerlink" title="采用函数式编程"></a>采用函数式编程</h3><p>函数式的编程具有更干净且便于测试的特点。尽可能的使用这种风格吧。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>const programmerOutput = [
+  &#123;
+    name: &#39;Uncle Bobby&#39;,
+    linesOfCode: 500
+  &#125;, &#123;
+    name: &#39;Suzie Q&#39;,
+    linesOfCode: 1500
+  &#125;, &#123;
+    name: &#39;Jimmy Gosling&#39;,
+    linesOfCode: 150
+  &#125;, &#123;
+    name: &#39;Gracie Hopper&#39;,
+    linesOfCode: 1000
+  &#125;
+];
+
+var totalOutput = 0;
+
+for (var i = 0; i &lt; programmerOutput.length; i++) &#123;
+  totalOutput += programmerOutput[i].linesOfCode;
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>const programmerOutput = [
+  &#123;
+    name: &#39;Uncle Bobby&#39;,
+    linesOfCode: 500
+  &#125;, &#123;
+    name: &#39;Suzie Q&#39;,
+    linesOfCode: 1500
+  &#125;, &#123;
+    name: &#39;Jimmy Gosling&#39;,
+    linesOfCode: 150
+  &#125;, &#123;
+    name: &#39;Gracie Hopper&#39;,
+    linesOfCode: 1000
+  &#125;
+];
+
+var totalOutput = programmerOutput
+  .map((programmer) =&gt; programmer.linesOfCode)
+  .reduce((acc, linesOfCode) =&gt; acc + linesOfCode, 0);
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="封装判断条件"><a href="#封装判断条件" class="headerlink" title="封装判断条件"></a>封装判断条件</h3><p><strong>反例</strong>:</p>
+<pre><code>if (fsm.state === &#39;fetching&#39; &amp;&amp; isEmpty(listNode)) &#123;
+  /// ...
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>function shouldShowSpinner(fsm, listNode) &#123;
+  return fsm.state === &#39;fetching&#39; &amp;&amp; isEmpty(listNode);
+&#125;
+
+if (shouldShowSpinner(fsmInstance, listNodeInstance)) &#123;
+  // ...
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="避免”否定情况”的判断"><a href="#避免”否定情况”的判断" class="headerlink" title="避免”否定情况”的判断"></a>避免”否定情况”的判断</h3><p><strong>反例</strong>:</p>
+<pre><code>function isDOMNodeNotPresent(node) &#123;
+  // ...
+&#125;
+
+if (!isDOMNodeNotPresent(node)) &#123;
+  // ...
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>function isDOMNodePresent(node) &#123;
+  // ...
+&#125;
+
+if (isDOMNodePresent(node)) &#123;
+  // ...
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="避免条件判断"><a href="#避免条件判断" class="headerlink" title="避免条件判断"></a>避免条件判断</h3><p>这看起来似乎不太可能。</p>
+<p>大多人听到这的第一反应是：”怎么可能不用 if 完成其他功能呢？”许多情况下通过使用多态(polymorphism)可以达到同样的目的。</p>
+<p>第二个问题在于采用这种方式的原因是什么。答案是我们之前提到过的：保持函数功能的单一性。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>class Airplane &#123;
+  //...
+  getCruisingAltitude() &#123;
+    switch (this.type) &#123;
+      case &#39;777&#39;:
+        return getMaxAltitude() - getPassengerCount();
+      case &#39;Air Force One&#39;:
+        return getMaxAltitude();
+      case &#39;Cessna&#39;:
+        return getMaxAltitude() - getFuelExpenditure();
+    &#125;
+  &#125;
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>class Airplane &#123;
+  //...
+&#125;
+
+class Boeing777 extends Airplane &#123;
+  //...
+  getCruisingAltitude() &#123;
+    return getMaxAltitude() - getPassengerCount();
+  &#125;
+&#125;
+
+class AirForceOne extends Airplane &#123;
+  //...
+  getCruisingAltitude() &#123;
+    return getMaxAltitude();
+  &#125;
+&#125;
+
+class Cessna extends Airplane &#123;
+  //...
+  getCruisingAltitude() &#123;
+    return getMaxAltitude() - getFuelExpenditure();
+  &#125;
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="避免类型判断-part-1"><a href="#避免类型判断-part-1" class="headerlink" title="避免类型判断(part 1)"></a>避免类型判断(part 1)</h3><p>JS 是弱类型语言，这意味着函数可接受任意类型的参数。</p>
+<p>有时这会对你带来麻烦，你会对参数做一些类型判断。有许多方法可以避免这些情况。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>function travelToTexas(vehicle) &#123;
+  if (vehicle instanceof Bicycle) &#123;
+    vehicle.peddle(this.currentLocation, new Location(&#39;texas&#39;));
+  &#125; else if (vehicle instanceof Car) &#123;
+    vehicle.drive(this.currentLocation, new Location(&#39;texas&#39;));
+  &#125;
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>function travelToTexas(vehicle) &#123;
+  vehicle.move(this.currentLocation, new Location(&#39;texas&#39;));
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="避免类型判断-part-2"><a href="#避免类型判断-part-2" class="headerlink" title="避免类型判断(part 2)"></a>避免类型判断(part 2)</h3><p>如果需处理的数据为字符串，整型，数组等类型，无法使用多态并仍有必要对其进行类型检测时，可以考虑使用 TypeScript。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>function combine(val1, val2) &#123;
+  if (typeof val1 == &quot;number&quot; &amp;&amp; typeof val2 == &quot;number&quot; &#39;&#39;
+      typeof val1 == &quot;string&quot; &amp;&amp; typeof val2 == &quot;string&quot;) &#123;
+    return val1 + val2;
+  &#125; else &#123;
+    throw new Error(&#39;Must be of type String or Number&#39;);
+  &#125;
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>function combine(val1, val2) &#123;
+  return val1 + val2;
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="避免过度优化"><a href="#避免过度优化" class="headerlink" title="避免过度优化"></a>避免过度优化</h3><p>现代的浏览器在运行时会对代码自动进行优化。有时人为对代码进行优化可能是在浪费时间。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/petkaantonov/bluebird/wiki/Optimization-killers">这里可以找到许多真正需要优化的地方</a></p>
+<p><strong>反例</strong>:</p>
+<pre><code>// 这里使用变量len是因为在老式浏览器中，
+// 直接使用正例中的方式会导致每次循环均重复计算list.length的值，
+// 而在现代浏览器中会自动完成优化，这一行为是没有必要的
+for (var i = 0, len = list.length; i &lt; len; i++) &#123;
+  // ...
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>for (var i = 0; i &lt; list.length; i++) &#123;
+  // ...
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="删除无效的代码"><a href="#删除无效的代码" class="headerlink" title="删除无效的代码"></a>删除无效的代码</h3><p>不再被调用的代码应及时删除。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>function oldRequestModule(url) &#123;
+  // ...
+&#125;
+
+function newRequestModule(url) &#123;
+  // ...
+&#125;
+
+var req = newRequestModule;
+inventoryTracker(&#39;apples&#39;, req, &#39;www.inventory-awesome.io&#39;);
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>function newRequestModule(url) &#123;
+  // ...
+&#125;
+
+var req = newRequestModule;
+inventoryTracker(&#39;apples&#39;, req, &#39;www.inventory-awesome.io&#39;);
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h2 id="对象和数据结构"><a href="#对象和数据结构" class="headerlink" title="对象和数据结构"></a><strong>对象和数据结构</strong></h2><h3 id="使用-getters-和-setters"><a href="#使用-getters-和-setters" class="headerlink" title="使用 getters 和 setters"></a>使用 getters 和 setters</h3><p>JS 没有接口或类型，因此实现这一模式是很困难的，因为我们并没有类似 <code>public</code> 和 <code>private</code> 的关键词。</p>
+<p>然而，使用 getters 和 setters 获取对象的数据远比直接使用点操作符具有优势。为什么呢？</p>
+<ol>
+<li>当需要对获取的对象属性执行额外操作时。</li>
+<li>执行 <code>set</code> 时可以增加规则对要变量的合法性进行判断。</li>
+<li>封装了内部逻辑。</li>
+<li>在存取时可以方便的增加日志和错误处理。</li>
+<li>继承该类时可以重载默认行为。</li>
+<li>从服务器获取数据时可以进行懒加载。</li>
+</ol>
+<p><strong>反例</strong>:</p>
+<pre><code>class BankAccount &#123;
+  constructor() &#123;
+       this.balance = 1000;
+  &#125;
+&#125;
+
+let bankAccount = new BankAccount();
+
+// Buy shoes...
+bankAccount.balance = bankAccount.balance - 100;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>class BankAccount &#123;
+  constructor() &#123;
+       this.balance = 1000;
+  &#125;
+
+  // It doesn&#39;t have to be prefixed with `get` or `set` to be a getter/setter
+  withdraw(amount) &#123;
+    if (verifyAmountCanBeDeducted(amount)) &#123;
+      this.balance -= amount;
+    &#125;
+  &#125;
+&#125;
+
+let bankAccount = new BankAccount();
+
+// Buy shoes...
+bankAccount.withdraw(100);
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="让对象拥有私有成员"><a href="#让对象拥有私有成员" class="headerlink" title="让对象拥有私有成员"></a>让对象拥有私有成员</h3><p>可以通过闭包完成</p>
+<p><strong>反例</strong>:</p>
+<pre><code>var Employee = function(name) &#123;
+  this.name = name;
+&#125;
+
+Employee.prototype.getName = function() &#123;
+  return this.name;
+&#125;
+
+var employee = new Employee(&#39;John Doe&#39;);
+console.log(&#39;Employee name: &#39; + employee.getName()); // Employee name: John Doe
+delete employee.name;
+console.log(&#39;Employee name: &#39; + employee.getName()); // Employee name: undefined
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>var Employee = (function() &#123;
+  function Employee(name) &#123;
+    this.getName = function() &#123;
+      return name;
+    &#125;;
+  &#125;
+
+  return Employee;
+&#125;());
+
+var employee = new Employee(&#39;John Doe&#39;);
+console.log(&#39;Employee name: &#39; + employee.getName()); // Employee name: John Doe
+delete employee.name;
+console.log(&#39;Employee name: &#39; + employee.getName()); // Employee name: John Doe
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a><strong>类</strong></h2><h3 id="单一职责原则-SRP"><a href="#单一职责原则-SRP" class="headerlink" title="单一职责原则 (SRP)"></a>单一职责原则 (SRP)</h3><p>如《代码整洁之道》一书中所述，”修改一个类的理由不应该超过一个”。</p>
+<p>将多个功能塞进一个类的想法很诱人，但这将导致你的类无法达到概念上的内聚，并经常不得不进行修改。</p>
+<p>最小化对一个类需要修改的次数是非常有必要的。如果一个类具有太多太杂的功能，当你对其中一小部分进行修改时，将很难想象到这一修够对代码库中依赖该类的其他模块会带来什么样的影响。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>class UserSettings &#123;
+  constructor(user) &#123;
+    this.user = user;
+  &#125;
+
+  changeSettings(settings) &#123;
+    if (this.verifyCredentials(user)) &#123;
+      // ...
+    &#125;
+  &#125;
+
+  verifyCredentials(user) &#123;
+    // ...
+  &#125;
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>class UserAuth &#123;
+  constructor(user) &#123;
+    this.user = user;
+  &#125;
+
+  verifyCredentials() &#123;
+    // ...
+  &#125;
+&#125;
+
+class UserSettings &#123;
+  constructor(user) &#123;
+    this.user = user;
+    this.auth = new UserAuth(user)
+  &#125;
+
+  changeSettings(settings) &#123;
+    if (this.auth.verifyCredentials()) &#123;
+      // ...
+    &#125;
+  &#125;
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="开-闭原则-OCP"><a href="#开-闭原则-OCP" class="headerlink" title="开&#x2F;闭原则 (OCP)"></a>开&#x2F;闭原则 (OCP)</h3><p>“代码实体(类，模块，函数等)应该易于扩展，难于修改。”</p>
+<p>这一原则指的是我们应允许用户方便的扩展我们代码模块的功能，而不需要打开 js 文件源码手动对其进行修改。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>class AjaxRequester &#123;
+  constructor() &#123;
+    // What if we wanted another HTTP Method, like DELETE? We would have to
+    // open this file up and modify this and put it in manually.
+    this.HTTP_METHODS = [&#39;POST&#39;, &#39;PUT&#39;, &#39;GET&#39;];
+  &#125;
+
+  get(url) &#123;
+    // ...
+  &#125;
+
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>class AjaxRequester &#123;
+  constructor() &#123;
+    this.HTTP_METHODS = [&#39;POST&#39;, &#39;PUT&#39;, &#39;GET&#39;];
+  &#125;
+
+  get(url) &#123;
+    // ...
+  &#125;
+
+  addHTTPMethod(method) &#123;
+    this.HTTP_METHODS.push(method);
+  &#125;
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="利斯科夫替代原则-LSP"><a href="#利斯科夫替代原则-LSP" class="headerlink" title="利斯科夫替代原则 (LSP)"></a>利斯科夫替代原则 (LSP)</h3><p>“子类对象应该能够替换其超类对象被使用”。</p>
+<p>也就是说，如果有一个父类和一个子类，当采用子类替换父类时不应该产生错误的结果。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>class Rectangle &#123;
+  constructor() &#123;
+    this.width = 0;
+    this.height = 0;
+  &#125;
+
+  setColor(color) &#123;
+    // ...
+  &#125;
+
+  render(area) &#123;
+    // ...
+  &#125;
+
+  setWidth(width) &#123;
+    this.width = width;
+  &#125;
+
+  setHeight(height) &#123;
+    this.height = height;
+  &#125;
+
+  getArea() &#123;
+    return this.width * this.height;
+  &#125;
+&#125;
+
+class Square extends Rectangle &#123;
+  constructor() &#123;
+    super();
+  &#125;
+
+  setWidth(width) &#123;
+    this.width = width;
+    this.height = width;
+  &#125;
+
+  setHeight(height) &#123;
+    this.width = height;
+    this.height = height;
+  &#125;
+&#125;
+
+function renderLargeRectangles(rectangles) &#123;
+  rectangles.forEach((rectangle) =&gt; &#123;
+    rectangle.setWidth(4);
+    rectangle.setHeight(5);
+    let area = rectangle.getArea(); // BAD: Will return 25 for Square. Should be 20.
+    rectangle.render(area);
+  &#125;)
+&#125;
+
+let rectangles = [new Rectangle(), new Rectangle(), new Square()];
+renderLargeRectangles(rectangles);
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>class Shape &#123;
+  constructor() &#123;&#125;
+
+  setColor(color) &#123;
+    // ...
+  &#125;
+
+  render(area) &#123;
+    // ...
+  &#125;
+&#125;
+
+class Rectangle extends Shape &#123;
+  constructor() &#123;
+    super();
+    this.width = 0;
+    this.height = 0;
+  &#125;
+
+  setWidth(width) &#123;
+    this.width = width;
+  &#125;
+
+  setHeight(height) &#123;
+    this.height = height;
+  &#125;
+
+  getArea() &#123;
+    return this.width * this.height;
+  &#125;
+&#125;
+
+class Square extends Shape &#123;
+  constructor() &#123;
+    super();
+    this.length = 0;
+  &#125;
+
+  setLength(length) &#123;
+    this.length = length;
+  &#125;
+
+  getArea() &#123;
+    return this.length * this.length;
+  &#125;
+&#125;
+
+function renderLargeShapes(shapes) &#123;
+  shapes.forEach((shape) =&gt; &#123;
+    switch (shape.constructor.name) &#123;
+      case &#39;Square&#39;:
+        shape.setLength(5);
+      case &#39;Rectangle&#39;:
+        shape.setWidth(4);
+        shape.setHeight(5);
+    &#125;
+
+    let area = shape.getArea();
+    shape.render(area);
+  &#125;)
+&#125;
+
+let shapes = [new Rectangle(), new Rectangle(), new Square()];
+renderLargeShapes(shapes);
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="接口隔离原则-ISP"><a href="#接口隔离原则-ISP" class="headerlink" title="接口隔离原则 (ISP)"></a>接口隔离原则 (ISP)</h3><p>“客户端不应该依赖它不需要的接口；一个类对另一个类的依赖应该建立在最小的接口上。”</p>
+<p>在 JS 中，当一个类需要许多参数设置才能生成一个对象时，或许大多时候不需要设置这么多的参数。此时减少对配置参数数量的需求是有益的。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>class DOMTraverser &#123;
+  constructor(settings) &#123;
+    this.settings = settings;
+    this.setup();
+  &#125;
+
+  setup() &#123;
+    this.rootNode = this.settings.rootNode;
+    this.animationModule.setup();
+  &#125;
+
+  traverse() &#123;
+    // ...
+  &#125;
+&#125;
+
+let $ = new DOMTraverser(&#123;
+  rootNode: document.getElementsByTagName(&#39;body&#39;),
+  animationModule: function() &#123;&#125; // Most of the time, we won&#39;t need to animate when traversing.
+  // ...
+&#125;);
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>class DOMTraverser &#123;
+  constructor(settings) &#123;
+    this.settings = settings;
+    this.options = settings.options;
+    this.setup();
+  &#125;
+
+  setup() &#123;
+    this.rootNode = this.settings.rootNode;
+    this.setupOptions();
+  &#125;
+
+  setupOptions() &#123;
+    if (this.options.animationModule) &#123;
+      // ...
+    &#125;
+  &#125;
+
+  traverse() &#123;
+    // ...
+  &#125;
+&#125;
+
+let $ = new DOMTraverser(&#123;
+  rootNode: document.getElementsByTagName(&#39;body&#39;),
+  options: &#123;
+    animationModule: function() &#123;&#125;
+  &#125;
+&#125;);
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="依赖反转原则-DIP"><a href="#依赖反转原则-DIP" class="headerlink" title="依赖反转原则 (DIP)"></a>依赖反转原则 (DIP)</h3><p>该原则有两个核心点：</p>
+<ol>
+<li>高层模块不应该依赖于低层模块。他们都应该依赖于抽象接口。</li>
+<li>抽象接口应该脱离具体实现，具体实现应该依赖于抽象接口。</li>
+</ol>
+<p><strong>反例</strong>:</p>
+<pre><code>class InventoryTracker &#123;
+  constructor(items) &#123;
+    this.items = items;
+
+    // BAD: We have created a dependency on a specific request implementation.
+    // We should just have requestItems depend on a request method: `request`
+    this.requester = new InventoryRequester();
+  &#125;
+
+  requestItems() &#123;
+    this.items.forEach((item) =&gt; &#123;
+      this.requester.requestItem(item);
+    &#125;);
+  &#125;
+&#125;
+
+class InventoryRequester &#123;
+  constructor() &#123;
+    this.REQ_METHODS = [&#39;HTTP&#39;];
+  &#125;
+
+  requestItem(item) &#123;
+    // ...
+  &#125;
+&#125;
+
+let inventoryTracker = new InventoryTracker([&#39;apples&#39;, &#39;bananas&#39;]);
+inventoryTracker.requestItems();
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>class InventoryTracker &#123;
+  constructor(items, requester) &#123;
+    this.items = items;
+    this.requester = requester;
+  &#125;
+
+  requestItems() &#123;
+    this.items.forEach((item) =&gt; &#123;
+      this.requester.requestItem(item);
+    &#125;);
+  &#125;
+&#125;
+
+class InventoryRequesterV1 &#123;
+  constructor() &#123;
+    this.REQ_METHODS = [&#39;HTTP&#39;];
+  &#125;
+
+  requestItem(item) &#123;
+    // ...
+  &#125;
+&#125;
+
+class InventoryRequesterV2 &#123;
+  constructor() &#123;
+    this.REQ_METHODS = [&#39;WS&#39;];
+  &#125;
+
+  requestItem(item) &#123;
+    // ...
+  &#125;
+&#125;
+
+// By constructing our dependencies externally and injecting them, we can easily
+// substitute our request module for a fancy new one that uses WebSockets.
+let inventoryTracker = new InventoryTracker([&#39;apples&#39;, &#39;bananas&#39;], new InventoryRequesterV2());
+inventoryTracker.requestItems();
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="使用-ES6-的-classes-而不是-ES5-的-Function"><a href="#使用-ES6-的-classes-而不是-ES5-的-Function" class="headerlink" title="使用 ES6 的 classes 而不是 ES5 的 Function"></a>使用 ES6 的 classes 而不是 ES5 的 Function</h3><p>典型的 ES5 的类(function)在继承、构造和方法定义方面可读性较差。</p>
+<p>当需要继承时，优先选用 classes。</p>
+<p>但是，当在需要更大更复杂的对象时，最好优先选择更小的 function 而非 classes。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>var Animal = function(age) &#123;
+    if (!(this instanceof Animal)) &#123;
+        throw new Error(&quot;Instantiate Animal with `new`&quot;);
+    &#125;
+
+    this.age = age;
+&#125;;
+
+Animal.prototype.move = function() &#123;&#125;;
+
+var Mammal = function(age, furColor) &#123;
+    if (!(this instanceof Mammal)) &#123;
+        throw new Error(&quot;Instantiate Mammal with `new`&quot;);
+    &#125;
+
+    Animal.call(this, age);
+    this.furColor = furColor;
+&#125;;
+
+Mammal.prototype = Object.create(Animal.prototype);
+Mammal.prototype.constructor = Mammal;
+Mammal.prototype.liveBirth = function() &#123;&#125;;
+
+var Human = function(age, furColor, languageSpoken) &#123;
+    if (!(this instanceof Human)) &#123;
+        throw new Error(&quot;Instantiate Human with `new`&quot;);
+    &#125;
+
+    Mammal.call(this, age, furColor);
+    this.languageSpoken = languageSpoken;
+&#125;;
+
+Human.prototype = Object.create(Mammal.prototype);
+Human.prototype.constructor = Human;
+Human.prototype.speak = function() &#123;&#125;;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>class Animal &#123;
+    constructor(age) &#123;
+        this.age = age;
+    &#125;
+
+    move() &#123;&#125;
+&#125;
+
+class Mammal extends Animal &#123;
+    constructor(age, furColor) &#123;
+        super(age);
+        this.furColor = furColor;
+    &#125;
+
+    liveBirth() &#123;&#125;
+&#125;
+
+class Human extends Mammal &#123;
+    constructor(age, furColor, languageSpoken) &#123;
+        super(age, furColor);
+        this.languageSpoken = languageSpoken;
+    &#125;
+
+    speak() &#123;&#125;
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="使用方法链"><a href="#使用方法链" class="headerlink" title="使用方法链"></a>使用方法链</h3><p>这里我们的理解与《代码整洁之道》的建议有些不同。</p>
+<p>有争论说方法链不够干净且违反了<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Law_of_Demeter">德米特法则</a>，也许这是对的，但这种方法在 JS 及许多库(如 JQuery)中显得非常实用。</p>
+<p>因此，我认为在 JS 中使用方法链是非常合适的。在 class 的函数中返回 this，能够方便的将类需要执行的多个方法链接起来。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>class Car &#123;
+  constructor() &#123;
+    this.make = &#39;Honda&#39;;
+    this.model = &#39;Accord&#39;;
+    this.color = &#39;white&#39;;
+  &#125;
+
+  setMake(make) &#123;
+    this.name = name;
+  &#125;
+
+  setModel(model) &#123;
+    this.model = model;
+  &#125;
+
+  setColor(color) &#123;
+    this.color = color;
+  &#125;
+
+  save() &#123;
+    console.log(this.make, this.model, this.color);
+  &#125;
+&#125;
+
+let car = new Car();
+car.setColor(&#39;pink&#39;);
+car.setMake(&#39;Ford&#39;);
+car.setModel(&#39;F-150&#39;)
+car.save();
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>class Car &#123;
+  constructor() &#123;
+    this.make = &#39;Honda&#39;;
+    this.model = &#39;Accord&#39;;
+    this.color = &#39;white&#39;;
+  &#125;
+
+  setMake(make) &#123;
+    this.name = name;
+    // NOTE: Returning this for chaining
+    return this;
+  &#125;
+
+  setModel(model) &#123;
+    this.model = model;
+    // NOTE: Returning this for chaining
+    return this;
+  &#125;
+
+  setColor(color) &#123;
+    this.color = color;
+    // NOTE: Returning this for chaining
+    return this;
+  &#125;
+
+  save() &#123;
+    console.log(this.make, this.model, this.color);
+  &#125;
+&#125;
+
+let car = new Car()
+  .setColor(&#39;pink&#39;)
+  .setMake(&#39;Ford&#39;)
+  .setModel(&#39;F-150&#39;)
+  .save();
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="优先使用组合模式而非继承"><a href="#优先使用组合模式而非继承" class="headerlink" title="优先使用组合模式而非继承"></a>优先使用组合模式而非继承</h3><p>在著名的<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Design_Patterns">设计模式</a>一书中提到，应多使用组合模式而非继承。</p>
+<p>这么做有许多优点，在想要使用继承前，多想想能否通过组合模式满足需求吧。</p>
+<p>那么，在什么时候继承具有更大的优势呢？这取决于你的具体需求，但大多情况下，可以遵守以下三点：</p>
+<ol>
+<li>继承关系表现为”是一个”而非”有一个”(如动物-&gt;人 和 用户-&gt;用户细节)</li>
+<li>可以复用基类的代码(“Human”可以看成是”All animal”的一种)</li>
+<li>希望当基类改变时所有派生类都受到影响(如修改”all animals”移动时的卡路里消耗量)</li>
+</ol>
+<p><strong>反例</strong>:</p>
+<pre><code>class Employee &#123;
+  constructor(name, email) &#123;
+    this.name = name;
+    this.email = email;
+  &#125;
+
+  // ...
+&#125;
+
+// Bad because Employees &quot;have&quot; tax data. EmployeeTaxData is not a type of Employee
+class EmployeeTaxData extends Employee &#123;
+  constructor(ssn, salary) &#123;
+    super();
+    this.ssn = ssn;
+    this.salary = salary;
+  &#125;
+
+  // ...
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>class Employee &#123;
+  constructor(name, email) &#123;
+    this.name = name;
+    this.email = email;
+
+  &#125;
+
+  setTaxData(ssn, salary) &#123;
+    this.taxData = new EmployeeTaxData(ssn, salary);
+  &#125;
+  // ...
+&#125;
+
+class EmployeeTaxData &#123;
+  constructor(ssn, salary) &#123;
+    this.ssn = ssn;
+    this.salary = salary;
+  &#125;
+
+  // ...
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a><strong>测试</strong></h2><p><a target="_blank" rel="noopener" href="http://gotwarlost.github.io/istanbul/">一些好的覆盖工具</a>。</p>
+<p><a target="_blank" rel="noopener" href="http://jstherightway.org/#testing-tools">一些好的 JS 测试框架</a>。</p>
+<h3 id="单一的测试每个概念"><a href="#单一的测试每个概念" class="headerlink" title="单一的测试每个概念"></a>单一的测试每个概念</h3><p><strong>反例</strong>:</p>
+<pre><code>const assert = require(&#39;assert&#39;);
+
+describe(&#39;MakeMomentJSGreatAgain&#39;, function() &#123;
+  it(&#39;handles date boundaries&#39;, function() &#123;
+    let date;
+
+    date = new MakeMomentJSGreatAgain(&#39;1/1/2015&#39;);
+    date.addDays(30);
+    date.shouldEqual(&#39;1/31/2015&#39;);
+
+    date = new MakeMomentJSGreatAgain(&#39;2/1/2016&#39;);
+    date.addDays(28);
+    assert.equal(&#39;02/29/2016&#39;, date);
+
+    date = new MakeMomentJSGreatAgain(&#39;2/1/2015&#39;);
+    date.addDays(28);
+    assert.equal(&#39;03/01/2015&#39;, date);
+  &#125;);
+&#125;);
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>const assert = require(&#39;assert&#39;);
+
+describe(&#39;MakeMomentJSGreatAgain&#39;, function() &#123;
+  it(&#39;handles 30-day months&#39;, function() &#123;
+    let date = new MakeMomentJSGreatAgain(&#39;1/1/2015&#39;);
+    date.addDays(30);
+    date.shouldEqual(&#39;1/31/2015&#39;);
+  &#125;);
+
+  it(&#39;handles leap year&#39;, function() &#123;
+    let date = new MakeMomentJSGreatAgain(&#39;2/1/2016&#39;);
+    date.addDays(28);
+    assert.equal(&#39;02/29/2016&#39;, date);
+  &#125;);
+
+  it(&#39;handles non-leap year&#39;, function() &#123;
+    let date = new MakeMomentJSGreatAgain(&#39;2/1/2015&#39;);
+    date.addDays(28);
+    assert.equal(&#39;03/01/2015&#39;, date);
+  &#125;);
+&#125;);
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h2 id="并发"><a href="#并发" class="headerlink" title="并发"></a><strong>并发</strong></h2><h3 id="用-Promises-替代回调"><a href="#用-Promises-替代回调" class="headerlink" title="用 Promises 替代回调"></a>用 Promises 替代回调</h3><p>回调不够整洁并会造成大量的嵌套。ES6 内嵌了 Promises，使用它吧。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>require(&#39;request&#39;).get(&#39;https://en.wikipedia.org/wiki/Robert_Cecil_Martin&#39;, function(err, response) &#123;
+  if (err) &#123;
+    console.error(err);
+  &#125;
+  else &#123;
+    require(&#39;fs&#39;).writeFile(&#39;article.html&#39;, response.body, function(err) &#123;
+      if (err) &#123;
+        console.error(err);
+      &#125; else &#123;
+        console.log(&#39;File written&#39;);
+      &#125;
+    &#125;)
+  &#125;
+&#125;)
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>require(&#39;request-promise&#39;).get(&#39;https://en.wikipedia.org/wiki/Robert_Cecil_Martin&#39;)
+  .then(function(response) &#123;
+    return require(&#39;fs-promise&#39;).writeFile(&#39;article.html&#39;, response);
+  &#125;)
+  .then(function() &#123;
+    console.log(&#39;File written&#39;);
+  &#125;)
+  .catch(function(err) &#123;
+    console.error(err);
+  &#125;)
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="Async-Await-是较-Promises-更好的选择"><a href="#Async-Await-是较-Promises-更好的选择" class="headerlink" title="Async&#x2F;Await 是较 Promises 更好的选择"></a>Async&#x2F;Await 是较 Promises 更好的选择</h3><p>Promises 是较回调而言更好的一种选择，但 ES7 中的 async 和 await 更胜过 Promises。</p>
+<p>在能使用 ES7 特性的情况下可以尽量使用他们替代 Promises。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>require(&#39;request-promise&#39;).get(&#39;https://en.wikipedia.org/wiki/Robert_Cecil_Martin&#39;)
+  .then(function(response) &#123;
+    return require(&#39;fs-promise&#39;).writeFile(&#39;article.html&#39;, response);
+  &#125;)
+  .then(function() &#123;
+    console.log(&#39;File written&#39;);
+  &#125;)
+  .catch(function(err) &#123;
+    console.error(err);
+  &#125;)
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>async function getCleanCodeArticle() &#123;
+  try &#123;
+    var request = await require(&#39;request-promise&#39;)
+    var response = await request.get(&#39;https://en.wikipedia.org/wiki/Robert_Cecil_Martin&#39;);
+    var fileHandle = await require(&#39;fs-promise&#39;);
+
+    await fileHandle.writeFile(&#39;article.html&#39;, response);
+    console.log(&#39;File written&#39;);
+  &#125; catch(err) &#123;
+    console.log(err);
+  &#125;
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a><strong>错误处理</strong></h2><p>错误抛出是个好东西！这使得你能够成功定位运行状态中的程序产生错误的位置。</p>
+<h3 id="别忘了捕获错误"><a href="#别忘了捕获错误" class="headerlink" title="别忘了捕获错误"></a>别忘了捕获错误</h3><p>对捕获的错误不做任何处理是没有意义的。</p>
+<p>代码中 <code>try/catch</code> 的意味着你认为这里可能出现一些错误，你应该对这些可能的错误存在相应的处理方案。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>try &#123;
+  functionThatMightThrow();
+&#125; catch (error) &#123;
+  console.log(error);
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>try &#123;
+  functionThatMightThrow();
+&#125; catch (error) &#123;
+  // One option (more noisy than console.log):
+  console.error(error);
+  // Another option:
+  notifyUserOfError(error);
+  // Another option:
+  reportErrorToService(error);
+  // OR do all three!
+&#125;
+</code></pre>
+<h3 id="不要忽略被拒绝的-promises"><a href="#不要忽略被拒绝的-promises" class="headerlink" title="不要忽略被拒绝的 promises"></a>不要忽略被拒绝的 promises</h3><p>理由同 <code>try/catch</code>。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>getdata()
+.then(data =&gt; &#123;
+  functionThatMightThrow(data);
+&#125;)
+.catch(error =&gt; &#123;
+  console.log(error);
+&#125;);
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>getdata()
+.then(data =&gt; &#123;
+  functionThatMightThrow(data);
+&#125;)
+.catch(error =&gt; &#123;
+  // One option (more noisy than console.log):
+  console.error(error);
+  // Another option:
+  notifyUserOfError(error);
+  // Another option:
+  reportErrorToService(error);
+  // OR do all three!
+&#125;);
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h2 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a><strong>格式化</strong></h2><p>格式化是一件主观的事。如同这里的许多规则一样，这里并没有一定&#x2F;立刻需要遵守的规则。可以在<a target="_blank" rel="noopener" href="http://standardjs.com/rules.html">这里</a>完成格式的自动化。</p>
+<h3 id="大小写一致"><a href="#大小写一致" class="headerlink" title="大小写一致"></a>大小写一致</h3><p>JS 是弱类型语言，合理的采用大小写可以告诉你关于变量&#x2F;函数等的许多消息。</p>
+<p>这些规则是主观定义的，团队可以根据喜欢进行选择。重点在于无论选择何种风格，都需要注意保持一致性。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>var DAYS_IN_WEEK = 7;
+var daysInMonth = 30;
+
+var songs = [&#39;Back In Black&#39;, &#39;Stairway to Heaven&#39;, &#39;Hey Jude&#39;];
+var Artists = [&#39;ACDC&#39;, &#39;Led Zeppelin&#39;, &#39;The Beatles&#39;];
+
+function eraseDatabase() &#123;&#125;
+function restore_database() &#123;&#125;
+
+class animal &#123;&#125;
+class Alpaca &#123;&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>var DAYS_IN_WEEK = 7;
+var DAYS_IN_MONTH = 30;
+
+var songs = [&#39;Back In Black&#39;, &#39;Stairway to Heaven&#39;, &#39;Hey Jude&#39;];
+var artists = [&#39;ACDC&#39;, &#39;Led Zeppelin&#39;, &#39;The Beatles&#39;];
+
+function eraseDatabase() &#123;&#125;
+function restoreDatabase() &#123;&#125;
+
+class Animal &#123;&#125;
+class Alpaca &#123;&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="调用函数的函数和被调函数应放在较近的位置"><a href="#调用函数的函数和被调函数应放在较近的位置" class="headerlink" title="调用函数的函数和被调函数应放在较近的位置"></a>调用函数的函数和被调函数应放在较近的位置</h3><p>当函数间存在相互调用的情况时，应将两者置于较近的位置。</p>
+<p>理想情况下，应将调用其他函数的函数写在被调用函数的上方。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>class PerformanceReview &#123;
+  constructor(employee) &#123;
+    this.employee = employee;
+  &#125;
+
+  lookupPeers() &#123;
+    return db.lookup(this.employee, &#39;peers&#39;);
+  &#125;
+
+  lookupMananger() &#123;
+    return db.lookup(this.employee, &#39;manager&#39;);
+  &#125;
+
+  getPeerReviews() &#123;
+    let peers = this.lookupPeers();
+    // ...
+  &#125;
+
+  perfReview() &#123;
+      getPeerReviews();
+      getManagerReview();
+      getSelfReview();
+  &#125;
+
+  getManagerReview() &#123;
+    let manager = this.lookupManager();
+  &#125;
+
+  getSelfReview() &#123;
+    // ...
+  &#125;
+&#125;
+
+let review = new PerformanceReview(user);
+review.perfReview();
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>class PerformanceReview &#123;
+  constructor(employee) &#123;
+    this.employee = employee;
+  &#125;
+
+  perfReview() &#123;
+      getPeerReviews();
+      getManagerReview();
+      getSelfReview();
+  &#125;
+
+  getPeerReviews() &#123;
+    let peers = this.lookupPeers();
+    // ...
+  &#125;
+
+  lookupPeers() &#123;
+    return db.lookup(this.employee, &#39;peers&#39;);
+  &#125;
+
+  getManagerReview() &#123;
+    let manager = this.lookupManager();
+  &#125;
+
+  lookupMananger() &#123;
+    return db.lookup(this.employee, &#39;manager&#39;);
+  &#125;
+
+  getSelfReview() &#123;
+    // ...
+  &#125;
+&#125;
+
+let review = new PerformanceReview(employee);
+review.perfReview();
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a><strong>注释</strong></h2><h3 id="只对存在一定业务逻辑复杂性的代码进行注释"><a href="#只对存在一定业务逻辑复杂性的代码进行注释" class="headerlink" title="只对存在一定业务逻辑复杂性的代码进行注释"></a>只对存在一定业务逻辑复杂性的代码进行注释</h3><p>注释并不是必须的，好的代码是能够让人一目了然，不用过多无谓的注释。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>function hashIt(data) &#123;
+  // The hash
+  var hash = 0;
+
+  // Length of string
+  var length = data.length;
+
+  // Loop through every character in data
+  for (var i = 0; i &lt; length; i++) &#123;
+    // Get character code.
+    var char = data.charCodeAt(i);
+    // Make the hash
+    hash = ((hash &lt;&lt; 5) - hash) + char;
+    // Convert to 32-bit integer
+    hash = hash &amp; hash;
+  &#125;
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>function hashIt(data) &#123;
+  var hash = 0;
+  var length = data.length;
+
+  for (var i = 0; i &lt; length; i++) &#123;
+    var char = data.charCodeAt(i);
+    hash = ((hash &lt;&lt; 5) - hash) + char;
+
+    // Convert to 32-bit integer
+    hash = hash &amp; hash;
+  &#125;
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="不要在代码库中遗留被注释掉的代码"><a href="#不要在代码库中遗留被注释掉的代码" class="headerlink" title="不要在代码库中遗留被注释掉的代码"></a>不要在代码库中遗留被注释掉的代码</h3><p>版本控制的存在是有原因的。让旧代码存在于你的 history 里吧。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>doStuff();
+// doOtherStuff();
+// doSomeMoreStuff();
+// doSoMuchStuff();
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>doStuff();
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="不需要版本更新类型注释"><a href="#不需要版本更新类型注释" class="headerlink" title="不需要版本更新类型注释"></a>不需要版本更新类型注释</h3><p>记住，我们可以使用版本控制。废代码、被注释的代码及用注释记录代码中的版本更新说明都是没有必要的。</p>
+<p>需要时可以使用 <code>git log</code> 获取历史版本。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>/**
+ * 2016-12-20: Removed monads, didn&#39;t understand them (RM)
+ * 2016-10-01: Improved using special monads (JP)
+ * 2016-02-03: Removed type-checking (LI)
+ * 2015-03-14: Added combine with type-checking (JR)
+ */
+function combine(a, b) &#123;
+  return a + b;
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>function combine(a, b) &#123;
+  return a + b;
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="避免位置标记"><a href="#避免位置标记" class="headerlink" title="避免位置标记"></a>避免位置标记</h3><p>这些东西通常只能代码麻烦，采用适当的缩进就可以了。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>////////////////////////////////////////////////////////////////////////////////
+// Scope Model Instantiation
+////////////////////////////////////////////////////////////////////////////////
+let $scope.model = &#123;
+  menu: &#39;foo&#39;,
+  nav: &#39;bar&#39;
+&#125;;
+
+////////////////////////////////////////////////////////////////////////////////
+// Action setup
+////////////////////////////////////////////////////////////////////////////////
+let actions = function() &#123;
+  // ...
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>let $scope.model = &#123;
+  menu: &#39;foo&#39;,
+  nav: &#39;bar&#39;
+&#125;;
+
+let actions = function() &#123;
+  // ...
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+<h3 id="避免在源文件中写入法律评论"><a href="#避免在源文件中写入法律评论" class="headerlink" title="避免在源文件中写入法律评论"></a>避免在源文件中写入法律评论</h3><p>将你的 <code>LICENSE</code> 文件置于源码目录树的根目录。</p>
+<p><strong>反例</strong>:</p>
+<pre><code>/*
+The MIT License (MIT)
+
+Copyright (c) 2016 Ryan McDermott
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE
+*/
+
+function calculateBill() &#123;
+  // ...
+&#125;
+</code></pre>
+<p><strong>正例</strong>:</p>
+<pre><code>function calculateBill() &#123;
+  // ...
+&#125;
+</code></pre>
+<p><strong><a href="#%E7%9B%AE%E5%BD%95">回到目录</a></strong></p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg" title="头像" alt="头像"></a><div class="post-copyright__author_name">Lieme</div><div class="post-copyright__author_desc"></div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://toc.lieme.cn/2022/04/24/Clean-Code-Js.html">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://toc.lieme.cn/2022/04/24/Clean-Code-Js.html')">Clean-Code-Js</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://blogimg.lieme.cn/2022/05/2022051011515173.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2022/05/2022051011515173.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://blogimg.lieme.cn/2022/05/2022051011515173.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2022/05/2022051011515173.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://toc.lieme.cn/2022/04/24/Clean-Code-Js.html"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=Clean-Code-Js&amp;url=https://toc.lieme.cn/2022/04/24/Clean-Code-Js.html&amp;pic=" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://toc.lieme.cn" target="_blank">卖坚果的怪叔叔</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"></div></div><div class="post_share"><div class="social-share" data-image="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/04/23/%E6%A0%B8%E9%85%B8%20%20N+1.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">核酸  N+1</div></div></a></div><div class="next-post pull-right"><a href="/2022/04/29/%E8%BF%87%E5%8E%BB%E7%9A%84%EF%BC%8C%E4%B8%80%E7%82%B9%E8%AE%B0%E5%BD%95%EF%BC%81.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">过去的，一点记录！</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/2022/04/16/CSS%E5%B0%8F%E6%8A%80%E5%B7%A7%EF%BC%8C%E5%AE%9E%E7%8E%B0%E9%87%91%E9%A2%9D%E6%A0%B7%E5%BC%8F~.html" title="CSS小技巧，实现金额样式~"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2022-04-16</div><div class="title">CSS小技巧，实现金额样式~</div></div></a></div><div><a href="/2024/01/29/Js%E6%97%B6%E9%97%B4%E5%B0%8F%E6%96%B9%E6%B3%95.html" title="Js时间小方法"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2024-01-29</div><div class="title">Js时间小方法</div></div></a></div><div><a href="/2022/07/07/Vite%E8%87%AA%E5%8A%A8%E5%85%A8%E5%B1%80%E6%B3%A8%E5%86%8C%E7%BB%84%E4%BB%B6%EF%BC%81.html" title="Vite自动全局注册组件！"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2022-07-07</div><div class="title">Vite自动全局注册组件！</div></div></a></div><div><a href="/2021/09/16/Web%E7%AB%99%EF%BC%8C%E5%89%8D%E7%AB%AF%E6%8E%A5%E5%85%A5%E9%92%89%E9%92%89%E6%89%AB%E7%A0%81%E7%99%BB%E5%BD%95%EF%BC%81.html" title="Web站，前端接入钉钉扫码登录！"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2021-09-16</div><div class="title">Web站，前端接入钉钉扫码登录！</div></div></a></div><div><a href="/2019/03/07/f2e.html" title="F2E资源分享"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2019-03-07</div><div class="title">F2E资源分享</div></div></a></div><div><a href="/2023/12/11/%E4%B8%80%E4%BA%9B%E8%A3%85%E6%9C%BA%E5%8D%95.html" title="一些装机单"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2023-12-11</div><div class="title">一些装机单</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://blogimg.lieme.cn/2023/07/2023072703121951.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__description">用心记录美好的瞬间</div></div></div><div class="card-widget anzhiyu-right-widget" id="card-wechat" onclick="null"><div id="flip-wrapper"><div id="flip-content"><div class="face" style="background: url(https://bu.dusays.com/2023/01/13/63c02edf44033.png) center center / 100% no-repeat"></div><div class="back face" style="background: url(https://bu.dusays.com/2023/05/13/645fa415e8694.png) center center / 100% no-repeat"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript-%E9%A3%8E%E6%A0%BC%E6%8C%87%E5%8D%97"><span class="toc-number">1.</span> <span class="toc-text">JavaScript 风格指南</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-number">1.1.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.2.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">1.3.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%9C%89%E6%84%8F%E4%B9%89%EF%BC%8C%E5%8F%AF%E8%AF%BB%E6%80%A7%E5%A5%BD%E7%9A%84%E5%8F%98%E9%87%8F%E5%90%8D"><span class="toc-number">1.3.1.</span> <span class="toc-text">使用有意义，可读性好的变量名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-ES6-%E7%9A%84-const-%E5%AE%9A%E4%B9%89%E5%B8%B8%E9%87%8F"><span class="toc-number">1.3.2.</span> <span class="toc-text">使用 ES6 的 const 定义常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E5%8A%9F%E8%83%BD%E7%B1%BB%E4%BC%BC%E7%9A%84%E5%8F%98%E9%87%8F%E5%90%8D%E9%87%87%E7%94%A8%E7%BB%9F%E4%B8%80%E7%9A%84%E5%91%BD%E5%90%8D%E9%A3%8E%E6%A0%BC"><span class="toc-number">1.3.3.</span> <span class="toc-text">对功能类似的变量名采用统一的命名风格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%98%93%E4%BA%8E%E6%A3%80%E7%B4%A2%E5%90%8D%E7%A7%B0"><span class="toc-number">1.3.4.</span> <span class="toc-text">使用易于检索名称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E5%8F%98%E9%87%8F-%E5%8D%B3%E6%9C%89%E6%84%8F%E4%B9%89%E7%9A%84%E5%8F%98%E9%87%8F%E5%90%8D"><span class="toc-number">1.3.5.</span> <span class="toc-text">使用说明变量(即有意义的变量名)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E8%A6%81%E7%BB%95%E5%A4%AA%E5%A4%9A%E7%9A%84%E5%BC%AF%E5%AD%90"><span class="toc-number">1.3.6.</span> <span class="toc-text">不要绕太多的弯子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.3.7.</span> <span class="toc-text">避免重复的描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E6%97%A0%E6%84%8F%E4%B9%89%E7%9A%84%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD"><span class="toc-number">1.3.8.</span> <span class="toc-text">避免无意义的条件判断</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.</span> <span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0-%E7%90%86%E6%83%B3%E6%83%85%E5%86%B5%E4%B8%8B%E5%BA%94%E4%B8%8D%E8%B6%85%E8%BF%87-2-%E4%B8%AA"><span class="toc-number">1.4.1.</span> <span class="toc-text">函数参数 (理想情况下应不超过 2 个)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%8A%9F%E8%83%BD%E7%9A%84%E5%8D%95%E4%B8%80%E6%80%A7"><span class="toc-number">1.4.2.</span> <span class="toc-text">函数功能的单一性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%90%8D%E5%BA%94%E6%98%8E%E7%A1%AE%E8%A1%A8%E6%98%8E%E5%85%B6%E5%8A%9F%E8%83%BD"><span class="toc-number">1.4.3.</span> <span class="toc-text">函数名应明确表明其功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%BA%94%E8%AF%A5%E5%8F%AA%E5%81%9A%E4%B8%80%E5%B1%82%E6%8A%BD%E8%B1%A1"><span class="toc-number">1.4.4.</span> <span class="toc-text">函数应该只做一层抽象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E9%99%A4%E9%87%8D%E5%A4%8D%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-number">1.4.5.</span> <span class="toc-text">移除重复的代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%87%E7%94%A8%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0%E7%B2%BE%E7%AE%80%E4%BB%A3%E7%A0%81"><span class="toc-number">1.4.6.</span> <span class="toc-text">采用默认参数精简代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Object-assign-%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.4.7.</span> <span class="toc-text">使用 Object.assign 设置默认对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8%E6%A0%87%E8%AE%B0-Flag-%E4%BD%9C%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0"><span class="toc-number">1.4.8.</span> <span class="toc-text">不要使用标记(Flag)作为函数参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E5%89%AF%E4%BD%9C%E7%94%A8"><span class="toc-number">1.4.9.</span> <span class="toc-text">避免副作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E8%A6%81%E5%86%99%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.10.</span> <span class="toc-text">不要写全局函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%87%E7%94%A8%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B"><span class="toc-number">1.4.11.</span> <span class="toc-text">采用函数式编程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E5%88%A4%E6%96%AD%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.4.12.</span> <span class="toc-text">封装判断条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E2%80%9D%E5%90%A6%E5%AE%9A%E6%83%85%E5%86%B5%E2%80%9D%E7%9A%84%E5%88%A4%E6%96%AD"><span class="toc-number">1.4.13.</span> <span class="toc-text">避免”否定情况”的判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD"><span class="toc-number">1.4.14.</span> <span class="toc-text">避免条件判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD-part-1"><span class="toc-number">1.4.15.</span> <span class="toc-text">避免类型判断(part 1)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD-part-2"><span class="toc-number">1.4.16.</span> <span class="toc-text">避免类型判断(part 2)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E8%BF%87%E5%BA%A6%E4%BC%98%E5%8C%96"><span class="toc-number">1.4.17.</span> <span class="toc-text">避免过度优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%97%A0%E6%95%88%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-number">1.4.18.</span> <span class="toc-text">删除无效的代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.5.</span> <span class="toc-text">对象和数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-getters-%E5%92%8C-setters"><span class="toc-number">1.5.1.</span> <span class="toc-text">使用 getters 和 setters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A9%E5%AF%B9%E8%B1%A1%E6%8B%A5%E6%9C%89%E7%A7%81%E6%9C%89%E6%88%90%E5%91%98"><span class="toc-number">1.5.2.</span> <span class="toc-text">让对象拥有私有成员</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB"><span class="toc-number">1.6.</span> <span class="toc-text">类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99-SRP"><span class="toc-number">1.6.1.</span> <span class="toc-text">单一职责原则 (SRP)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80-%E9%97%AD%E5%8E%9F%E5%88%99-OCP"><span class="toc-number">1.6.2.</span> <span class="toc-text">开&#x2F;闭原则 (OCP)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E6%96%AF%E7%A7%91%E5%A4%AB%E6%9B%BF%E4%BB%A3%E5%8E%9F%E5%88%99-LSP"><span class="toc-number">1.6.3.</span> <span class="toc-text">利斯科夫替代原则 (LSP)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99-ISP"><span class="toc-number">1.6.4.</span> <span class="toc-text">接口隔离原则 (ISP)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E5%8F%8D%E8%BD%AC%E5%8E%9F%E5%88%99-DIP"><span class="toc-number">1.6.5.</span> <span class="toc-text">依赖反转原则 (DIP)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-ES6-%E7%9A%84-classes-%E8%80%8C%E4%B8%8D%E6%98%AF-ES5-%E7%9A%84-Function"><span class="toc-number">1.6.6.</span> <span class="toc-text">使用 ES6 的 classes 而不是 ES5 的 Function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E9%93%BE"><span class="toc-number">1.6.7.</span> <span class="toc-text">使用方法链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%85%88%E4%BD%BF%E7%94%A8%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F%E8%80%8C%E9%9D%9E%E7%BB%A7%E6%89%BF"><span class="toc-number">1.6.8.</span> <span class="toc-text">优先使用组合模式而非继承</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-number">1.7.</span> <span class="toc-text">测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E4%B8%80%E7%9A%84%E6%B5%8B%E8%AF%95%E6%AF%8F%E4%B8%AA%E6%A6%82%E5%BF%B5"><span class="toc-number">1.7.1.</span> <span class="toc-text">单一的测试每个概念</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91"><span class="toc-number">1.8.</span> <span class="toc-text">并发</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8-Promises-%E6%9B%BF%E4%BB%A3%E5%9B%9E%E8%B0%83"><span class="toc-number">1.8.1.</span> <span class="toc-text">用 Promises 替代回调</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Async-Await-%E6%98%AF%E8%BE%83-Promises-%E6%9B%B4%E5%A5%BD%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-number">1.8.2.</span> <span class="toc-text">Async&#x2F;Await 是较 Promises 更好的选择</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-number">1.9.</span> <span class="toc-text">错误处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%AB%E5%BF%98%E4%BA%86%E6%8D%95%E8%8E%B7%E9%94%99%E8%AF%AF"><span class="toc-number">1.9.1.</span> <span class="toc-text">别忘了捕获错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E8%A6%81%E5%BF%BD%E7%95%A5%E8%A2%AB%E6%8B%92%E7%BB%9D%E7%9A%84-promises"><span class="toc-number">1.9.2.</span> <span class="toc-text">不要忽略被拒绝的 promises</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">1.10.</span> <span class="toc-text">格式化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E5%B0%8F%E5%86%99%E4%B8%80%E8%87%B4"><span class="toc-number">1.10.1.</span> <span class="toc-text">大小写一致</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0%E7%9A%84%E5%87%BD%E6%95%B0%E5%92%8C%E8%A2%AB%E8%B0%83%E5%87%BD%E6%95%B0%E5%BA%94%E6%94%BE%E5%9C%A8%E8%BE%83%E8%BF%91%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.10.2.</span> <span class="toc-text">调用函数的函数和被调函数应放在较近的位置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">1.11.</span> <span class="toc-text">注释</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AA%E5%AF%B9%E5%AD%98%E5%9C%A8%E4%B8%80%E5%AE%9A%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E5%A4%8D%E6%9D%82%E6%80%A7%E7%9A%84%E4%BB%A3%E7%A0%81%E8%BF%9B%E8%A1%8C%E6%B3%A8%E9%87%8A"><span class="toc-number">1.11.1.</span> <span class="toc-text">只对存在一定业务逻辑复杂性的代码进行注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E8%A6%81%E5%9C%A8%E4%BB%A3%E7%A0%81%E5%BA%93%E4%B8%AD%E9%81%97%E7%95%99%E8%A2%AB%E6%B3%A8%E9%87%8A%E6%8E%89%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-number">1.11.2.</span> <span class="toc-text">不要在代码库中遗留被注释掉的代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E9%9C%80%E8%A6%81%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0%E7%B1%BB%E5%9E%8B%E6%B3%A8%E9%87%8A"><span class="toc-number">1.11.3.</span> <span class="toc-text">不需要版本更新类型注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E4%BD%8D%E7%BD%AE%E6%A0%87%E8%AE%B0"><span class="toc-number">1.11.4.</span> <span class="toc-text">避免位置标记</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E5%9C%A8%E6%BA%90%E6%96%87%E4%BB%B6%E4%B8%AD%E5%86%99%E5%85%A5%E6%B3%95%E5%BE%8B%E8%AF%84%E8%AE%BA"><span class="toc-number">1.11.5.</span> <span class="toc-text">避免在源文件中写入法律评论</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/11/%E5%88%9D%E6%98%A5%E9%87%8C%E7%9A%84%F0%9F%8C%B8.html" title="初春里的🌸">初春里的🌸</a><time datetime="2024-03-10T16:00:00.000Z" title="发表于 2024-03-11 00:00:00">2024-03-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/03/%E9%82%A3%E5%A4%A9%E8%80%81%E5%AE%B6%E4%B8%8B%E9%9B%AA%E2%9D%84%EF%B8%8F.html" title="那天老家下雪❄️">那天老家下雪❄️</a><time datetime="2024-03-02T16:00:00.000Z" title="发表于 2024-03-03 00:00:00">2024-03-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/28/%E8%A7%86%E9%A2%91.html" title="视频">视频</a><time datetime="2024-02-27T16:00:00.000Z" title="发表于 2024-02-28 00:00:00">2024-02-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/26/%E8%BF%87%E5%B9%B4.html" title="过年">过年</a><time datetime="2024-02-25T16:00:00.000Z" title="发表于 2024-02-26 00:00:00">2024-02-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/21/%E5%81%9A%E6%A2%A6.html" title="做梦">做梦</a><time datetime="2024-02-20T16:00:00.000Z" title="发表于 2024-02-21 00:00:00">2024-02-21</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2016 - 2024 By <a class="footer-bar-link" href="/" title="Lieme" target="_blank">Lieme</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://cuixinxin.cn" title="坚果大叔">坚果大叔</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">288</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">120</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">14</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://cuixinxin.cn/" title="卖坚果的怪叔叔"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="卖坚果的怪叔叔"/><span class="back-menu-item-text">卖坚果的怪叔叔</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/travel/"><span> 旅行</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/photos/"><span> 定格时光</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/life/"><span> 生活</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><span> 关于</span></a></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/Array/" style="font-size: 0.88rem;">Array<sup>1</sup></a><a href="/tags/CSS/" style="font-size: 0.88rem;">CSS<sup>6</sup></a><a href="/tags/ECMAScript6/" style="font-size: 0.88rem;">ECMAScript6<sup>14</sup></a><a href="/tags/Git/" style="font-size: 0.88rem;">Git<sup>4</sup></a><a href="/tags/Hyperapp/" style="font-size: 0.88rem;">Hyperapp<sup>2</sup></a><a href="/tags/JavaScript/" style="font-size: 0.88rem;">JavaScript<sup>4</sup></a><a href="/tags/Map/" style="font-size: 0.88rem;">Map<sup>1</sup></a><a href="/tags/Python/" style="font-size: 0.88rem;">Python<sup>7</sup></a><a href="/tags/Set/" style="font-size: 0.88rem;">Set<sup>1</sup></a><a href="/tags/css/" style="font-size: 0.88rem;">css<sup>21</sup></a><a href="/tags/es6/" style="font-size: 0.88rem;">es6<sup>1</sup></a><a href="/tags/html/" style="font-size: 0.88rem;">html<sup>4</sup></a><a href="/tags/http/" style="font-size: 0.88rem;">http<sup>1</sup></a><a href="/tags/javascript/" style="font-size: 0.88rem;">javascript<sup>17</sup></a><a href="/tags/js/" style="font-size: 0.88rem;">js<sup>2</sup></a><a href="/tags/node%E5%AD%A6%E4%B9%A0/" style="font-size: 0.88rem;">node学习<sup>4</sup></a><a href="/tags/python/" style="font-size: 0.88rem;">python<sup>2</sup></a><a href="/tags/vue/" style="font-size: 0.88rem;">vue<sup>8</sup></a><a href="/tags/wxpy/" style="font-size: 0.88rem;">wxpy<sup>2</sup></a><a href="/tags/%E5%85%B6%E4%BB%96%E5%88%86%E4%BA%AB/" style="font-size: 0.88rem;">其他分享<sup>3</sup></a><a href="/tags/%E5%88%86%E4%BA%AB/" style="font-size: 0.88rem;">分享<sup>16</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E4%B8%A4%E4%B8%89%E9%97%AE/" style="font-size: 0.88rem;">前端两三问<sup>7</sup></a><a href="/tags/%E5%9B%BE%E7%89%87/" style="font-size: 0.88rem;">图片<sup>26</sup></a><a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 0.88rem;">小程序<sup>6</sup></a><a href="/tags/%E5%B1%85%E4%B8%AD%E6%98%BE%E7%A4%BA/" style="font-size: 0.88rem;">居中显示<sup>1</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 0.88rem;">微信<sup>4</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1%E6%9C%BA%E5%99%A8%E4%BA%BA/" style="font-size: 0.88rem;">微信机器人<sup>3</sup></a><a href="/tags/%E5%BE%AE%E4%BF%A1%E7%9B%B8%E5%85%B3%E6%8A%80%E5%B7%A7/" style="font-size: 0.88rem;">微信相关技巧<sup>1</sup></a><a href="/tags/%E6%89%93%E5%AD%97%E6%9C%BA/" style="font-size: 0.88rem;">打字机<sup>1</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 0.88rem;">技术<sup>68</sup></a><a href="/tags/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" style="font-size: 0.88rem;">技术分享<sup>2</sup></a><a href="/tags/%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C/" style="font-size: 0.88rem;">数组操作<sup>2</sup></a><a href="/tags/%E6%97%A5%E5%B8%B8%E6%8C%96%E5%9D%91/" style="font-size: 0.88rem;">日常挖坑<sup>2</sup></a><a href="/tags/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/" style="font-size: 0.88rem;">日常问题<sup>6</sup></a><a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 0.88rem;">生活<sup>54</sup></a><a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 0.88rem;">科学上网<sup>2</sup></a><a href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" style="font-size: 0.88rem;">移动端<sup>5</sup></a><a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 0.88rem;">笔记<sup>4</sup></a><a href="/tags/%E9%98%B2%E6%92%A4%E5%9B%9E/" style="font-size: 0.88rem;">防撤回<sup>1</sup></a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 0.88rem;">面试<sup>8</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2017 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2016 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 Lieme 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
